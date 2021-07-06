@@ -1,0 +1,475 @@
+<div class="container my-4">
+    <div class="mb-4">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item">Autos</li>
+                <li class="breadcrumb-item">Busqueda</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="mb-4">
+        <div class="d-flex align-items-center gap-2">
+            <h3 class="text-primary mb-0 fw-bold">BUSQUEDA</h3>
+            <a href="javascript:void(0)" class="small fs-6 fw-semibold" onclick="toggleFilters()"> Mostrar/ocultar Filtros</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" id="filtros">
+            <div class="card mb-4">
+                <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center flex-wrap">
+                    <div>
+                        <span class="text-muted fw-semibold">Filtros</span>
+                    </div>
+                    <div>
+                        <div class="d-flex">
+                            <button class="btn text-secondary"><i class="lnr lnr-trash"></i></button>
+                            <button class="btn btn-secondary">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <span class="badge bg-gray py-2 text-dark mb-2">Autos <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                        <span class="badge bg-gray py-2 text-dark mb-2">Kia <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                        <span class="badge bg-gray py-2 text-dark mb-2">Cadenza <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                    </div>
+                    <hr>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Precio</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">US$10,000 a US$20,000 <span class="text-muted">(1)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Consultar precio <span class="text-muted">(1)</span></a>
+                        <div class="mb-2">
+                            <div class="d-flex gap-2">
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Desde">
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Hasta">
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary">
+                                        <i class="lnr lnr-magnifier"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Año</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">2018 a 2021 <span class="text-muted">(1)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">2006 a 2011 <span class="text-muted">(1)</span></a>
+                        <div class="mb-2">
+                            <div class="d-flex gap-2">
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Desde">
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Hasta">
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary">
+                                        <i class="lnr lnr-magnifier"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Kilómetros</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Hasta 15,000 Km <span class="text-muted">(1)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">50,000 a 1000,000 <span class="text-muted">(1)</span></a>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Transmisión</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Mecánica <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Automática <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Automática - Secuencial <span class="text-muted">(2)</span></a>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-floating mb-3">
+                            <select id="condicion" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="condicion">Ubicación</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-secondary mb-2 fw-semibold">Categoría</h6>
+                        <div class="d-flex align-items-end flex-wrap gap-4">
+                            <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                <img src="./assets/img/icons/sedan.svg" class="w-100" alt="">
+                                <span>Sedan</span>
+                            </a>
+                            <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                <img src="./assets/img/icons/pickup.svg" class="w-100" alt="">
+                                <span>Pick up</span>
+                            </a>
+                            <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                <img src="./assets/img/icons/van.svg" class="w-100" alt="">
+                                <span>Vans</span>
+                            </a>
+                        </div>
+                        <div class="collapse" id="categorias">
+                            <div class="d-flex align-items-end flex-wrap gap-4">
+                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/sedan.svg" class="w-100" alt="">
+                                    <span>Suv</span>
+                                </a>
+                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/pickup.svg" class="w-100" alt="">
+                                    <span>Hatchback</span>
+                                </a>
+                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/van.svg" class="w-100" alt="">
+                                    <span>S. Wagon</span>
+                                </a>
+                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/van.svg" class="w-100" alt="">
+                                    <span>Deportivo</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-2">
+                            <a data-bs-toggle="collapse" href="#categorias" role="button" class="fw-semibold">Más opciones</a>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Combustible</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gasolina <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Diesel <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Dual <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gas GLP <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gas GNV <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gas <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Híbrido <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gasolina - Híbrido <span class="text-muted">(2)</span></a>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Tracción</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">4x2 <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">4x4 <span class="text-muted">(2)</span></a>
+                        <div id="traccion" class="collapse">
+                            <a href="#" class="text-primary fw-semibold mb-2 d-block">4x2 <span class="text-muted">(2)</span></a>
+                            <a href="#" class="text-primary fw-semibold mb-2 d-block">4x4 <span class="text-muted">(2)</span></a>
+                        </div>
+                        <a href="#traccion" class="text-primary fw-semibold mb-2 d-block" data-bs-toggle="collapse" role="button">Más opciones</a>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Timón</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Original <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Cambiado <span class="text-muted">(2)</span></a>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Fecha de Publicación</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Últimos 7 días <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Últimos 15 días <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Últimos 30 días <span class="text-muted">(2)</span></a>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Tipo de anunciante</h6>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Empresa <span class="text-muted">(2)</span></a>
+                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Dueño <span class="text-muted">(2)</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 ps-6" id="productos">
+            <div class="d-flex gap-2 mb-4">
+                <div class="col-lg-4 col-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-end-0" placeholder="Ingrese una busqueda">
+                        <span class="input-group-text bg-white border-start-0">
+                         <i class="lnr lnr-magnifier text-secondary"></i>
+                     </span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-6 d-flex offset-lg-2 gap-2">
+                    <select id="condicion" class="form-select">
+                        <option value="">Ordenar por</option>
+                    </select>
+                    <a href="#" class="btn text-secondary"><i class="lnr lnr-list"></i></a>
+                    <a href="#" class="btn text-secondary"><i class="lnr lnr-list"></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold" [routerLink]="['/autos/ver']">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/100" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 text-center">
+                <a href="#" class="btn btn-lg btn-primary btn-large btn-radius button">Más avisos</a>
+            </div>
+        </div>
+    </div>
+</div>

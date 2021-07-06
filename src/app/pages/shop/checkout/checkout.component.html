@@ -1,0 +1,203 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="sticky-lg-top">
+                <div class="d-flex flex-column p-4 bg-primary">
+                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
+                    <ul class="nav nav-pills flex-column mb-4" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
+                            </a>
+                            <ul class="collapse nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-4">
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
+                            </a>
+                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Cart</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">PUBLICA TU ANUNCIO</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="mb-4">
+                        <span class="d-block text-muted fw-semibold fs-4">Detalles</span>
+                    </div>
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="nombre">
+                                    <label for="nombre">Nombre</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="apellido">
+                                    <label for="apellido">Apellido</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="compañia">
+                                    <label for="compañia">Nombre compañia</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <select type="text" class="form-select" id="pais">
+                                        <option value="">Seleccionar</option>
+                                    </select>
+                                    <label for="pais">País</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="direccion">
+                                    <label for="direccion">Dirección</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <select type="text" class="form-select" id="departamento">
+                                        <option value="">Seleccionar</option>
+                                    </select>
+                                    <label for="departamento">Departamento</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <select type="text" class="form-select" id="provincia">
+                                        <option value="">Seleccionar</option>
+                                    </select>
+                                    <label for="provincia">Provincia</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <select type="text" class="form-select" id="distrito">
+                                        <option value="">Seleccionar</option>
+                                    </select>
+                                    <label for="distrito">Distrito</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="celular">
+                                    <label for="celular">Celular</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="celular">
+                                    <label for="celular">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <span class="d-block mb-3 fs-5 fw-semibold text-secondary">Información adicional</span>
+                                        <div class="form-floating mb-3">
+                                            <textarea class="form-control" id="notas"></textarea>
+                                            <label for="notas">Notas</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <h5 class="fw-semibold">Tu orden</h5>
+                            <div class="d-flex justify-content-between">
+                                <span>Productos</span>
+                                <span>Total</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span>Plan simple</span>
+                                <span>S/.0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Plan simple</span>
+                                <span>S/.0.00</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span>IGV 18%</span>
+                                <span>S/.0.00</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-4">
+                                <span>Total</span>
+                                <span>S/.0.00</span>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-light btn-lg fw-semibold text-primary" data-bs-toggle="modal" data-bs-target="#myModal">Procesar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

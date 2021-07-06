@@ -1,0 +1,135 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="sticky-lg-top">
+                <div class="d-flex flex-column p-4 bg-primary">
+                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
+                    <ul class="nav nav-pills flex-column mb-4" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
+                            </a>
+                            <ul class="collapse nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-4">
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
+                            </a>
+                            <ul class="collapse show nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-semibold">3. Contacto</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">CONTACTO</h3>
+            </div>
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input id="nombre" class="form-control">
+                            <label for="nombre">Nombre de contacto</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input id="correo" class="form-control">
+                            <label for="correo">Correo de contacto</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input id="celular1" class="form-control">
+                            <label for="celular1">Número de celular 1</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox1">
+                            <label class="form-check-label text-success small" for="checkbox1">
+                                Está asociado a una cuenta de Whatsapp
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input id="celular2" class="form-control">
+                            <label for="celular2">Número de celular 2</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox2">
+                            <label class="form-check-label text-success small" for="checkbox2">
+                                Está asociado a una cuenta de Whatsapp
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="tipo" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="tipo">Tipo de anunciante</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="switch">Mostrar mi número de telefono en mis anuncios</label>
+                        <input class="form-check-input" type="checkbox" id="switch">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button type="button" class="btn btn-primary btn-lg btn-large button btn-radius">Publicar ahora</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

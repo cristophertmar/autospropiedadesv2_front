@@ -1,1 +1,471 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+:root {
+    --blue: #0072BF;
+    --orange: #E9B20D;
+    --light: #FAFAFA;
+    --cyan: #08C2DA;
+    --gray: #97999E;
+    --lightgray: #C4C4C4;
+    --dark: #444C5B;
+}
+
+.btn-warning.disabled,
+.btn-warning:disabled {
+    color: #FFFFFF !important;
+}
+
+.text-sm {
+    font-size: 12px;
+}
+
+.d-list {
+    display: list-item;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.text-warning {
+    color: var(--orange) !important;
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.border-primary {
+    border-color: var(--blue) !important;
+}
+
+.btn-dark {
+    background: var(--dark) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+.input-file {
+    opacity: 0;
+    display: none;
+    z-index: -1;
+}
+
+.label-file {
+    border: 1px solid var(--lightgray);
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.label-file span {
+    line-height: 20px;
+}
+
+.fw-semibold {
+    font-weight: 500 !important;
+}
+
+.rounded {
+    border-radius: 8px !important;
+}
+
+.rounded-lg {
+    border-radius: 30px;
+}
+
+.border-dark {
+    border-color: var(--gray) !important;
+}
+
+.rounded-3 {
+    border-radius: 10px !important;
+}
+
+.rounded-3 img.card-img-top {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+.btn-outline-warning:hover {
+    border-color: var(--orange);
+}
+
+.btn-outline-warning:hover {
+    background: var(--orange) !important;
+    color: #FFFFFF;
+}
+
+.wrapper {
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+.button {
+    border: none;
+    color: #FFFFFF;
+}
+
+.btn-radius {
+    border-radius: 30px;
+}
+
+.btn-large {
+    width: 250px;
+}
+
+.btn-small {
+    width: 200px;
+}
+
+.card-search button {
+    height: calc(3.5rem + 2px);
+}
+
+.bg-primary {
+    background: var(--blue) !important;
+}
+
+.bg-gray {
+    background: var(--lightgray) !important;
+}
+
+.btn-gray {
+    background: var(--lightgray) !important;
+}
+
+.badge {
+    font-size: 13px;
+}
+
+.btn-secondary {
+    background: var(--gray) !important;
+}
+
+.text-primary {
+    color: var(--blue) !important;
+}
+
+.text-secondary {
+    color: var(--gray) !important;
+}
+
+.btn-primary {
+    background: var(--blue);
+}
+
+.btn-primary:hover {
+    background: var(--blue);
+}
+
+.btn-info {
+    background: var(--cyan);
+    color: #FFFFFF;
+}
+
+.btn-info:hover {
+    background: var(--cyan);
+}
+
+.btn-warning {
+    color: #FFFFFF;
+    background: var(--orange);
+}
+
+.btn-warning:hover {
+    background: var(--orange);
+    color: #FFFFFF;
+}
+
+.bg-light {
+    background: var(--light) !important;
+}
+
+.navbar .btn {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    font-size: 18px;
+}
+
+.navbar .nav-link {
+    color: #97999E !important;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler img {
+    width: 28px;
+    height: 28px;
+}
+
+.hero {
+    position: relative;
+}
+
+.hero .intro {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    z-index: 2;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    margin-top: 8em;
+    text-align: center;
+}
+
+.carousel-indicators {
+    top: 20em;
+}
+
+.carousel-indicators [data-bs-target] {
+    height: 4px;
+    width: 60px;
+    background-color: #FFFFFF;
+    opacity: 1;
+}
+
+.carousel-indicators .active {
+    background-color: var(--cyan);
+}
+
+footer {
+    background: var(--blue);
+    color: #FFFFFF;
+}
+
+.mt-n5 {
+    margin-top: -3rem;
+}
+
+.card .overlay-primary,
+.card .overlay-primary-min {
+    position: absolute;
+    background: rgba(0, 114, 191, 0.75);
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.card .overlay-warning,
+.card .overlay-warning-min {
+    position: absolute;
+    background: rgba(233, 178, 13, 0.75);
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.card .overlay-primary-min a,
+.card .overlay-warning-min a {
+    font-size: 10px;
+    border-radius: 17px;
+}
+
+.card:hover .overlay-primary,
+.card:hover .overlay-primary-min,
+.card:hover .overlay-warning,
+.card:hover .overlay-warning-min {
+    display: flex;
+}
+
+.card-img {
+    position: relative;
+}
+
+.card-img .price {
+    position: absolute;
+    background: var(--blue);
+    padding: 0.5em 1em;
+    border-top-left-radius: 8px;
+    right: 0;
+    bottom: 0;
+    color: #FFFFFF;
+    font-weight: bold;
+    width: 60%;
+    text-align: center;
+    height: 40px;
+}
+
+.social {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    line-height: 15px;
+}
+
+.social img {
+    width: 40px;
+    height: 40px;
+}
+
+.social small {
+    font-size: 12px;
+}
+
+.btn-float {
+    background: var(--cyan);
+    border: 8px solid #FFFFFF;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 9999;
+}
+
+.breadcrumb {
+    color: var(--gray);
+}
+
+.breadcrumb a {
+    text-decoration: none;
+}
+
+.btn-outline-primary {
+    color: var(--blue);
+    border-color: var(--blue);
+}
+
+.btn-outline-primary:hover {
+    color: #FFFFFF;
+    background: var(--blue);
+    border-color: var(--blue);
+}
+
+.btn-check:active+.btn-outline-primary,
+.btn-check:checked+.btn-outline-primary,
+.btn-outline-primary.active,
+.btn-outline-primary.dropdown-toggle.show,
+.btn-outline-primary:active {
+    color: #FFFFFF;
+    background: var(--blue);
+}
+
+.form-switch {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.form-switch .form-check-input {
+    width: 4em;
+    height: 2em;
+    margin: 0;
+}
+
+.imgBox {
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.accordion-button {
+    background: var(--light);
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.accordion-button:not(.collapsed) {
+    background: var(--light);
+    color: var(--dark);
+}
+
+.accordion-button:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.accordion-flush .accordion-item:last-child {
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.input-group input.number {
+    flex: none;
+    width: 50px;
+}
+
+.form-floating label {
+    font-size: 13px;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-select {
+    height: calc(3.2rem + 2px);
+    font-size: 14px;
+}
+
+.form-floating>.form-select {
+    padding-top: 1.425rem;
+    padding-bottom: .425rem;
+}
+
+.ps-6 {
+    padding-left: 3.5rem;
+}
+
+.rounded-3 .card,
+.card-header:first-child,
+.form-control,
+.form-select,
+.input-group-text {
+    border-radius: 10px;
+}
+
+.links a:not(.active) {
+    color: var(--dark);
+}
+
+.links a.active {
+    color: var(--blue);
+    text-decoration: underline;
+}
+
+.links a:hover {
+    color: var(--blue);
+}
+
+@media screen and (max-width: 767.98px) {
+    .carousel-item img {
+        height: 100vh;
+        object-fit: cover;
+    }
+    .carousel-indicators {
+        bottom: 5em;
+        top: auto;
+    }
+    .btn-large {
+        width: 100%;
+    }
+    .card .overlay-primary-min a,
+    .card .overlay-warning-min a {
+        font-size: 14px;
+    }
+    .modal .btn-lg {
+        padding: .375rem .75rem;
+        font-size: 1rem;
+    }
+    .ps-6 {
+        padding-left: calc(var(--bs-gutter-x)/ 2);
+    }
+}

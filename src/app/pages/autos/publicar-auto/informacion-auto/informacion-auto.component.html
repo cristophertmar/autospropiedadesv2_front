@@ -1,0 +1,370 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="sticky-lg-top">
+                <div class="d-flex flex-column p-4 bg-primary">
+                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
+                    <ul class="nav nav-pills flex-column mb-4" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
+                            </a>
+                            <ul class="collapse nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-4">
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
+                            </a>
+                            <ul class="collapse show nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-semibold">1. Información</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">INFORMACIÓN</h3>
+            </div>
+            <form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="marca" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="marca">Marca</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="modelo" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="modelo">Modelo</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="anio" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="anio">Año</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="transmision" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="transmision">Tipo de transmisión</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="combustible" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="combustible">Combustible(cilindrada)</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="timon" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="timon">Timón</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="kilometraje" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="kilometraje">Kilometraje</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="kilometraje" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="kilometraje">Nro de puertas</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="traccion" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="traccion">Tracción</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="color" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="color">Color</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="cilindros" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="cilindros">Nro de cilindros</label>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Información del anuncio</h5>
+                <div class="form-floating mb-3">
+                    <input type="text" id="titulo" class="form-control">
+                    <label for="titulo">Título del anuncio</label>
+                </div>
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Menciona las caracteristicas principales de tu articulo (Ejem:Marca, modelo, antiguedad, tipo, etc)
+                    </small>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea id="descripcion" class="form-control"></textarea>
+                    <label for="descripcion">Descripción del anuncio</label>
+                </div>
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Incluye estado, características y motivo de venta
+                    </small>
+                </div>
+                <h5 class="d-block text-dark fw-semibold mb-4">Fija tu precio</h5>
+                <div class="d-flex gap-2 mb-4">
+                    <div class="d-flex flex-nowrap justify-content-start align-items-center gap-2 mb-3">
+                        <input type="radio" class="btn-check" name="tipo" id="tipo1" checked>
+                        <label class="btn btn-outline-primary btn-lg" for="tipo1">PEN</label>
+                        <input type="radio" class="btn-check" name="tipo" id="tipo2">
+                        <label class="btn btn-outline-primary btn-lg" for="tipo2">USD</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" id="precio" class="form-control">
+                        <label for="precio">Precio</label>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Accesorios</h5>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Equipamiento</label>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox1">
+                            <label class="form-check-label" for="checkbox1">
+                                Retrovisores eléctricos
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox2">
+                            <label class="form-check-label" for="checkbox2">
+                                Retrovisores eléctricos
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox3">
+                            <label class="form-check-label" for="checkbox3">
+                                Aire acondicionado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox3">
+                            <label class="form-check-label" for="checkbox3">
+                                Full equipo
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox4">
+                            <label class="form-check-label" for="checkbox4">
+                                Computadora de abordo
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox5">
+                            <label class="form-check-label" for="checkbox5">
+                                Parlantes/Bajos
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox6">
+                            <label class="form-check-label" for="checkbox6">
+                                Radio CD
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox7">
+                            <label class="form-check-label" for="checkbox7">
+                                Radio MP3
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Exterior</label>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox8">
+                            <label class="form-check-label" for="checkbox8">
+                                Aros
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox9">
+                            <label class="form-check-label" for="checkbox9">
+                                Aros de aleación
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox10">
+                            <label class="form-check-label" for="checkbox10">
+                                Aire acondicionado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox11">
+                            <label class="form-check-label" for="checkbox11">
+                                Parrilla
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox12">
+                            <label class="form-check-label" for="checkbox12">
+                                Luces halógenas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Seguridad</label>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox13">
+                            <label class="form-check-label" for="checkbox13">
+                                Localizador (GPS)
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox14">
+                            <label class="form-check-label" for="checkbox14">
+                                Airbag
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox10">
+                            <label class="form-check-label" for="checkbox10">
+                                Láminas de seguridad
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox11">
+                            <label class="form-check-label" for="checkbox11">
+                                Blindado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox12">
+                            <label class="form-check-label" for="checkbox12">
+                                Faros antiniebla delantero
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox13">
+                            <label class="form-check-label" for="checkbox13">
+                                Faros antiniebla trasero
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox14">
+                            <label class="form-check-label" for="checkbox14">
+                                Inmovilizador de motor
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox15">
+                            <label class="form-check-label" for="checkbox15">
+                                Repartidor electrónico de frenado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox16">
+                            <label class="form-check-label" for="checkbox16">
+                                Frenos ABS
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Extras</label>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox17">
+                            <label class="form-check-label" for="checkbox17">
+                                Sunroof
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox18">
+                            <label class="form-check-label" for="checkbox18">
+                                Asientos de cuero
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox19">
+                            <label class="form-check-label" for="checkbox19">
+                                Climatizador
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button type="button" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
