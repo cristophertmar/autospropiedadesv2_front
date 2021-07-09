@@ -19,15 +19,13 @@ const routes: Routes = [
   { path: 'autos/buscar', component: BusquedaAutoComponent },
   { path: 'autos/ver', component: DetalleAutoComponent },
 
-  { path: 'propiedades', component: PropiedadesComponent },
-  { path: 'propiedades/buscar', component: BusquedaAutoComponent },
-  { path: 'propiedades/ver', component: DetalleAutoComponent },
-
   { path: 'autos/publicar/informacion', component: InformacionAutoComponent },
   { path: 'autos/publicar/ubicacion', component: UbicacionAutoComponent },
   { path: 'autos/publicar/contacto', component: ContactoAutoComponent },
 
-  
+  { path: 'propiedades', component: PropiedadesComponent },
+  { path: 'propiedades/buscar', component: BusquedaAutoComponent },
+  { path: 'propiedades/ver', component: DetalleAutoComponent },  
 
   { path: 'tienda/planes', component: PlanesComponent },
   { path: 'tienda/carrito', component: CarritoComponent },

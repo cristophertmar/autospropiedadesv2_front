@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-busqueda-auto',
   templateUrl: './busqueda-auto.component.html',
   styles: [
-  ]
+  ],
+  preserveWhitespaces: true
 })
 export class BusquedaAutoComponent implements OnInit {
 

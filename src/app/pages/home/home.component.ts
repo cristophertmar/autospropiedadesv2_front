@@ -4,7 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styles: [
-  ]
+  ],
+  preserveWhitespaces: true
 })
 export class HomeComponent implements OnInit {
 

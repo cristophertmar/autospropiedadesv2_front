@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-planes',
@@ -8,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public _router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
+
+  elegir_basico() {
+    this._router.navigate(['/autos/publicar/informacion']);
+  }
+
+  elegir_premium() {
+    this._router.navigate(['/autos/publicar/informacion']);
+  }
+
+
 
 }

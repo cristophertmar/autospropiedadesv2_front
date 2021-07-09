@@ -73,28 +73,31 @@
             <div class="mb-4">
                 <h3 class="text-primary fw-bold">UBICACIÓN</h3>
             </div>
-            <form>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select id="departamento" class="form-select">
-                                <option value="">Seleccionar</option>
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
                             </select>
                             <label for="departamento">Departamento</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select id="provincia" class="form-select">
-                                <option value="">Seleccionar</option>
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
                             </select>
                             <label for="provincia">Provincia</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select id="distrito" class="form-select">
-                                <option value="">Seleccionar</option>
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let dist of distritos" [value]="dist | json"> {{ dist.distrito }} </option>
                             </select>
                             <label for="distrito">Distrito</label>
                         </div>
@@ -114,7 +117,7 @@
                     </label>
                 </div>
                 <div class="mb-4">
-                    <button type="button" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
                 </div>
             </form>
         </div>

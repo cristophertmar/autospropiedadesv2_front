@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contacto-auto',
@@ -8,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactoAutoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
+
+  publicar() {
+    this._router.navigate(['/tienda/carrito']);
+  }
+
 
 }

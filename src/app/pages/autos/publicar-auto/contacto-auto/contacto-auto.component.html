@@ -73,7 +73,7 @@
             <div class="mb-4">
                 <h3 class="text-primary fw-bold">CONTACTO</h3>
             </div>
-            <form>
+            <form (ngSubmit)="publicar()">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <button type="button" class="btn btn-primary btn-lg btn-large button btn-radius">Publicar ahora</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius">Publicar ahora</button>
                 </div>
             </form>
         </div>
