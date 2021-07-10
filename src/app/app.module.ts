@@ -26,6 +26,8 @@ import { MultimediaComponent } from './pages/propiedades/publicar-propiedad/mult
 import { ExtrasComponent } from './pages/propiedades/publicar-propiedad/extras/extras.component';
 import { ContactoComponent } from './pages/propiedades/publicar-propiedad/contacto/contacto.component';
 
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,9 +56,27 @@ import { ContactoComponent } from './pages/propiedades/publicar-propiedad/contac
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('112121065768-cn1bsvsclcq1rlvk0fuvc4q36u7dcpp6.apps.googleusercontent.com')
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('569967727213576')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
