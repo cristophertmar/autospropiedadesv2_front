@@ -13,12 +13,13 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <div class="mb-2">
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+            <!-- <div class="mb-2">
                 <a href="./assets/img/placeholder/1000x400.png" id="linkImgFull" data-fslightbox>
                     <img src="./assets/img/placeholder/1000x400.png" class="w-100" id="imgFull" alt="">
                 </a>
-            </div>
-            <div class="row mb-4">
+            </div> -->
+            <!-- <div class="row mb-4">
                 <div class="slick">
                     <div class="ratio ratio-1x1">
                         <img src="./assets/img/placeholder/1000x400_1.png" class="imgBox" alt="">
@@ -42,13 +43,13 @@
                         <img src="./assets/img/placeholder/1000x400_6.png" class="imgBox" alt="">
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="card border-0 mb-4">
                 <div class="card-header fw-bold text-muted">
                     Descripción
                 </div>
                 <div class="card-body text-justify text-muted">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit iure itaque rerum optio modi inventore consectetur, maxime possimus nesciunt, harum, maiores quae sint dolores ea veritatis amet dicta. Magni, accusamus.
+                    {{ vehiculo.descrip_vehiculo }}
                 </div>
             </div>
             <div class="card border-0 mb-4">
@@ -57,71 +58,73 @@
                 </div>
                 <div class="card-body">
                     <table class="table">
-                        <tr>
-                            <td class="text-white bg-primary">Marca</td>
-                            <td class="text-primary bg-light fw-bold">Toyota</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Modelo</td>
-                            <td class="text-primary bg-light fw-bold">COROLLA</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Categoría</td>
-                            <td class="text-primary bg-light fw-bold">Sedan</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Año</td>
-                            <td class="text-primary bg-light fw-bold">2019</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Kilometraje</td>
-                            <td class="text-primary bg-light fw-bold">40000</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Tipo de transmisión</td>
-                            <td class="text-primary bg-light fw-bold">Automática - Secuencial</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Combustible</td>
-                            <td class="text-primary bg-light fw-bold">Gasolina</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Cilindrada (cc)</td>
-                            <td class="text-primary bg-light fw-bold">1800</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Timón</td>
-                            <td class="text-primary bg-light fw-bold">Original</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Número de puertas</td>
-                            <td class="text-primary bg-light fw-bold">5</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Tracción</td>
-                            <td class="text-primary bg-light fw-bold">4x2</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Color</td>
-                            <td class="text-primary bg-light fw-bold">Negro</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Número de cilindros</td>
-                            <td class="text-primary bg-light fw-bold">4</td>
-                        </tr>
-                        <tr>
-                            <td class="text-white bg-primary">Ubicación</td>
-                            <td class="text-primary bg-light fw-bold">Lima - Lima - Lima</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td class="text-white bg-primary">Marca</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_marca | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Modelo</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_modelo | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Condición</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.condicion_vehiculo | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Año</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.anio_vehiculo }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Kilometraje</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.kilometraje_vehiculo }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Tipo de transmisión</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_tipotran | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Combustible</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_combustible | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Cilindrada (cc)</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.motor_vehiculo }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Timón</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_tipotran | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Número de puertas</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.puertas_vehiculo }} Puertas</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Tracción</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_traccion | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Color</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_color | titlecase }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Número de cilindros</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.descrip_cilindro }} cilindros</td>
+                            </tr>
+                            <tr>
+                                <td class="text-white bg-primary">Ubicación</td>
+                                <td class="text-primary bg-light fw-bold">{{ vehiculo.departamento | titlecase }} - {{ vehiculo.provincia | titlecase }} - {{ vehiculo.distrito | titlecase }}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <span class="text-primary fw-semibold d-block">Lima, La Molina</span>
-            <h3 class="text-secondary fw-bold"><span class="text-primary">Toyota</span> Neque porro quisquam est qui</h3>
+            <span class="text-primary fw-semibold d-block">{{ vehiculo.provincia | titlecase }}, {{ vehiculo.distrito | titlecase }}</span>
+            <h3 class="text-secondary fw-bold"><span class="text-primary">{{ vehiculo.descrip_marca | titlecase }}</span> {{ vehiculo.descrip_modelo | titlecase }}</h3>
             <span class="text-dark fw-semibold d-block mb-4">14 May 2021</span>
-            <span class="d-block h1 fw-bold mb-4">S/ 99,999.00</span>
+            <span class="d-block h1 fw-bold mb-4"> {{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </span>
             <div class="p-3 border border-dark rounded-3 text-secondary fw-normal mb-4">
                 <span class="d-block mb-2 fw-semibold">Por tu seguridad</span>
                 <ul>
@@ -133,19 +136,145 @@
             <h5 class="d-block text-dark fw-bold">Vendedor</h5>
             <div class="social mb-4">
                 <img src="https://via.placeholder.com/32" class="rounded-circle">
-                <span class="text-muted"><span class="fw-bold">John Doe</span> <br><small class="text-muted">Miembro desde ene 2018</small></span>
+                <span class="text-muted">
+						<span class="fw-bold">John Doe</span> <br>
+                <div class="rating">
+                    <img src="./assets/img/icons/star-fill.svg">
+                    <img src="./assets/img/icons/star-empty.svg">
+                    <img src="./assets/img/icons/star-empty.svg">
+                    <img src="./assets/img/icons/star-empty.svg">
+                    <img src="./assets/img/icons/star-empty.svg">
+                </div>
+                </span>
+
             </div>
-            <div class="d-grid gap-2 mb-4">
-                <button class="btn btn-primary btn-lg  button btn-radius" data-bs-toggle="modal" data-bs-target="#modalContacto">Contacta con el vendedor</button>
-                <button href="#" class="btn btn-dark btn-lg button">Mostrar el número</button>
+            <div class="mb-4">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active fw-semibold" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab">Mensaje</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button" role="tab">Teléfono</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button" role="tab">WhatsApp</button>
+                    </li>
+                </ul>
+                <div class="tab-content py-4" id="myTabContent">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                        <form [formGroup]="formulario_mensaje" autocomplete="off" (ngSubmit)="contactar_formulario_mensaje()">
+                            <div class="form-floating mb-3">
+                                <input formControlName="nombre" name="nombre" type="text" id="nombre" class="form-control" [class.is-invalid]="nombreNoValido_mensaje">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese su nombre
+                                </div>
+                                <label for="nombre">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input formControlName="correo" name="correo" type="text" id="email" class="form-control" [class.is-invalid]="correoNoValido_mensaje">
+                                <label for="email">Correo</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un correo válido
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input formControlName="telefono" name="telefono" type="text" id="telefono" class="form-control" [class.is-invalid]="telefonoNoValido_mensaje">
+                                <label for="telefono">Teléfono</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un número telefónico
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea formControlName="mensaje" name="mensaje" id="mensaje" class="form-control" [class.is-invalid]="mensajeNoValido_mensaje"></textarea>
+                                <label for="mensaje">Tu mensaje</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un mensaje
+                                </div>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input formControlName="alertas" name="alertas" class="form-check-input" type="checkbox" id="checkbox">
+                                <label class="form-check-label text-secondary" for="checkbox">
+										<small>
+											Quiero recibir alertas de email con anuncios similares
+										</small>
+									</label>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg  button btn-radius">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="tab2" role="tabpanel">
+                        <!-- <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="contactar()">
+                            <div class="form-floating mb-3">
+                                <input formControlName="nombre" name="nombre" type="text" id="nombre" class="form-control">
+                                <label for="nombre">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input formControlName="correo" name="correo" type="text" id="email" class="form-control">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input formControlName="telefono" name="telefono" type="text" id="telefono" class="form-control">
+                                <label for="telefono">Teléfono</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea formControlName="mensaje" name="mensaje" id="mensaje" class="form-control"></textarea>
+                                <label for="mensaje">Tu mensaje</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input formControlName="alertas" name="alertas" class="form-check-input" type="checkbox" id="checkbox">
+                                <label class="form-check-label text-secondary" for="checkbox">
+										<small>
+											Quiero recibir alertas de email con anuncios similares
+										</small>
+									</label>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg  button btn-radius">Enviar</button>
+                            </div>
+                        </form> -->
+                    </div>
+                    <div class="tab-pane fade" id="tab3" role="tabpanel">
+                        <form>
+                            <div class="form-floating mb-3">
+                                <input type="text" id="nombre" class="form-control">
+                                <label for="nombre">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" id="email" class="form-control">
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" id="telefono" class="form-control">
+                                <label for="telefono">Teléfono</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea id="mensaje" class="form-control"></textarea>
+                                <label for="mensaje">Tu mensaje</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="checkbox">
+                                <label class="form-check-label text-secondary" for="checkbox">
+                                    <small>
+                                        Quiero recibir alertas de email con anuncios similares
+                                    </small>
+								</label>
+                            </div>
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-primary btn-lg  button btn-radius">Enviar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="mb-4">
                 <h5 class="d-block text-dark fw-bold mb-0">Ubicado en</h5>
                 <small class="text-muted ">Calle Puerta del sol 465 - La Molina</small>
             </div>
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <img src="http://via.placeholder.com/400" class="w-100" alt="">
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="mb-4">

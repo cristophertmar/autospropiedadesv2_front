@@ -3,7 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ubigeo } from 'src/app/models/ubigeo.model';
 import { UbigeoService } from '../../../../services/ubigeo.service';
-
+import { AnuncioService } from '../../../../services/anuncio.service';
+import { ArchivoService } from '../../../../services/archivo.service';
 @Component({
   selector: 'app-ubicacion-auto',
   templateUrl: './ubicacion-auto.component.html',
@@ -21,7 +22,9 @@ export class UbicacionAutoComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _ubigeoService: UbigeoService
+    private _ubigeoService: UbigeoService,
+    private _anuncioService: AnuncioService,
+    public _archivoService: ArchivoService
   ) {
     this.crearFormulario();
   }
@@ -33,7 +36,11 @@ export class UbicacionAutoComponent implements OnInit {
   }
 
   siguiente() {
+
+    this._anuncioService.vehiculo_temp.ubigeo = this.formulario.value.distrito;
+    this._anuncioService.guardar_vehiculo_temp(this._anuncioService.vehiculo_temp);
     this._router.navigate(['/autos/publicar/contacto']);
+
   }
 
   DepartamentoListener() {
@@ -69,9 +76,6 @@ export class UbicacionAutoComponent implements OnInit {
       this.distritos = resp.data;
     });
   }
-
-
-
 
   crearFormulario() {
     this.formulario = new FormGroup({

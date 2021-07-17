@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -27,6 +30,12 @@ import { ExtrasComponent } from './pages/propiedades/publicar-propiedad/extras/e
 import { ContactoComponent } from './pages/propiedades/publicar-propiedad/contacto/contacto.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
+import { registerLocaleData } from '@angular/common';
+import localesPE from '@angular/common/locales/es-PE';
+registerLocaleData(localesPE, 'es-Pe');
 
 @NgModule({
   declarations: [
@@ -57,9 +66,13 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, Facebo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SocialLoginModule
+    SocialLoginModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
+    NgxGalleryModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'es-Pe' },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

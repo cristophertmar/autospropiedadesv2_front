@@ -6,6 +6,8 @@ import { Modelo } from 'src/app/models/modelo.model';
 import { Ubigeo } from 'src/app/models/ubigeo.model';
 import { MarcaService } from '../../../../services/marca.service';
 import { ModeloService } from '../../../../services/modelo.service';
+import { Vehiculo } from '../../../../models/vehiculo.model';
+import { AnuncioService } from '../../../../services/anuncio.service';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class InformacionAutoComponent implements OnInit {
   constructor(
     private _router: Router,
     private _marcaService: MarcaService,
-    private _modeloService: ModeloService
+    private _modeloService: ModeloService,
+    private _anuncioService: AnuncioService
   ) {
     this.crearFormulario();
    }
@@ -56,8 +59,56 @@ export class InformacionAutoComponent implements OnInit {
 
 
   siguiente() {
+    /* console.log(this.formulario.value); */
+
+    this._anuncioService.vehiculo_temp.id_modelo = Number(this.formulario.value.modelo);
+    this._anuncioService.vehiculo_temp.anio_vehiculo = Number(this.formulario.value.anio);
+    this._anuncioService.vehiculo_temp.id_tipotran = Number(this.formulario.value.transmision);
+    this._anuncioService.vehiculo_temp.id_combustible = Number(this.formulario.value.combustible);
+    this._anuncioService.vehiculo_temp.motor_vehiculo = Number(this.formulario.value.cilindrada);
+    this._anuncioService.vehiculo_temp.id_timon = Number(this.formulario.value.timon);
+    this._anuncioService.vehiculo_temp.kilometraje_vehiculo = Number(this.formulario.value.kilometraje);
+    this._anuncioService.vehiculo_temp.puertas_vehiculo = Number(this.formulario.value.puertas);
+    this._anuncioService.vehiculo_temp.id_traccion = Number(this.formulario.value.traccion);
+    this._anuncioService.vehiculo_temp.id_color = Number(this.formulario.value.color);
+    this._anuncioService.vehiculo_temp.id_cilindro = Number(this.formulario.value.cilindros);
+
+    this._anuncioService.vehiculo_temp.descrip_vehiculo = this.formulario.value.descripcion;
+
+    this._anuncioService.vehiculo_temp.tipo_moneda = this.formulario.value.tipo_moneda;
+    this._anuncioService.vehiculo_temp.precio = parseFloat(this.formulario.value.precio);
+
+    this._anuncioService.vehiculo_temp.retrovisor_acce_veh = this.formulario.value.retrovisor_acce_veh;
+    this._anuncioService.vehiculo_temp.neblinero_acce_veh = this.formulario.value.neblinero_acce_veh;
+    this._anuncioService.vehiculo_temp.aireacond_acce_veh = this.formulario.value.aireacond_acce_veh;
+    this._anuncioService.vehiculo_temp.fullequipo_acce_veh = this.formulario.value.fullequipo_acce_veh;
+    this._anuncioService.vehiculo_temp.computador_acce_veh = this.formulario.value.computador_acce_veh;
+    this._anuncioService.vehiculo_temp.parlante_acce_veh = this.formulario.value.parlante_acce_veh;
+    this._anuncioService.vehiculo_temp.cd_acce_veh = this.formulario.value.cd_acce_veh;
+    this._anuncioService.vehiculo_temp.mp3_acce_veh = this.formulario.value.mp3_acce_veh;
+    this._anuncioService.vehiculo_temp.aro_acce_veh = this.formulario.value.aro_acce_veh;
+    this._anuncioService.vehiculo_temp.aroaleacion_acce_veh = this.formulario.value.aroaleacion_acce_veh;
+    this._anuncioService.vehiculo_temp.parrilla_acce_veh = this.formulario.value.parrilla_acce_veh;
+    this._anuncioService.vehiculo_temp.luceshalo_acce_veh = this.formulario.value.luceshalo_acce_veh;
+    this._anuncioService.vehiculo_temp.gps_acce_veh = this.formulario.value.gps_acce_veh;
+    this._anuncioService.vehiculo_temp.airbag_acce_veh = this.formulario.value.airbag_acce_veh;
+    this._anuncioService.vehiculo_temp.lamina_acce_veh = this.formulario.value.lamina_acce_veh;
+    this._anuncioService.vehiculo_temp.blindado_acce_veh = this.formulario.value.blindado_acce_veh;
+    this._anuncioService.vehiculo_temp.farantiniebdel_acce_veh = this.formulario.value.farantiniebdel_acce_veh;
+    this._anuncioService.vehiculo_temp.farantiniebtras_acce_veh = this.formulario.value.farantiniebtras_acce_veh;
+    this._anuncioService.vehiculo_temp.inmovmotor_acce_veh = this.formulario.value.inmovmotor_acce_veh;
+    this._anuncioService.vehiculo_temp.repartelecfrena_acce_veh = this.formulario.value.repartelecfrena_acce_veh;
+    this._anuncioService.vehiculo_temp.frenoabs_acce_veh = this.formulario.value.frenoabs_acce_veh;
+    this._anuncioService.vehiculo_temp.alarma_acce_veh = this.formulario.value.alarma_acce_veh;
+    this._anuncioService.vehiculo_temp.sunroof_acce_veh = this.formulario.value.sunroof_acce_veh;
+    this._anuncioService.vehiculo_temp.ascuero_acce_veh = this.formulario.value.ascuero_acce_veh;
+    this._anuncioService.vehiculo_temp.climatizador_acce_veh = this.formulario.value.climatizador_acce_veh;
+
+    this._anuncioService.guardar_vehiculo_temp(this._anuncioService.vehiculo_temp);
+
     this._router.navigate(['/autos/publicar/ubicacion']);
-  }
+
+  }  
 
   /* cilindrada: new FormControl(null, [Validators.required]), */
 

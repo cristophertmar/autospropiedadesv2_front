@@ -27,40 +27,44 @@
             <div class="px-4 mt-n5 mb-4">
                 <div class="card shadow rounded card-search">
                     <div class="card-body">
-                        <form action="">
+                        <form [formGroup]="formulario" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-floating mb-3">
-                                        <select id="condicion" class="form-select">
-                                            <option value="">Seleccionar</option>
+                                        <select formControlName="condicion" name="condicion" id="condicion" class="form-select">
+                                            <option value="0">(Seleccionar)</option>
+                                            <option value="1">Usado</option>
+                                            <option value="2">Nuevo</option>
                                         </select>
                                         <label for="condicion">Condición</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-floating mb-3">
-                                        <select id="marca" class="form-select">
-                                            <option value="">Seleccionar</option>
+                                        <select formControlName="marca" name="marca" id="marca" class="form-select">
+                                            <option value="0">(Seleccionar)</option>
+                                            <option *ngFor="let marca of marcas" [value]="marca.id_marca"> {{ marca.descrip_marca }} </option>
                                         </select>
                                         <label for="marca">Marca</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-floating mb-3">
-                                        <select id="modelo" class="form-select">
-                                            <option value="">Seleccionar</option>
+                                        <select formControlName="modelo" name="modelo" id="modelo" class="form-select">
+                                            <option value="0">(Seleccionar)</option>
+                                            <option *ngFor="let mod of modelos" [value]="mod.id_modelo"> {{ mod.descrip_modelo }} </option>
                                         </select>
                                         <label for="modelo">Modelo</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3">
                                     <div class="d-grid">
-                                        <button class="btn btn-primary btn-lg btn-radius" [routerLink]="['/autos/buscar']">Buscar</button>
+                                        <button class="btn btn-primary btn-lg btn-radius" (click)="busqueda_rapida()">Buscar</button>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <!-- <div class="col-md-12">
                                     <a href="#" class="fw-bold">[+] Busqueda avanzada</a>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>
@@ -74,10 +78,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/403/toyota.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             TOYOTA
                         </div>
@@ -87,10 +91,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#2" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="#2" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/240/kia.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             KIA
                         </div>
@@ -100,10 +104,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/189/hyundai.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             HYUNDAI
                         </div>
@@ -113,10 +117,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/309/nissan.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             NISSAN
                         </div>
@@ -126,10 +130,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/279/mazda.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             MAZDA
                         </div>
@@ -139,10 +143,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/433/volkswagen.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             VOLKSWAGEN
                         </div>
@@ -152,10 +156,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/21/audi.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             AUDI
                         </div>
@@ -165,10 +169,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/386/subaru.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             SUBARU
                         </div>
@@ -178,10 +182,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/66/chevrolet.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             CHEVROLET
                         </div>
@@ -191,10 +195,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/181/honda.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             HONDA
                         </div>
@@ -204,10 +208,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/387/suzuki.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             SUZUKI
                         </div>
@@ -217,10 +221,10 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-primary-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light">VER OFERTAS</a>
                             </div>
                         </div>
-                        <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                        <img class="card-img-top" src="https://cde.neoauto.pe/marca/logo/106x105/218/jeep.jpg">
                         <div class="card-header bg-primary text-white text-center text-truncate">
                             JEEP
                         </div>
@@ -234,55 +238,34 @@
                 <h3 class="text-uppercase text-muted fw-bold">AVISOS <span class="text-primary">DESTACADOS</span></h3>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
+                <div *ngFor="let veh of vehiculos" class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                                <a href="javascript:void(0)" [routerLink]="['/autos/ver']" class="btn btn-light btn-lg shadow text-primary fw-bold">COMPRAR</a>
                             </div>
                         </div>
                         <div class="card-img">
-                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
-                            <div class="price text-truncate">S/ 99,999.00</div>
+                            <img class="card-img-top" [src]="obtener_ruta(veh.imagen)">
+                            <!-- <div class="price text-truncate">S/ 99,999.00</div> -->
+                            <div class="price text-truncate"> {{ veh.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </div>
                         </div>
                         <div class="card-body text-truncate">
-                            <span class="text-dark fw-bold">Toyota</span>
-                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
-                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <span class="text-dark fw-bold"> {{ veh.descrip_marca }} </span>
+                            <h3 class="text-muted fw-bold mb-4"> {{ veh.descrip_modelo }} </h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2"> {{ veh.condicion_vehiculo }} </small>
                             <div class="social">
-                                <img src="https://via.placeholder.com/32" class="rounded-circle">
-                                <span class="text-muted">John Doe</span>
+                                <img src="https://c8.alamy.com/zoomses/9/9c30002a90914b58b785a537a39421ba/2c80ydc.jpg" class="rounded-circle">
+                                <span class="text-muted"> {{ veh.usuario }} </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
+                <!-- <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
-                            </div>
-                        </div>
-                        <div class="card-img">
-                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
-                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
-                        </div>
-                        <div class="card-body text-truncate">
-                            <span class="text-dark fw-bold">Toyota</span>
-                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
-                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
-                            <div class="social">
-                                <img src="https://via.placeholder.com/32" class="rounded-circle">
-                                <span class="text-muted">John Doe</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card border border-0 bg-light mb-4 rounded-3">
-                        <div class="overlay-primary rounded-3">
-                            <div class="d-grid">
-                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold">COMPRAR</a>
+                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold" >COMPRAR</a>
                             </div>
                         </div>
                         <div class="card-img">
@@ -304,7 +287,7 @@
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold">COMPRAR</a>
                             </div>
                         </div>
                         <div class="card-img">
@@ -326,7 +309,7 @@
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold" >COMPRAR</a>
                             </div>
                         </div>
                         <div class="card-img">
@@ -348,7 +331,29 @@
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
+                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold" >COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body text-truncate">
+                            <span class="text-dark fw-bold">Toyota</span>
+                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
+                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-primary rounded-3">
+                            <div class="d-grid">
+                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold" >COMPRAR</a>
                             </div>
                         </div>
                         <div class="card-img">
@@ -365,11 +370,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="mb-4 text-center">
+            <!-- <div class="mb-4 text-center">
                 <a href="#" class="btn btn-lg btn-primary btn-large btn-radius button">Más avisos</a>
-            </div>
+            </div> -->
         </div>
         <div class="col-md-2">
             <div class="mb-4">

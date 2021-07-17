@@ -97,7 +97,7 @@
                         <div class="form-floating mb-3">
                             <select formControlName="distrito" name="distrito" id="distrito" class="form-select">
                                 <option value="0">(Seleccionar)</option>
-                                <option *ngFor="let dist of distritos" [value]="dist | json"> {{ dist.distrito }} </option>
+                                <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
                             </select>
                             <label for="distrito">Distrito</label>
                         </div>
@@ -110,7 +110,7 @@
                     </small>
                 </div>
                 <div class="mb-4">
-                    <input type="file" id="fotos" class="input-file">
+                    <input (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
                     <label for="fotos" class="label-file">
                         <span class="d-block text-primary fs-5 fw-semibold">Subir las fotos</span>
                         <span class="d-block text-secondary">(Puedes subir hasta 10 fotos)</span>

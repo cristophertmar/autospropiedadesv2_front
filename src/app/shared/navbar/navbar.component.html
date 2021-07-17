@@ -30,24 +30,24 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto d-none d-lg-flex">
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!_usuarioService.usuario">
                     <a class="btn btn-warning btn-sm btn-small button me-4 px-4" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#mdl_login"><i class="lnr lnr-users"></i> Login</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!_usuarioService.usuario">
                     <a class="btn btn-primary btn-sm btn-small button px-4" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#mdl_registro"><i class="lnr lnr-user"></i> Registro</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="lnr lnr-user d-none d-lg-inline-block"></i> David
+                <li class="nav-item dropdown" *ngIf="_usuarioService.usuario">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="lnr lnr-user d-none d-lg-inline-block"></i> {{ _usuarioService.usuario.nombre }} {{ _usuarioService.usuario.apellido }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Publicar</a></li>
-                        <li><a class="dropdown-item" href="#">Mis publicaciones</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/autos/publicar/informacion']">Publicar</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">Mis publicaciones</a></li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="_usuarioService.logout_usuario()">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,21 +60,21 @@
         <div class="modal-content">
             <div class="modal-body text-center p-5">
                 <img src="./assets/img/icons/datos.png" alt="" class="mb-4">
-                <h5 class="text-primary fw-bold mb-4">Coloca tus datos</h5>
+                <h5 class="text-primary fw-bold mb-4">Inicia sesión</h5>
                 <p class="text-muted mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Seleccione el servicio con el que desea ingresar:
                 </p>
                 <div class="d-grid gap-4 mb-4">
-                    <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a>
-                    <a href="#" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Continuar con Google</a>
-                    <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a>
+                    <a href="javascript:void(0)" (click)="login_facebook(true)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a>
+                    <a href="javascript:void(0)" (click)="login_google(true)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Continuar con Google</a>
+                    <!-- <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a> -->
                 </div>
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <small class="text-muted">No compartiremos tu información personal con nadie.</small>
                 </div>
                 <div class="mb-4">
                     <small class="text-warning">Si continuas, estás aceptando nuestros <a href="#" class="text-warning">Términos y condiciones y Politica de privacidad.</a></small>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -85,14 +85,14 @@
         <div class="modal-content">
             <div class="modal-body text-center p-5">
                 <img src="./assets/img/icons/datos.png" alt="" class="mb-4">
-                <h5 class="text-primary fw-bold mb-4">Coloca tus datos</h5>
+                <h5 class="text-primary fw-bold mb-4">Crear una cuenta</h5>
                 <p class="text-muted mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Seleccione el servicio con el que te deseas registrar:
                 </p>
                 <div class="d-grid gap-4 mb-4">
-                    <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a>
-                    <a href="#" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Continuar con Google</a>
-                    <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a>
+                    <a href="javascript:void(0)" (click)="login_facebook(false)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Registrarme con Facebook</a>
+                    <a href="javascript:void(0)" (click)="login_google(false)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Registrarme con Google</a>
+                    <!-- <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a> -->
                 </div>
                 <div class="mb-4">
                     <small class="text-muted">No compartiremos tu información personal con nadie.</small>

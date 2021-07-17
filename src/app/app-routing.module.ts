@@ -17,7 +17,7 @@ const routes: Routes = [
 
   { path: 'autos', component: AutosComponent },
   { path: 'autos/buscar', component: BusquedaAutoComponent },
-  { path: 'autos/ver', component: DetalleAutoComponent },
+  { path: 'autos/ver/:id', component: DetalleAutoComponent },
 
   { path: 'autos/publicar/informacion', component: InformacionAutoComponent },
   { path: 'autos/publicar/ubicacion', component: UbicacionAutoComponent },
@@ -25,7 +25,7 @@ const routes: Routes = [
 
   { path: 'propiedades', component: PropiedadesComponent },
   { path: 'propiedades/buscar', component: BusquedaAutoComponent },
-  { path: 'propiedades/ver', component: DetalleAutoComponent },  
+  { path: 'propiedades/ver/:id', component: DetalleAutoComponent },  
 
   { path: 'tienda/planes', component: PlanesComponent },
   { path: 'tienda/carrito', component: CarritoComponent },

@@ -445,6 +445,19 @@ footer {
     color: var(--blue);
 }
 
+.rating img {
+    height: 15px;
+    width: 15px;
+}
+
+.card-img-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.card-img-overlay span {
+    font-size: 35px;
+}
+
 @media screen and (max-width: 767.98px) {
     .carousel-item img {
         height: 100vh;
@@ -468,4 +481,46 @@ footer {
     .ps-6 {
         padding-left: calc(var(--bs-gutter-x)/ 2);
     }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #DFDFE8;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #006EB8;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #006EB8;
+}
+
+::-webkit-scrollbar-track {
+    background: #FDFDFE;
+    border-radius: 4px;
+}
+
+.ngx-gallery {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.ngx-gallery-thumbnails .ngx-gallery-thumbnail.ngx-gallery-active {
+    border: 1px double #FFC000 !important;
+}
+
+.ngx-gallery-thumbnails .ngx-gallery-thumbnail {
+    position: absolute;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    border: 1px #484848 !important;
 }

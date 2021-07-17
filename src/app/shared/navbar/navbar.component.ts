@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   accedido: boolean;
 
   constructor(
-    private _usuarioService: UsuarioService,
+    public _usuarioService: UsuarioService,
     private _authService: SocialAuthService,
     public _router: Router
   ) {
@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
   }
 
   redireccion() {
-    this.intento_login? this.login_usuario(false) : this.registrar_usuario_social();
+    this.intento_login? this.login_usuario() : this.registrar_usuario_social();
   }
 
   login_google(intento_login: boolean) {
@@ -67,23 +67,20 @@ export class NavbarComponent implements OnInit {
     this._authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  login_usuario(web: boolean = true) {
-
-    let recuerdame: boolean = false;
+  login_usuario() {
 
     this.usuario = new Usuario();
     this.usuario.correo = this.usuario_social.email;
     this.usuario.pass = '';
-    this.usuario.proveedor = this.usuario_social.provider;   
-  
+    this.usuario.proveedor = this.usuario_social.provider;     
     
     /* this._spinner.show(); */
-    this._usuarioService.login_usuario(this.usuario, recuerdame)
+    this._usuarioService.login_usuario(this.usuario)
     .subscribe(
       resp => {
         /* this._spinner.hide(); */
-      //this._router.navigate(['/mi-perfil']);
-      // this.cerrar_sesion_social();
+      this._router.navigate(['/autos/publicar/informacion']);
+      this.cerrar_sesion_social();
       },
       (error) => {
         /* this._spinner.hide(); */
@@ -103,13 +100,15 @@ export class NavbarComponent implements OnInit {
     this.accedido = true;
 
     const usuario = new Usuario();
-    usuario.nombre = this.usuario_social.name;
+    usuario.nombre = this.usuario_social.firstName;
+    usuario.apellido =  this.usuario_social.lastName;
     usuario.correo = this.usuario_social.email;
     usuario.proveedor = this.usuario_social.provider;
+    usuario.foto = this.usuario_social.photoUrl;
 
     this._usuarioService.registro_usuario(usuario)
     .subscribe( resp => {
-      this._router.navigate(['/mi-perfil']);
+      this._router.navigate(['/autos/publicar/informacion']);
       this.cerrar_sesion_social();
     });
 

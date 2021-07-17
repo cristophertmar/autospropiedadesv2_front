@@ -73,23 +73,23 @@
             <div class="mb-4">
                 <h3 class="text-primary fw-bold">CONTACTO</h3>
             </div>
-            <form (ngSubmit)="publicar()">
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="publicar()">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input id="nombre" class="form-control">
+                            <input formControlName="nombre" name="nombre" id="nombre" class="form-control">
                             <label for="nombre">Nombre de contacto</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input id="correo" class="form-control">
+                            <input formControlName="correo" name="correo" id="correo" class="form-control">
                             <label for="correo">Correo de contacto</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input id="celular1" class="form-control">
+                            <input formControlName="fono1" name="fono1" id="celular1" class="form-control">
                             <label for="celular1">Número de celular 1</label>
                         </div>
                         <div class="form-check mb-3">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input id="celular2" class="form-control">
+                            <input formControlName="fono2" name="fono2" id="celular2" class="form-control">
                             <label for="celular2">Número de celular 2</label>
                         </div>
                         <div class="form-check mb-3">
@@ -113,19 +113,21 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select id="tipo" class="form-select">
-                                <option value="">Seleccionar</option>
+                            <select formControlName="tipo_anunciante" name="tipo_anunciante" id="tipo" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option value="1">Dueño directo</option>
+                                <option value="2">Empresa</option>
                             </select>
                             <label for="tipo">Tipo de anunciante</label>
                         </div>
                     </div>
                 </div>
-                <div class="mb-4">
+                <!-- <div class="mb-4">
                     <div class="form-check form-switch">
                         <label class="form-check-label" for="switch">Mostrar mi número de telefono en mis anuncios</label>
                         <input class="form-check-input" type="checkbox" id="switch">
                     </div>
-                </div>
+                </div> -->
                 <div class="mb-4">
                     <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius">Publicar ahora</button>
                 </div>

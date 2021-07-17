@@ -17,7 +17,9 @@ export class UsuarioService {
   constructor(
     public http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+    this.cargarStorage();
+  }
 
   limpiarAcceso() {
     localStorage.removeItem('token');
@@ -29,7 +31,7 @@ export class UsuarioService {
   cargarStorage() {
     if ( localStorage.getItem('token'))  {
       this.token = localStorage.getItem('token');
-      this.usuario = JSON.parse( localStorage.getItem('usuario') );
+      this.usuario = JSON.parse( localStorage.getItem('usuario'));
     } else {
       this.limpiarAcceso();
     }
@@ -45,10 +47,10 @@ export class UsuarioService {
   logout_usuario() {
     /* this.authService.signOut(); */
     this.limpiarAcceso();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
-  login_usuario( usuario: Usuario, recordar: boolean ) {
+  login_usuario( usuario: Usuario ) {
     let url;
     if (usuario.proveedor) {
       url = URL_SERVICIOS + '/login_proveedor';
@@ -91,6 +93,7 @@ export class UsuarioService {
     return this.http.post( url, usuario)
     .pipe(
       map((resp: any) => {
+        this.guardarStorage( resp.token, resp.usuario );
         return true;
       })
     );

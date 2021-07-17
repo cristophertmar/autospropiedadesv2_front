@@ -1,8 +1,14 @@
-<div class="container my-4">
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-ripple" [fullScreen]="true">
+    <p style="color: white"> Validando los datos... </p>
+</ngx-spinner> -->
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+    <p style="color: white"> Cargando... </p>
+</ngx-spinner>
+<form [formGroup]="formulario" autocomplete="off" class="container my-4">
     <div class="mb-4">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
                 <li class="breadcrumb-item">Autos</li>
                 <li class="breadcrumb-item">Busqueda</li>
             </ol>
@@ -11,7 +17,7 @@
     <div class="mb-4">
         <div class="d-flex align-items-center gap-2">
             <h3 class="text-primary mb-0 fw-bold">BUSQUEDA</h3>
-            <a href="javascript:void(0)" class="small fs-6 fw-semibold" onclick="toggleFilters()"> Mostrar/ocultar Filtros</a>
+            <!-- <a href="javascript:void(0)" class="small fs-6 fw-semibold" onclick="toggleFilters()"> Mostrar/ocultar Filtros</a> -->
         </div>
     </div>
     <div class="row">
@@ -23,32 +29,57 @@
                     </div>
                     <div>
                         <div class="d-flex">
-                            <button class="btn text-secondary"><i class="lnr lnr-trash"></i></button>
-                            <button class="btn btn-secondary">Guardar</button>
+                            <!-- <button class="btn text-secondary"><i class="lnr lnr-trash"></i></button> -->
+                            <button (click)="limpiar_filtros()" class="btn btn-secondary">Limpiar <i class="lnr lnr-trash"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="mb-4">
-                        <span class="badge bg-gray py-2 text-dark mb-2">Autos <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
-                        <span class="badge bg-gray py-2 text-dark mb-2">Kia <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
-                        <span class="badge bg-gray py-2 text-dark mb-2">Cadenza <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                        <!-- <span class="badge bg-gray py-2 text-dark mb-2">Autos <a href="javascript:void(0)" class="text-dark ms-2"></a></span> -->
+                        <span style="margin: 3px;" *ngFor="let filtro of filtros" class="badge bg-gray py-2 text-dark mb-2"> {{filtro}} <!-- <a href="javascript:void(0)" class="text-dark ms-2"></a> --></span>
+                        <!-- <span class="badge bg-gray py-2 text-dark mb-2">Kia <a href="javascript:void(0)" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                        <span class="badge bg-gray py-2 text-dark mb-2">Cadenza <a href="javascript:void(0)" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span> -->
                     </div>
                     <hr>
+                    <div *ngIf="mostar_condicion" class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Condición</h6>
+                        <a href="javascript:void(0)" (click)="seleccionar_condicion(1, 'Usado')" class="text-primary fw-semibold mb-2 d-block">Usados <!-- <span class="text-muted">(1)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_condicion(2, 'Nuevo')" class="text-primary fw-semibold mb-2 d-block">Nuevos <!-- <span class="text-muted">(1)</span> --></a>
+                        <hr>
+                    </div>
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Marca / Modelo</h6>
+                        <div class="form-floating mb-3">
+                            <select formControlName="marca" name="marca" id="marca" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let marca of marcas" [value]="marca.id_marca"> {{ marca.descrip_marca }} </option>
+                            </select>
+                            <label for="marca">Marca</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select formControlName="modelo" name="modelo" id="modelo" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let mod of modelos" [value]="mod.id_modelo"> {{ mod.descrip_modelo }} </option>
+                            </select>
+                            <label for="modelo">Modelo</label>
+                        </div>
+                        <hr>
+                    </div>
                     <div class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Precio</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">US$10,000 a US$20,000 <span class="text-muted">(1)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Consultar precio <span class="text-muted">(1)</span></a>
+                        <!-- <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">US$10,000 a US$20,000 <span class="text-muted">(1)</span></a> -->
+                        <!-- <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">Consultar precio <span class="text-muted">(1)</span></a> -->
                         <div class="mb-2">
                             <div class="d-flex gap-2">
                                 <div>
-                                    <input type="text" class="form-control" placeholder="Desde">
+                                    <input formControlName="minprecio" name="minprecio" type="text" class="form-control" placeholder="Desde">
                                 </div>
                                 <div>
-                                    <input type="text" class="form-control" placeholder="Hasta">
+                                    <input formControlName="maxprecio" name="maxprecio" type="text" class="form-control" placeholder="Hasta">
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary">
+                                    <button (click)="seleccionar_rango_precio()" class="btn btn-primary">
                                         <i class="lnr lnr-magnifier"></i>
                                     </button>
                                 </div>
@@ -56,10 +87,10 @@
                         </div>
                         <hr>
                     </div>
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Año</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">2018 a 2021 <span class="text-muted">(1)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">2006 a 2011 <span class="text-muted">(1)</span></a>
+                        <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">2018 a 2021 <span class="text-muted">(1)</span></a>
+                        <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">2006 a 2011 <span class="text-muted">(1)</span></a>
                         <div class="mb-2">
                             <div class="d-flex gap-2">
                                 <div>
@@ -76,60 +107,79 @@
                             </div>
                         </div>
                         <hr>
-                    </div>
-                    <div class="mb-4">
+                    </div> -->
+                    <div *ngIf="mostrar_kilometros" class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Kilómetros</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Hasta 15,000 Km <span class="text-muted">(1)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">50,000 a 1000,000 <span class="text-muted">(1)</span></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_kilometros(1, 'Hasta 15,000 Km')" class="text-primary fw-semibold mb-2 d-block">Hasta 15,000 Km <!-- <span class="text-muted">(1)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_kilometros(2, '15,000 - 30,000 Km')" class="text-primary fw-semibold mb-2 d-block">15,000 - 30,000 Km <!-- <span class="text-muted">(1)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_kilometros(3, '30,000 - 50,000 Km')" class="text-primary fw-semibold mb-2 d-block">30,000 - 50,000 Km <!-- <span class="text-muted">(1)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_kilometros(4, '50,000 a 1000,000')" class="text-primary fw-semibold mb-2 d-block">50,000 a 1000,000 <!-- <span class="text-muted">(1)</span> --></a>
                         <hr>
                     </div>
-                    <div class="mb-4">
+                    <div *ngIf="mostrar_tipotran" class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Transmisión</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Mecánica <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Automática <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Automática - Secuencial <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_kilometros(1, 'Automática')" class="text-primary fw-semibold mb-2 d-block">Automática <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_kilometros(2, 'Automática - Secuencial')" class="text-primary fw-semibold mb-2 d-block">Automática(Secuencial) <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_kilometros(3, 'Mecánica')" class="text-primary fw-semibold mb-2 d-block">Mecánica <!-- <span class="text-muted">(2)</span> --></a>
                         <hr>
                     </div>
                     <div class="mb-4">
+                        <h6 class="text-secondary mb-2 fw-semibold">Ubicación</h6>
                         <div class="form-floating mb-3">
-                            <select id="condicion" class="form-select">
-                                <option value="">Seleccionar</option>
+                            <select formControlName="departamento" name="departamento" id="condicion" class="form-select">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
                             </select>
-                            <label for="condicion">Ubicación</label>
+                            <label for="condicion">Departamento</label>
                         </div>
+                        <div class="form-floating mb-3">
+                            <select formControlName="provincia" name="provincia" id="condicion" class="form-select">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
+                            </select>
+                            <label for="condicion">Provincia</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select formControlName="distrito" name="distrito" id="condicion" class="form-select">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
+                            </select>
+                            <label for="condicion">Distrito</label>
+                        </div>
+                        <hr>
                     </div>
-                    <div class="mb-4">
+                    <div *ngIf="mostrar_categoria" class="mb-4">
                         <h6 class="text-secondary mb-2 fw-semibold">Categoría</h6>
                         <div class="d-flex align-items-end flex-wrap gap-4">
-                            <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                            <a href="javascript:void(0)" (click)="seleccionar_categoria('sedan', 'Sedan')" class="d-flex flex-column align-items-center text-muted fw-semibold">
                                 <img src="./assets/img/icons/sedan.svg" class="w-100" alt="">
                                 <span>Sedan</span>
                             </a>
-                            <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                            <a href="javascript:void(0)" (click)="seleccionar_categoria('pick up', 'Pick up')" class="d-flex flex-column align-items-center text-muted fw-semibold">
                                 <img src="./assets/img/icons/pickup.svg" class="w-100" alt="">
                                 <span>Pick up</span>
                             </a>
-                            <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                            <a href="javascript:void(0)" (click)="seleccionar_categoria('vans', 'Vans')" class="d-flex flex-column align-items-center text-muted fw-semibold">
                                 <img src="./assets/img/icons/van.svg" class="w-100" alt="">
                                 <span>Vans</span>
                             </a>
                         </div>
                         <div class="collapse" id="categorias">
                             <div class="d-flex align-items-end flex-wrap gap-4">
-                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
-                                    <img src="./assets/img/icons/sedan.svg" class="w-100" alt="">
+                                <a href="javascript:void(0)" (click)="seleccionar_categoria('suv', 'Suv')" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/suv.svg" class="w-100" alt="">
                                     <span>Suv</span>
                                 </a>
-                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
-                                    <img src="./assets/img/icons/pickup.svg" class="w-100" alt="">
+                                <a href="javascript:void(0)" (click)="seleccionar_categoria('hatchback', 'Hatchback')" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/hatchback.svg" class="w-100" alt="">
                                     <span>Hatchback</span>
                                 </a>
-                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
-                                    <img src="./assets/img/icons/van.svg" class="w-100" alt="">
+                                <a href="javascript:void(0)" (click)="seleccionar_categoria('station wagon', 'S. Wagon')" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/wagon.svg" class="w-100" alt="">
                                     <span>S. Wagon</span>
                                 </a>
-                                <a href="#" class="d-flex flex-column align-items-center text-muted fw-semibold">
-                                    <img src="./assets/img/icons/van.svg" class="w-100" alt="">
+                                <a href="javascript:void(0)" (click)="seleccionar_categoria('deportivo', 'Deportivo')" class="d-flex flex-column align-items-center text-muted fw-semibold">
+                                    <img src="./assets/img/icons/deportivo.svg" class="w-100" alt="">
                                     <span>Deportivo</span>
                                 </a>
                             </div>
@@ -139,46 +189,46 @@
                         </div>
                         <hr>
                     </div>
-                    <div class="mb-4">
+                    <div *ngIf="mostrar_combustible" class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Combustible</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gasolina <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Diesel <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Dual <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gas GLP <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gas GNV <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gas <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Híbrido <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Gasolina - Híbrido <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(1, 'Diesel')" class="text-primary fw-semibold mb-2 d-block">Diesel <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(2, 'Dual')" class="text-primary fw-semibold mb-2 d-block">Dual <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(3, 'Eléctrico')" class="text-primary fw-semibold mb-2 d-block">Eléctrico <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(4, 'Gas')" class="text-primary fw-semibold mb-2 d-block">Gas <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(5, 'Gas GLP')" class="text-primary fw-semibold mb-2 d-block">Gas GLP <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(6, 'Gas GNV')" class="text-primary fw-semibold mb-2 d-block">Gas GNV <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(7, 'Gasolina')" class="text-primary fw-semibold mb-2 d-block">Gasolina <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_combustible(8, 'Híbrido')" class="text-primary fw-semibold mb-2 d-block">Híbrido <!-- <span class="text-muted">(2)</span> --></a>
                         <hr>
                     </div>
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Tracción</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">4x2 <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">4x4 <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">4x2 <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">4x4 <span class="text-muted">(2)</span></a>
                         <div id="traccion" class="collapse">
-                            <a href="#" class="text-primary fw-semibold mb-2 d-block">4x2 <span class="text-muted">(2)</span></a>
-                            <a href="#" class="text-primary fw-semibold mb-2 d-block">4x4 <span class="text-muted">(2)</span></a>
+                            <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">4x2 <span class="text-muted">(2)</span></a>
+                            <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">4x4 <span class="text-muted">(2)</span></a>
                         </div>
                         <a href="#traccion" class="text-primary fw-semibold mb-2 d-block" data-bs-toggle="collapse" role="button">Más opciones</a>
                         <hr>
-                    </div>
+                    </div> -->
                     <div class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Timón</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Original <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Cambiado <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_timon(1, 'Timón cambiado')" class="text-primary fw-semibold mb-2 d-block">Cambiado <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_timon(2, 'Timón original')" class="text-primary fw-semibold mb-2 d-block">Original <!-- <span class="text-muted">(2)</span> --></a>
                         <hr>
                     </div>
-                    <div class="mb-4">
+                    <!-- <div class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Fecha de Publicación</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Últimos 7 días <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Últimos 15 días <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Últimos 30 días <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">Últimos 7 días <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">Últimos 15 días <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" class="text-primary fw-semibold mb-2 d-block">Últimos 30 días <span class="text-muted">(2)</span></a>
                         <hr>
-                    </div>
-                    <div class="mb-4">
+                    </div> -->
+                    <div *ngIf="mostrar_tipo_anunciante" class="mb-4">
                         <h6 class="text-muted mb-2 fw-semibold">Tipo de anunciante</h6>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Empresa <span class="text-muted">(2)</span></a>
-                        <a href="#" class="text-primary fw-semibold mb-2 d-block">Dueño <span class="text-muted">(2)</span></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_tipo_anunciante(1, 'Dueño')" class="text-primary fw-semibold mb-2 d-block">Dueño <!-- <span class="text-muted">(2)</span> --></a>
+                        <a href="javascript:void(0)" (click)="seleccionar_tipo_anunciante(2, 'Empresa')" class="text-primary fw-semibold mb-2 d-block">Empresa <!-- <span class="text-muted">(2)</span> --></a>
                     </div>
                 </div>
             </div>
@@ -186,45 +236,53 @@
         <div class="col-md-9 ps-6" id="productos">
             <div class="d-flex gap-2 mb-4">
                 <div class="col-lg-4 col-6">
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <input type="text" class="form-control border-end-0" placeholder="Ingrese una busqueda">
                         <span class="input-group-text bg-white border-start-0">
                          <i class="lnr lnr-magnifier text-secondary"></i>
                      </span>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-6 col-6 d-flex offset-lg-2 gap-2">
-                    <select id="condicion" class="form-select">
-                        <option value="">Ordenar por</option>
+                    <select formControlName="ordenar" name="ordenar" id="condicion" class="form-select">
+                        <option value="0">(Ordenar por)</option>
+                        <option value="1">Mayor precio</option>
+                        <option value="2">Menor precio</option>
+                        <option value="3">Año</option>
+                        <option value="4">Kilometraje</option>
                     </select>
-                    <a href="#" class="btn text-secondary"><i class="lnr lnr-list"></i></a>
-                    <a href="#" class="btn text-secondary"><i class="lnr lnr-list"></i></a>
+                    <!-- <a href="javascript:void(0)" class="btn text-secondary"><i class="lnr lnr-list"></i></a>
+                    <a href="javascript:void(0)" class="btn text-secondary"><i class="lnr lnr-list"></i></a> -->
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
+                <div *ngFor="let veh of vehiculos" class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
                             <div class="d-grid">
-                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold" [routerLink]="['/autos/ver']">COMPRAR</a>
+                                <a href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold" (click)="ver_auto(veh)">COMPRAR</a>
                             </div>
                         </div>
                         <div class="card-img">
-                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
-                            <div class="price text-truncate">S/ 99,999.00</div>
+                            <!-- <img class="card-img-top" src="http://via.placeholder.com/120x100"> -->
+                            <img class="card-img-top" [src]="obtener_ruta(veh.imagen)" style="width: 290px !important; height: 240px !important;">
+                            <!-- <div class="price text-truncate">S/ 99,999.00 </div> -->
+                            <div class="price text-truncate"> {{ veh.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </div>
                         </div>
                         <div class="card-body text-truncate">
-                            <span class="text-dark fw-bold">Toyota</span>
-                            <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
-                            <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
+                            <span class="text-dark fw-bold"> {{ veh.descrip_marca }} </span>
+                            <h3 class="text-muted fw-bold mb-4"> {{ veh.descrip_modelo }} </h3>
+                            <!-- <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small> -->
+                            <small class="text-small text-primary fw-bold d-block mb-2"> {{ veh.condicion_vehiculo }} </small>
                             <div class="social">
-                                <img src="https://via.placeholder.com/32" class="rounded-circle">
-                                <span class="text-muted">John Doe</span>
+                                <!-- <img src="https://via.placeholder.com/32" class="rounded-circle"> -->
+                                <img src="https://c8.alamy.com/zoomses/9/9c30002a90914b58b785a537a39421ba/2c80ydc.jpg" class="rounded-circle">
+                                <span class="text-muted"> {{ veh.usuario }} </span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
+                <!-- <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
                             <div class="d-grid">
@@ -465,11 +523,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="mb-4 text-center">
-                <a href="#" class="btn btn-lg btn-primary btn-large btn-radius button">Más avisos</a>
-            </div>
+            <!-- <div class="mb-4 text-center">
+                <a href="javascript:void(0)" class="btn btn-lg btn-primary btn-large btn-radius button">Más avisos</a>
+            </div> -->
         </div>
     </div>
-</div>
+</form>
