@@ -1,1 +1,189 @@
-<p>principales works!</p>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="sticky-lg-top">
+                <div class="d-flex flex-column p-4 bg-primary">
+                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
+                    <ul class="nav nav-pills flex-column mb-4" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
+                            </a>
+                            <ul class="collapse show nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-semibold">1. Principales</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
+                            </a>
+                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mb-4">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/anuncio.svg"> Publicar anuncio
+                            </a>
+                        </li>
+                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">PRINCIPALES</h3>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-dark fw-semibold mb-4">Cuéntanos, ¿Qué quieres publicar?</h5>
+            </div>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="operacion" name="operacion" id="operacion" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option value="1">Venta</option>
+                                <option value="2">Alquiler</option>
+                                <option value="3">Alquiler Temporal</option>
+                                <option value="4">Proyecto</option>
+                            </select>
+                            <label for="operacion">Tipo de Operación</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="tipo_inmueble" name="tipo_inmueble" id="tipo" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option value="1">Departamento</option>
+                                <option value="2">Casa</option>
+                                <option value="3">Terreno / Lote</option>
+                                <option value="4">Local comercial</option>
+                                <option value="5">Casa de campo</option>
+                                <option value="6">Casa de playa</option>
+                                <option value="7">Cocheras</option>
+                                <option value="8">Condominio de casas</option>
+                                <option value="9">Condominio de edificios</option>
+                                <option value="10">Edificios</option>
+                                <option value="11">Habitación</option>
+                                <option value="12">Hotel</option>
+                                <option value="13">Local industrial</option>
+                                <option value="14">Proyecto de lotes</option>
+                                <option value="15">Proyecto horizontal-vertical</option>
+                                <option value="16">Proyecto vertical</option>
+                                <option value="17">Terreno agrícola</option>
+                                <option value="18">Otros</option>
+                            </select>
+                            <label for="tipo">Tipo de inmueble</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
+                            </select>
+                            <label for="departamento">Departamento</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
+                            </select>
+                            <label for="provincia">Provincia</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
+                            </select>
+                            <label for="distrito">Distrito</label>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-floating mb-3">
+                            <input formControlName="direccion" name="direccion" type="text" id="direccion" class="form-control">
+                            <label for="direccion">Ingresa calle y número</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-floating mb-3">
+                            <input type="text" formControlName="piso" name="piso" id="piso" class="form-control">
+                            <label for="piso">Piso / Interior</label>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-floating mb-3">
+                            <input type="text" formControlName="referencia" name="referencia" id="referencia" class="form-control">
+                            <label for="referencia">Referencia</label>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="urbanización" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="urbanización">Urbanización</label>
+                        </div>
+                    </div> -->
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Selecciona en el mapa</h5>
+                <div class="mb-4">
+                    <img src="http://via.placeholder.com/1000x500" class="w-100" alt="">
+                </div>
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

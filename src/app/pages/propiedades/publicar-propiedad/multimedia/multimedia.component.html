@@ -1,1 +1,114 @@
-<p>multimedia works!</p>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="sticky-lg-top">
+                <div class="d-flex flex-column p-4 bg-primary">
+                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
+                    <ul class="nav nav-pills flex-column mb-4" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
+                            </a>
+                            <ul class="collapse show nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-semibold">3. Extras</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="mb-4">
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
+                            </a>
+                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">PUBLICA TU ANUNCIO</h3>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-dark fw-semibold mb-4">Completa tu aviso con fotos y videos para que conozcan el inmueble</h5>
+                <h5 class="text-dark fw-semibold">Fotos</h5>
+            </div>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <div class="mb-4">
+                    <input (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
+                    <label for="fotos" class="label-file">
+                        <span class="d-block text-primary fs-5 fw-semibold">Subir las fotos</span>
+                        <span class="d-block text-secondary">(Puedes subir hasta 10 fotos)</span>
+                    </label>
+                </div>
+                <!-- <h5 class="text-dark fw-semibold mb-4">Planos (opcional)</h5>
+                <h5 class="text-dark mb-4 fw-normal">Carga los planos del inmueble</h5>
+                <div class="mb-4">
+                    <input type="file" id="planos" class="input-file">
+                    <label for="planos" class="label-file mb-2">
+                        <span class="d-block text-primary fs-5 fw-semibold">Arrastra o agrega los planos</span>
+                        <span class="d-block text-secondary">(en JPG, PNG o PDF)</span>
+                    </label>
+                    <small class="text-sm">Tamaño máximo 10 MB</small>
+                </div> -->
+                <h5 class="text-dark fw-semibold mb-4">Recorrido 360 (opcional)</h5>
+                <div class="mb-4 d-flex gap-2">
+                    <input formControlName="url_video" name="url_video" type="text" class="form-control" placeholder="Pega el URL del recorrido aquí">
+                    <button class="btn btn-primary btn-lg btn-radius button btn-large">Agregar</button>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius mb-4">Atrás</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Siguiente</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

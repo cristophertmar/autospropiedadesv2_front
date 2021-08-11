@@ -27,59 +27,89 @@
             <div class="px-4 mt-n5 mb-4">
                 <div class="card shadow rounded card-search">
                     <div class="card-body">
-                        <form action="">
+                        <form [formGroup]="formulario" autocomplete="off">
                             <div class="row">
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-floating mb-3">
-                                        <select id="condicion" class="form-select">
-                                            <option value="">Seleccionar</option>
+                                        <select formControlName="tipo_operacion" name="tipo_operacion" id="tipo_operacion" class="form-select">
+                                            <option value=0>(Seleccionar)</option>
+                                            <option value=1>Compra</option>
+                                            <option value=2>Alquiler</option>
+                                            <option value=3>Alquiler temporal</option>
+                                            <option value=4>Proyecto</option>
                                         </select>
-                                        <label for="condicion">Condición</label>
+                                        <label for="tipo_operacion">Tipo Operación</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-floating mb-3">
-                                        <select id="tipo" class="form-select">
-                                            <option value="">Seleccionar</option>
+                                        <select formControlName="tipo_inmueble" name="tipo_inmueble" id="tipo_inmueble" class="form-select">
+                                            <option value=0>(Seleccionar)</option>
+                                            <option value=1>Departamento</option>
+                                            <option value=2>Casa</option>
+                                            <option value=3>Terreno / Lote</option>
+                                            <option value=4>Local comercial</option>
+                                            <option value=5>Oficina</option>
+                                            <option value=6>Casa de campo</option>
+                                            <option value=7>Casa de playa</option>
+                                            <option value=8>Cocheras</option>
+                                            <option value=9>Condominio de casas</option>
+                                            <option value=10>Condominio de edificios</option>
+                                            <option value=11>Edificios</option>
+                                            <option value=12>Habitación</option>
+                                            <option value=13>Hotel</option>
+                                            <option value=14>Local industrial</option>
+                                            <option value=15>Proyecto de lotes</option>
+                                            <option value=16>Proyecto horizontal-vertical</option>
+                                            <option value=17>Proyecto vertical</option>
+                                            <option value=18>Terreno agrícola</option>
+                                            <option value=19>Otros</option>
                                         </select>
-                                        <label for="tipo">Compra o venta</label>
+                                        <label for="tipo_inmueble">Tipo Inmueble</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-floating mb-3">
-                                        <select id="distrito" class="form-select">
-                                            <option value="">Seleccionar</option>
+                                        <select formControlName="antiguedad" name="antiguedad" id="antiguedad" class="form-select">
+                                            <option value=0>(Seleccionar)</option>
+                                            <option value=1>En construcción</option>
+                                            <option value=2>A estrenar</option>
+                                            <option value=3>Hasta 5 años</option>
+                                            <option value=4>Entre 5 y 10 años</option>
+                                            <option value=5>Entre 10 y 20 años</option>
+                                            <option value=6>Entre 20 y 50 años</option>
+                                            <option value=7>Más de 50 años</option>
                                         </select>
-                                        <label for="distrito">Distrito</label>
+                                        <label for="antiguedad">Antigüedad</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3">
                                     <div class="d-grid">
-                                        <button class="btn btn-warning btn-lg btn-radius">Buscar</button>
+                                        <button (click)="busqueda_rapida()" class="btn btn-warning btn-lg btn-radius">Buscar</button>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <!-- <div class="col-md-12">
                                     <a href="#" class="fw-bold">[+] Busqueda avanzada</a>
-                                </div>
+                                </div> -->
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="mb-4">
-                <h3 class="text-uppercase text-muted fw-bold">INMUEBLES <span class="text-warning">SIMILARES A LOS QUE VISTE</span></h3>
+                <h3 class="text-uppercase text-muted fw-bold">PRINCIPALES <span class="text-warning">INMOBILIARIAS</span></h3>
             </div>
             <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-4 col-6">
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            CORONADO
+                            Inmobiliaria1
                         </div>
                     </div>
                 </div>
@@ -87,12 +117,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#2" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            LE
+                            Inmobiliaria2
                         </div>
                     </div>
                 </div>
@@ -100,12 +130,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            EMISA
+                            Inmobiliaria3
                         </div>
                     </div>
                 </div>
@@ -113,12 +143,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            VZ
+                            Inmobiliaria4
                         </div>
                     </div>
                 </div>
@@ -126,12 +156,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            LAS GARDENIAS
+                            Inmobiliaria5
                         </div>
                     </div>
                 </div>
@@ -139,12 +169,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            CCJ
+                            Inmobiliaria6
                         </div>
                     </div>
                 </div>
@@ -152,12 +182,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            CORONADO
+                            Inmobiliaria7
                         </div>
                     </div>
                 </div>
@@ -165,12 +195,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            LE
+                            Inmobiliaria8
                         </div>
                     </div>
                 </div>
@@ -178,12 +208,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            EMISA
+                            Inmobiliaria9
                         </div>
                     </div>
                 </div>
@@ -191,12 +221,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            VZ
+                            Inmobiliaria10
                         </div>
                     </div>
                 </div>
@@ -204,12 +234,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            LAS GARDENIAS
+                            Inmobiliaria11
                         </div>
                     </div>
                 </div>
@@ -217,12 +247,12 @@
                     <div class="card border border-primary mb-4">
                         <div class="overlay-warning-min">
                             <div class="d-grid">
-                                <a href="#1" class="btn btn-outline-light" style="">VER OFERTAS</a>
+                                <a href="javascript:void(0)" class="btn btn-outline-light" style="">VER OFERTAS</a>
                             </div>
                         </div>
                         <img class="card-img-top" src="http://via.placeholder.com/120x100">
                         <div class="card-header bg-primary text-white text-center text-truncate">
-                            CCJ
+                            Inmobiliaria12
                         </div>
                     </div>
                 </div>
@@ -234,7 +264,46 @@
                 <h3 class="text-uppercase text-muted fw-bold">AVISOS <span class="text-primary">DESTACADOS</span></h3>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
+                <div *ngFor="let prop of propiedades" class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="javascript:void(0)" (click)="ver_propiedad(prop)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <!-- <img class="img-whp" [src]="obtener_ruta(prop.imagen)" alt="auto.jpg"> -->
+                            <div class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0"> {{ prop.titulo }} </h5>
+                            <small class="d-block text-warning fw-semibold">
+                                {{ prop.tipo_inmueble_desc }}({{ prop.tipo_descripcion_desc }})
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                <!-- La Molina - Lima --> {{ prop.distrito }} - {{ prop.provincia }}
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                {{ prop.area_total }}m²AC | {{ prop.dormitorios }} dorm. | {{prop.banios }} baños
+                            </small>
+                            <!-- <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small> -->
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-warning rounded-3">
                             <div class="d-grid">
@@ -503,11 +572,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="mb-4 text-center">
+            <!-- <div class="mb-4 text-center">
                 <a href="#" class="btn btn-lg btn-primary btn-large btn-radius button">Más avisos</a>
-            </div>
+            </div> -->
         </div>
         <div class="col-md-2">
             <div class="mb-4">

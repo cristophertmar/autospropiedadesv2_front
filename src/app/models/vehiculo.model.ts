@@ -62,7 +62,9 @@ export class Vehiculo {
         public id?: string,
 
         public minprecio?: number,
-        public maxprecio?: number
+        public maxprecio?: number,
+
+        public precio_plan?: number
     ) {}
 
 }

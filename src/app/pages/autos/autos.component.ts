@@ -120,4 +120,15 @@ export class AutosComponent implements OnInit {
     this._router.navigate(['/autos/buscar']);
   }
 
+  seleccion_marca(id_marca: number) {
+    this._anuncioService.filtro_busqueda_rapida.condicion_vehiculo = Number(this.formulario.get('condicion').value);
+    this._anuncioService.filtro_busqueda_rapida.id_marca = Number(id_marca);
+    this._anuncioService.filtro_busqueda_rapida.id_modelo = Number(this.formulario.get('modelo').value);
+    this._router.navigate(['/autos/buscar']);
+  }
+
+  ver_auto(vehiculo: VehiculoListar) {
+    this._router.navigate(['/autos/ver', vehiculo.id_vehiculo]);
+  }
+
 }

@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+    <p style="color: white"> Cargando... </p>
+</ngx-spinner>
 <div class="container my-4">
     <div class="mb-4">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -137,7 +140,7 @@
             <div class="social mb-4">
                 <img src="https://via.placeholder.com/32" class="rounded-circle">
                 <span class="text-muted">
-						<span class="fw-bold">John Doe</span> <br>
+						<span class="fw-bold"> {{ vehiculo.usuario }} </span> <br>
                 <div class="rating">
                     <img src="./assets/img/icons/star-fill.svg">
                     <img src="./assets/img/icons/star-empty.svg">
@@ -148,7 +151,7 @@
                 </span>
 
             </div>
-            <div class="mb-4">
+            <div *ngIf="mostrar_formulario" class="mb-4">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active fw-semibold" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button" role="tab">Mensaje</button>
@@ -205,22 +208,34 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="tab2" role="tabpanel">
-                        <!-- <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="contactar()">
+                        <form [formGroup]="formulario_mensaje" autocomplete="off" (ngSubmit)="contactar_formulario_mensaje()">
                             <div class="form-floating mb-3">
-                                <input formControlName="nombre" name="nombre" type="text" id="nombre" class="form-control">
+                                <input formControlName="nombre" name="nombre" type="text" id="nombre" class="form-control" [class.is-invalid]="nombreNoValido_mensaje">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese su nombre
+                                </div>
                                 <label for="nombre">Nombre</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input formControlName="correo" name="correo" type="text" id="email" class="form-control">
-                                <label for="email">Email</label>
+                                <input formControlName="correo" name="correo" type="text" id="email" class="form-control" [class.is-invalid]="correoNoValido_mensaje">
+                                <label for="email">Correo</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un correo válido
+                                </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input formControlName="telefono" name="telefono" type="text" id="telefono" class="form-control">
+                                <input formControlName="telefono" name="telefono" type="text" id="telefono" class="form-control" [class.is-invalid]="telefonoNoValido_mensaje">
                                 <label for="telefono">Teléfono</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un número telefónico
+                                </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea formControlName="mensaje" name="mensaje" id="mensaje" class="form-control"></textarea>
+                                <textarea formControlName="mensaje" name="mensaje" id="mensaje" class="form-control" [class.is-invalid]="mensajeNoValido_mensaje"></textarea>
                                 <label for="mensaje">Tu mensaje</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un mensaje
+                                </div>
                             </div>
                             <div class="form-check mb-3">
                                 <input formControlName="alertas" name="alertas" class="form-check-input" type="checkbox" id="checkbox">
@@ -233,45 +248,63 @@
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg  button btn-radius">Enviar</button>
                             </div>
-                        </form> -->
+                        </form>
                     </div>
                     <div class="tab-pane fade" id="tab3" role="tabpanel">
-                        <form>
+                        <form [formGroup]="formulario_mensaje" autocomplete="off" (ngSubmit)="contactar_formulario_mensaje()">
                             <div class="form-floating mb-3">
-                                <input type="text" id="nombre" class="form-control">
+                                <input formControlName="nombre" name="nombre" type="text" id="nombre" class="form-control" [class.is-invalid]="nombreNoValido_mensaje">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese su nombre
+                                </div>
                                 <label for="nombre">Nombre</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" id="email" class="form-control">
-                                <label for="email">Email</label>
+                                <input formControlName="correo" name="correo" type="text" id="email" class="form-control" [class.is-invalid]="correoNoValido_mensaje">
+                                <label for="email">Correo</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un correo válido
+                                </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" id="telefono" class="form-control">
+                                <input formControlName="telefono" name="telefono" type="text" id="telefono" class="form-control" [class.is-invalid]="telefonoNoValido_mensaje">
                                 <label for="telefono">Teléfono</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un número telefónico
+                                </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea id="mensaje" class="form-control"></textarea>
+                                <textarea formControlName="mensaje" name="mensaje" id="mensaje" class="form-control" [class.is-invalid]="mensajeNoValido_mensaje"></textarea>
                                 <label for="mensaje">Tu mensaje</label>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    Ingrese un mensaje
+                                </div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="checkbox">
+                                <input formControlName="alertas" name="alertas" class="form-check-input" type="checkbox" id="checkbox">
                                 <label class="form-check-label text-secondary" for="checkbox">
-                                    <small>
-                                        Quiero recibir alertas de email con anuncios similares
-                                    </small>
-								</label>
+										<small>
+											Quiero recibir alertas de email con anuncios similares
+										</small>
+									</label>
                             </div>
                             <div class="d-grid">
-                                <a href="#" class="btn btn-primary btn-lg  button btn-radius">Enviar</a>
+                                <button type="submit" class="btn btn-primary btn-lg  button btn-radius">Enviar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="mb-4">
+            <div *ngIf="!mostrar_formulario" class="mb-4">
+                <h5 class="d-block text-dark fw-bold mb-0">Datos del Vendedor</h5>
+                <small class="text-muted ">Nombre: {{ vehiculo.usuario }}</small><br>
+                <small class="text-muted ">Correo: {{ vehiculo.correo }}</small><br>
+                <small class="text-muted ">Teléfono: {{ vehiculo.nrotelefono1_contacto }}</small><br>
+            </div>
+            <!-- <div class="mb-4">
                 <h5 class="d-block text-dark fw-bold mb-0">Ubicado en</h5>
                 <small class="text-muted ">Calle Puerta del sol 465 - La Molina</small>
-            </div>
+            </div> -->
             <!-- <div class="mb-4">
                 <img src="http://via.placeholder.com/400" class="w-100" alt="">
             </div> -->

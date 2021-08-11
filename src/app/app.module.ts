@@ -35,6 +35,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { registerLocaleData } from '@angular/common';
 import localesPE from '@angular/common/locales/es-PE';
+import { CaracteristicasComponent } from './pages/propiedades/publicar-propiedad/caracteristicas/caracteristicas.component';
+import { SeleccionComponent } from './pages/shop/seleccion/seleccion.component';
 registerLocaleData(localesPE, 'es-Pe');
 
 @NgModule({
@@ -58,7 +60,9 @@ registerLocaleData(localesPE, 'es-Pe');
     PrincipalesComponent,
     MultimediaComponent,
     ExtrasComponent,
-    ContactoComponent
+    ContactoComponent,
+    CaracteristicasComponent,
+    SeleccionComponent
   ],
   imports: [
     BrowserModule,

@@ -84,53 +84,37 @@
                                 <td>Precio unid.</td>
                                 <td width="20%">Cantidad</td>
                                 <td>Subtotal</td>
-                                <td>Acción</td>
+                                <!-- <td>Acción</td> -->
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Plan Simple</td>
-                                <td>S/0.00</td>
-                                <td>
-                                    <div class="input-group flex-nowrap justify-content-center">
-                                        <button class="btn btn-gray" type="button" id="button-addon1">
-                                            <img src="./assets/img/icons/minus.png" class="w-100">
-                                            </button>
-                                        <input type="text" class="form-control number" value="1">
-                                        <button class="btn btn-gray" type="button" id="button-addon1">
-                                            <img src="./assets/img/icons/plus.png">
-                                        </button>
-                                    </div>
-                                </td>
-                                <td>S/0.00</td>
-                                <td>
+                                <td>Plan Básico</td>
+                                <td>S/ 0.00</td>
+                                <td> {{ cantidad_basico }} </td>
+                                <td>S/ 0.00</td>
+                                <!-- <td>
                                     <button class="text-muted btn btn-sm">
                                         <i class="lnr lnr-edit"></i>
                                     </button>
                                     <button class="text-muted btn btn-sm">
                                         <i class="lnr lnr-trash"></i>
                                     </button>
-                                </td>
+                                </td> -->
                             </tr>
                             <tr>
-                                <td>Plan Simple</td>
-                                <td>S/0.00</td>
-                                <td>
-                                    <div class="input-group flex-nowrap justify-content-center">
-                                        <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png"></button>
-                                        <input type="text" class="form-control number" value="1">
-                                        <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png"></button>
-                                    </div>
-                                </td>
-                                <td>S/0.00</td>
-                                <td>
+                                <td>Plan Premium</td>
+                                <td>S/ 99.90</td>
+                                <td> {{ cantidad_premium }} </td>
+                                <td> {{ calcular_subtotal(cantidad_premium) | currency: 'PEN': 'symbol': '': 'es-PE' }} </td>
+                                <!-- <td>
                                     <button class="text-muted btn btn-sm">
                                         <i class="lnr lnr-edit"></i>
                                     </button>
                                     <button class="text-muted btn btn-sm">
                                         <i class="lnr lnr-trash"></i>
                                     </button>
-                                </td>
+                                </td> -->
                             </tr>
                         </tbody>
                     </table>
@@ -163,20 +147,21 @@
                     <div class="col-md-7">
                         <div class="card border border-secondary rounded-lg">
                             <div class="card-body p-4">
-                                <h5 class="fw-semibold text-secondary">Precio total</h5>
+                                <h5 class="fw-semibold text-secondary">Total a Pagar</h5>
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-muted d-block">Costo total</span>
-                                    <span class="text-muted">0.00</span>
+                                    <span class="text-secondary d-block">Subtotal</span>
+                                    <span class="text-secondary"> {{ subtotal | currency: 'PEN': 'symbol': '': 'es-PE' }} </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-secondary d-block">Igv(18%)</span>
+                                    <span class="text-secondary"> {{ igv | currency: 'PEN': 'symbol': '': 'es-PE' }} </span>
                                 </div>
                                 <hr class="my-2">
-                                <div class="d-flex justify-content-between">
-                                    <span class="text-secondary d-block">Igv</span>
-                                    <span class="text-secondary">0.00</span>
-                                </div>
                                 <div class="d-flex justify-content-between mb-4">
-                                    <span class="text-secondary d-block">Total</span>
-                                    <span class="text-secondary">0.00</span>
+                                    <span class="text-muted d-block">Costo total</span>
+                                    <span class="text-muted">{{ costo_total | currency: 'PEN': 'symbol': '': 'es-PE' }}</span>
                                 </div>
+
                                 <button type="button" class="btn btn-primary btn-lg btn-large btn-radius">Procesar</button>
                             </div>
                         </div>

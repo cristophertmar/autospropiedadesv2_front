@@ -1,1 +1,705 @@
-<p>busqueda-propiedad works!</p>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+    <p style="color: white"> Cargando... </p>
+</ngx-spinner>
+<form [formGroup]="formulario" autocomplete="off" class="container my-4">
+    <div class="mb-4">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                <li class="breadcrumb-item">Propiedades</li>
+                <li class="breadcrumb-item">Busqueda</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="mb-4">
+        <div class="d-flex align-items-center gap-2">
+            <h3 class="text-primary mb-0 fw-bold">BUSQUEDA</h3>
+            <!-- <a href="javascript:void(0)" class="small fs-6 fw-semibold" onclick="toggleFilters()"> Mostrar/ocultar Filtros</a> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" id="filtros">
+            <div class="card mb-4 rounded-3">
+                <br>
+                <!-- <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center flex-wrap links">
+                    <div>
+                        <a href="#" class="fw-semibold active">Alquilar</a>
+                    </div>
+                    <div>
+                        <a href="#" class="fw-semibold">Comprar</a>
+                    </div>
+                    <div>
+                        <a href="#" class="fw-semibold">Proyecto</a>
+                    </div>
+                </div> -->
+
+                <div class="card-body">
+                    <h6 class="text-dark mb-4 fw-semibold">Aplicar Filtros</h6>
+                    <!-- <div class="mb-4">
+                        <span class="badge bg-gray py-2 text-dark mb-2">Santiago de Surco <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                        <span class="badge bg-gray py-2 text-dark mb-2">Departamento <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                        <span class="badge bg-gray py-2 text-dark mb-2">Alquilar <a href="#" class="text-dark ms-2"><i class="lnr lnr-cross"></i></a></span>
+                    </div> -->
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <select formControlName="tipo_operacion" name="tipo_operacion" id="tipo_operacion" class="form-select">
+                                <option value=0>(Cualquier operación)</option>
+                                <option value=1>Compra</option>
+                                <option value=2>Alquiler</option>
+                                <option value=3>Alquiler temporal</option>
+                                <option value=4>Proyecto</option>
+                            </select>
+                            <label for="tipo_operacion">Tipo Operación</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <select formControlName="tipo_inmueble" name="tipo_inmueble" id="tipo_inmueble" class="form-select">
+                                <option value=0>(Cualquier tipo inmueble)</option>
+                                <option value=1>Departamento</option>
+                                <option value=2>Casa</option>
+                                <option value=3>Terreno / Lote</option>
+                                <option value=4>Local comercial</option>
+                                <option value=5>Oficina</option>
+                                <option value=6>Casa de campo</option>
+                                <option value=7>Casa de playa</option>
+                                <option value=8>Cocheras</option>
+                                <option value=9>Condominio de casas</option>
+                                <option value=10>Condominio de edificios</option>
+                                <option value=11>Edificios</option>
+                                <option value=12>Habitación</option>
+                                <option value=13>Hotel</option>
+                                <option value=14>Local industrial</option>
+                                <option value=15>Proyecto de lotes</option>
+                                <option value=16>Proyecto horizontal-vertical</option>
+                                <option value=17>Proyecto vertical</option>
+                                <option value=18>Terreno agrícola</option>
+                                <option value=19>Otros</option>
+                            </select>
+                            <label for="tipo_inmueble">Tipo Inmueble</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <select formControlName="antiguedad" name="antiguedad" id="antiguedad" class="form-select">
+                                <option value=0>(Cualquier antigüedad)</option>
+                                <option value=1>En construcción</option>
+                                <option value=2>A estrenar</option>
+                                <option value=3>Hasta 5 años</option>
+                                <option value=4>Entre 5 y 10 años</option>
+                                <option value=5>Entre 10 y 20 años</option>
+                                <option value=6>Entre 20 y 50 años</option>
+                                <option value=7>Más de 50 años</option>
+                            </select>
+                            <label for="antiguedad">Antigüedad</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
+                            </select>
+                            <label for="departamento">Departamento</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
+                            </select>
+                            <label for="provincia">Provincia</label>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
+                            </select>
+                            <label for="distrito">Distrito</label>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <!-- <div class="d-grid mb-4">
+                        <button class="btn btn-warning btn-lg btn-radius button">Ver mapa</button>
+                    </div> -->
+
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-2 fw-semibold">Precio</h6>
+
+                        <div class="mb-2">
+                            <div class="d-flex gap-2">
+                                <div>
+                                    <input formcontrolname="minprecio" name="minprecio" type="text" placeholder="Desde" class="form-control" ng-reflect-name="minprecio">
+                                </div>
+                                <div>
+                                    <input formcontrolname="maxprecio" name="maxprecio" type="text" placeholder="Hasta" class="form-control" ng-reflect-name="maxprecio">
+                                </div>
+                                <div>
+                                    <button (click)="seleccionar_rango_precio()" class="btn btn-warning">
+                                        <i class="lnr lnr-magnifier"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkbox1">
+                            <label class="form-check-label text-sm text-muted" for="checkbox1">
+                                Incluir mantenimiento en el precio final
+                            </label>
+                        </div> 
+                        <hr> -->
+                    </div>
+
+
+                    <!-- <div class="d-grid mb-4">
+                        <button class="btn btn-warning button btn-lg btn-radius">Crear alerta</button>
+                    </div> -->
+                </div>
+            </div>
+            <h6 class="text-dark mb-4 fw-semibold">Otras operaciones</h6>
+
+            <div (click)="listar_propiedades()" class="mb-4">
+                <span class="d-block text-muted mb-2">Dormitorios</span>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio1" formControlName="dormitorios" name="dormitorios" value="1">
+                    <label class="form-check-label" for="radio1">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio2" formControlName="dormitorios" name="dormitorios" value="2">
+                    <label class="form-check-label" for="radio2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio3" formControlName="dormitorios" name="dormitorios" value="3">
+                    <label class="form-check-label" for="radio3">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio4" formControlName="dormitorios" name="dormitorios" value="4">
+                    <label class="form-check-label" for="radio4">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio5" formControlName="dormitorios" name="dormitorios" value="5">
+                    <label class="form-check-label" for="radio5">5</label>
+                </div>
+            </div>
+            <div (click)="listar_propiedades()" class="mb-4">
+                <span class="d-block text-muted mb-2">Baños</span>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio1" formControlName="banios" name="banios" value="1">
+                    <label class="form-check-label" for="radio1">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio2" formControlName="banios" name="banios" value="2">
+                    <label class="form-check-label" for="radio2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio3" formControlName="banios" name="banios" value="3">
+                    <label class="form-check-label" for="radio3">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio4" formControlName="banios" name="banios" value="4">
+                    <label class="form-check-label" for="radio4">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio5" formControlName="banios" name="banios" value="5">
+                    <label class="form-check-label" for="radio5">5</label>
+                </div>
+            </div>
+            <div (click)="listar_propiedades()" class="mb-4">
+                <span class="d-block text-muted mb-2">Estacionamientos</span>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio6" formControlName="cocheras" name="cocheras" value="0">
+                    <label class="form-check-label" for="radio6">Sin</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio7" formControlName="cocheras" name="cocheras" value="1">
+                    <label class="form-check-label" for="radio7">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio8" formControlName="cocheras" name="cocheras" value="2">
+                    <label class="form-check-label" for="radio8">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio9" formControlName="cocheras" name="cocheras" value="3">
+                    <label class="form-check-label" for="radio9">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="radio10" formControlName="cocheras" name="cocheras" value="4">
+                    <label class="form-check-label" for="radio10">4</label>
+                </div>
+            </div>
+            <!-- <h6 class="text-dark mb-4 fw-semibold">Multimedia</h6>
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="checkbox4" name="estacionamientos">
+                <label class="form-check-label" for="checkbox4">Recorrido 360</label>
+            </div>
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="checkbox5" name="estacionamientos">
+                <label class="form-check-label" for="checkbox5">Video</label>
+            </div>
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="checkbox6" name="estacionamientos">
+                <label class="form-check-label" for="checkbox6">Fotos</label>
+            </div>
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="checkbox7" name="estacionamientos">
+                <label class="form-check-label" for="checkbox7">Planos</label>
+            </div>
+            <div class="mb-4">
+                <div class="form-floating">
+                    <select id="antiguedad" class="form-select">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <label for="antiguedad">Antiguedad</label>
+                </div>
+            </div> -->
+            <div class="mb-4">
+                <div class="form-floating">
+                    <select id="mantenimiento" class="form-select" formControlName="mantenimiento" name="mantenimiento">
+                        <option value="0">(Seleccionar)</option>
+                        <option value="1">Sí</option>
+                        <option value="2">No</option>
+                    </select>
+                    <label for="mantenimiento">Mantenimiento</label>
+                </div>
+            </div>
+            <!-- <div class="d-flex gap-2 mb-4">
+                <div class="form-floating">
+                    <input id="direccion" class="form-control">
+                    <label for="direccion">Dirección</label>
+                </div>
+                <div>
+                    <button class="btn btn-gray h-100">
+                        <i class="lnr lnr-magnifier"></i>
+                    </button>
+                </div>
+            </div> -->
+
+
+            <!-- <div class="mb-4">
+                <div class="form-floating">
+                    <select id="generales" class="form-select">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <label for="generales">Generales</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="form-floating">
+                    <select id="ambientes" class="form-select">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <label for="ambientes">Ambientes</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="form-floating">
+                    <select id="fecha" class="form-select">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <label for="fecha">Fecha de publicación</label>
+                </div>
+            </div> 
+            <div class="mb-4">
+                <div class="form-floating">
+                    <select id="servicios" class="form-select">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <label for="servicios">Servicios</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="form-floating">
+                    <select id="exteriores" class="form-select">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    <label for="exteriores">Exteriores</label>
+                </div>
+            </div>-->
+            <h6 class="text-dark mb-4 fw-semibold">Tipo de anunciante</h6>
+            <div (click)="listar_propiedades()" class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="checkbox8" formControlName="tipo_anunciante" name="tipo_anunciante" value="2">
+                <label class="form-check-label" for="checkbox8">Inmobiliaria</label>
+            </div>
+            <div (click)="listar_propiedades()" class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="checkbox9" formControlName="tipo_anunciante" name="tipo_anunciante" value="1">
+                <label class="form-check-label" for="checkbox9">Dueño directo</label>
+            </div>
+        </div>
+        <div class="col-md-9 ps-6" id="productos">
+            <div class="d-flex gap-2 mb-4">
+                <div class="col-lg-4 col-6">
+                    <div class="input-group">
+                        <input formControlName="filtrobus" name="filtrobus" type="text" class="form-control border-end-0" placeholder="Ingrese una búsqueda">
+                        <span class="input-group-text bg-white border-start-0">
+                            <i class="lnr lnr-magnifier text-secondary"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-6 d-flex offset-lg-2 gap-2">
+                    <select id="ordenar" class="form-select" formControlName="ordenar" name="ordenar">
+                        <option value=0>(Ordenar por)</option>
+                        <option value=1>Mayor precio</option>
+                        <option value=2>Menor precio</option>
+                        <option value=3>Antigüedad</option>
+                    </select>
+                    <!-- <a href="#" class="btn text-secondary"><i class="lnr lnr-list"></i></a>
+                    <a href="#" class="btn text-secondary"><i class="lnr lnr-list"></i></a> -->
+                </div>
+            </div>
+            <div class="row">
+                <div *ngFor="let prop of propiedades" class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="javascript:void(0)" (click)="ver_propiedad(prop)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <!-- <img class="img-whp" [src]="obtener_ruta(prop.imagen)" alt="auto.jpg"> -->
+                            <div class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0"> {{ prop.titulo }} </h5>
+                            <small class="d-block text-warning fw-semibold">
+                                {{ prop.tipo_inmueble_desc }}({{ prop.tipo_descripcion_desc }})
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                <!-- La Molina - Lima --> {{ prop.distrito }} - {{ prop.provincia }}
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                {{ prop.area_total }}m²AC | {{ prop.dormitorios }} dorm. | {{prop.banios }} baños
+                            </small>
+                            <!-- <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small> -->
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                            <div class="social">
+                                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                                <span class="text-muted">John Doe <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="mb-4 text-center">
+                <a href="#" class="btn btn-lg btn-primary btn-large btn-radius button">Más avisos</a>
+            </div> -->
+        </div>
+    </div>
+</form>
+<a href="publicar.html" class="btn btn-lg btn-float text-white shadow fw-bold btn-radius"><i class="lnr lnr-plus"></i> PUBLICAR</a>

@@ -1,1 +1,497 @@
-<p>extras works!</p>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="sticky-lg-top">
+                <div class="d-flex flex-column p-4 bg-primary">
+                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
+                    <ul class="nav nav-pills flex-column mb-4" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
+                            </a>
+                            <ul class="collapse show nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-semibold">4. Publicar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
+                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
+                            </a>
+                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
+                                </li>
+                                <li class="w-100">
+                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mb-4">
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/anuncio.svg"> Publicar anuncio
+                            </a>
+                        </li>
+                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link text-white px-0 fw-light">
+                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">YA CASI TERMINAMOS</h3>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-dark fw-semibold mb-4">Cuentanos cuales son las condiciones del inmueble</h5>
+            </div>
+            <div>
+                <!-- <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="condiciones">
+                                <label for="condiciones">Busca y agrega características</label>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <hr>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Características generales</h5>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox1" (change)="seleccionar_tags_general($event, 'Frente al mar')">
+                            <label class="form-check-label text-muted" for="checkbox1">
+                                Frente al mar
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox2" (change)="seleccionar_tags_general($event, 'Cerca a parque')">
+                            <label class="form-check-label text-muted" for="checkbox2">
+                                Cerca a parque
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox3" (change)="seleccionar_tags_general($event, 'Areas verdes')">
+                            <label class="form-check-label text-muted" for="checkbox3">
+                                Areas verdes
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox4" (change)="seleccionar_tags_general($event, 'Intercomunicador')">
+                            <label class="form-check-label text-muted" for="checkbox4">
+                                Intercomunicador
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox5" (change)="seleccionar_tags_general($event, 'Cuartos de servicio')">
+                            <label class="form-check-label text-muted" for="checkbox5">
+                                Cuartos de servicio
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox6" (change)="seleccionar_tags_general($event, 'Chimenea')">
+                            <label class="form-check-label text-muted" for="checkbox6">
+                                Chimenea
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox7" (change)="seleccionar_tags_general($event, 'Frente al parque')">
+                            <label class="form-check-label text-muted" for="checkbox7">
+                                Frente al parque
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox8" (change)="seleccionar_tags_general($event, 'Acabados de lujo')">
+                            <label class="form-check-label text-muted" for="checkbox8">
+                                Acabados de lujo
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox9" (change)="seleccionar_tags_general($event, 'Piscina')">
+                            <label class="form-check-label text-muted" for="checkbox9">
+                                Piscina
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox10" (change)="seleccionar_tags_general($event, 'Mascotas')">
+                            <label class="form-check-label text-muted" for="checkbox10">
+                                Mascotas
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox11" (change)="seleccionar_tags_general($event, 'Cerco vivo')">
+                            <label class="form-check-label text-muted" for="checkbox11">
+                                Cerco vivo
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox12" (change)="seleccionar_tags_general($event, 'Terraza')">
+                            <label class="form-check-label text-muted" for="checkbox12">
+                                Terraza
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox13" (change)="seleccionar_tags_general($event, 'Seguridad')">
+                            <label class="form-check-label text-muted" for="checkbox13">
+                                Seguridad
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox14" (change)="seleccionar_tags_general($event, 'Av. acceso firmada')">
+                            <label class="form-check-label text-muted" for="checkbox14">
+                                Av. acceso firmada
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox15" (change)="seleccionar_tags_general($event, 'Vista al mar')">
+                            <label class="form-check-label text-muted" for="checkbox15">
+                                Vista al mar
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox16" (change)="seleccionar_tags_general($event, 'Cerca a colegios')">
+                            <label class="form-check-label text-muted" for="checkbox16">
+                                Cerca a colegios
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox17" (change)="seleccionar_tags_general($event, 'Reposteros en cocina')">
+                            <label class="form-check-label text-muted" for="checkbox17">
+                                Reposteros en cocina
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox18" (change)="seleccionar_tags_general($event, 'Closet')">
+                            <label class="form-check-label text-muted" for="checkbox18">
+                                Closet
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox19" (change)="seleccionar_tags_general($event, 'Walk in closet')">
+                            <label class="form-check-label text-muted" for="checkbox19">
+                                Walk in closet
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox20" (change)="seleccionar_tags_general($event, 'Caseta de guardia')">
+                            <label class="form-check-label text-muted" for="checkbox20">
+                                Caseta de guardia
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox21" (change)="seleccionar_tags_general($event, 'Cerca eléctrica')">
+                            <label class="form-check-label text-muted" for="checkbox21">
+                                Cerca eléctrica
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox22" (change)="seleccionar_tags_general($event, 'Vista parque')">
+                            <label class="form-check-label text-muted" for="checkbox22">
+                                Vista parque
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox23" (change)="seleccionar_tags_general($event, 'Amueblado')">
+                            <label class="form-check-label text-muted" for="checkbox23">
+                                Amueblado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox24" (change)="seleccionar_tags_general($event, 'Jardín(es)')">
+                            <label class="form-check-label text-muted" for="checkbox24">
+                                Jardín(es)
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox25" (change)="seleccionar_tags_general($event, 'Jacuzzi')">
+                            <label class="form-check-label text-muted" for="checkbox25">
+                                Jacuzzi
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox26" (change)="seleccionar_tags_general($event, 'Zona industrial')">
+                            <label class="form-check-label text-muted" for="checkbox26">
+                                Zona industrial
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox27" (change)="seleccionar_tags_general($event, 'Cocina')">
+                            <label class="form-check-label text-muted" for="checkbox27">
+                                Cocina
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox28" (change)="seleccionar_tags_general($event, 'Cerca de material')">
+                            <label class="form-check-label text-muted" for="checkbox28">
+                                Cerca de material
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox29" (change)="seleccionar_tags_general($event, 'Av. acceso asfaltada')">
+                            <label class="form-check-label text-muted" for="checkbox29"> Av. acceso asfaltada
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox30" (change)="seleccionar_tags_general($event, 'Vista a la ciudad')">
+                            <label class="form-check-label text-muted" for="checkbox30">
+                                Vista a la ciudad
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox31" (change)="seleccionar_tags_general($event, 'Centros comerciales')">
+                            <label class="form-check-label text-muted" for="checkbox31">
+                                Centros comerciales
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <hr>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Servicios</h5>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox32" (change)="seleccionar_tags_servicios($event, 'Guardianía/Seguridad')">
+                            <label class="form-check-label text-muted" for="checkbox32">
+                                Guardianía/Seguridad
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox33" (change)="seleccionar_tags_servicios($event, 'Parrilla')">
+                            <label class="form-check-label text-muted" for="checkbox33">
+                                Parrilla
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox34" (change)="seleccionar_tags_servicios($event, 'Gimnasio')">
+                            <label class="form-check-label text-muted" for="checkbox34">
+                                Gimnasio
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox35" (change)="seleccionar_tags_servicios($event, 'Linea blanca')">
+                            <label class="form-check-label text-muted" for="checkbox35">
+                                Linea blanca
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox36" (change)="seleccionar_tags_servicios($event, 'Servicios de limpieza')">
+                            <label class="form-check-label text-muted" for="checkbox36">
+                                Servicios de limpieza
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox37" (change)="seleccionar_tags_servicios($event, 'Sistema de alarma')">
+                            <label class="form-check-label text-muted" for="checkbox37">
+                                Sistema de alarma
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox38" (change)="seleccionar_tags_servicios($event, 'Altillos')">
+                            <label class="form-check-label text-muted" for="checkbox38">
+                                Altillos
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox39" (change)="seleccionar_tags_servicios($event, 'Kichenet')">
+                            <label class="form-check-label text-muted" for="checkbox39">
+                                Kichenet
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox40" (change)="seleccionar_tags_servicios($event, 'Canchas deportivas')">
+                            <label class="form-check-label text-muted" for="checkbox40">
+                                Canchas deportivas
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox41" (change)="seleccionar_tags_servicios($event, 'Areas de lavandería')">
+                            <label class="form-check-label text-muted" for="checkbox41">
+                                Areas de lavandería
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox42" (change)="seleccionar_tags_servicios($event, 'Video vigilancia')">
+                            <label class="form-check-label text-muted" for="checkbox42">
+                                Video vigilancia
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox43" (change)="seleccionar_tags_servicios($event, 'Posee luminarias')">
+                            <label class="form-check-label text-muted" for="checkbox43">
+                                Posee luminarias
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox44" (change)="seleccionar_tags_servicios($event, 'Areas de juegos infantiles')">
+                            <label class="form-check-label text-muted" for="checkbox44">
+                                Areas de juegos infantiles
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox45" (change)="seleccionar_tags_servicios($event, 'Aire acondicionado')">
+                            <label class="form-check-label text-muted" for="checkbox45">
+                                Aire acondicionado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox46" (change)="seleccionar_tags_servicios($event, 'Areas verdes')">
+                            <label class="form-check-label text-muted" for="checkbox46">
+                                Areas verdes
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" name="antiguedad" id="checkbox47" (change)="seleccionar_tags_servicios($event, 'Servicios básicos (agua,luz)')">
+                            <label class="form-check-label text-muted" for="checkbox47">
+                                Servicios básicos (agua,luz)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Adicionales</h5>
+                <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()" class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="usoprofesional" name="usoprofesional" class="form-select" id="pro">
+                                <option value=0>No especificado</option>
+                                <option value=1>Sí</option>
+                                <option value=2>No</option>
+                            </select>
+                            <label for="pro">Uso profesional</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="usocomercial" name="usocomercial" class="form-select" id="com">
+                                <option value=0>No especificado</option>
+                                <option value=1>Sí</option>
+                                <option value=2>No</option>
+                            </select>
+                            <label for="com">Uso comercial</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="ascensores" name="ascensores" class="form-select" id="incendios">
+                                <option value=0>No especificado</option>
+                                <option value=1>Sí</option>
+                                <option value=2>No</option>
+                            </select>
+                            <label for="incendios">Ascensores</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="mascotas" name="mascotas" class="form-select" id="leed">
+                                <option value=0>No especificado</option>
+                                <option value=1>Sí</option>
+                                <option value=2>No</option>
+                            </select>
+                            <label for="leed">Mascotas</label>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="baño">
+                            <label for="baño">Baño de servicio</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="niveles">
+                            <label for="niveles">Niveles construidos</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="balcones">
+                            <label for="balcones">Balcón(es)</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="pisos">
+                            <label for="pisos">Número de pisos</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="ascensor">
+                            <label for="ascensor">Ascensor(es)</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="construibles">
+                            <label for="construibles">Pisos construibles</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="bodegas">
+                            <label for="bodegas">Bodegas</label>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <button type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Siguiente</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

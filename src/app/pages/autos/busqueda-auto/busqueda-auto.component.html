@@ -126,25 +126,25 @@
                     <div class="mb-4">
                         <h6 class="text-secondary mb-2 fw-semibold">Ubicación</h6>
                         <div class="form-floating mb-3">
-                            <select formControlName="departamento" name="departamento" id="condicion" class="form-select">
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select">
                                 <option value="">(Seleccionar)</option>
                                 <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
                             </select>
-                            <label for="condicion">Departamento</label>
+                            <label for="departamento">Departamento</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select formControlName="provincia" name="provincia" id="condicion" class="form-select">
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select">
                                 <option value="">(Seleccionar)</option>
                                 <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
                             </select>
-                            <label for="condicion">Provincia</label>
+                            <label for="provincia">Provincia</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select formControlName="distrito" name="distrito" id="condicion" class="form-select">
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select">
                                 <option value="">(Seleccionar)</option>
                                 <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
                             </select>
-                            <label for="condicion">Distrito</label>
+                            <label for="distrito">Distrito</label>
                         </div>
                         <hr>
                     </div>

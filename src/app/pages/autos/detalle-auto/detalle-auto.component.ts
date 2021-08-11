@@ -8,6 +8,8 @@ import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClienteContacto } from '../../../models/cliente_contacto.model';
+import { SharedService } from '../../../services/shared.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-detalle-auto',
   templateUrl: './detalle-auto.component.html',
@@ -17,17 +19,20 @@ import { ClienteContacto } from '../../../models/cliente_contacto.model';
 export class DetalleAutoComponent implements OnInit {
 
   formulario_mensaje: FormGroup;
+  mostrar_formulario: boolean = true;
 
   vehiculo: VehiculoDetalle = {};
 
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
 
-  cliente_contacto: ClienteContacto = {};
+  cliente_contacto: ClienteContacto = {};  
 
   constructor(
     private _vehiculoService: VehiculoService,
     private _activatedRoute: ActivatedRoute,
+    private _shared: SharedService,
+    private _spinner: NgxSpinnerService
   ) {
     this.crear_formulario();
   }
@@ -86,7 +91,13 @@ export class DetalleAutoComponent implements OnInit {
     this.cliente_contacto.mensaje = this.formulario_mensaje.value.mensaje;
     this.cliente_contacto.alertas = this.formulario_mensaje.value.alertas;
 
-    console.log(this.cliente_contacto);
+    this._spinner.show();
+
+    setTimeout(() => {
+      this._spinner.hide();
+      this._shared.alert_success('Enviado satisfactoriamente');
+      this.mostrar_formulario = false;
+     }, 3000);
 
   }
 
@@ -95,6 +106,7 @@ export class DetalleAutoComponent implements OnInit {
     .subscribe( (resp: any) => {
       this.vehiculo = resp.data;
       this.galleryImages = resp.data.imagen_galeria;
+      console.log(this.vehiculo);
     });
   }
 
@@ -113,6 +125,8 @@ export class DetalleAutoComponent implements OnInit {
   get mensajeNoValido_mensaje() {
     return this.formulario_mensaje.get('mensaje').invalid && this.formulario_mensaje.get('mensaje').touched;
   }
+
+
   
 
 

@@ -66,14 +66,14 @@ export class ContactoAutoComponent implements OnInit {
 
     this._anuncioService.vehiculo_temp.usuario_id = this._usuarioService.usuario.id;
 
-    console.log(this._anuncioService.vehiculo_temp);
+    this._anuncioService.guardar_vehiculo_temp(this._anuncioService.vehiculo_temp);
+    this._anuncioService.guardar_carrito_vehiculo(this._anuncioService.vehiculo_temp);
 
-    this._vehiculoService.publicar_vehiculo(this._anuncioService.vehiculo_temp)
+    /* this._vehiculoService.publicar_vehiculo(this._anuncioService.vehiculo_temp)
     .subscribe( (resp: any) => {
     this.guardarImagen(resp.data.id_vehiculo);
-    });
+    }); */
 
-    /* this._router.navigate(['/tienda/carrito']); */
   }
 
   guardarImagen(id_vehiculo: string) {
