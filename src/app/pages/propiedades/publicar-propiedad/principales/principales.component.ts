@@ -109,4 +109,14 @@ export class PrincipalesComponent implements OnInit {
 
   }
 
+  seleccionarUbicacion( evento: any ) {
+    /* console.log(evento); */
+    const coords: { lat: number, lng: number } = evento.coords;
+    console.log('lat', coords.lat);
+    console.log('lng', coords.lng);
+
+    this.lat = coords.lat;
+    this.lng = coords.lng;
+}
+
 }

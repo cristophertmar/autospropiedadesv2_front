@@ -178,7 +178,13 @@
                 </div>
                 <h5 class="text-dark fw-semibold mb-4">Selecciona en el mapa</h5>
                 <div class="mb-4">
-                    <img src="http://via.placeholder.com/1000x500" class="w-100" alt="">
+                    <!-- <img src="http://via.placeholder.com/1000x500" class="w-100" alt=""> -->
+                    <agm-map (mapClick)="seleccionarUbicacion( $event )" [latitude]="lat" [longitude]="lng" [zoom]="5">
+                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                        <!-- <agm-info-window>
+
+                        </agm-info-window> -->
+                    </agm-map>
                 </div>
                 <div class="mb-4">
                     <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>

@@ -63,7 +63,13 @@
                     <span class="d-block mb-4">
                         {{ propiedad.direccion }} - {{ propiedad.distrito }}, {{ propiedad.provincia }}
                     </span>
-                    <img src="http://via.placeholder.com/1000x600" alt="" class="w-100">
+                    <!-- <img src="http://via.placeholder.com/1000x600" alt="" class="w-100"> -->
+                    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                        <!-- <agm-info-window>
+
+                        </agm-info-window> -->
+                    </agm-map>
                 </div>
             </div>
             <div class="accordion accordion-flush mb-4" id="accordion">

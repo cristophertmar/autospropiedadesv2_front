@@ -39,6 +39,9 @@ import { CaracteristicasComponent } from './pages/propiedades/publicar-propiedad
 import { SeleccionComponent } from './pages/shop/seleccion/seleccion.component';
 registerLocaleData(localesPE, 'es-Pe');
 
+// Angular Maps
+import { AgmCoreModule } from '@agm/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +76,10 @@ registerLocaleData(localesPE, 'es-Pe');
     SocialLoginModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    NgxGalleryModule
+    NgxGalleryModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAFcaVS186uSCzbrE_8ziIOdBjtxDZvLZc'
+    })
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es-Pe' },
@@ -84,7 +90,7 @@ registerLocaleData(localesPE, 'es-Pe');
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('112121065768-cn1bsvsclcq1rlvk0fuvc4q36u7dcpp6.apps.googleusercontent.com')
+            provider: new GoogleLoginProvider('110768579266-0365ctqmegru8m5htkh58paof4jv3p21.apps.googleusercontent.com')
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
@@ -97,3 +103,4 @@ registerLocaleData(localesPE, 'es-Pe');
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

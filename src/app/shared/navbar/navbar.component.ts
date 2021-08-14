@@ -79,7 +79,7 @@ export class NavbarComponent implements OnInit {
     .subscribe(
       resp => {
         /* this._spinner.hide(); */
-      this._router.navigate(['/autos/publicar/informacion']);
+      this._router.navigate(['/anuncio/seleccionar']);
       this.cerrar_sesion_social();
       },
       (error) => {
@@ -108,7 +108,7 @@ export class NavbarComponent implements OnInit {
 
     this._usuarioService.registro_usuario(usuario)
     .subscribe( resp => {
-      this._router.navigate(['/autos/publicar/informacion']);
+      this._router.navigate(['/anuncio/seleccionar']);
       this.cerrar_sesion_social();
     });
 
