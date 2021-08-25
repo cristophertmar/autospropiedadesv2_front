@@ -1,75 +1,13 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
-            <div class="sticky-lg-top">
-                <div class="d-flex flex-column p-4 bg-primary">
-                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
-                    <ul class="nav nav-pills flex-column mb-4" id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
-                            </a>
-                            <ul class="collapse show nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-semibold">4. Publicar</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
-                            </a>
-                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item mb-4">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/anuncio.svg"> Publicar anuncio
-                            </a>
-                        </li>
-                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <app-sidebar-propiedades></app-sidebar-propiedades>
         </div>
         <div class="col-lg-9 col-md-8 ps-6">
             <div class="mb-4">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
                         <li class="breadcrumb-item">Administrar propiedad</li>
                         <li class="breadcrumb-item">Publicación</li>
                     </ol>
@@ -82,20 +20,29 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input formControlName="nombre" name="nombre" id="nombre" class="form-control">
+                            <input formControlName="nombre" name="nombre" id="nombre" class="form-control" [class.is-invalid]="nombreNoValido">
                             <label for="nombre">Nombre de contacto</label>
+                            <div class="invalid-feedback">
+                                Ingrese nombre
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input formControlName="correo" name="correo" id="correo" class="form-control">
+                            <input formControlName="correo" name="correo" id="correo" class="form-control" [class.is-invalid]="correoNoValido">
                             <label for="correo">Correo de contacto</label>
+                            <div class="invalid-feedback">
+                                Ingrese correo
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input formControlName="fono1" name="fono1" id="celular1" class="form-control">
+                            <input formControlName="fono1" name="fono1" id="celular1" class="form-control" [class.is-invalid]="fono1NoValido">
                             <label for="celular1">Número de celular 1</label>
+                            <div class="invalid-feedback">
+                                Ingrese número telefónico
+                            </div>
                         </div>
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="checkbox1">
@@ -106,8 +53,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <input formControlName="fono2" name="fono2" id="celular2" class="form-control">
+                            <input formControlName="fono2" name="fono2" id="celular2" class="form-control" [class.is-invalid]="fono2NoValido">
                             <label for="celular2">Número de celular 2</label>
+                            <div class="invalid-feedback">
+                                Ingrese número telefónico
+                            </div>
                         </div>
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="checkbox2">
@@ -118,12 +68,15 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="tipo_anunciante" name="tipo_anunciante" id="tipo" class="form-select">
+                            <select formControlName="tipo_anunciante" name="tipo_anunciante" id="tipo" class="form-select" [class.is-invalid]="tipo_anuncianteNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value="1">Dueño directo</option>
                                 <option value="2">Empresa</option>
                             </select>
                             <label for="tipo">Tipo de anunciante</label>
+                            <div class="invalid-feedback">
+                                Seleccione tipo de anunciante
+                            </div>
                         </div>
                     </div>
                 </div>

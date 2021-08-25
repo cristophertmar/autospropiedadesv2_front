@@ -19,6 +19,9 @@ import { MultimediaComponent } from './pages/propiedades/publicar-propiedad/mult
 import { ExtrasComponent } from './pages/propiedades/publicar-propiedad/extras/extras.component';
 import { CaracteristicasComponent } from './pages/propiedades/publicar-propiedad/caracteristicas/caracteristicas.component';
 import { SeleccionComponent } from './pages/shop/seleccion/seleccion.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { PublicacionesComponent } from './pages/publicaciones/publicaciones.component';
+import { AnunciosComponent } from './pages/anuncios/anuncios.component';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
@@ -45,6 +48,10 @@ const routes: Routes = [
   { path: 'anuncio/planes', component: PlanesComponent },
   { path: 'anuncio/carrito', component: CarritoComponent },
   { path: 'anuncio/realizar-pago', component: CheckoutComponent },
+
+  { path: 'mi-perfil', component: PerfilComponent },
+  { path: 'mis-publicaciones', component: PublicacionesComponent },
+  { path: 'publicar-anuncio', component: AnunciosComponent },
 
 
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },

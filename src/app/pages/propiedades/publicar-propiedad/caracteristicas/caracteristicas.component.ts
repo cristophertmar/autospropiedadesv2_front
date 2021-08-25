@@ -12,9 +12,9 @@ import { AnuncioService } from 'src/app/services/anuncio.service';
 })
 export class CaracteristicasComponent implements OnInit {
 
-  dormitorios = 0;
-  banios = 0;
-  pisostotales = 0;
+  dormitorios = 1;
+  banios = 1;
+  pisostotales = 1;
   cocheras = 0;
 
   formulario: FormGroup;
@@ -50,6 +50,11 @@ export class CaracteristicasComponent implements OnInit {
   siguiente() {
     /* console.log(this.formulario.value); */
 
+    if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
 
     this._anuncioService.propiedad_temp.dormitorios = Number(this.dormitorios);
     this._anuncioService.propiedad_temp.banios = Number(this.banios);
@@ -97,13 +102,13 @@ export class CaracteristicasComponent implements OnInit {
 
     switch (entidad) {
       case 'dormitorios':
-        this.dormitorios = this.dormitorios === 0 ? 0 : this.dormitorios -= 1;
+        this.dormitorios = this.dormitorios === 1 ? 1 : this.dormitorios -= 1;
       break;
       case 'banios':
-        this.banios = this.banios === 0 ? 0 : this.banios -= 1;
+        this.banios = this.banios === 1 ? 1 : this.banios -= 1;
       break;
       case 'pisostotales':
-        this.pisostotales = this.pisostotales === 0 ? 0 : this.pisostotales -= 1;
+        this.pisostotales = this.pisostotales === 1 ? 1 : this.pisostotales -= 1;
       break;
       default:
         this.cocheras = this.cocheras === 0 ? 0 : this.cocheras -= 1;
@@ -119,14 +124,30 @@ export class CaracteristicasComponent implements OnInit {
       area_total: new FormControl('', [Validators.required]),
       area_const: new FormControl('', [Validators.required]),
 
-      antiguedad: new FormControl('', [Validators.required]),
+      antiguedad: new FormControl('1', [Validators.required]),
 
       precio: new FormControl(null, [Validators.required]),
-      mantenimiento: new FormControl('', [Validators.required]),
+      mantenimiento: new FormControl(''),
 
       titulo: new FormControl('', [Validators.required]),
       descripcion: new FormControl('', [Validators.required])
     });
+  }
+
+  get atotalNoValido() {
+    return this.formulario.get('area_total').invalid && this.formulario.get('area_total').touched;
+  }
+  get aconstruidaNoValido() {
+    return this.formulario.get('area_const').invalid && this.formulario.get('area_const').touched;
+  }
+  get precioNoValido() {
+    return this.formulario.get('precio').invalid && this.formulario.get('precio').touched;
+  }
+  get tituloNoValido() {
+    return this.formulario.get('titulo').invalid && this.formulario.get('titulo').touched;
+  }
+  get descripcionNoValido() {
+    return this.formulario.get('descripcion').invalid && this.formulario.get('descripcion').touched;
   }
 
 

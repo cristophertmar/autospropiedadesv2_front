@@ -41,6 +41,12 @@ registerLocaleData(localesPE, 'es-Pe');
 
 // Angular Maps
 import { AgmCoreModule } from '@agm/core';
+import { SidebarPropiedadesComponent } from './shared/sidebar-propiedades/sidebar-propiedades.component';
+import { SidebarAutosComponent } from './shared/sidebar-autos/sidebar-autos.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { AnunciosComponent } from './pages/anuncios/anuncios.component';
+import { PublicacionesComponent } from './pages/publicaciones/publicaciones.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +71,13 @@ import { AgmCoreModule } from '@agm/core';
     ExtrasComponent,
     ContactoComponent,
     CaracteristicasComponent,
-    SeleccionComponent
+    SeleccionComponent,
+    SidebarPropiedadesComponent,
+    SidebarAutosComponent,
+    SidebarComponent,
+    AnunciosComponent,
+    PublicacionesComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,96 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicaciones</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">MI PERFIL</h3>
+            </div>
+            <hr>
+            <div class="mb-4">
+                <h3 class="text-dark fw-semibold">Detalles</h3>
+            </div>
+            <form class="mb-4" autocomplete="off" [formGroup]="forma" (ngSubmit)="actualizarDatos()">
+                <div class="row">
+                    <!-- <div class="col-md-3">
+                        <div class="mb-4">
+                            <img src="http://via.placeholder.com/400" class="w-100 border border-2 border-dark rounded-3" alt="">
+                        </div>
+                    </div> -->
+                    <div class="col-md-9">
+                        <div class="form-floating mb-3">
+                            <input formControlName="nombre" name="nombre" type="text" class="form-control" id="nombre" [class.is-invalid]="nombreNoValido">
+                            <label for="nombre">Nombre o Razón social</label>
+                            <div class="invalid-feedback">
+                                Ingrese nombre o razón social
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input formControlName="correo" name="correo" type="text" class="form-control" id="correo" [class.is-invalid]="correoNoValido">
+                            <label for="correo">Correo</label>
+                            <div class="invalid-feedback">
+                                Ingrese correo
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input formControlName="fono1" name="fono1" type="text" class="form-control" id="fono1" [class.is-invalid]="fono1NoValido">
+                            <label for="fono1">Número de celular 1</label>
+                            <div class="invalid-feedback">
+                                Ingrese número telefónico
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input formControlName="fono2" name="fono2" type="text" class="form-control" id="fono2" [class.is-invalid]="fono2NoValido">
+                            <label for="fono2">Número de celular 2</label>
+                            <div class="invalid-feedback">
+                                Ingrese número telefónico
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius">Actualizar datos</button>
+                </div>
+            </form>
+            <!-- <div class="mb-4">
+                <h3 class="text-dark fw-semibold">Mis suscripciones</h3>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-3">
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-outline-primary btn-sm btn-radius">Suscripción 1</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-outline-primary btn-sm btn-radius">Suscripción 2</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-outline-primary btn-sm btn-radius">Suscripción 3</button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-grid mb-3">
+                        <button class="btn btn-outline-primary btn-sm btn-radius">Suscripción 4</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <a href="#" class="fw-semibold">[+] Agregar</a>
+            </div> -->
+        </div>
+    </div>
+</div>

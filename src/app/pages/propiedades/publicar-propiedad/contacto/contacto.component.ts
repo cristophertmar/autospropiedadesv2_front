@@ -33,6 +33,12 @@ export class ContactoComponent implements OnInit {
 
   publicar() {
 
+    if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
     this._anuncioService.propiedad_temp.nombre_contacto = this.formulario.value.nombre;
     this._anuncioService.propiedad_temp.nrotelefono1_contacto = this.formulario.value.fono1;
     this._anuncioService.propiedad_temp.nrotelefono2_contacto = this.formulario.value.fono2;
@@ -65,8 +71,28 @@ export class ContactoComponent implements OnInit {
       fono1: new FormControl(this._usuarioService.usuario.nrotelefono1, [Validators.required]),
       fono2: new FormControl(this._usuarioService.usuario.nrotelefono2, [Validators.required]),
       correo: new FormControl(this._usuarioService.usuario.correo, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
-      tipo_anunciante : new FormControl(0, [Validators.required])
+      tipo_anunciante : new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')])
     });
+  }
+
+  get nombreNoValido() {
+    return this.formulario.get('nombre').invalid && this.formulario.get('nombre').touched;
+  }
+
+  get fono1NoValido() {
+    return this.formulario.get('fono1').invalid && this.formulario.get('fono1').touched;
+  }
+
+  get fono2NoValido() {
+    return this.formulario.get('fono2').invalid && this.formulario.get('fono2').touched;
+  }
+
+  get correoNoValido() {
+    return this.formulario.get('correo').invalid && this.formulario.get('correo').touched;
+  }
+
+  get tipo_anuncianteNoValido() {
+    return this.formulario.get('tipo_anunciante').invalid && this.formulario.get('tipo_anunciante').touched;
   }
 
 }

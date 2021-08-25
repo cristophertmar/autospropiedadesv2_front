@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArchivoService } from '../../../../services/archivo.service';
 import { Router } from '@angular/router';
 import { AnuncioService } from '../../../../services/anuncio.service';
+import { URL_SERVICIOS } from 'src/app/config/config';
 
 @Component({
   selector: 'app-multimedia',
@@ -23,6 +24,7 @@ export class MultimediaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this._archivoService.imagenes_temporal.length);
   }
   
 
@@ -37,6 +39,10 @@ export class MultimediaComponent implements OnInit {
     this.formulario = new FormGroup({ 
       url_video: new FormControl('', [Validators.required])
     });
+  }
+
+  obtener_imagen(ruta: string) {
+    return URL_SERVICIOS + ruta;
   }
 
 

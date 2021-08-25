@@ -1,64 +1,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
-            <div class="sticky-lg-top">
-                <div class="d-flex flex-column p-4 bg-primary">
-                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
-                    <ul class="nav nav-pills flex-column mb-4" id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
-                            </a>
-                            <ul class="collapse nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mb-4">
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
-                            </a>
-                            <ul class="collapse show nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-semibold">2. Ubicación</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <app-sidebar-autos></app-sidebar-autos>
         </div>
         <div class="col-lg-9 col-md-8 ps-6">
             <div class="mb-4">
@@ -77,29 +20,38 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select">
-                                <option value="0">(Seleccionar)</option>
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select" [class.is-invalid]="departamentoNoValido">
+                                <option value="">(Seleccionar)</option>
                                 <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
                             </select>
                             <label for="departamento">Departamento</label>
+                            <div class="invalid-feedback">
+                                Seleccione departamento
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select">
-                                <option value="0">(Seleccionar)</option>
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select" [class.is-invalid]="provinciaNoValido">
+                                <option value="">(Seleccionar)</option>
                                 <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
                             </select>
                             <label for="provincia">Provincia</label>
+                            <div class="invalid-feedback">
+                                Seleccione provincia
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select">
-                                <option value="0">(Seleccionar)</option>
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select" [class.is-invalid]="distritoNoValido">
+                                <option value="">(Seleccionar)</option>
                                 <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
                             </select>
                             <label for="distrito">Distrito</label>
+                            <div class="invalid-feedback">
+                                Seleccione distrito
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,7 +61,15 @@
                         Haz más atractivo tu anuncio añadiendo fotografías de tu vehículo.Te recomendamos que subas fotos de tu vehículo a la luz del día, deben ser del exterior y del interior de varios ángulos. Si aún no cuentas con más fotos, sube las que tengas y no dudes luego de regresar a colocar más.
                     </small>
                 </div>
-                <div class="mb-4">
+                <div *ngIf="_archivoService.imagenes_temporal" class="text-center box-sm">
+                    <div class="row">
+                        <div *ngFor="let imagen of _archivoService.imagenes_temporal; index as i" class="text-center" class="col-md-2 text-center" style="padding: 10px;">
+                            <img style="margin-bottom: 7px;" [src]="imagen" alt="..."><br>
+                            <a href="javascript:void(0)" (click)="_archivoService.quitar_imagen(i)"> Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="_archivoService.imagenes_temporal.length === 0" class="mb-4">
                     <input (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
                     <label for="fotos" class="label-file">
                         <span class="d-block text-primary fs-5 fw-semibold">Subir las fotos</span>

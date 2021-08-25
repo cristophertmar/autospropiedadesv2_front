@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from '../config/config';
 import { Usuario } from '../models/usuario.model';
 import { map, catchError } from 'rxjs/operators';
 import { throwError} from 'rxjs';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class UsuarioService {
 
   constructor(
     public http: HttpClient,
-    private router: Router
+    private router: Router,
+    private _shared: SharedService
   ) {
     this.cargarStorage();
   }
@@ -97,6 +99,27 @@ export class UsuarioService {
         return true;
       })
     );
+  }
+
+  actualizar_usuario(usuario: Usuario) {
+    let url;
+    url = URL_SERVICIOS + '/usuario_actualizar';
+
+    return this.http.put( url, usuario ).pipe(
+      map((resp: any) => {
+        localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+        this.usuario = usuario;
+        this._shared.alert_success('Actualizado Satisfactoriamente');
+        return true;
+      }),
+      catchError(err => {
+        console.error(err.status);
+        return throwError(err);
+
+      })
+    );
+
+
   }
 
 

@@ -1,64 +1,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
-            <div class="sticky-lg-top">
-                <div class="d-flex flex-column p-4 bg-primary">
-                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
-                    <ul class="nav nav-pills flex-column mb-4" id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
-                            </a>
-                            <ul class="collapse nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mb-4">
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
-                            </a>
-                            <ul class="collapse show nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-semibold">1. Información</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <app-sidebar-autos></app-sidebar-autos>
         </div>
         <div class="col-lg-9 col-md-8 ps-6">
             <div class="mb-4">
@@ -77,25 +20,31 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="marca" name="marca" id="marca" class="form-select">
+                            <select formControlName="marca" name="marca" id="marca" class="form-select" [class.is-invalid]="marcaNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option *ngFor="let marca of marcas" [value]="marca.id_marca"> {{ marca.descrip_marca }} </option>
                             </select>
                             <label for="marca">Marca</label>
+                            <div class="invalid-feedback">
+                                Seleccione una marca
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="modelo" name="modelo" id="modelo" class="form-select">
+                            <select formControlName="modelo" name="modelo" id="modelo" class="form-select" [class.is-invalid]="modeloNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option *ngFor="let modelo of modelos" [value]="modelo.id_modelo"> {{ modelo.descrip_modelo }} </option>
                             </select>
                             <label for="modelo">Modelo</label>
+                            <div class="invalid-feedback">
+                                Seleccione un modelo
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="anio" name="anio" id="anio" class="form-select">
+                            <select formControlName="anio" name="anio" id="anio" class="form-select" [class.is-invalid]="anioNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=2020>2021</option>
                                 <option value=2020>2020</option>
@@ -130,22 +79,28 @@
                                 <option value=1990>1990</option>
                             </select>
                             <label for="anio">Año</label>
+                            <div class="invalid-feedback">
+                                Seleccione el año
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="transmision" name="transmision" id="transmision" class="form-select">
+                            <select formControlName="transmision" name="transmision" id="transmision" class="form-select" [class.is-invalid]="transmisionNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=1>Automática</option>
                                 <option value=2>Automática (Secuencial)</option>
                                 <option value=3>Mecánica</option>
                             </select>
                             <label for="transmision">Tipo de transmisión</label>
+                            <div class="invalid-feedback">
+                                Seleccione la transmisión
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="combustible" name="combustible" id="combustible" class="form-select">
+                            <select formControlName="combustible" name="combustible" id="combustible" class="form-select" [class.is-invalid]="combustibleNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=1>Diesel</option>
                                 <option value=2>Dual</option>
@@ -157,27 +112,36 @@
                                 <option value=8>Híbrido</option>
                             </select>
                             <label for="combustible">Combustible(cilindrada)</label>
+                            <div class="invalid-feedback">
+                                Seleccione el tipo de combustible
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="timon" name="timon" id="timon" class="form-select">
+                            <select formControlName="timon" name="timon" id="timon" class="form-select" [class.is-invalid]="timonNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=1>Cambiado</option>
                                 <option value=2>Original</option>
                             </select>
                             <label for="timon">Timón</label>
+                            <div class="invalid-feedback">
+                                Seleccione el tipo de timón
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input formControlName="kilometraje" name="kilometraje" type="text" id="kilometraje" class="form-control">
+                            <input formControlName="kilometraje" name="kilometraje" type="text" id="kilometraje" class="form-control" [class.is-invalid]="kilometrajeNoValido">
                             <label for="kilometraje">Kilometraje</label>
+                            <div class="invalid-feedback">
+                                Ingrese kilometraje
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="puertas" name="puertas" id="kilometraje" class="form-select">
+                            <select formControlName="puertas" name="puertas" id="puertas" class="form-select" [class.is-invalid]="puertasNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=1>2</option>
                                 <option value=2>3</option>
@@ -185,12 +149,15 @@
                                 <option value=4>5</option>
                                 <option value=5>Más de 5</option>
                             </select>
-                            <label for="kilometraje">Nro de puertas</label>
+                            <label for="puertas">Nro de puertas</label>
+                            <div class="invalid-feedback">
+                                Seleccione el número de puertas
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="traccion" name="traccion" id="traccion" class="form-select">
+                            <select formControlName="traccion" name="traccion" id="traccion" class="form-select" [class.is-invalid]="traccionNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=1>4 Matic</option>
                                 <option value=2>4 Motion</option>
@@ -206,11 +173,14 @@
                                 <option value=12>Tiptronic</option>
                             </select>
                             <label for="traccion">Tracción</label>
+                            <div class="invalid-feedback">
+                                Seleccione la tracción
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="color" name="color" id="color" class="form-select">
+                            <select formControlName="color" name="color" id="color" class="form-select" [class.is-invalid]="colorNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=2>Amarillo</option>
                                 <option value=3>Arena</option>
@@ -271,11 +241,14 @@
                                 <option value=58>Verde Petroleo</option>
                             </select>
                             <label for="color">Color</label>
+                            <div class="invalid-feedback">
+                                Seleccione el color
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="cilindros" name="cilindros" id="cilindros" class="form-select">
+                            <select formControlName="cilindros" name="cilindros" id="cilindros" class="form-select" [class.is-invalid]="cilindrosNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value=1>2</option>
                                 <option value=2>3</option>
@@ -288,6 +261,9 @@
                                 <option value=9>14</option>
                             </select>
                             <label for="cilindros">Nro de cilindros</label>
+                            <div class="invalid-feedback">
+                                Seleccione el número de cilindros
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -302,8 +278,11 @@
                     </small>
                 </div>
                 <div class="form-floating mb-3">
-                    <textarea formControlName="descripcion" name="descripcion" id="descripcion" class="form-control"></textarea>
+                    <textarea formControlName="descripcion" name="descripcion" id="descripcion" class="form-control" [class.is-invalid]="descripcionNoValido"></textarea>
                     <label for="descripcion">Descripción del anuncio</label>
+                    <div class="invalid-feedback">
+                        Ingrese la descripción
+                    </div>
                 </div>
                 <div class="mb-3">
                     <small class="d-block text-secondary">
@@ -319,8 +298,11 @@
                         <label class="btn btn-outline-primary btn-lg" for="tipo2">USD</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input formControlName="precio" name="precio" type="text" id="precio" class="form-control">
+                        <input formControlName="precio" name="precio" type="text" id="precio" class="form-control" [class.is-invalid]="precioNoValido">
                         <label for="precio">Precio</label>
+                        <div class="invalid-feedback">
+                            Ingrese el precio
+                        </div>
                     </div>
                 </div>
                 <h5 class="text-dark fw-semibold mb-4">Accesorios</h5>

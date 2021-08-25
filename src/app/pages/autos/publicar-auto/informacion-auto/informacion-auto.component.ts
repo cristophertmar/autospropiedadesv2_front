@@ -61,6 +61,12 @@ export class InformacionAutoComponent implements OnInit {
   siguiente() {
     /* console.log(this.formulario.value); */
 
+    if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
     this._anuncioService.vehiculo_temp.id_modelo = Number(this.formulario.value.modelo);
     this._anuncioService.vehiculo_temp.anio_vehiculo = Number(this.formulario.value.anio);
     this._anuncioService.vehiculo_temp.id_tipotran = Number(this.formulario.value.transmision);
@@ -163,6 +169,47 @@ export class InformacionAutoComponent implements OnInit {
       climatizador_acce_veh: new FormControl(false)
 
     });
+  }
+
+
+  get marcaNoValido() {
+    return this.formulario.get('marca').invalid && this.formulario.get('marca').touched;
+  }
+  get modeloNoValido() {
+    return this.formulario.get('modelo').invalid && this.formulario.get('modelo').touched;
+  }
+  get anioNoValido() {
+    return this.formulario.get('anio').invalid && this.formulario.get('anio').touched;
+  }
+  get transmisionNoValido() {
+    return this.formulario.get('transmision').invalid && this.formulario.get('transmision').touched;
+  }
+  get combustibleNoValido() {
+    return this.formulario.get('combustible').invalid && this.formulario.get('combustible').touched;
+  }
+  get timonNoValido() {
+    return this.formulario.get('timon').invalid && this.formulario.get('timon').touched;
+  }
+  get kilometrajeNoValido() {
+    return this.formulario.get('kilometraje').invalid && this.formulario.get('kilometraje').touched;
+  }
+  get puertasNoValido() {
+    return this.formulario.get('puertas').invalid && this.formulario.get('puertas').touched;
+  }
+  get traccionNoValido() {
+    return this.formulario.get('traccion').invalid && this.formulario.get('traccion').touched;
+  }
+  get colorNoValido() {
+    return this.formulario.get('color').invalid && this.formulario.get('color').touched;
+  }
+  get cilindrosNoValido() {
+    return this.formulario.get('cilindros').invalid && this.formulario.get('cilindros').touched;
+  }
+  get descripcionNoValido() {
+    return this.formulario.get('descripcion').invalid && this.formulario.get('descripcion').touched;
+  }
+  get precioNoValido() {
+    return this.formulario.get('precio').invalid && this.formulario.get('precio').touched;
   }
 
 }

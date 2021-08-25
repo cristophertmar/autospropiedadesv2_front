@@ -528,3 +528,35 @@ footer {
 agm-map {
     height: 600px;
 }
+
+.marcodanger {
+    border: solid 1px #dc3545;
+}
+
+.box img,
+.box-sm img,
+.box-xs img {
+    width: 100%;
+    height: auto;
+}
+
+@supports(object-fit: cover) {
+    .box img {
+        height: 180px;
+        width: 180px;
+        object-fit: cover;
+        object-position: center center;
+    }
+    .box-sm img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        object-position: center center;
+    }
+    .box-xs img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        object-position: center center;
+    }
+}

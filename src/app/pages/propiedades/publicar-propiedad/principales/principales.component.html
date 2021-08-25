@@ -1,69 +1,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
-            <div class="sticky-lg-top">
-                <div class="d-flex flex-column p-4 bg-primary">
-                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
-                    <ul class="nav nav-pills flex-column mb-4" id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
-                            </a>
-                            <ul class="collapse show nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-semibold">1. Principales</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
-                            </a>
-                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item mb-4">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/anuncio.svg"> Publicar anuncio
-                            </a>
-                        </li>
-                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <app-sidebar-propiedades></app-sidebar-propiedades>
         </div>
         <div class="col-lg-9 col-md-8 ps-6">
             <div class="mb-4">
@@ -85,19 +23,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="operacion" name="operacion" id="operacion" class="form-select">
+                            <select formControlName="operacion" name="operacion" id="operacion" class="form-select" [class.is-invalid]="operacionNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value="1">Venta</option>
                                 <option value="2">Alquiler</option>
                                 <option value="3">Alquiler Temporal</option>
                                 <option value="4">Proyecto</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Seleccione tipo de operación
+                            </div>
                             <label for="operacion">Tipo de Operación</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="tipo_inmueble" name="tipo_inmueble" id="tipo" class="form-select">
+                            <select formControlName="tipo_inmueble" name="tipo_inmueble" id="tipo" class="form-select" [class.is-invalid]="tipoInmuebleNoValido">
                                 <option value="0">(Seleccionar)</option>
                                 <option value="1">Departamento</option>
                                 <option value="2">Casa</option>
@@ -118,51 +59,72 @@
                                 <option value="17">Terreno agrícola</option>
                                 <option value="18">Otros</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Seleccione tipo de inmueble
+                            </div>
                             <label for="tipo">Tipo de inmueble</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select">
-                                <option value="0">(Seleccionar)</option>
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select" [class.is-invalid]="departamentoNoValido">
+                                <option value="">(Seleccionar)</option>
                                 <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
                             </select>
                             <label for="departamento">Departamento</label>
+                            <div class="invalid-feedback">
+                                Seleccione departamento
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select">
-                                <option value="0">(Seleccionar)</option>
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select" [class.is-invalid]="provinciaNoValido">
+                                <option value="">(Seleccionar)</option>
                                 <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
                             </select>
+                            <div class="invalid-feedback">
+                                Seleccione provincia
+                            </div>
                             <label for="provincia">Provincia</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select">
-                                <option value="0">(Seleccionar)</option>
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select" [class.is-invalid]="distritoNoValido">
+                                <option value="">(Seleccionar)</option>
                                 <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
                             </select>
+                            <div class="invalid-feedback">
+                                Seleccione distrito
+                            </div>
                             <label for="distrito">Distrito</label>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="form-floating mb-3">
-                            <input formControlName="direccion" name="direccion" type="text" id="direccion" class="form-control">
+                            <input formControlName="direccion" name="direccion" type="text" id="direccion" class="form-control" [class.is-invalid]="direccionNoValido">
+                            <div class="invalid-feedback">
+                                Ingrese calle y número
+                            </div>
                             <label for="direccion">Ingresa calle y número</label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-floating mb-3">
-                            <input type="text" formControlName="piso" name="piso" id="piso" class="form-control">
+                            <input type="text" formControlName="piso" name="piso" id="piso" class="form-control" [class.is-invalid]="pisoNoValido">
+                            <div class="invalid-feedback">
+                                Ingrese piso o interior
+                            </div>
                             <label for="piso">Piso / Interior</label>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="form-floating mb-3">
-                            <input type="text" formControlName="referencia" name="referencia" id="referencia" class="form-control">
+                            <input type="text" formControlName="referencia" name="referencia" id="referencia" class="form-control" [class.is-invalid]="referenciaNoValido">
+                            <div class="invalid-feedback">
+                                Ingrese referencia
+                            </div>
                             <label for="referencia">Referencia</label>
                         </div>
                     </div>
@@ -177,15 +139,12 @@
                     </div> -->
                 </div>
                 <h5 class="text-dark fw-semibold mb-4">Selecciona en el mapa</h5>
-                <div class="mb-4">
-                    <!-- <img src="http://via.placeholder.com/1000x500" class="w-100" alt=""> -->
+                <div class="mb-4" [class.is-marcodanger]="mapaNoValido">
                     <agm-map (mapClick)="seleccionarUbicacion( $event )" [latitude]="lat" [longitude]="lng" [zoom]="5">
                         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-                        <!-- <agm-info-window>
-
-                        </agm-info-window> -->
                     </agm-map>
                 </div>
+                <small *ngIf="mapaNoValido" class="text-danger">Seleccione su ubicación en el mapa</small>
                 <div class="mb-4">
                     <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
                 </div>

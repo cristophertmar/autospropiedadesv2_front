@@ -37,6 +37,12 @@ export class UbicacionAutoComponent implements OnInit {
 
   siguiente() {
 
+    if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
     this._anuncioService.vehiculo_temp.ubigeo = this.formulario.value.distrito;
     this._anuncioService.guardar_vehiculo_temp(this._anuncioService.vehiculo_temp);
     this._router.navigate(['/autos/publicar/contacto']);
@@ -79,11 +85,23 @@ export class UbicacionAutoComponent implements OnInit {
 
   crearFormulario() {
     this.formulario = new FormGroup({
-      departamento: new FormControl(0, [Validators.pattern('^(?!.*(Seleccionar)).*$')]),
-      provincia: new FormControl(0, [Validators.pattern('^(?!.*(Seleccionar)).*$')]),
-      distrito: new FormControl(0, [Validators.required])
+      departamento: new FormControl('', [Validators.required,Validators.minLength(1)]),
+      provincia: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      distrito: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
   }
+
+  get departamentoNoValido() {
+    return this.formulario.get('departamento').invalid && this.formulario.get('departamento').touched;
+  }
+  get provinciaNoValido() {
+    return this.formulario.get('provincia').invalid && this.formulario.get('provincia').touched;
+  }
+  get distritoNoValido() {
+    return this.formulario.get('distrito').invalid && this.formulario.get('distrito').touched;
+  }
+
+
   
 
 }

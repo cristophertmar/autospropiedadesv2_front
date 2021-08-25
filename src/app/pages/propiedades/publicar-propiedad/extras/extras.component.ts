@@ -53,6 +53,13 @@ export class ExtrasComponent implements OnInit {
   }
 
   siguiente() {
+
+    if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
     this._anuncioService.propiedad_temp.tags_general = JSON.stringify(this.tags_general_seleccionado);
     this._anuncioService.propiedad_temp.tags_servicios = JSON.stringify(this.tags_servicios_seleccionado);
     this._anuncioService.propiedad_temp.tags_ambientes = '';
@@ -68,18 +75,28 @@ export class ExtrasComponent implements OnInit {
 
   crearFormulario() {
     this.formulario = new FormGroup({      
-      usoprofesional: new FormControl(0, [Validators.required]),
-      usocomercial: new FormControl(0, [Validators.required]),
-      ascensores: new FormControl(0, [Validators.required]),
-      mascotas: new FormControl(0, [Validators.required])
+      usoprofesional: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      usocomercial: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      ascensores: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      mascotas: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')])
     });
   }
 
+  get profesionalNoValido() {
+    return this.formulario.get('usoprofesional').invalid && this.formulario.get('usoprofesional').touched;
+  }
 
+  get comercialNoValido() {
+    return this.formulario.get('usocomercial').invalid && this.formulario.get('usocomercial').touched;
+  }
 
+  get ascensoresNoValido() {
+    return this.formulario.get('ascensores').invalid && this.formulario.get('ascensores').touched;
+  }
 
-
-
+  get mascotasNoValido() {
+    return this.formulario.get('mascotas').invalid && this.formulario.get('mascotas').touched;
+  }
 
 
 }

@@ -1,64 +1,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
-            <div class="sticky-lg-top">
-                <div class="d-flex flex-column p-4 bg-primary">
-                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
-                    <ul class="nav nav-pills flex-column mb-4" id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
-                            </a>
-                            <ul class="collapse show nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-semibold">2. Multimedia</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mb-4">
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
-                            </a>
-                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <app-sidebar-propiedades></app-sidebar-propiedades>
         </div>
         <div class="col-lg-9 col-md-8 ps-6">
             <div class="mb-4">
@@ -83,7 +26,7 @@
                             <small class="text-muted">Dormitorios (opcional)</small>
                             <div class="input-group mb-3 flex-nowrap">
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('dormitorios')"></button>
-                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="dormitorios" name="dormitorios" class="form-control number" placeholder="">
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="dormitorios" name="dormitorios" class="form-control number" readonly>
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('dormitorios')"></button>
                             </div>
                         </div>
@@ -93,7 +36,7 @@
                             <small class="text-muted">Baño (opcional)</small>
                             <div class="input-group mb-3 flex-nowrap">
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('banios')"></button>
-                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="banios" name="banios" class="form-control number" placeholder="">
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="banios" name="banios" class="form-control number" readonly>
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('banios')"></button>
                             </div>
                         </div>
@@ -105,7 +48,7 @@
                             <small class="text-muted">Pisos</small>
                             <div class="input-group mb-3 flex-nowrap">
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('pisostotales')"></button>
-                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="pisostotales" name="pisostotales" class="form-control number" placeholder="">
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="pisostotales" name="pisostotales" class="form-control number" readonly>
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('pisostotales')"></button>
                             </div>
                         </div>
@@ -115,7 +58,7 @@
                             <small class="text-muted">Estacionamientos</small>
                             <div class="input-group mb-3 flex-nowrap">
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('cocheras')"></button>
-                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="cocheras" name="cocheras" class="form-control number" placeholder="">
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="cocheras" name="cocheras" class="form-control number" readonly>
                                 <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('cocheras')"></button>
                             </div>
                         </div>
@@ -128,7 +71,7 @@
                             <small class="text-muted">Área construida</small>
                             <div class="input-group mb-3 flex-nowrap">
                                 <div class="input-group-text text-muted">m²</div>
-                                <input formControlName="area_const" name="area_const" type="text" class="form-control">
+                                <input formControlName="area_const" name="area_const" type="number" class="form-control" [class.is-invalid]="aconstruidaNoValido">
                             </div>
                         </div>
                     </div>
@@ -137,12 +80,12 @@
                             <small class="text-muted">Área total</small>
                             <div class="input-group mb-3 flex-nowrap">
                                 <div class="input-group-text text-muted">m²</div>
-                                <input formControlName="area_total" name="area_total" type="text" class="form-control">
+                                <input formControlName="area_total" name="area_total" type="number" class="form-control" [class.is-invalid]="atotalNoValido">
                             </div>
                         </div>
                     </div>
                 </div>
-                <h5 class="text-dark fw-semibold mb-4">Antiguedad</h5>
+                <h5 class="text-dark fw-semibold mb-4">Antigüedad</h5>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-check mb-3">
@@ -198,18 +141,18 @@
                         <div class="mb-3">
                             <div class="input-group mb-3 flex-nowrap">
                                 <div class="input-group-text text-muted">PEN</div>
-                                <input formControlName="precio" name="precio" type="text" class="form-control">
+                                <input formControlName="precio" name="precio" type="text" class="form-control" [class.is-invalid]="precioNoValido">
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-3">
+                    <div class="col-md-3">
                         <div class="mb-3">
                             <div class="input-group mb-3 flex-nowrap">
                                 <div class="input-group-text text-muted">USD</div>
                                 <input type="text" class="form-control">
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -224,17 +167,23 @@
                 </div>
                 <h5 class="text-dark fw-semibold mb-4">Describe el inmueble</h5>
                 <div class="form-floating mb-3">
-                    <input formControlName="titulo" name="titulo" type="email" class="form-control" id="titulo">
+                    <input formControlName="titulo" name="titulo" type="email" class="form-control" id="titulo" [class.is-invalid]="tituloNoValido">
                     <label for="titulo">Título de anuncio</label>
+                    <div class="invalid-feedback">
+                        Ingrese un título
+                    </div>
                 </div>
                 <div class="form-floating mb-4">
-                    <textarea formControlName="descripcion" name="descripcion" type="email" class="form-control" id="descripcion"></textarea>
+                    <textarea formControlName="descripcion" name="descripcion" type="email" class="form-control" id="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
                     <label for="descripcion">Descripción de anuncio</label>
                     <small class="text-muted">Incluye estado, características y motivo de venta</small>
+                    <div class="invalid-feedback">
+                        Ingrese una descripción
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button>
+                        <button [routerLink]="['/propiedades/publicar/principales']" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button>
                     </div>
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Siguiente</button>

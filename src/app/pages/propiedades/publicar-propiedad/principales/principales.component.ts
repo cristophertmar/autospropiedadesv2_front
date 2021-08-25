@@ -14,8 +14,9 @@ import { UbigeoService } from 'src/app/services/ubigeo.service';
 })
 export class PrincipalesComponent implements OnInit {
 
-  lat = -9.189967;
-  lng = -75.015152;
+  lat =  -12.0453;
+  lng = -77.0311;
+  siguiente_form: boolean = false;
 
   formulario: FormGroup;
   departamentos: Ubigeo[];
@@ -40,17 +41,47 @@ export class PrincipalesComponent implements OnInit {
 
   crearFormulario() {
     this.formulario = new FormGroup({
-      operacion: new FormControl(0, [Validators.required]),
-      tipo_inmueble: new FormControl(0, [Validators.required]),
+      operacion: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      tipo_inmueble: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
 
-      departamento: new FormControl(0, [Validators.pattern('^(?!.*(Seleccionar)).*$')]),
-      provincia: new FormControl(0, [Validators.pattern('^(?!.*(Seleccionar)).*$')]),
-      distrito: new FormControl(0, [Validators.required]),
+      departamento: new FormControl('', [Validators.required,Validators.minLength(1)]),
+      provincia: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      distrito: new FormControl('', [Validators.required, Validators.minLength(6)]),
       direccion: new FormControl(null, [Validators.required]),
       piso: new FormControl(null, [Validators.required]),
       referencia: new FormControl(null, [Validators.required]),
     });
   }
+
+  get operacionNoValido() {
+    return this.formulario.get('operacion').invalid && this.formulario.get('operacion').touched;
+  }
+  get tipoInmuebleNoValido() {
+    return this.formulario.get('tipo_inmueble').invalid && this.formulario.get('tipo_inmueble').touched;
+  }
+  get departamentoNoValido() {
+    return this.formulario.get('departamento').invalid && this.formulario.get('departamento').touched;
+  }
+  get provinciaNoValido() {
+    return this.formulario.get('provincia').invalid && this.formulario.get('provincia').touched;
+  }
+  get distritoNoValido() {
+    return this.formulario.get('distrito').invalid && this.formulario.get('distrito').touched;
+  }
+  get direccionNoValido() {
+    return this.formulario.get('direccion').invalid && this.formulario.get('direccion').touched;
+  }
+  get pisoNoValido() {
+    return this.formulario.get('piso').invalid && this.formulario.get('piso').touched;
+  }
+  get referenciaNoValido() {
+    return this.formulario.get('referencia').invalid && this.formulario.get('referencia').touched;
+  }
+
+  get mapaNoValido() {
+    return (this.lat ===  -12.0453) && (this.lng === -77.0311) && this.siguiente_form;
+  }
+  
 
   DepartamentoListener() {
     this.formulario.get('departamento').valueChanges.subscribe( (valor: string) => {
@@ -88,6 +119,18 @@ export class PrincipalesComponent implements OnInit {
 
   siguiente() {    
 
+    this.siguiente_form = true;
+
+    if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
+    if(this.mapaNoValido) {      
+      return;
+    }
+
     this._anuncioService.propiedad_temp.id_tipo_operacion = Number(this.formulario.value.operacion);
     this._anuncioService.propiedad_temp.id_tipo_inmueble = Number(this.formulario.value.tipo_inmueble);
     this._anuncioService.propiedad_temp.departamento = this.formulario.value.departamento;
@@ -98,8 +141,6 @@ export class PrincipalesComponent implements OnInit {
     this._anuncioService.propiedad_temp.referencia = this.formulario.value.referencia;
     this._anuncioService.propiedad_temp.lat = this.lat.toString();
     this._anuncioService.propiedad_temp.lng = this.lng.toString();
-
-    /* console.log(this._anuncioService.propiedad_temp); */    
 
     this._anuncioService.guardar_propiedad_temp(this._anuncioService.propiedad_temp);
     this._router.navigate(['/propiedades/publicar/caracteristicas']);
@@ -118,5 +159,7 @@ export class PrincipalesComponent implements OnInit {
     this.lat = coords.lat;
     this.lng = coords.lng;
 }
+
+
 
 }
