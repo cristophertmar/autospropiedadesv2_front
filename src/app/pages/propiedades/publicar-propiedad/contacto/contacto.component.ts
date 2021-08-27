@@ -61,6 +61,7 @@ export class ContactoComponent implements OnInit {
     this._archivoServive.guardar_archivo(id_propiedad, true)
     .subscribe( resp => {
       if(sessionStorage.getItem('anuncio_plan') === 'premium') {
+        this._anuncioService.guardar_ids_propiedades(id_propiedad);
         this._router.navigate(['/anuncio/carrito']);
       } else {
         this._shared.alert_success('Publicado exitosamente');

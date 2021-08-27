@@ -3,6 +3,8 @@ import { Vehiculo } from '../models/vehiculo.model';
 import { BusquedaRapida } from '../models/busqueda_rapida.model';
 import { Propiedad } from '../models/propiedad.model';
 import { Router } from '@angular/router';
+import { URL_SERVICIOS } from '../config/config';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +18,51 @@ export class AnuncioService {
   vehiculo_carrito: Vehiculo[] = [];
   propiedad_carrito: Propiedad[] = [];
 
+  ids_propiedades: string[] = [];
+  ids_autos: string[] = [];
+
   filtro_busqueda_rapida: BusquedaRapida = new BusquedaRapida(0, 0, 0);
 
   constructor(
-    private _router: Router
+    private _router: Router,
+    private _http: HttpClient
   ) { 
     this.cargar_vehiculo_temp();
     this.cargar_propiedad_temp();
     this.cargar_carrito_vehiculo();
     this.cargar_carrito_propiedad();
+    this.cargar_ids_autos();
+    this.cargar_ids_propiedades();
+
   }
 
+  cargar_ids_propiedades() {
+    if (sessionStorage.getItem('ids_propiedades'))  {
+      this.ids_propiedades = JSON.parse(sessionStorage.getItem('ids_propiedades'));
+    } else {
+      this.ids_propiedades = [];
+    }
+  }
+
+  cargar_ids_autos() {
+    if (sessionStorage.getItem('ids_autos'))  {
+      this.ids_autos = JSON.parse(sessionStorage.getItem('ids_autos'));
+    } else {
+      this.ids_autos = [];
+    }
+  }
+
+  guardar_ids_propiedades(id: string) {
+    this.ids_propiedades.push(id);
+    sessionStorage.removeItem('ids_propiedades');
+    sessionStorage.setItem('ids_propiedades', JSON.stringify(this.ids_propiedades));
+  }
+
+  guardar_ids_autos(id: string) {
+    this.ids_propiedades.push(id);
+    sessionStorage.removeItem('ids_autos');
+    sessionStorage.setItem('ids_autos', JSON.stringify(this.ids_autos));
+  }
 
   limpiar_carrito() {
     sessionStorage.removeItem('propiedad_carrito');
@@ -81,19 +117,24 @@ export class AnuncioService {
   }
 
   guardar_carrito_vehiculo(vehiculo: Vehiculo) {
-    vehiculo.precio_plan = (sessionStorage.getItem('anuncio_plan') === 'premium' ? 49 : 0);
-    this.vehiculo_carrito.push(vehiculo);
-    sessionStorage.setItem('vehiculo_carrito', JSON.stringify(this.vehiculo_carrito));    
-}
-
-cargar_carrito_vehiculo() {
-  if (sessionStorage.getItem('vehiculo_carrito'))  {
-    this.vehiculo_carrito = JSON.parse(sessionStorage.getItem('vehiculo_carrito'));
-  } else {
-    this.vehiculo_carrito = [];
+      vehiculo.precio_plan = (sessionStorage.getItem('anuncio_plan') === 'premium' ? 49 : 0);
+      this.vehiculo_carrito.push(vehiculo);
+      sessionStorage.setItem('vehiculo_carrito', JSON.stringify(this.vehiculo_carrito));    
   }
-}
 
+  cargar_carrito_vehiculo() {
+    if (sessionStorage.getItem('vehiculo_carrito'))  {
+      this.vehiculo_carrito = JSON.parse(sessionStorage.getItem('vehiculo_carrito'));
+    } else {
+      this.vehiculo_carrito = [];
+    }
+  }
+
+  activar_anuncio(id: string, tipo: string) {
+    let url;
+    url = URL_SERVICIOS + '/api/publicacion/activar?id=' + id + '&tipo=' + tipo;
+    return this._http.get(url);
+  }
   
   
 

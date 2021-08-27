@@ -1,64 +1,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
-            <div class="sticky-lg-top">
-                <div class="d-flex flex-column p-4 bg-primary">
-                    <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
-                    <ul class="nav nav-pills flex-column mb-4" id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/home.svg"> Publicar propiedad
-                            </a>
-                            <ul class="collapse nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Principales</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Multimedia</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Extras</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">4. Publicar</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mb-4">
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link text-white px-0">
-                                <img class="me-2" src="./assets/img/icons/car.svg"> Publicar vehículo
-                            </a>
-                            <ul class="collapse nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">1. Información</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
-                                </li>
-                                <li class="w-100">
-                                    <a href="#" class="nav-link text-white px-0 fw-light">3. Contacto</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link text-white px-0 fw-light">
-                                <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <app-sidebar></app-sidebar>
         </div>
         <div class="col-lg-9 col-md-8 ps-6">
             <div class="mb-4">
@@ -89,10 +32,10 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Plan Básico</td>
-                                <td>S/ 0.00</td>
-                                <td> {{ cantidad_basico }} </td>
-                                <td>S/ 0.00</td>
+                                <td>Plan Premium(Auto)</td>
+                                <td>S/ 49.00</td>
+                                <td> {{ cantidad_veh }} </td>
+                                <td> {{ (cantidad_veh * 49) | currency: 'PEN': 'symbol': '': 'es-PE' }} </td>
                                 <!-- <td>
                                     <button class="text-muted btn btn-sm">
                                         <i class="lnr lnr-edit"></i>
@@ -103,10 +46,10 @@
                                 </td> -->
                             </tr>
                             <tr>
-                                <td>Plan Premium</td>
-                                <td>S/ 99.90</td>
-                                <td> {{ cantidad_premium }} </td>
-                                <td> {{ calcular_subtotal(cantidad_premium) | currency: 'PEN': 'symbol': '': 'es-PE' }} </td>
+                                <td>Plan Premium(Propiedad)</td>
+                                <td>S/ 129.00</td>
+                                <td> {{ cantidad_prop }} </td>
+                                <td> {{ (cantidad_prop * 129) | currency: 'PEN': 'symbol': '': 'es-PE' }} </td>
                                 <!-- <td>
                                     <button class="text-muted btn btn-sm">
                                         <i class="lnr lnr-edit"></i>
@@ -123,7 +66,7 @@
             <div class="mb-4">
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-outline-secondary btn-lg btn-large border-2 fw-semibold mb-4">Continuar comprando</button>
+                        <button [routerLink]="['/anuncio/seleccionar']" type="button" class="btn btn-outline-secondary btn-lg btn-large border-2 fw-semibold mb-4">Continuar comprando</button>
                     </div>
                     <div class="col-md-6">
                         <button type="button" class="btn btn-primary btn-lg btn-large btn-radius mb-4 d-block ms-auto">Limpiar carro</button>

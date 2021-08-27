@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+    <p style="color: white"> Cargando... </p>
+</ngx-spinner>
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
@@ -156,7 +159,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-5 pt-0">
-                <form>
+
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+                <!-- <form>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-2">
@@ -195,7 +201,7 @@
                         <button class="btn btn-primary btn-lg ">Pagar S/0.00</button>
                     </div>
                     <a href="#" class="d-block text-center text-dark small fw-semibold">Regresar al comercio</a>
-                </form>
+                </form> -->
             </div>
         </div>
     </div>

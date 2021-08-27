@@ -5,6 +5,10 @@ import { Ubigeo } from 'src/app/models/ubigeo.model';
 import { AnuncioService } from 'src/app/services/anuncio.service';
 import { UbigeoService } from 'src/app/services/ubigeo.service';
 
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SharedService } from '../../../services/shared.service';
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -25,10 +29,16 @@ export class CheckoutComponent implements OnInit {
   igv: number = 0;
   costo_total: number = 0;
 
+  public payPalConfig?: IPayPalConfig;
+  token: string;
+  monto: number;
+
   constructor(
     private _router: Router,
     public _ubigeoService: UbigeoService,
     private _anuncioService: AnuncioService,
+    private _spinner: NgxSpinnerService,
+    private _shared: SharedService
   ) {
     this.crearFormulario();
   }
@@ -42,6 +52,13 @@ export class CheckoutComponent implements OnInit {
 
   procesar() {
 
+    /* if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    } */
+
+    this.initConfig(this.monto);
   }
 
   sumar_planes() {
@@ -69,6 +86,7 @@ export class CheckoutComponent implements OnInit {
   calcular_subtotal_igv() {
     this.igv = this.costo_total * 0.18;
     this.subtotal = this.costo_total - this.igv;
+    this.monto = this.costo_total / 4;
   }
 
   crearFormulario() {
@@ -153,6 +171,88 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+
+  private initConfig(monto: number): void {
+    this.payPalConfig = {
+        currency: 'USD',
+        /* clientId: environment.clientId, */
+        clientId: 'AfNOLEiSlYupQk67q9ZGORLfTf_IJljc7uzjIDJIbpDuzP8zY9MO1FZHoofBfS_7mbR7XJU3YCJAFC8f',
+        // tslint:disable-next-line: no-angle-bracket-type-assertion
+        createOrderOnClient: (data) => < ICreateOrderRequest > <unknown>{
+            intent: 'CAPTURE',
+            purchase_units: [{
+                amount: {
+                    currency_code: 'USD',
+                    value: monto,
+                    breakdown: {
+                        item_total: {
+                            currency_code: 'USD',
+                            value: monto
+                        }
+                    }
+                },
+                items: [{
+                    name: 'Proceso de pago publicitario',
+                    quantity: '1',
+                    category: 'DIGITAL_GOODS',
+                    unit_amount: {
+                        currency_code: 'USD',
+                        value: monto,
+                    },
+                }]
+            }]
+        },
+        advanced: {
+            commit: 'true'
+        },
+        style: {
+            label: 'paypal',
+            layout: 'vertical'
+        },
+        onApprove: (data, actions) => {
+            // console.log('onApprove - transaction was approved, but not authorized', data, actions);
+            actions.order.get().then((details: any) => {
+                // console.log('onApprove - you can get full order details inside onApprove: ', details);
+                this._spinner.show();
+            });
+
+        },
+        onClientAuthorization: (data) => {
+            // console.log('onClientAuthorization - you should probably
+            // inform your server about completed transaction at this point', data);
+            if (data.status === 'COMPLETED') {
+                this.notificar_pago();
+            }
+        },
+        onCancel: (data, actions) => {
+            // console.log('OnCancel', data, actions);
+            this._spinner.hide();
+        },
+        onError: err => {
+            // console.log('OnError', err);
+            this._spinner.hide();
+            this._shared.alert_error('Ocurrió un problema al realizar el pago');
+        },
+        onClick: (data, actions) => {
+            // console.log('onClick', data, actions);
+        },
+    };
+}
+
+  notificar_pago() {
+      
+      this._anuncioService.ids_autos.forEach(id => {
+        this._anuncioService.activar_anuncio(id, 'auto').subscribe();
+      });
+
+      this._anuncioService.ids_propiedades.forEach(id => {
+        this._anuncioService.activar_anuncio(id, 'propiedad').subscribe();
+      });
+
+      this._shared.alert_success('Transacción exitosa');
+      this._router.navigate(['/mis-publicaciones']);
+
+  }
 
 
 

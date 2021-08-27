@@ -21,7 +21,10 @@ export class CarritoComponent implements OnInit {
   cantidad_basico: number = 0;
 
   cantidad_premium: number = 0;
-  subtotal_premium: number = 0;  
+  subtotal_premium: number = 0; 
+
+  cantidad_prop: number = 0;
+  cantidad_veh: number = 0;
 
   costo_total: number = 0;
   subtotal: number = 0;
@@ -50,6 +53,7 @@ export class CarritoComponent implements OnInit {
           /* const plan = new Plan('Premium', propiedad.precio_plan); */
           /* this.plan_premium.push(plan); */
           this.cantidad_premium += 1;
+          this.cantidad_prop += 1;
         } else {
           const plan = new Plan('Básico', 0);
           /* this.plan_premium.push(plan); */
@@ -63,6 +67,7 @@ export class CarritoComponent implements OnInit {
           /* const plan = new Plan('Premium', vehiculo.precio_plan); */
           /* this.plan_premium.push(plan); */
           this.cantidad_premium += 1;
+          this.cantidad_veh += 1;
         } else {
           const plan = new Plan('Básico', 0);
           /* this.plan_premium.push(plan); */
@@ -70,10 +75,15 @@ export class CarritoComponent implements OnInit {
         }
     });
 
+    this.calcular_subtotal();
+
   } 
 
-  calcular_subtotal(cantidad_premium: number) {
-    this.costo_total = Number(cantidad_premium) * 99.9;
+  calcular_subtotal() {
+    const costo_prop = Number(this.cantidad_prop) * 129;
+    const costo_auto = Number(this.cantidad_veh) * 49;
+
+    this.costo_total = Number(costo_prop) + Number(costo_auto);
     this.igv = this.costo_total * 0.18;
     this.subtotal = this.costo_total - this.igv;
     return this.costo_total

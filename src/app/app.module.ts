@@ -48,6 +48,8 @@ import { AnunciosComponent } from './pages/anuncios/anuncios.component';
 import { PublicacionesComponent } from './pages/publicaciones/publicaciones.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 
+import { NgxPayPalModule } from 'ngx-paypal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +91,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     NgxGalleryModule,
+    NgxPayPalModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAFcaVS186uSCzbrE_8ziIOdBjtxDZvLZc'
     })
