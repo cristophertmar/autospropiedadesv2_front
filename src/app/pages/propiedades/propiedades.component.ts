@@ -5,6 +5,7 @@ import { PropiedadListar } from 'src/app/models/propiedad_listar.model';
 import { Propiedad } from '../../models/propiedad.model';
 import { PropiedadService } from '../../services/propiedad.service';
 import { AnuncioService } from '../../services/anuncio.service';
+import { URL_IMG } from 'src/app/config/config';
 
 @Component({
   selector: 'app-propiedades',
@@ -87,5 +88,9 @@ export class PropiedadesComponent implements OnInit {
   ver_propiedad(propiedad: PropiedadListar) {
     this._router.navigate(['/propiedades/ver', propiedad.id_propiedad]);
   }
+
+  obtener_ruta(fichero: string) {
+    return URL_IMG + fichero;
+  } 
 
 }

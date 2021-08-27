@@ -255,8 +255,20 @@
                             <h3 class="text-muted fw-bold mb-4"> {{ veh.descrip_modelo }} </h3>
                             <small class="text-small text-primary fw-bold d-block mb-2"> {{ veh.condicion_vehiculo }} </small>
                             <div class="social">
-                                <img src="https://c8.alamy.com/zoomses/9/9c30002a90914b58b785a537a39421ba/2c80ydc.jpg" class="rounded-circle">
-                                <span class="text-muted"> {{ veh.usuario }} </span>
+                                <img [src]="veh.foto" class="rounded-circle wh-32">
+                                <span class="text-muted"> {{ veh.usuario }}  <br>
+                                    <div class="rating">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                       <!--  <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg"> -->
+                                    </div>
+                                </span>
                             </div>
                         </div>
                     </div>

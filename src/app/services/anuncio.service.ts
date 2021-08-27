@@ -21,6 +21,8 @@ export class AnuncioService {
   ids_propiedades: string[] = [];
   ids_autos: string[] = [];
 
+  esanuncio: boolean = false;
+
   filtro_busqueda_rapida: BusquedaRapida = new BusquedaRapida(0, 0, 0);
 
   constructor(
@@ -62,6 +64,29 @@ export class AnuncioService {
     this.ids_propiedades.push(id);
     sessionStorage.removeItem('ids_autos');
     sessionStorage.setItem('ids_autos', JSON.stringify(this.ids_autos));
+  }
+
+  limpiar_storage() {
+    sessionStorage.removeItem('vehiculo_temp');
+    sessionStorage.removeItem('propiedad_temp');
+
+    sessionStorage.removeItem('ids_propiedades');
+    sessionStorage.removeItem('ids_autos');
+    
+
+    sessionStorage.removeItem('propiedad_carrito');
+    sessionStorage.removeItem('vehiculo_carrito');
+
+    this.cargar_carrito_propiedad();
+
+    this.cargar_vehiculo_temp();
+    this.cargar_propiedad_temp();
+
+    this.cargar_ids_autos();
+    this.cargar_ids_propiedades();
+
+    this.cargar_carrito_vehiculo();
+    this.cargar_carrito_propiedad();
   }
 
   limpiar_carrito() {

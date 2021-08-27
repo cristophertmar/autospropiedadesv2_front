@@ -41,7 +41,7 @@
                         <i class="lnr lnr-user d-none d-lg-inline-block"></i> {{ _usuarioService.usuario.nombre }} {{ _usuarioService.usuario.apellido }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="javascript:void(0)">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/mi-perfil']">Mi perfil</a></li>
                         <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/anuncio/seleccionar']">Publicar</a></li>
                         <!-- <li><a class="dropdown-item" href="#">Mis publicaciones</a></li> -->
                         <li>

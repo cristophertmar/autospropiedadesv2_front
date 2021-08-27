@@ -337,7 +337,50 @@
         <h5 class="text-dark fw-bold">Recomendados</h5>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-12">
+        <div *ngFor="let prop of propiedades" class="col-lg-3 col-md-6 col-12">
+            <div class="card border border-0 bg-light mb-4 rounded-3">
+                <div class="overlay-warning rounded-3">
+                    <div class="d-grid">
+                        <a href="javascript:void(0)" (click)="ver_propiedad(prop)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
+                    </div>
+                </div>
+                <div class="card-img">
+                    <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                    <!-- <img class="img-whp" [src]="obtener_ruta(prop.imagen)" alt="auto.jpg"> -->
+                    <div class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
+                </div>
+                <div class="card-body">
+                    <h5 class="text-muted fw-bold mb-0"> {{ prop.titulo }} </h5>
+                    <small class="d-block text-warning fw-semibold">
+                        {{ prop.tipo_inmueble_desc }}({{ prop.tipo_descripcion_desc }})
+                    </small>
+                    <small class="d-block text-warning fw-semibold mb-4">
+                        <!-- La Molina - Lima --> {{ prop.distrito }} - {{ prop.provincia }}
+                    </small>
+                    <small class="d-block text-muted mb-2">
+                        {{ prop.area_total }}m²AC | {{ prop.dormitorios }} dorm. | {{prop.banios }} baños
+                    </small>
+                    <!-- <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small> -->
+                    <div class="social">
+                        <img [src]="prop.foto" class="rounded-circle wh-32">
+                        <span class="text-muted"> {{ prop.usuario }}  <br>
+                            <div class="rating">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                               <!--  <img src="./assets/img/icons/star-empty.svg">
+                                <img src="./assets/img/icons/star-empty.svg">
+                                <img src="./assets/img/icons/star-empty.svg">
+                                <img src="./assets/img/icons/star-empty.svg"> -->
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-lg-3 col-md-6 col-12">
             <div class="card border border-0 bg-light mb-4 rounded-3">
                 <div class="overlay-warning rounded-3">
                     <div class="d-grid">
@@ -450,45 +493,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-            <div class="card border border-0 bg-light mb-4 rounded-3">
-                <div class="overlay-warning rounded-3">
-                    <div class="d-grid">
-                        <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">COMPRAR</a>
-                    </div>
-                </div>
-                <div class="card-img">
-                    <img class="card-img-top" src="http://via.placeholder.com/120x100">
-                    <div class="price text-truncate">S/ 99,999.00</div>
-                </div>
-                <div class="card-body">
-                    <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
-                    <small class="d-block text-warning fw-semibold">
-                        Calle Los Cipreses 100
-                    </small>
-                    <small class="d-block text-warning fw-semibold mb-4">
-                        La Molina - Lima
-                    </small>
-                    <small class="d-block text-muted mb-2">
-                        150m²AC | 3 dorm. | 3 baños
-                    </small>
-                    <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
-                    <div class="social">
-                        <img src="https://via.placeholder.com/32" class="rounded-circle">
-                        <span class="text-muted">John Doe <br>
-                            <div class="rating">
-                                <img src="./assets/img/icons/star-fill.svg">
-                                <img src="./assets/img/icons/star-empty.svg">
-                                <img src="./assets/img/icons/star-empty.svg">
-                                <img src="./assets/img/icons/star-empty.svg">
-                                <img src="./assets/img/icons/star-empty.svg">
-                            </div>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <a href="publicar.html" class="btn btn-lg btn-float text-white shadow fw-bold btn-radius"><i class="lnr lnr-plus"></i> PUBLICAR</a>

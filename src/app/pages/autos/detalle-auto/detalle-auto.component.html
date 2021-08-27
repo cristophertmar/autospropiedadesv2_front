@@ -314,7 +314,42 @@
         <h5 class="text-dark fw-bold">Recomendados</h5>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-12">
+        <div *ngFor="let veh of vehiculos" class="col-lg-3 col-md-6 col-12">
+            <div class="card border border-0 bg-light mb-4 rounded-3">
+                <div class="overlay-primary rounded-3">
+                    <div class="d-grid">
+                        <a href="javascript:void(0)" (click)="ver_auto(veh)" class="btn btn-light btn-lg shadow text-primary fw-bold">COMPRAR</a>
+                    </div>
+                </div>
+                <div class="card-img">
+                    <img class="card-img-top" [src]="obtener_ruta(veh.imagen)">
+                    <!-- <div class="price text-truncate">S/ 99,999.00</div> -->
+                    <div class="price text-truncate"> {{ veh.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </div>
+                </div>
+                <div class="card-body text-truncate">
+                    <span class="text-dark fw-bold"> {{ veh.descrip_marca }} </span>
+                    <h3 class="text-muted fw-bold mb-4"> {{ veh.descrip_modelo }} </h3>
+                    <small class="text-small text-primary fw-bold d-block mb-2"> {{ veh.condicion_vehiculo }} </small>
+                    <div class="social">
+                        <img [src]="veh.foto" class="rounded-circle wh-32">
+                        <span class="text-muted"> {{ veh.usuario }}  <br>
+                            <div class="rating">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                                <img src="./assets/img/icons/star-fill.svg">
+                               <!--  <img src="./assets/img/icons/star-empty.svg">
+                                <img src="./assets/img/icons/star-empty.svg">
+                                <img src="./assets/img/icons/star-empty.svg">
+                                <img src="./assets/img/icons/star-empty.svg"> -->
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-lg-3 col-md-6 col-12">
             <div class="card border border-0 bg-light mb-4 rounded-3">
                 <div class="overlay-primary rounded-3">
                     <div class="d-grid">
@@ -379,29 +414,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-12">
-            <div class="card border border-0 bg-light mb-4 rounded-3">
-                <div class="overlay-primary rounded-3">
-                    <div class="d-grid">
-                        <a href="#1" class="btn btn-light btn-lg shadow text-primary fw-bold" style="">COMPRAR</a>
-                    </div>
-                </div>
-                <div class="card-img">
-                    <img class="card-img-top" src="http://via.placeholder.com/120x100">
-                    <div class="price text-truncate">S/ 99,999.00</div>
-                </div>
-                <div class="card-body text-truncate">
-                    <span class="text-dark fw-bold">Toyota</span>
-                    <h3 class="text-muted fw-bold mb-4">SAR 2000</h3>
-                    <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small>
-                    <div class="social">
-                        <img src="https://via.placeholder.com/32" class="rounded-circle">
-                        <span class="text-muted">John Doe</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

@@ -86,6 +86,7 @@ export class ContactoAutoComponent implements OnInit {
     this._archivoServive.guardar_archivo(id_vehiculo)
     .subscribe( resp => {     
       if(sessionStorage.getItem('anuncio_plan') === 'premium') {
+        this._anuncioService.limpiar_storage();
         this._anuncioService.guardar_ids_autos(id_vehiculo);
         this._router.navigate(['/anuncio/carrito']);
       } else {

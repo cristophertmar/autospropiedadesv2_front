@@ -13,7 +13,8 @@ export class VehiculoListar {
         public descrip_tipotran?: string,
         public condicion_vehiculo?: string,
         public usuario?: string,
-        public imagen?: string
+        public imagen?: string,
+        public foto?: string
     ) {}
 
 }

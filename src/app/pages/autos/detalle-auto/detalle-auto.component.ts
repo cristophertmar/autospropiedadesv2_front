@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VehiculoDetalle } from 'src/app/models/vehiculo_detalle.model';
 import { VehiculoService } from '../../../services/vehiculo.service';
 
@@ -10,6 +10,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClienteContacto } from '../../../models/cliente_contacto.model';
 import { SharedService } from '../../../services/shared.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { VehiculoListar } from 'src/app/models/vehiculoListar.model';
+import { URL_IMG } from 'src/app/config/config';
+import { Vehiculo } from 'src/app/models/vehiculo.model';
 @Component({
   selector: 'app-detalle-auto',
   templateUrl: './detalle-auto.component.html',
@@ -28,17 +31,36 @@ export class DetalleAutoComponent implements OnInit {
 
   cliente_contacto: ClienteContacto = {};  
 
+  vehiculos: VehiculoListar[] = [];
+
+  condicion_vehiculo: number = 0;
+  id_modelo: number = 0;
+  id_kilometros: number = 0;
+  id_tipotran: number = 0;
+  departamento: string = '';
+  provincia: string = '';
+  ubigeo: string = '';
+  id_combustible: number = 0;
+  id_timon: number = 0;
+  categoria: string = '';
+  tipo_anunciante: number = 0;
+  minprecio: number = 0;
+  maxprecio: number = 9999999999.99;
+
   constructor(
     private _vehiculoService: VehiculoService,
     private _activatedRoute: ActivatedRoute,
     private _shared: SharedService,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    private _router: Router
   ) {
     this.crear_formulario();
   }
 
   ngOnInit(): void {
     this._activatedRoute.params.subscribe( ({id}) => this.detalle_vehiculo(id) );
+
+    this.listar_vehiculo();
 
     this.galleryOptions = [
       {
@@ -64,6 +86,40 @@ export class DetalleAutoComponent implements OnInit {
       }
     ];
 
+  }
+
+  obtener_ruta(fichero: string) {
+    return URL_IMG + fichero;
+  }
+
+  listar_vehiculo(ordenar: number = 0 ) {
+
+    let vehiculo = new Vehiculo();
+
+    vehiculo.condicion_vehiculo = this.condicion_vehiculo;
+    vehiculo.id_modelo = this.id_modelo;
+    vehiculo.id_kilometros = this.id_kilometros;
+    vehiculo.id_tipotran = this.id_tipotran;
+    vehiculo.departamento = this.departamento;
+    vehiculo.provincia = this.provincia;
+    vehiculo.ubigeo = this.ubigeo;
+    vehiculo.id_combustible = this.id_combustible;
+    vehiculo.id_timon = this.id_timon;
+    vehiculo.categoria = this.categoria;
+    vehiculo.tipo_anunciante = Number(this.tipo_anunciante);
+    vehiculo.minprecio = Number(this.minprecio);
+    vehiculo.maxprecio = Number(this.maxprecio);
+
+    this._vehiculoService.listar_vehiculo(vehiculo, ordenar)
+
+    .subscribe( (resp: any) => {
+      this.vehiculos = resp.data;
+      this.vehiculos = this.vehiculos.slice(0,4);
+    });
+  }
+
+  ver_auto(vehiculo: VehiculoListar) {
+    this._router.navigate(['/autos/ver', vehiculo.id_vehiculo]);
   }
 
   crear_formulario() {

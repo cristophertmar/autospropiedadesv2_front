@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-4">
+            <!-- <div class="mb-4">
                 <h3 class="text-uppercase text-muted fw-bold">PRINCIPALES <span class="text-warning">INMOBILIARIAS</span></h3>
             </div>
             <div class="row">
@@ -256,7 +256,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="mb-4">
                 <img src="./assets/img/avisos/900x143.png" class="w-100">
             </div>
@@ -289,14 +289,18 @@
                             </small>
                             <!-- <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small> -->
                             <div class="social">
-                                <img src="https://via.placeholder.com/32" class="rounded-circle">
-                                <span class="text-muted">John Doe <br>
+                                <img [src]="prop.foto" class="rounded-circle wh-32">
+                                <span class="text-muted"> {{ prop.usuario }}  <br>
                                     <div class="rating">
                                         <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                        <img src="./assets/img/icons/star-fill.svg">
+                                       <!--  <img src="./assets/img/icons/star-empty.svg">
                                         <img src="./assets/img/icons/star-empty.svg">
                                         <img src="./assets/img/icons/star-empty.svg">
-                                        <img src="./assets/img/icons/star-empty.svg">
-                                        <img src="./assets/img/icons/star-empty.svg">
+                                        <img src="./assets/img/icons/star-empty.svg"> -->
                                     </div>
                                 </span>
                             </div>

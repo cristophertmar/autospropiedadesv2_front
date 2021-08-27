@@ -14,7 +14,9 @@ export class PropiedadListar {
         public dormitorios?: number,
         public banios?: number,
         public imagen?: string,
-        public titulo?: string
+        public titulo?: string,
+        public usuario?: string,
+        public foto?: string
     ) {}
 
 }

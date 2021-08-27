@@ -79,6 +79,9 @@ export class CheckoutComponent implements OnInit {
         }
     });
 
+
+    this.costo_total = this._anuncioService.esanuncio ? 300 : this.costo_total;
+
     this.calcular_subtotal_igv();
 
   } 
@@ -249,8 +252,10 @@ export class CheckoutComponent implements OnInit {
         this._anuncioService.activar_anuncio(id, 'propiedad').subscribe();
       });
 
+      this._anuncioService.limpiar_storage();
       this._shared.alert_success('Transacción exitosa');
       this._router.navigate(['/mis-publicaciones']);
+      
 
   }
 

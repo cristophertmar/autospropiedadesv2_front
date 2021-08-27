@@ -30,7 +30,7 @@
                     </label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input formControlName="url_1" name="url_1" type="text" id="titulo" class="form-control">
+                    <input formControlName="url_1" name="url_1" type="text" id="titulo" class="form-control" [class.is-invalid]="url_1NoValido">
                     <label for="titulo">URL del sitio</label>
                 </div>
                 <h5 class="text-dark fw-semibold mb-2">Imagen 2</h5>
@@ -47,7 +47,7 @@
                     </label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input formControlName="url_2" name="url_2" type="text" id="titulo" class="form-control">
+                    <input formControlName="url_2" name="url_2" type="text" id="titulo" class="form-control" [class.is-invalid]="url_2NoValido">
                     <label for="titulo">URL del sitio</label>
                 </div>
                 <h5 class="text-dark fw-semibold mb-2">Imagen 3</h5>
@@ -64,7 +64,7 @@
                     </label>
                 </div>
                 <div class="form-floating mb-4">
-                    <input formControlName="url_3" name="url_3" type="text" id="titulo" class="form-control">
+                    <input formControlName="url_3" name="url_3" type="text" id="titulo" class="form-control" [class.is-invalid]="url_3NoValido">
                     <label for="titulo">URL del sitio</label>
                 </div>
                 <h5 class="text-dark fw-semibold mb-2">¿En qué módulo deseas mostrar el anuncio publicitario?</h5>
