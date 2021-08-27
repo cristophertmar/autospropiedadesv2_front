@@ -255,7 +255,10 @@
                     <a href="javascript:void(0)" class="btn text-secondary"><i class="lnr lnr-list"></i></a> -->
                 </div>
             </div>
-            <div class="row">
+            <div *ngIf="vehiculos.length === 0" style="text-align: center; margin-top: 200px;">
+                <p>No se encontraron resultados</p>
+            </div>
+            <div *ngIf="vehiculos.length > 0" class="row">
                 <div *ngFor="let veh of vehiculos" class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-primary rounded-3">
