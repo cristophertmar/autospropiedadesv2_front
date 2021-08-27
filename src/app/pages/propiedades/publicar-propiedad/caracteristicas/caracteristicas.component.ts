@@ -67,6 +67,7 @@ export class CaracteristicasComponent implements OnInit {
     this._anuncioService.propiedad_temp.area_total = Number(this.formulario.value.area_total);
 
     this._anuncioService.propiedad_temp.antiguedad = Number(this.formulario.value.antiguedad);
+    this._anuncioService.propiedad_temp.tipo_moneda = this.formulario.value.tipo_moneda;
     this._anuncioService.propiedad_temp.precio = Number(this.formulario.value.precio);
     this._anuncioService.propiedad_temp.mantenimiento = Number(this.formulario.value.mantenimiento);
 
@@ -126,6 +127,7 @@ export class CaracteristicasComponent implements OnInit {
 
       antiguedad: new FormControl('1', [Validators.required]),
 
+      tipo_moneda: new FormControl('PEN', [Validators.required]),
       precio: new FormControl(null, [Validators.required]),
       mantenimiento: new FormControl(''),
 

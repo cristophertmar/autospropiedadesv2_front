@@ -138,21 +138,35 @@
                 <small class="text-muted d-block">Precio del inmueble</small>
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <div class="input-group mb-3 flex-nowrap">
                                 <div class="input-group-text text-muted">PEN</div>
                                 <input formControlName="precio" name="precio" type="text" class="form-control" [class.is-invalid]="precioNoValido">
+                            </div>
+                        </div> -->
+                        <div class="form-floating mb-3">
+                            <input formControlName="precio" name="precio" type="text" class="form-control" id="precio" [class.is-invalid]="precioNoValido">
+                            <label for="precio">Precio</label>
+                            <div class="invalid-feedback">
+                                Ingrese precio
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="mb-3">
-                            <div class="input-group mb-3 flex-nowrap">
+                            <!-- <div class="input-group mb-3 flex-nowrap">
                                 <div class="input-group-text text-muted">USD</div>
                                 <input type="text" class="form-control">
+                            </div> -->
+                            <div style="margin-top: 3px;" class="d-flex flex-nowrap justify-content-start align-items-center gap-2 mb-3">
+                                <input formControlName="tipo_moneda" name="tipo_moneda" type="radio" class="btn-check" id="tipo1" value="PEN">
+                                <label class="btn btn-outline-primary btn-lg" for="tipo1">PEN</label>
+                                <input formControlName="tipo_moneda" name="tipo_moneda" type="radio" class="btn-check" id="tipo2" value="USD">
+                                <label class="btn btn-outline-primary btn-lg" for="tipo2">USD</label>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-3">
@@ -167,14 +181,14 @@
                 </div>
                 <h5 class="text-dark fw-semibold mb-4">Describe el inmueble</h5>
                 <div class="form-floating mb-3">
-                    <input formControlName="titulo" name="titulo" type="email" class="form-control" id="titulo" [class.is-invalid]="tituloNoValido">
+                    <input formControlName="titulo" name="titulo" type="text" class="form-control" id="titulo" [class.is-invalid]="tituloNoValido">
                     <label for="titulo">Título de anuncio</label>
                     <div class="invalid-feedback">
                         Ingrese un título
                     </div>
                 </div>
                 <div class="form-floating mb-4">
-                    <textarea formControlName="descripcion" name="descripcion" type="email" class="form-control" id="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
+                    <textarea formControlName="descripcion" name="descripcion" type="text" class="form-control" id="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
                     <label for="descripcion">Descripción de anuncio</label>
                     <small class="text-muted">Incluye estado, características y motivo de venta</small>
                     <div class="invalid-feedback">

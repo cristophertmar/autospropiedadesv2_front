@@ -1,1 +1,105 @@
-<p>publicaciones works!</p>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicaciones</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">PUBLICACIONES</h3>
+            </div>
+            <!-- <div class="mb-4">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius fw-semibold mb-4">Autos</button>
+                <button type="button" class="btn btn-warning btn-lg btn-large btn-radius mb-4">Siguiente</button>
+            </div> -->
+            <div *ngIf="publicaciones && publicaciones.length > 0" class="row">
+                <div *ngFor="let publicacion of publicaciones" class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <!-- <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a (click)="editarPublicacion(publicacion)" href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">EDITAR</a>
+                            </div>
+                        </div> -->
+                        <div class="card-img">
+                            <img class="card-img-top" [src]="traer_ruta(publicacion.imagen)">
+                            <div class="price text-truncate"> {{ publicacion.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0"> {{ publicacion.titulo }} </h5>
+                            <small class="d-block text-warning fw-semibold">
+                                 {{ publicacion.subtitulo }} 
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                {{ publicacion.ubicacion }} 
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                {{ publicacion.descrip1 }}  |  {{ publicacion.descrip2 }}  | {{ publicacion.descrip3 }}
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">{{ publicacion.tipo_anuncio }}</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">EDITAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border border-0 bg-light mb-4 rounded-3">
+                        <div class="overlay-warning rounded-3">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">EDITAR</a>
+                            </div>
+                        </div>
+                        <div class="card-img">
+                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
+                            <div class="price text-truncate">S/ 99,999.00</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-muted fw-bold mb-0">Departamento en Cayma</h5>
+                            <small class="d-block text-warning fw-semibold">
+                                Calle Los Cipreses 100
+                            </small>
+                            <small class="d-block text-warning fw-semibold mb-4">
+                                La Molina - Lima
+                            </small>
+                            <small class="d-block text-muted mb-2">
+                                150m²AC | 3 dorm. | 3 baños
+                            </small>
+                            <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

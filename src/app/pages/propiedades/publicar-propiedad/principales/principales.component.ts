@@ -145,9 +145,6 @@ export class PrincipalesComponent implements OnInit {
     this._anuncioService.guardar_propiedad_temp(this._anuncioService.propiedad_temp);
     this._router.navigate(['/propiedades/publicar/caracteristicas']);
 
-
-
-
   }
 
   seleccionarUbicacion( evento: any ) {

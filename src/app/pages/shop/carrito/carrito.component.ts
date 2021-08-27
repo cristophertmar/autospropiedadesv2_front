@@ -5,6 +5,7 @@ import { VehiculoService } from '../../../services/vehiculo.service';
 import { PropiedadService } from '../../../services/propiedad.service';
 import { ArchivoService } from '../../../services/archivo.service';
 import { SharedService } from '../../../services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrito',
@@ -31,7 +32,8 @@ export class CarritoComponent implements OnInit {
     private _vehiculoService: VehiculoService,
     private _propiedadService: PropiedadService,
     private _archivoServive: ArchivoService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _router: Router
     ) { }
 
   ngOnInit(): void {
@@ -82,7 +84,7 @@ export class CarritoComponent implements OnInit {
     
   }
 
-  procesar() {
+  /* procesar() {
 
     this._anuncioService.propiedad_carrito
     .forEach(propiedad => {
@@ -109,7 +111,7 @@ export class CarritoComponent implements OnInit {
 
     this._anuncioService.limpiar_carrito();
   }
-
+ */
 
   guardarImagen_propiedad(id_vehiculo: string) {
     this._archivoServive.guardar_archivo(id_vehiculo)
@@ -123,6 +125,9 @@ export class CarritoComponent implements OnInit {
     });
   }
 
+  procesar() {
+    this._router.navigate(['/anuncio/realizar-pago']);
+  }
   
 
 }

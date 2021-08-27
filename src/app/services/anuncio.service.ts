@@ -66,7 +66,7 @@ export class AnuncioService {
   }
 
   guardar_carrito_propiedad(propiedad: Propiedad) {
-      propiedad.precio_plan = (sessionStorage.getItem('anuncio_plan') === 'premium' ? 99.90 : 0);
+      propiedad.precio_plan = (sessionStorage.getItem('anuncio_plan') === 'premium' ? 129 : 0);
       this.propiedad_carrito.push(propiedad);
       sessionStorage.setItem('propiedad_carrito', JSON.stringify(this.propiedad_carrito));
       this._router.navigate(['/anuncio/carrito']);
@@ -81,10 +81,9 @@ export class AnuncioService {
   }
 
   guardar_carrito_vehiculo(vehiculo: Vehiculo) {
-    vehiculo.precio_plan = (sessionStorage.getItem('anuncio_plan') === 'premium' ? 99.90 : 0);
+    vehiculo.precio_plan = (sessionStorage.getItem('anuncio_plan') === 'premium' ? 49 : 0);
     this.vehiculo_carrito.push(vehiculo);
-    sessionStorage.setItem('vehiculo_carrito', JSON.stringify(this.vehiculo_carrito));
-    this._router.navigate(['/anuncio/carrito']);
+    sessionStorage.setItem('vehiculo_carrito', JSON.stringify(this.vehiculo_carrito));    
 }
 
 cargar_carrito_vehiculo() {

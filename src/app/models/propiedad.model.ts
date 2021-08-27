@@ -14,6 +14,7 @@ export class Propiedad {
         public piso?: string,
         public referencia?: string,
 
+        public tipo_moneda?: number,
         public precio?: number,
 
         public area_total?: number,
@@ -55,7 +56,8 @@ export class Propiedad {
         public url_video?: string,
         public tipo_anunciante?: number,
 
-        public precio_plan?: number
+        public precio_plan?: number,
+
     ) {}
 
 }

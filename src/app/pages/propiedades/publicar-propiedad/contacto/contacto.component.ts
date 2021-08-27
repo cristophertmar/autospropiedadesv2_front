@@ -50,18 +50,22 @@ export class ContactoComponent implements OnInit {
     this._anuncioService.guardar_propiedad_temp(this._anuncioService.propiedad_temp);
     this._anuncioService.guardar_carrito_propiedad(this._anuncioService.propiedad_temp);
 
-    /* this._propiedadService.publicar_propiedad(this._anuncioService.propiedad_temp)
-        .subscribe( ((resp: any) => {
-          console.log(resp);
-          this.guardarImagen(resp.data.id_propiedad);
-        })); */
+    this._propiedadService.publicar_propiedad(this._anuncioService.propiedad_temp)
+    .subscribe( ((resp: any) => {
+      console.log(resp);
+      this.guardarImagen(resp.data.id_propiedad);
+    }));
   }
 
   guardarImagen(id_propiedad: string) {
     this._archivoServive.guardar_archivo(id_propiedad, true)
     .subscribe( resp => {
-      this._shared.alert_success('Publicado exitosamente');
-      // this._router.navigate(['/detalle-auto', id_vehiculo]);
+      if(sessionStorage.getItem('anuncio_plan') === 'premium') {
+        this._router.navigate(['/anuncio/carrito']);
+      } else {
+        this._shared.alert_success('Publicado exitosamente');
+        this._router.navigate(['/propiedades/ver/', id_propiedad]);
+      }
     });
   }
 

@@ -1,1 +1,85 @@
-<p>anuncios works!</p>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar anuncio publicitario</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">ANUNCIO PUBLICITARIO</h3>
+            </div>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <h5 class="text-dark fw-semibold mb-2">Imagen 1</h5>
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Las dimensiones deben ser de 208x375.
+                    </small>
+                </div>
+                <div class="mb-4">
+                    <input type="file" id="fotos" class="input-file">
+                    <label for="fotos" class="label-file">
+                        <span class="d-block text-primary fs-5 fw-semibold">Subir la imagen</span>
+                        <span class="d-block text-secondary">(Peso máximo: 1 MB)</span>
+                    </label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input formControlName="url_1" name="url_1" type="text" id="titulo" class="form-control">
+                    <label for="titulo">URL del sitio</label>
+                </div>
+                <h5 class="text-dark fw-semibold mb-2">Imagen 2</h5>
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Las dimensiones deben ser de 449x143.
+                    </small>
+                </div>
+                <div class="mb-4">
+                    <input type="file" id="fotos" class="input-file">
+                    <label for="fotos" class="label-file">
+                        <span class="d-block text-primary fs-5 fw-semibold">Subir la imagen</span>
+                        <span class="d-block text-secondary">(Peso máximo: 1 MB)</span>
+                    </label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input formControlName="url_2" name="url_2" type="text" id="titulo" class="form-control">
+                    <label for="titulo">URL del sitio</label>
+                </div>
+                <h5 class="text-dark fw-semibold mb-2">Imagen 3</h5>
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Las dimensiones deben ser de 900x143.
+                    </small>
+                </div>
+                <div class="mb-4">
+                    <input type="file" id="fotos" class="input-file">
+                    <label for="fotos" class="label-file">
+                        <span class="d-block text-primary fs-5 fw-semibold">Subir la imagen</span>
+                        <span class="d-block text-secondary">(Peso máximo: 1 MB)</span>
+                    </label>
+                </div>
+                <div class="form-floating mb-4">
+                    <input formControlName="url_3" name="url_3" type="text" id="titulo" class="form-control">
+                    <label for="titulo">URL del sitio</label>
+                </div>
+                <h5 class="text-dark fw-semibold mb-2">¿En qué módulo deseas mostrar el anuncio publicitario?</h5>
+                <div class="d-flex flex-nowrap justify-content-start align-items-center gap-2 mb-4">
+                    <input formControlName="mostrar" name="mostrar" type="radio" class="btn-check" value="ambos" id="ambos" checked>
+                    <label class="btn btn-outline-primary btn-lg" for="ambos">Ambos</label>
+                    <input formControlName="mostrar" name="mostrar" type="radio" class="btn-check" value="autos" id="autos">
+                    <label class="btn btn-outline-primary btn-lg" for="autos">Autos</label>
+                    <input formControlName="mostrar" name="mostrar" type="radio" class="btn-check" value="propiedades" id="propiedades">
+                    <label class="btn btn-outline-primary btn-lg" for="propiedades">Propiedades</label>
+                </div>
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
