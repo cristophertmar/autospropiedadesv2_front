@@ -155,9 +155,9 @@ export class AnuncioService {
     }
   }
 
-  activar_anuncio(id: string, tipo: string) {
+  activar_anuncio(id: string, tipo: string, editable: boolean = false) {
     let url;
-    url = URL_SERVICIOS + '/api/publicacion/activar?id=' + id + '&tipo=' + tipo;
+    url = URL_SERVICIOS + '/api/publicacion/activar?id=' + id + '&tipo=' + tipo + '&editable=' + editable;
     return this._http.get(url);
   }
   

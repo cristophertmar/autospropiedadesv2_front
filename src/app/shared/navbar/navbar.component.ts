@@ -112,6 +112,7 @@ export class NavbarComponent implements OnInit {
       this._spinner.hide();
       this.cerrar_mdl_login.nativeElement.click();
       this._router.navigate(['/anuncio/seleccionar']);
+      this.forma_login.reset();
     });
 
   }
@@ -134,6 +135,7 @@ export class NavbarComponent implements OnInit {
       this._spinner.hide();
       this.cerrar_mdl_registro.nativeElement.click();
       this._router.navigate(['/anuncio/seleccionar']);
+      this.forma_registro.reset();
     });
   }  
 
@@ -169,24 +171,28 @@ export class NavbarComponent implements OnInit {
 
   login_usuario() {
 
+    debugger;
     this.usuario = new Usuario();
     this.usuario.correo = this.usuario_social.email;
     this.usuario.pass = '';
     this.usuario.proveedor = this.usuario_social.provider;     
     
-    /* this._spinner.show(); */
+    this._spinner.show();
     this._usuarioService.login_usuario(this.usuario)
     .subscribe(
       resp => {
-        /* this._spinner.hide(); */
+      this._spinner.hide();
       this._router.navigate(['/anuncio/seleccionar']);
       this.cerrar_sesion_social();
+      this.cerrar_mdl_login.nativeElement.click();
       },
       (error) => {
-        /* this._spinner.hide(); */
+        this._spinner.hide();
       }
     
     );
+
+    
 
   }
 
@@ -206,11 +212,19 @@ export class NavbarComponent implements OnInit {
     usuario.proveedor = this.usuario_social.provider;
     usuario.foto = this.usuario_social.photoUrl;
 
+    this._spinner.show();
     this._usuarioService.registro_usuario(usuario)
-    .subscribe( resp => {
+    .subscribe( 
+      resp => {
+      this._spinner.hide();
       this._router.navigate(['/anuncio/seleccionar']);
       this.cerrar_sesion_social();
-    });
+      this.cerrar_mdl_registro.nativeElement.click();
+      },
+      (error) => {
+        this._spinner.hide();
+      }    
+    );
 
   }
 

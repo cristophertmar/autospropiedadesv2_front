@@ -12,6 +12,7 @@ import { Propiedad } from '../../../models/propiedad.model';
 import { URL_IMG } from 'src/app/config/config';
 import { ContactoService } from '../../../services/contacto.service';
 import { Contacto } from 'src/app/models/contacto.model';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-detalle-propiedad',
@@ -60,7 +61,8 @@ export class DetallePropiedadComponent implements OnInit {
     private _spinner: NgxSpinnerService,
     private _shared: SharedService,
     private _router: Router,
-    private _contactoService: ContactoService
+    private _contactoService: ContactoService,
+    public _usuarioService: UsuarioService
   ) {
     this.crear_formulario();
    }
@@ -97,6 +99,10 @@ export class DetallePropiedadComponent implements OnInit {
       }
     ];
 
+  }
+
+  enviar_observacion() {
+    this._shared.alert_success('Observación enviada');
   }
 
   ver_propiedad(propiedad: PropiedadListar) {
@@ -145,11 +151,11 @@ export class DetallePropiedadComponent implements OnInit {
 
   crear_formulario() {
     this.formulario_mensaje = new FormGroup({
-      nombre: new FormControl('Cristopher', [Validators.required]),
-      correo: new FormControl('cristopher.tmar@gmail.com', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
-      telefono: new FormControl('949281434', [Validators.required]),
-      mensaje: new FormControl('Holamundo...', [Validators.required]),
-      alertas: new FormControl(true)
+      nombre: new FormControl('', [Validators.required]),
+      correo: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+      telefono: new FormControl('', [Validators.required]),
+      mensaje: new FormControl('', [Validators.required]),
+      alertas: new FormControl(false)
     });
   }
 

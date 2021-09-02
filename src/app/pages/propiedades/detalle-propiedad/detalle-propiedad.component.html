@@ -137,9 +137,9 @@
             </div>
             <div class="mb-4 bg-light border rounded-3 p-4">
                 <span class="d-block text-danger fw-bold mb-4"><i class="lnr lnr-exclamation-triangle"></i> Hay algún error en este aviso <span class="text-muted fw-normal ms-2">Selecciona un motivo</span></span>
-                <a href="#" class="btn btn-outline-primary fw-semibold btn-radius border-2 mb-2 d-block d-md-inline-block text-truncate">El inmueble ya está rentado o vendido</a>
-                <a href="#" class="btn btn-outline-primary fw-semibold btn-radius border-2 mb-2 d-block d-md-inline-block text-truncate">Es un intento de estafa</a>
-                <a href="#" class="btn btn-outline-primary fw-semibold btn-radius border-2 mb-2 d-block d-md-inline-block text-truncate">Otro motivo</a>
+                <a href="javascript:void(0)" (click)="enviar_observacion()" class="btn btn-outline-primary fw-semibold btn-radius border-2 mb-2 d-block d-md-inline-block text-truncate">El inmueble ya está rentado o vendido</a>
+                <a href="javascript:void(0)" (click)="enviar_observacion()" class="btn btn-outline-primary fw-semibold btn-radius border-2 mb-2 d-block d-md-inline-block text-truncate">Es un intento de estafa</a>
+                <a href="javascript:void(0)" (click)="enviar_observacion()" class="btn btn-outline-primary fw-semibold btn-radius border-2 mb-2 d-block d-md-inline-block text-truncate">Otro motivo</a>
             </div>
             <!-- <div class="mb-4 bg-light border rounded-3 p-4">
                 <span class="d-block text-muted fw-semibold mb-4">Datos del anunciante</span>
@@ -169,7 +169,8 @@
             </div>
             <h5 class="d-block text-dark fw-bold">Vendedor</h5>
             <div class="social mb-4">
-                <img src="https://via.placeholder.com/32" class="rounded-circle">
+                <!-- <img src="https://via.placeholder.com/32" class="rounded-circle"> -->
+                <img [src]="_usuarioService.ruta_foto(propiedad.usuario_foto)" class="rounded-circle">
                 <span class="text-muted">
                     <span class="fw-bold">{{ propiedad.nombre_contacto }}</span> <br>
                 <div class="rating">
@@ -366,7 +367,7 @@
                     </small>
                     <!-- <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small> -->
                     <div class="social">
-                        <img [src]="prop.foto" class="rounded-circle wh-32">
+                        <img [src]="_usuarioService.ruta_foto(prop.foto)" class="rounded-circle wh-32">
                         <span class="text-muted"> {{ prop.usuario }}  <br>
                             <div class="rating">
                                 <img src="./assets/img/icons/star-fill.svg">

@@ -9,6 +9,7 @@ import { URL_IMG } from 'src/app/config/config';
 import { Router } from '@angular/router';
 import { AnuncioService } from '../../../services/anuncio.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-busqueda-propiedad',
@@ -52,7 +53,8 @@ export class BusquedaPropiedadComponent implements OnInit {
     private _propiedadService: PropiedadService,
     private _anuncioService: AnuncioService,
     private _router: Router,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    public _usuarioService: UsuarioService
   ) {
     this.crearFormulario()
   }

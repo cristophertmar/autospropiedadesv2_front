@@ -13,6 +13,7 @@ export class Publicacion {
         public descrip3?: string,
         public dias_vigencia?: number,
         public imagen?: string,
+        public editable?: boolean
     ) {}
 
 }

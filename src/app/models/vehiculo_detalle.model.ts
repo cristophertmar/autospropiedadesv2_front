@@ -59,7 +59,10 @@ export class VehiculoDetalle {
         public  departamento?: string,
         public  ubigeo?: string,
         public  nrotelefono1_contacto?: string,
-        public  nrotelefono2_contacto?: string
+        public  nrotelefono2_contacto?: string,
+
+        public  usuario_id?: number,
+        public  usuario_foto?: string
 
 
     ) {}

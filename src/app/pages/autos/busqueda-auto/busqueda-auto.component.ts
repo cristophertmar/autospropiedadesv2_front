@@ -13,6 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AnuncioService } from '../../../services/anuncio.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-busqueda-auto',
@@ -68,7 +69,8 @@ export class BusquedaAutoComponent implements OnInit {
     private _vehiculoService: VehiculoService,
     private _anuncioService: AnuncioService,
     private _router: Router,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    public _usuarioService: UsuarioService
   ) { 
     this.crearFormulario();
   }

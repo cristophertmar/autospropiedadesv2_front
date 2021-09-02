@@ -13,6 +13,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { VehiculoListar } from 'src/app/models/vehiculoListar.model';
 import { URL_IMG } from 'src/app/config/config';
 import { Vehiculo } from 'src/app/models/vehiculo.model';
+import { UsuarioService } from '../../../services/usuario.service';
+import { ContactoService } from 'src/app/services/contacto.service';
+import { Contacto } from 'src/app/models/contacto.model';
 @Component({
   selector: 'app-detalle-auto',
   templateUrl: './detalle-auto.component.html',
@@ -47,18 +50,25 @@ export class DetalleAutoComponent implements OnInit {
   minprecio: number = 0;
   maxprecio: number = 9999999999.99;
 
+  id_publicado: string = '';
+
   constructor(
     private _vehiculoService: VehiculoService,
     private _activatedRoute: ActivatedRoute,
     private _shared: SharedService,
     private _spinner: NgxSpinnerService,
-    private _router: Router
+    private _router: Router,
+    private _contactoService: ContactoService,
+    public _usuarioService: UsuarioService
   ) {
     this.crear_formulario();
   }
 
   ngOnInit(): void {
-    this._activatedRoute.params.subscribe( ({id}) => this.detalle_vehiculo(id) );
+    this._activatedRoute.params.subscribe( ({id}) => {
+      this.id_publicado = id;
+      this.detalle_vehiculo(id);      
+    } );
 
     this.listar_vehiculo();
 
@@ -141,19 +151,36 @@ export class DetalleAutoComponent implements OnInit {
       return;
     }
 
-    this.cliente_contacto.nombre = this.formulario_mensaje.value.nombre;
+    /* this.cliente_contacto.nombre = this.formulario_mensaje.value.nombre;
     this.cliente_contacto.correo = this.formulario_mensaje.value.correo;
     this.cliente_contacto.telefono = this.formulario_mensaje.value.telefono;
     this.cliente_contacto.mensaje = this.formulario_mensaje.value.mensaje;
-    this.cliente_contacto.alertas = this.formulario_mensaje.value.alertas;
+    this.cliente_contacto.alertas = this.formulario_mensaje.value.alertas; */
+
+    let contacto: Contacto = new Contacto();
+    contacto.nombre =  this.formulario_mensaje.value.nombre;
+    contacto.correo =  this.formulario_mensaje.value.correo;
+    contacto.telefono =  this.formulario_mensaje.value.telefono;
+    contacto.tipo_anuncio =  'PROPIEDAD';
+    contacto.id_publicado =  this.id_publicado;
+    contacto.usuario_id = this.vehiculo.usuario_id;
+    contacto.correo_destino = this.vehiculo.correo; 
+    contacto.mensaje = this.formulario_mensaje.value.mensaje;
 
     this._spinner.show();
 
-    setTimeout(() => {
+    this._contactoService.insertar_contacto(contacto)
+    .subscribe(resp => {
       this._spinner.hide();
       this._shared.alert_success('Enviado satisfactoriamente');
       this.mostrar_formulario = false;
-     }, 3000);
+    });
+
+   /*  setTimeout(() => {
+      this._spinner.hide();
+      this._shared.alert_success('Enviado satisfactoriamente');
+      this.mostrar_formulario = false;
+     }, 3000); */
 
   }
 

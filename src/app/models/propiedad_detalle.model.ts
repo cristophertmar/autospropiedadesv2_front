@@ -36,7 +36,8 @@ export class PropiedadDetalle {
         public ascensores_id?: number,
         public uso_profesional_id?: number,
         public uso_comercial_id?: number,
-        public mascotas_id?: number
+        public mascotas_id?: number,
+        public usuario_foto?: string
     ) {}
 
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { URL_SERVICIOS } from '../config/config';
+import { URL_IMG, URL_SERVICIOS } from '../config/config';
 import { Usuario } from '../models/usuario.model';
 import { map, catchError } from 'rxjs/operators';
 import { throwError} from 'rxjs';
@@ -120,6 +120,24 @@ export class UsuarioService {
     );
 
 
+  }
+
+  ruta_foto(img: string) {
+
+    if ( img.indexOf('https') >= 0 ) {
+      return img;
+    }
+
+    let url = URL_IMG;
+
+    if ( img === 'default.jpg' || img.length === 0 ) {
+      return url += 'resource/default.jpg';
+    }
+
+    url += img;
+
+    return url;
+    
   }
 
 

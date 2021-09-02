@@ -278,7 +278,7 @@
                             <!-- <small class="text-small text-primary fw-bold d-block mb-2">12 de may at 12:10 PM</small> -->
                             <small class="text-small text-primary fw-bold d-block mb-2"> {{ veh.condicion_vehiculo }} </small>
                             <div class="social">
-                                <img [src]="veh.foto" class="rounded-circle wh-32">
+                                <img [src]="_usuarioService.ruta_foto(veh.foto)" class="rounded-circle wh-32">
                                 <span class="text-muted"> {{ veh.usuario }}  <br>
                                     <div class="rating">
                                         <img src="./assets/img/icons/star-fill.svg">

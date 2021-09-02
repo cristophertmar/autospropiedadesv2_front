@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+    <p style="color: white"> Cargando... </p>
+</ngx-spinner>
 <div class="container my-4">
     <div class="row">
         <div class="col-lg-3 col-md-4 mb-4">
@@ -25,7 +28,8 @@
                     <div class="card border border-0 bg-light mb-4 rounded-3">
                         <div class="overlay-warning rounded-3">
                             <div class="d-grid">
-                                <a (click)="editarPublicacion(publicacion)" href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">EDITAR</a>
+                                <a (click)="editarPublicacion(publicacion)" *ngIf="publicacion.editable" href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">EDITAR</a>
+                                <a (click)="no_premium()" *ngIf="!publicacion.editable" href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">EDITAR</a>
                             </div>
                         </div>
                         <div class="card-img">

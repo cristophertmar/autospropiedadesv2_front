@@ -245,11 +245,11 @@ export class CheckoutComponent implements OnInit {
   notificar_pago() {
       
       this._anuncioService.ids_autos.forEach(id => {
-        this._anuncioService.activar_anuncio(id, 'auto').subscribe();
+        this._anuncioService.activar_anuncio(id, 'auto', true).subscribe();
       });
 
       this._anuncioService.ids_propiedades.forEach(id => {
-        this._anuncioService.activar_anuncio(id, 'propiedad').subscribe();
+        this._anuncioService.activar_anuncio(id, 'propiedad', true).subscribe();
       });
 
       this._anuncioService.limpiar_storage();
