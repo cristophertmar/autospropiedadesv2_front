@@ -9,6 +9,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedService } from '../../../services/shared.service';
 import { PropiedadListar } from 'src/app/models/propiedad_listar.model';
 import { Propiedad } from '../../../models/propiedad.model';
+import { URL_IMG } from 'src/app/config/config';
+import { ContactoService } from '../../../services/contacto.service';
+import { Contacto } from 'src/app/models/contacto.model';
 
 @Component({
   selector: 'app-detalle-propiedad',
@@ -48,19 +51,25 @@ export class DetallePropiedadComponent implements OnInit {
   dormitorios: number = 0;
   banios: number = 0;
 
+  id_publicado: string = '';
+
 
   constructor(
     private _propiedadService: PropiedadService,
     private _activatedRoute: ActivatedRoute,
     private _spinner: NgxSpinnerService,
     private _shared: SharedService,
-    private _router: Router
+    private _router: Router,
+    private _contactoService: ContactoService
   ) {
     this.crear_formulario();
    }
 
   ngOnInit(): void {
-    this._activatedRoute.params.subscribe( ({id}) => this.detalle_propiedad(id) );
+    this._activatedRoute.params.subscribe( ({id}) => {
+      this.detalle_propiedad(id); 
+      this.id_publicado = id
+    });
 
     this.listar_propiedades();
 
@@ -120,13 +129,27 @@ export class DetallePropiedadComponent implements OnInit {
 
   }
 
-  crear_formulario() {
+  obtener_ruta(fichero: string) {
+    return URL_IMG + fichero;
+  } 
+
+  /* crear_formulario() {
     this.formulario_mensaje = new FormGroup({
       nombre: new FormControl(null, [Validators.required]),
       correo: new FormControl(null, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
       telefono: new FormControl(null, [Validators.required]),
       mensaje: new FormControl(null, [Validators.required]),
       alertas: new FormControl(false)
+    });
+  } */
+
+  crear_formulario() {
+    this.formulario_mensaje = new FormGroup({
+      nombre: new FormControl('Cristopher', [Validators.required]),
+      correo: new FormControl('cristopher.tmar@gmail.com', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+      telefono: new FormControl('949281434', [Validators.required]),
+      mensaje: new FormControl('Holamundo...', [Validators.required]),
+      alertas: new FormControl(true)
     });
   }
 
@@ -152,19 +175,35 @@ export class DetallePropiedadComponent implements OnInit {
       return;
     }
 
-    this.cliente_contacto.nombre = this.formulario_mensaje.value.nombre;
+    /* this.cliente_contacto.nombre = this.formulario_mensaje.value.nombre;
     this.cliente_contacto.correo = this.formulario_mensaje.value.correo;
     this.cliente_contacto.telefono = this.formulario_mensaje.value.telefono;
     this.cliente_contacto.mensaje = this.formulario_mensaje.value.mensaje;
-    this.cliente_contacto.alertas = this.formulario_mensaje.value.alertas;
+    this.cliente_contacto.alertas = this.formulario_mensaje.value.alertas; */
+
+    let contacto: Contacto = new Contacto();
+    contacto.nombre =  this.formulario_mensaje.value.nombre;
+    contacto.correo =  this.formulario_mensaje.value.correo;
+    contacto.telefono =  this.formulario_mensaje.value.telefono;
+    contacto.tipo_anuncio =  'PROPIEDAD';
+    contacto.id_publicado =  this.id_publicado;
+    contacto.usuario_id = this.propiedad.usuario_id;
+    contacto.correo_destino = this.propiedad.correo_contacto;
+    contacto.mensaje = this.formulario_mensaje.value.mensaje;
 
     this._spinner.show();
 
-    setTimeout(() => {
+    this._contactoService.insertar_contacto(contacto)
+    .subscribe(resp => {
       this._spinner.hide();
       this._shared.alert_success('Enviado satisfactoriamente');
       this.mostrar_formulario = false;
-     }, 3000);
+    });
+
+
+    /* setTimeout(() => {
+      
+     }, 3000); */
 
   }
 

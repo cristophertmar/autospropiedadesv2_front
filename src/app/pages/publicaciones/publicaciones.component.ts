@@ -57,11 +57,11 @@ export class PublicacionesComponent implements OnInit {
   editarPublicacion(p: Publicacion) {
 
     if (p.tipo_anuncio === 'Auto') {
-      this._router.navigate(['/editar-auto', p.id_publicacion]);
+      this._router.navigate(['/autos/editar/informacion', p.id_publicacion]);
       return;
     }
-
-    this._router.navigate(['/editar-propiedad', p.id_publicacion]);
+    
+    this._router.navigate(['/propiedades/editar/principales', p.id_publicacion]);
     return;
 
   }

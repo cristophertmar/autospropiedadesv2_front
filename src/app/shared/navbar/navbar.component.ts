@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -14,19 +16,31 @@ import { UsuarioService } from '../../services/usuario.service';
 export class NavbarComponent implements OnInit {
 
   intento_login: boolean;
-  usuario: Usuario;
+  usuario: Usuario = {};
   usuario_social: SocialUser;
   loggedIn: boolean;
   accedido: boolean;
 
+  mod_loguin: boolean = false;
+  mod_registro: boolean = false;
+
+  forma_login: FormGroup;
+  forma_registro: FormGroup;
+
+  @ViewChild('cerrar_mdl_login') cerrar_mdl_login: ElementRef<HTMLElement>;
+  @ViewChild('cerrar_mdl_registro') cerrar_mdl_registro: ElementRef<HTMLElement>;
+
   constructor(
     public _usuarioService: UsuarioService,
     private _authService: SocialAuthService,
-    public _router: Router
+    public _router: Router,
+    private _spinner: NgxSpinnerService
   ) {
 
+  this.crearForm();
   this.accedido = false;
   this.intento_login = true;
+  
 
   }
 
@@ -43,6 +57,92 @@ export class NavbarComponent implements OnInit {
         this.redireccion();
       }      
     });
+  }
+
+  crearForm() {
+
+    this.forma_login = new FormGroup({
+      correo_login: new FormControl( '', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+      password_login: new FormControl( '', [Validators.required, Validators.minLength(6)] )
+    });
+
+    this.forma_registro = new FormGroup({
+      nombre: new FormControl( '', [Validators.required, Validators.minLength(3)] ),
+      correo: new FormControl( '', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
+      password: new FormControl( '', [Validators.required, Validators.minLength(6)] ),
+      password2: new FormControl( '', Validators.required)
+    });
+  }
+
+  get correoNoValido_login() {
+    return this.forma_login.get('correo_login').invalid && this.forma_login.get('correo_login').touched;
+  }
+  get passNoValido_login() {
+    return this.forma_login.get('password_login').invalid && this.forma_login.get('password_login').touched;
+  }
+
+
+  get nombreNoValido_registro() {
+    return this.forma_registro.get('nombre').invalid && this.forma_registro.get('nombre').touched;
+  }
+
+  get correoNoValido_registro() {
+    return this.forma_registro.get('correo').invalid && this.forma_registro.get('correo').touched;
+  }
+
+  get pass1NoValido_registro() {
+    return this.forma_registro.get('password').invalid && this.forma_registro.get('password').touched;
+  }
+  get pass2NoValido_registro() {
+    return this.forma_registro.get('password2').invalid && this.forma_registro.get('password2').touched;
+  }
+
+  loguin_web() {
+    if ( this.forma_login.invalid ) {
+      return Object.values( this.forma_login.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
+    this.usuario.correo = this.forma_login.get('correo_login').value;
+    this.usuario.pass = this.forma_login.value.password_login;
+    this._spinner.show();
+    this._usuarioService.login_usuario( this.usuario)
+    .subscribe(correcto => {
+      this._spinner.hide();
+      this.cerrar_mdl_login.nativeElement.click();
+      this._router.navigate(['/anuncio/seleccionar']);
+    });
+
+  }
+
+  registro_web() {
+    if ( this.forma_registro.invalid ) {
+      return Object.values( this.forma_registro.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
+    const usuario = new Usuario(
+      this.forma_registro.value.correo,
+      this.forma_registro.value.password,
+      this.forma_registro.value.nombre
+    );
+    this._spinner.show();
+    this._usuarioService.registro_usuario(usuario)
+    .subscribe( resp => {
+      this._spinner.hide();
+      this.cerrar_mdl_registro.nativeElement.click();
+      this._router.navigate(['/anuncio/seleccionar']);
+    });
+  }  
+
+  cambiar_mod_loguin(){
+    this.mod_loguin = !this.mod_loguin;
+  }
+
+  cambiar_mod_registro() {
+    this.mod_registro = !this.mod_registro;
   }
 
   redireccion() {

@@ -1,0 +1,485 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">INFORMACIÓN</h3>
+            </div>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="marca" name="marca" id="marca" class="form-select" [class.is-invalid]="marcaNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let marca of marcas" [value]="marca.id_marca"> {{ marca.descrip_marca }} </option>
+                            </select>
+                            <label for="marca">Marca</label>
+                            <div class="invalid-feedback">
+                                Seleccione una marca
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="modelo" name="modelo" id="modelo" class="form-select" [class.is-invalid]="modeloNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option *ngFor="let modelo of modelos" [value]="modelo.id_modelo"> {{ modelo.descrip_modelo }} </option>
+                            </select>
+                            <label for="modelo">Modelo</label>
+                            <div class="invalid-feedback">
+                                Seleccione un modelo
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="anio" name="anio" id="anio" class="form-select" [class.is-invalid]="anioNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=2020>2021</option>
+                                <option value=2020>2020</option>
+                                <option value=2019>2019</option>
+                                <option value=2018>2018</option>
+                                <option value=2017>2017</option>
+                                <option value=2016>2016</option>
+                                <option value=2015>2015</option>
+                                <option value=2014>2014</option>
+                                <option value=2013>2013</option>
+                                <option value=2012>2012</option>
+                                <option value=2011>2011</option>
+                                <option value=2010>2010</option>
+                                <option value=2009>2009</option>
+                                <option value=2008>2008</option>
+                                <option value=2007>2007</option>
+                                <option value=2006>2006</option>
+                                <option value=2005>2005</option>
+                                <option value=2004>2004</option>
+                                <option value=2003>2003</option>
+                                <option value=2002>2002</option>
+                                <option value=2001>2001</option>
+                                <option value=1999>1999</option>
+                                <option value=1998>1998</option>
+                                <option value=1997>1997</option>
+                                <option value=1996>1996</option>
+                                <option value=1995>1995</option>
+                                <option value=1994>1994</option>
+                                <option value=1993>1993</option>
+                                <option value=1992>1992</option>
+                                <option value=1991>1991</option>
+                                <option value=1990>1990</option>
+                            </select>
+                            <label for="anio">Año</label>
+                            <div class="invalid-feedback">
+                                Seleccione el año
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="transmision" name="transmision" id="transmision" class="form-select" [class.is-invalid]="transmisionNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=1>Automática</option>
+                                <option value=2>Automática (Secuencial)</option>
+                                <option value=3>Mecánica</option>
+                            </select>
+                            <label for="transmision">Tipo de transmisión</label>
+                            <div class="invalid-feedback">
+                                Seleccione la transmisión
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="combustible" name="combustible" id="combustible" class="form-select" [class.is-invalid]="combustibleNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=1>Diesel</option>
+                                <option value=2>Dual</option>
+                                <option value=3>Eléctrico</option>
+                                <option value=4>Gas</option>
+                                <option value=5>Gas GLP</option>
+                                <option value=6>Gas GNV</option>
+                                <option value=7>Gasolina</option>
+                                <option value=8>Híbrido</option>
+                            </select>
+                            <label for="combustible">Combustible(cilindrada)</label>
+                            <div class="invalid-feedback">
+                                Seleccione el tipo de combustible
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="timon" name="timon" id="timon" class="form-select" [class.is-invalid]="timonNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=1>Cambiado</option>
+                                <option value=2>Original</option>
+                            </select>
+                            <label for="timon">Timón</label>
+                            <div class="invalid-feedback">
+                                Seleccione el tipo de timón
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input formControlName="kilometraje" name="kilometraje" type="text" id="kilometraje" class="form-control" [class.is-invalid]="kilometrajeNoValido">
+                            <label for="kilometraje">Kilometraje</label>
+                            <div class="invalid-feedback">
+                                Ingrese kilometraje
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="puertas" name="puertas" id="puertas" class="form-select" [class.is-invalid]="puertasNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=1>2</option>
+                                <option value=2>3</option>
+                                <option value=3>4</option>
+                                <option value=4>5</option>
+                                <option value=5>Más de 5</option>
+                            </select>
+                            <label for="puertas">Nro de puertas</label>
+                            <div class="invalid-feedback">
+                                Seleccione el número de puertas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="traccion" name="traccion" id="traccion" class="form-select" [class.is-invalid]="traccionNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=1>4 Matic</option>
+                                <option value=2>4 Motion</option>
+                                <option value=3>4WD</option>
+                                <option value=4>4x2</option>
+                                <option value=5>4x4</option>
+                                <option value=6>6x4</option>
+                                <option value=7>8x4</option>
+                                <option value=8>AWD</option>
+                                <option value=9>Delantera</option>
+                                <option value=10>Posterior</option>
+                                <option value=11>Quattro</option>
+                                <option value=12>Tiptronic</option>
+                            </select>
+                            <label for="traccion">Tracción</label>
+                            <div class="invalid-feedback">
+                                Seleccione la tracción
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="color" name="color" id="color" class="form-select" [class.is-invalid]="colorNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=2>Amarillo</option>
+                                <option value=3>Arena</option>
+                                <option value=4>Azul</option>
+                                <option value=5>Beige</option>
+                                <option value=6>Blanco</option>
+                                <option value=7>Borgoña</option>
+                                <option value=8>Bronce</option>
+                                <option value=9>Café</option>
+                                <option value=10>Celeste</option>
+                                <option value=11>Champagne</option>
+                                <option value=12>Chocolate</option>
+                                <option value=13>Cobre</option>
+                                <option value=14>Dorado</option>
+                                <option value=15>Granate</option>
+                                <option value=16>Gris Metálico</option>
+                                <option value=17>Gris Oscuro</option>
+                                <option value=18>Guinda</option>
+                                <option value=19>Guinda Perlado</option>
+                                <option value=20>Hueso</option>
+                                <option value=21>Humo</option>
+                                <option value=22>Kalamata</option>
+                                <option value=23>Lila</option>
+                                <option value=24>Magenta</option>
+                                <option value=25>Marfil</option>
+                                <option value=26>Marrón</option>
+                                <option value=27>Marrón Claro</option>
+                                <option value=28>Marrón Oscuro</option>
+                                <option value=29>Marrón Perlado</option>
+                                <option value=30>Mostaza</option>
+                                <option value=31>Naranja</option>
+                                <option value=32>Negro</option>
+                                <option value=33>Oro</option>
+                                <option value=34>Oro Verde</option>
+                                <option value=35>Perla Dorado</option>
+                                <option value=36>Plata</option>
+                                <option value=37>Plata Perla</option>
+                                <option value=38>Plateado</option>
+                                <option value=39>Plomo</option>
+                                <option value=40>Plomo Azulado</option>
+                                <option value=41>Plomo Ceniza</option>
+                                <option value=42>Púrpura</option>
+                                <option value=43>Rojo</option>
+                                <option value=44>Rojo Carmesí</option>
+                                <option value=45>Rojo Cereza</option>
+                                <option value=46>Rojo Oscuro</option>
+                                <option value=47>Rosa</option>
+                                <option value=48>Salmón</option>
+                                <option value=49>Tabaco</option>
+                                <option value=50>Terracota</option>
+                                <option value=51>Tornasol</option>
+                                <option value=52>Turquesa</option>
+                                <option value=53>Uva</option>
+                                <option value=54>Vainilla</option>
+                                <option value=55>Verde</option>
+                                <option value=56>Verde Metálico</option>
+                                <option value=57>Verde Perlado</option>
+                                <option value=58>Verde Petroleo</option>
+                            </select>
+                            <label for="color">Color</label>
+                            <div class="invalid-feedback">
+                                Seleccione el color
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="cilindros" name="cilindros" id="cilindros" class="form-select" [class.is-invalid]="cilindrosNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value=1>2</option>
+                                <option value=2>3</option>
+                                <option value=3>4</option>
+                                <option value=4>5</option>
+                                <option value=5>6</option>
+                                <option value=6>8</option>
+                                <option value=7>10</option>
+                                <option value=8>12</option>
+                                <option value=9>14</option>
+                            </select>
+                            <label for="cilindros">Nro de cilindros</label>
+                            <div class="invalid-feedback">
+                                Seleccione el número de cilindros
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Información del anuncio</h5>
+                <!-- <div class="form-floating mb-3">
+                    <input formControlName="name" name="name" type="text" id="titulo" class="form-control">
+                    <label for="titulo">Título del anuncio</label>
+                </div> -->
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Menciona las caracteristicas principales de tu articulo (Ejem:Marca, modelo, antiguedad, tipo, etc)
+                    </small>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea formControlName="descripcion" name="descripcion" id="descripcion" class="form-control" [class.is-invalid]="descripcionNoValido"></textarea>
+                    <label for="descripcion">Descripción del anuncio</label>
+                    <div class="invalid-feedback">
+                        Ingrese la descripción
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Incluye estado, características y motivo de venta
+                    </small>
+                </div>
+                <h5 class="d-block text-dark fw-semibold mb-4">Fija tu precio</h5>
+                <div class="d-flex gap-2 mb-4">
+                    <div class="d-flex flex-nowrap justify-content-start align-items-center gap-2 mb-3">
+                        <input formControlName="tipo_moneda" name="tipo_moneda" type="radio" class="btn-check" id="tipo1" value="PEN">
+                        <label class="btn btn-outline-primary btn-lg" for="tipo1">PEN</label>
+                        <input formControlName="tipo_moneda" name="tipo_moneda" type="radio" class="btn-check" id="tipo2" value="USD">
+                        <label class="btn btn-outline-primary btn-lg" for="tipo2">USD</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input formControlName="precio" name="precio" type="text" id="precio" class="form-control" [class.is-invalid]="precioNoValido">
+                        <label for="precio">Precio</label>
+                        <div class="invalid-feedback">
+                            Ingrese el precio
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Accesorios</h5>
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Equipamiento</label>
+                        <div class="form-check mb-3">
+                            <input formControlName="retrovisor_acce_veh" name="retrovisor_acce_veh" class="form-check-input" type="checkbox" id="checkbox1">
+                            <label class="form-check-label" for="checkbox1">
+                                Retrovisores Eléctricos
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="neblinero_acce_veh" name="neblinero_acce_veh" class="form-check-input" type="checkbox" id="checkbox2">
+                            <label class="form-check-label" for="checkbox2">
+                                Neblineros
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="aireacond_acce_veh" name="aireacond_acce_veh" class="form-check-input" type="checkbox" id="checkbox3">
+                            <label class="form-check-label" for="checkbox3">
+                                Aire acondicionado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="fullequipo_acce_veh" name="fullequipo_acce_veh" class="form-check-input" type="checkbox" id="checkbox4">
+                            <label class="form-check-label" for="checkbox4">
+                                Full equipo
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="computador_acce_veh" name="computador_acce_veh" class="form-check-input" type="checkbox" id="checkbox5">
+                            <label class="form-check-label" for="checkbox5">
+                                Computadora de abordo
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="parlante_acce_veh" name="parlante_acce_veh" class="form-check-input" type="checkbox" id="checkbox6">
+                            <label class="form-check-label" for="checkbox6">
+                                Parlantes/Bajos
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="cd_acce_veh" name="cd_acce_veh" class="form-check-input" type="checkbox" id="checkbox7">
+                            <label class="form-check-label" for="checkbox7">
+                                Radio CD
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="mp3_acce_veh" name="mp3_acce_veh" class="form-check-input" type="checkbox" id="checkbox8">
+                            <label class="form-check-label" for="checkbox8">
+                                Radio MP3
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Exterior</label>
+                        <div class="form-check mb-3">
+                            <input formControlName="aro_acce_veh" name="aro_acce_veh" class="form-check-input" type="checkbox" id="checkbox9">
+                            <label class="form-check-label" for="checkbox9">
+                                Aros
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="aroaleacion_acce_veh" name="aroaleacion_acce_veh" class="form-check-input" type="checkbox" id="checkbox10">
+                            <label class="form-check-label" for="checkbox10">
+                                Aros de aleación
+                            </label>
+                        </div>
+                        <!-- <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="checkbox10">
+                            <label class="form-check-label" for="checkbox10">
+                                Aire acondicionado
+                            </label>
+                        </div> -->
+                        <div class="form-check mb-3">
+                            <input formControlName="parrilla_acce_veh" name="parrilla_acce_veh" class="form-check-input" type="checkbox" id="checkbox11">
+                            <label class="form-check-label" for="checkbox11">
+                                Parrilla
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="luceshalo_acce_veh" name="luceshalo_acce_veh" class="form-check-input" type="checkbox" id="checkbox12">
+                            <label class="form-check-label" for="checkbox12">
+                                Luces halógenas
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Seguridad</label>
+                        <div class="form-check mb-3">
+                            <input formControlName="gps_acce_veh" name="gps_acce_veh" class="form-check-input" type="checkbox" id="checkbox13">
+                            <label class="form-check-label" for="checkbox13">
+                                Localizador (GPS)
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="airbag_acce_veh" name="airbag_acce_veh" class="form-check-input" type="checkbox" id="checkbox14">
+                            <label class="form-check-label" for="checkbox14">
+                                Airbag
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="lamina_acce_veh" name="lamina_acce_veh" class="form-check-input" type="checkbox" id="checkbox15">
+                            <label class="form-check-label" for="checkbox15">
+                                Láminas de seguridad
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="blindado_acce_veh" name="blindado_acce_veh" class="form-check-input" type="checkbox" id="checkbox16">
+                            <label class="form-check-label" for="checkbox16">
+                                Blindado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="farantiniebdel_acce_veh" name="farantiniebdel_acce_veh" class="form-check-input" type="checkbox" id="checkbox17">
+                            <label class="form-check-label" for="checkbox17">
+                                Faros antiniebla delantero
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="farantiniebtras_acce_veh" name="farantiniebtras_acce_veh" class="form-check-input" type="checkbox" id="checkbox18">
+                            <label class="form-check-label" for="checkbox18">
+                                Faros antiniebla trasero
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="inmovmotor_acce_veh" name="inmovmotor_acce_veh" class="form-check-input" type="checkbox" id="checkbox19">
+                            <label class="form-check-label" for="checkbox19">
+                                Inmovilizador de motor
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="repartelecfrena_acce_veh" name="repartelecfrena_acce_veh" class="form-check-input" type="checkbox" id="checkbox20">
+                            <label class="form-check-label" for="checkbox20">
+                                Repartidor electrónico de frenado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="frenoabs_acce_veh" name="frenoabs_acce_veh" class="form-check-input" type="checkbox" id="checkbox21">
+                            <label class="form-check-label" for="checkbox21">
+                                Frenos ABS
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="alarma_acce_veh" name="alarma_acce_veh" class="form-check-input" type="checkbox" id="checkbox22">
+                            <label class="form-check-label" for="checkbox22">
+                                Alarma
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="fw-semibold mb-4">Extras</label>
+                        <div class="form-check mb-3">
+                            <input formControlName="sunroof_acce_veh" name="sunroof_acce_veh" class="form-check-input" type="checkbox" id="checkbox23">
+                            <label class="form-check-label" for="checkbox23">
+                                Sunroof
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="ascuero_acce_veh" name="ascuero_acce_veh" class="form-check-input" type="checkbox" id="checkbox24">
+                            <label class="form-check-label" for="checkbox24">
+                                Asientos de cuero
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input formControlName="climatizador_acce_veh" name="climatizador_acce_veh" class="form-check-input" type="checkbox" id="checkbox25">
+                            <label class="form-check-label" for="checkbox25">
+                                Climatizador
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

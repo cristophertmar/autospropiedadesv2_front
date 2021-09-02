@@ -3,7 +3,7 @@
         <span class="d-block text-white fw-semibold mb-4">Administrar publicaciones</span>
         <ul class="nav nav-pills flex-column mb-4" id="menu">
             <li class="nav-item">
-                <a href="javascript:void(0)" [routerLink]="['/mis-publicaciones']" class="nav-link text-white px-0 fw-light">
+                <a href="javascript:void(0)" (click)="eliminar_storage()" [routerLink]="['/mis-publicaciones']" class="nav-link text-white px-0 fw-light">
                     <img class="me-2" src="./assets/img/icons/dialogo.svg"> Mis publicaciones
                 </a>
             </li>
@@ -13,19 +13,19 @@
                 </a>
                 <ul class="collapse nav flex-column ms-4" id="submenu1" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/propiedades/publicar/principales']" class="nav-link text-white px-0 fw-light">1. Principales</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('propiedad', '/propiedades/publicar/principales')" class="nav-link text-white px-0 fw-light">1. Principales</a>
                     </li>
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/propiedades/publicar/caracteristicas']" class="nav-link text-white px-0 fw-light">2. Características</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('propiedad', '/propiedades/publicar/caracteristicas')" class="nav-link text-white px-0 fw-light">2. Características</a>
                     </li>
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/propiedades/publicar/multimedia']" class="nav-link text-white px-0 fw-light">3. Multimedia</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('propiedad', '/propiedades/publicar/multimedia')" class="nav-link text-white px-0 fw-light">3. Multimedia</a>
                     </li>
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/propiedades/publicar/extras']" class="nav-link text-white px-0 fw-light">4. Extras</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('propiedad', '/propiedades/publicar/extras')" class="nav-link text-white px-0 fw-light">4. Extras</a>
                     </li>
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/propiedades/publicar/contacto']" class="nav-link text-white px-0 fw-light">5. Contacto</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('propiedad', '/propiedades/publicar/contacto')" class="nav-link text-white px-0 fw-light">5. Contacto</a>
                     </li>
                     <!-- fw-semibold -->
                 </ul>
@@ -36,29 +36,29 @@
                 </a>
                 <ul class="collapse show nav flex-column ms-4" id="submenu2" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/autos/publicar/informacion']" class="nav-link text-white px-0 fw-light">1. Información</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('auto', '/autos/publicar/informacion')" class="nav-link text-white px-0 fw-light">1. Información</a>
                     </li>
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/autos/publicar/ubicacion']" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('auto', '/autos/publicar/ubicacion')" class="nav-link text-white px-0 fw-light">2. Ubicación</a>
                     </li>
                     <li class="w-100">
-                        <a href="javascript:void(0)" [routerLink]="['/autos/publicar/contacto']" class="nav-link text-white px-0 fw-light">3. Contacto</a>
+                        <a href="javascript:void(0)" (click)="verificar_nuevo('auto', '/autos/publicar/contacto')" class="nav-link text-white px-0 fw-light">3. Contacto</a>
                     </li>
                 </ul>
             </li>
             <li class="nav-item mb-4">
-                <a href="javascript:void(0)" [routerLink]="['/publicar-anuncio']" class="nav-link text-white px-0 fw-light">
+                <a href="javascript:void(0)" (click)="eliminar_storage()" [routerLink]="['/publicar-anuncio']" class="nav-link text-white px-0 fw-light">
                     <img class="me-2" src="./assets/img/icons/anuncio.svg"> Publicar anuncio
                 </a>
             </li>
             <li><span class="d-block text-white fw-semibold mb-4">Administrar cuenta</span></li>
             <li>
-                <a href="javascript:void(0)" [routerLink]="['/mi-perfil']" class="nav-link text-white px-0 fw-light">
+                <a href="javascript:void(0)" (click)="eliminar_storage()" [routerLink]="['/mi-perfil']" class="nav-link text-white px-0 fw-light">
                     <img class="me-2" src="./assets/img/icons/user.svg"> Mi perfil
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)" (click)="_usuario.logout_usuario()" class="nav-link text-white px-0 fw-light">
+                <a href="javascript:void(0)" (click)="eliminar_storage()" (click)="_usuario.logout_usuario()" class="nav-link text-white px-0 fw-light">
                     <img class="me-2" src="./assets/img/icons/cerrar.svg"> Cerrar sesión
                 </a>
             </li>

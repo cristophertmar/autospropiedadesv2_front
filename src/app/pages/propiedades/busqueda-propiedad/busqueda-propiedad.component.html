@@ -134,13 +134,13 @@
                         <div class="mb-2">
                             <div class="d-flex gap-2">
                                 <div>
-                                    <input formcontrolname="minprecio" name="minprecio" type="text" placeholder="Desde" class="form-control" ng-reflect-name="minprecio">
+                                    <input id="txt_minprecio" #txt_minprecio formcontrolname="minprecio" name="minprecio" type="number" placeholder="Desde" class="form-control">
                                 </div>
                                 <div>
-                                    <input formcontrolname="maxprecio" name="maxprecio" type="text" placeholder="Hasta" class="form-control" ng-reflect-name="maxprecio">
+                                    <input id="txt_maxprecio" #txt_maxprecio formcontrolname="maxprecio" name="maxprecio" type="number" placeholder="Hasta" class="form-control">
                                 </div>
                                 <div>
-                                    <button (click)="seleccionar_rango_precio()" class="btn btn-warning">
+                                    <button (click)="seleccionar_rango_precio(txt_minprecio.value, txt_maxprecio.value)" class="btn btn-warning">
                                         <i class="lnr lnr-magnifier"></i>
                                     </button>
                                 </div>
@@ -163,53 +163,53 @@
             </div>
             <h6 class="text-dark mb-4 fw-semibold">Otras operaciones</h6>
 
-            <div (click)="listar_propiedades()" class="mb-4">
+            <div class="mb-4">
                 <span class="d-block text-muted mb-2">Dormitorios</span>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_dormitorio(1)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio1" formControlName="dormitorios" name="dormitorios" value="1">
                     <label class="form-check-label" for="radio1">1</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_dormitorio(2)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio2" formControlName="dormitorios" name="dormitorios" value="2">
                     <label class="form-check-label" for="radio2">2</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_dormitorio(3)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio3" formControlName="dormitorios" name="dormitorios" value="3">
                     <label class="form-check-label" for="radio3">3</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_dormitorio(4)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio4" formControlName="dormitorios" name="dormitorios" value="4">
                     <label class="form-check-label" for="radio4">4</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_dormitorio(5)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio5" formControlName="dormitorios" name="dormitorios" value="5">
                     <label class="form-check-label" for="radio5">5</label>
                 </div>
             </div>
-            <div (click)="listar_propiedades()" class="mb-4">
+            <div class="mb-4">
                 <span class="d-block text-muted mb-2">Baños</span>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_banios(1)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio1" formControlName="banios" name="banios" value="1">
                     <label class="form-check-label" for="radio1">1</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_banios(2)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio2" formControlName="banios" name="banios" value="2">
                     <label class="form-check-label" for="radio2">2</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_banios(3)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio3" formControlName="banios" name="banios" value="3">
                     <label class="form-check-label" for="radio3">3</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_banios(4)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio4" formControlName="banios" name="banios" value="4">
                     <label class="form-check-label" for="radio4">4</label>
                 </div>
-                <div class="form-check form-check-inline">
+                <div (click)="seleccionar_banios(5)" class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio5" formControlName="banios" name="banios" value="5">
                     <label class="form-check-label" for="radio5">5</label>
                 </div>
             </div>
-            <div (click)="listar_propiedades()" class="mb-4">
+            <!-- <div (click)="listar_propiedades()" class="mb-4">
                 <span class="d-block text-muted mb-2">Estacionamientos</span>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="radio6" formControlName="cocheras" name="cocheras" value="0">
@@ -231,7 +231,7 @@
                     <input class="form-check-input" type="radio" id="radio10" formControlName="cocheras" name="cocheras" value="4">
                     <label class="form-check-label" for="radio10">4</label>
                 </div>
-            </div>
+            </div> -->
             <!-- <h6 class="text-dark mb-4 fw-semibold">Multimedia</h6>
             <div class="form-check mb-4">
                 <input class="form-check-input" type="checkbox" id="checkbox4" name="estacionamientos">
@@ -257,7 +257,7 @@
                     <label for="antiguedad">Antiguedad</label>
                 </div>
             </div> -->
-            <div class="mb-4">
+            <div class="mb-4 ocultar">
                 <div class="form-floating">
                     <select id="mantenimiento" class="form-select" formControlName="mantenimiento" name="mantenimiento">
                         <option value="0">(Seleccionar)</option>
@@ -321,14 +321,23 @@
                 </div>
             </div>-->
             <h6 class="text-dark mb-4 fw-semibold">Tipo de anunciante</h6>
-            <div (click)="listar_propiedades()" class="form-check mb-4">
+            <!-- <div (click)="seleccionar_tipo_anunciante(2)" class="form-check mb-4">
                 <input class="form-check-input" type="checkbox" id="checkbox8" formControlName="tipo_anunciante" name="tipo_anunciante" value="2">
                 <label class="form-check-label" for="checkbox8">Inmobiliaria</label>
             </div>
-            <div (click)="listar_propiedades()" class="form-check mb-4">
+            <div (click)="seleccionar_tipo_anunciante(1)" class="form-check mb-4">
                 <input class="form-check-input" type="checkbox" id="checkbox9" formControlName="tipo_anunciante" name="tipo_anunciante" value="1">
                 <label class="form-check-label" for="checkbox9">Dueño directo</label>
+            </div> -->
+            <div (click)="seleccionar_tipo_anunciante(1)" class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="tipo_anunciante_d" formControlName="tipo_anunciante" name="tipo_anunciante" value="1">
+                <label class="form-check-label" for="tipo_anunciante_d">Dueño directo</label>
             </div>
+            <div (click)="seleccionar_tipo_anunciante(2)" class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="tipo_anunciante_i" formControlName="tipo_anunciante" name="tipo_anunciante" value="2">
+                <label class="form-check-label" for="tipo_anunciante_i">Inmobiliaria</label>
+            </div>
+
         </div>
         <div class="col-md-9 ps-6" id="productos">
             <div class="d-flex gap-2 mb-4">
@@ -363,8 +372,8 @@
                             </div>
                         </div>
                         <div class="card-img">
-                            <img class="card-img-top" src="http://via.placeholder.com/120x100">
-                            <!-- <img class="img-whp" [src]="obtener_ruta(prop.imagen)" alt="auto.jpg"> -->
+                            <!-- <img class="card-img-top" src="http://via.placeholder.com/120x100"> -->
+                            <img class="card-img-top" [src]="obtener_ruta(prop.imagen)">
                             <div class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
                         </div>
                         <div class="card-body">

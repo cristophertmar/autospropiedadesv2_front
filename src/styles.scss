@@ -95,6 +95,13 @@ a {
 .rounded-3 img.card-img-top {
     border-top-left-radius: 10px !important;
     border-top-right-radius: 10px !important;
+    height: 200px;
+    object-fit: cover;
+}
+
+img.card-img-top {
+    height: 90px;
+    object-fit: contain;
 }
 
 .btn-outline-warning:hover {
@@ -564,4 +571,8 @@ agm-map {
 .wh-32 {
     width: 32px !important;
     height: 32px !important;
+}
+
+.ocultar {
+    display: none !important;
 }

@@ -1,0 +1,153 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">PRINCIPALES</h3>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-dark fw-semibold mb-4">Cuéntanos, ¿Qué quieres publicar?</h5>
+            </div>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="operacion" name="operacion" id="operacion" class="form-select" [class.is-invalid]="operacionNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value="1">Venta</option>
+                                <option value="2">Alquiler</option>
+                                <option value="3">Alquiler Temporal</option>
+                                <option value="4">Proyecto</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Seleccione tipo de operación
+                            </div>
+                            <label for="operacion">Tipo de Operación</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="tipo_inmueble" name="tipo_inmueble" id="tipo" class="form-select" [class.is-invalid]="tipoInmuebleNoValido">
+                                <option value="0">(Seleccionar)</option>
+                                <option value="1">Departamento</option>
+                                <option value="2">Casa</option>
+                                <option value="3">Terreno / Lote</option>
+                                <option value="4">Local comercial</option>
+                                <option value="5">Casa de campo</option>
+                                <option value="6">Casa de playa</option>
+                                <option value="7">Cocheras</option>
+                                <option value="8">Condominio de casas</option>
+                                <option value="9">Condominio de edificios</option>
+                                <option value="10">Edificios</option>
+                                <option value="11">Habitación</option>
+                                <option value="12">Hotel</option>
+                                <option value="13">Local industrial</option>
+                                <option value="14">Proyecto de lotes</option>
+                                <option value="15">Proyecto horizontal-vertical</option>
+                                <option value="16">Proyecto vertical</option>
+                                <option value="17">Terreno agrícola</option>
+                                <option value="18">Otros</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Seleccione tipo de inmueble
+                            </div>
+                            <label for="tipo">Tipo de inmueble</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select" [class.is-invalid]="departamentoNoValido">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
+                            </select>
+                            <label for="departamento">Departamento</label>
+                            <div class="invalid-feedback">
+                                Seleccione departamento
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select" [class.is-invalid]="provinciaNoValido">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Seleccione provincia
+                            </div>
+                            <label for="provincia">Provincia</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select" [class.is-invalid]="distritoNoValido">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Seleccione distrito
+                            </div>
+                            <label for="distrito">Distrito</label>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-floating mb-3">
+                            <input formControlName="direccion" name="direccion" type="text" id="direccion" class="form-control" [class.is-invalid]="direccionNoValido">
+                            <div class="invalid-feedback">
+                                Ingrese calle y número
+                            </div>
+                            <label for="direccion">Ingresa calle y número</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-floating mb-3">
+                            <input type="text" formControlName="piso" name="piso" id="piso" class="form-control" [class.is-invalid]="pisoNoValido">
+                            <div class="invalid-feedback">
+                                Ingrese piso o interior
+                            </div>
+                            <label for="piso">Piso / Interior</label>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-floating mb-3">
+                            <input type="text" formControlName="referencia" name="referencia" id="referencia" class="form-control" [class.is-invalid]="referenciaNoValido">
+                            <div class="invalid-feedback">
+                                Ingrese referencia
+                            </div>
+                            <label for="referencia">Referencia</label>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select id="urbanización" class="form-select">
+                                <option value="">Seleccionar</option>
+                            </select>
+                            <label for="urbanización">Urbanización</label>
+                        </div>
+                    </div> -->
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Selecciona en el mapa</h5>
+                <div class="mb-4">
+                    <agm-map (mapClick)="seleccionarUbicacion( $event )" [latitude]="lat" [longitude]="lng" [zoom]="5">
+                        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                    </agm-map>
+                </div>
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

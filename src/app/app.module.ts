@@ -49,6 +49,15 @@ import { PublicacionesComponent } from './pages/publicaciones/publicaciones.comp
 import { PerfilComponent } from './pages/perfil/perfil.component';
 
 import { NgxPayPalModule } from 'ngx-paypal';
+import { EditarAutoComponent } from './pages/autos/editar-auto/editar-auto.component';
+import { EditarContactoAutoComponent } from './pages/autos/editar-auto/editar-contacto-auto/editar-contacto-auto.component';
+import { EditarInformacionAutoComponent } from './pages/autos/editar-auto/editar-informacion-auto/editar-informacion-auto.component';
+import { EditarUbicacionAutoComponent } from './pages/autos/editar-auto/editar-ubicacion-auto/editar-ubicacion-auto.component';
+import { EditarCaracteristicasPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-caracteristicas-propiedad/editar-caracteristicas-propiedad.component';
+import { EditarContactoPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-contacto-propiedad/editar-contacto-propiedad.component';
+import { EditarExtrasPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-extras-propiedad/editar-extras-propiedad.component';
+import { EditarMultimediaPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-multimedia-propiedad/editar-multimedia-propiedad.component';
+import { EditarPrincipalesPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-principales-propiedad/editar-principales-propiedad.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +88,16 @@ import { NgxPayPalModule } from 'ngx-paypal';
     SidebarComponent,
     AnunciosComponent,
     PublicacionesComponent,
-    PerfilComponent
+    PerfilComponent,
+    EditarAutoComponent,
+    EditarContactoAutoComponent,
+    EditarInformacionAutoComponent,
+    EditarUbicacionAutoComponent,
+    EditarCaracteristicasPropiedadComponent,
+    EditarContactoPropiedadComponent,
+    EditarExtrasPropiedadComponent,
+    EditarMultimediaPropiedadComponent,
+    EditarPrincipalesPropiedadComponent
   ],
   imports: [
     BrowserModule,

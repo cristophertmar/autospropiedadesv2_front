@@ -1,0 +1,73 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">PUBLICA TU ANUNCIO</h3>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-dark fw-semibold mb-4">Completa tu aviso con fotos y videos para que conozcan el inmueble</h5>
+                <h5 class="text-dark fw-semibold">Fotos</h5>
+            </div>
+            <div *ngIf="_archivoService.imagenes_temporal" class="text-center box-sm">
+                <div class="row">
+                    <div *ngFor="let imagen of _archivoService.imagenes_temporal; index as i" class="text-center" class="col-md-2 text-center" style="padding: 10px;">
+                        <img style="margin-bottom: 7px;" [src]="imagen" alt="..."><br>
+                        <a href="javascript:void(0)" (click)="_archivoService.quitar_imagen(i)"> Eliminar</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--  <div class="col-md-3 text-center" style="padding: 10px;">
+                <img style="margin-bottom: 7px;" [src]="./assets/img/carousel/1.png" class="rounded-circle">
+                <a href="javascript:void(0)"> Eliminar</a>
+            </div> -->
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <div *ngIf="_archivoService.imagenes_temporal.length === 0" class="mb-4">
+                    <input (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
+                    <label for="fotos" class="label-file">
+                        <span class="d-block text-primary fs-5 fw-semibold">Subir las fotos</span>
+                        <span class="d-block text-secondary">(Puedes subir hasta 10 fotos)</span>
+                    </label>
+                </div>
+
+                <!-- <h5 class="text-dark fw-semibold mb-4">Planos (opcional)</h5>
+                <h5 class="text-dark mb-4 fw-normal">Carga los planos del inmueble</h5>
+                <div class="mb-4">
+                    <input type="file" id="planos" class="input-file">
+                    <label for="planos" class="label-file mb-2">
+                        <span class="d-block text-primary fs-5 fw-semibold">Arrastra o agrega los planos</span>
+                        <span class="d-block text-secondary">(en JPG, PNG o PDF)</span>
+                    </label>
+                    <small class="text-sm">Tamaño máximo 10 MB</small>
+                </div> -->
+                <h5 class="text-dark fw-semibold mb-4">Recorrido 360 (opcional)</h5>
+                <div class="mb-4 d-flex gap-2">
+                    <input formControlName="url_video" name="url_video" type="text" class="form-control" placeholder="Pega el URL del recorrido aquí">
+                    <!-- <button class="btn btn-primary btn-lg btn-radius button btn-large">Agregar</button> -->
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- <button type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius mb-4">Atrás</button> -->
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Guardar y continuar</button>
+                    </div>
+                </div>
+            </form>
+            <br><br><br>
+        </div>
+    </div>
+</div>

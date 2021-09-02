@@ -1,0 +1,209 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">PUBLICA TU ANUNCIO</h3>
+            </div>
+            <div class="mb-4">
+                <h5 class="text-dark fw-semibold mb-4">Características principales</h5>
+            </div>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <small class="text-muted">Dormitorios (opcional)</small>
+                            <div class="input-group mb-3 flex-nowrap">
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('dormitorios')"></button>
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="dormitorios" name="dormitorios" class="form-control number" readonly>
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('dormitorios')"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <small class="text-muted">Baño (opcional)</small>
+                            <div class="input-group mb-3 flex-nowrap">
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('banios')"></button>
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="banios" name="banios" class="form-control number" readonly>
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('banios')"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <small class="text-muted">Pisos</small>
+                            <div class="input-group mb-3 flex-nowrap">
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('pisostotales')"></button>
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="pisostotales" name="pisostotales" class="form-control number" readonly>
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('pisostotales')"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <small class="text-muted">Estacionamientos</small>
+                            <div class="input-group mb-3 flex-nowrap">
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/minus.png" (click)="disminuir_contador('cocheras')"></button>
+                                <input type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="cocheras" name="cocheras" class="form-control number" readonly>
+                                <button class="btn btn-gray" type="button" id="button-addon1"><img src="./assets/img/icons/plus.png" (click)="aumentar_contador('cocheras')"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Superficies</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <small class="text-muted">Área construida</small>
+                            <div class="input-group mb-3 flex-nowrap">
+                                <div class="input-group-text text-muted">m²</div>
+                                <input formControlName="area_const" name="area_const" type="number" class="form-control" [class.is-invalid]="aconstruidaNoValido">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <small class="text-muted">Área total</small>
+                            <div class="input-group mb-3 flex-nowrap">
+                                <div class="input-group-text text-muted">m²</div>
+                                <input formControlName="area_total" name="area_total" type="number" class="form-control" [class.is-invalid]="atotalNoValido">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Antigüedad</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="antiguedad" id="radio1" formControlName="antiguedad" value="1">
+                            <small class="form-check-label text-muted" for="radio1">
+                                En construccion
+                            </small>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="antiguedad" id="radio2" formControlName="antiguedad" value="2">
+                            <small class="form-check-label text-muted" for="radio2">
+                                A estrenar
+                            </small>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="antiguedad" id="radio3" formControlName="antiguedad" value="3">
+                            <small class="form-check-label text-muted" for="radio3">
+                                Hasta 5 años
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="antiguedad" id="radio4" formControlName="antiguedad" value="4">
+                            <small class="form-check-label text-muted" for="radio4">
+                                Entre 5 y 10 años
+                            </small>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="antiguedad" id="radio5" formControlName="antiguedad" value="5">
+                            <small class="form-check-label text-muted" for="radio5">
+                                Entre 10 y 20 años
+                            </small>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="antiguedad" id="radio5" formControlName="antiguedad" value="6">
+                            <small class="form-check-label text-muted" for="radio5">
+                                Entre 20 y 25 años
+                            </small>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="antiguedad" id="radio6" formControlName="antiguedad" value="7">
+                            <small class="form-check-label text-muted" for="radio6">
+                                Más de 50 años
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Precio</h5>
+                <small class="text-muted d-block">Precio del inmueble</small>
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- <div class="mb-3">
+                            <div class="input-group mb-3 flex-nowrap">
+                                <div class="input-group-text text-muted">PEN</div>
+                                <input formControlName="precio" name="precio" type="text" class="form-control" [class.is-invalid]="precioNoValido">
+                            </div>
+                        </div> -->
+                        <div class="form-floating mb-3">
+                            <input formControlName="precio" name="precio" type="text" class="form-control" id="precio" [class.is-invalid]="precioNoValido">
+                            <label for="precio">Precio</label>
+                            <div class="invalid-feedback">
+                                Ingrese precio
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <!-- <div class="input-group mb-3 flex-nowrap">
+                                <div class="input-group-text text-muted">USD</div>
+                                <input type="text" class="form-control">
+                            </div> -->
+                            <div style="margin-top: 3px;" class="d-flex flex-nowrap justify-content-start align-items-center gap-2 mb-3">
+                                <input formControlName="tipo_moneda" name="tipo_moneda" type="radio" class="btn-check" id="tipo1" value="PEN">
+                                <label class="btn btn-outline-primary btn-lg" for="tipo1">PEN</label>
+                                <input formControlName="tipo_moneda" name="tipo_moneda" type="radio" class="btn-check" id="tipo2" value="USD">
+                                <label class="btn btn-outline-primary btn-lg" for="tipo2">USD</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="mb-3">
+                            <small class="text-muted">Mantenimiento (opcional)</small>
+                            <div class="input-group mb-3 flex-nowrap">
+                                <div class="input-group-text text-muted">PEN</div>
+                                <input formControlName="mantenimiento" formControlName="mantenimiento" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-4">Describe el inmueble</h5>
+                <div class="form-floating mb-3">
+                    <input formControlName="titulo" name="titulo" type="text" class="form-control" id="titulo" [class.is-invalid]="tituloNoValido">
+                    <label for="titulo">Título de anuncio</label>
+                    <div class="invalid-feedback">
+                        Ingrese un título
+                    </div>
+                </div>
+                <div class="form-floating mb-4">
+                    <textarea formControlName="descripcion" name="descripcion" type="text" class="form-control" id="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
+                    <label for="descripcion">Descripción de anuncio</label>
+                    <small class="text-muted">Incluye estado, características y motivo de venta</small>
+                    <div class="invalid-feedback">
+                        Ingrese una descripción
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- <button [routerLink]="['/propiedades/publicar/principales']" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button> -->
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Guardar y continuar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

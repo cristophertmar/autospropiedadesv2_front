@@ -90,8 +90,11 @@ export class ContactoAutoComponent implements OnInit {
         this._anuncioService.guardar_ids_autos(id_vehiculo);
         this._router.navigate(['/anuncio/carrito']);
       } else {
-        this._shared.alert_success('Publicado exitosamente');
-        this._router.navigate(['/autos/ver/', id_vehiculo]);
+        this._anuncioService.activar_anuncio(id_vehiculo, 'auto')
+        .subscribe( resp => {
+          this._shared.alert_success('Publicado exitosamente');
+          this._router.navigate(['/autos/ver/', id_vehiculo]);
+        });        
       }
       // this._router.navigate(['/detalle-auto', id_vehiculo]);
     });

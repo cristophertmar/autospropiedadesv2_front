@@ -23,11 +23,11 @@
             <div *ngIf="publicaciones && publicaciones.length > 0" class="row">
                 <div *ngFor="let publicacion of publicaciones" class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
-                        <!-- <div class="overlay-warning rounded-3">
+                        <div class="overlay-warning rounded-3">
                             <div class="d-grid">
                                 <a (click)="editarPublicacion(publicacion)" href="javascript:void(0)" class="btn btn-light btn-lg shadow text-primary fw-bold btn-radius">EDITAR</a>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="card-img">
                             <img class="card-img-top" [src]="traer_ruta(publicacion.imagen)">
                             <div class="price text-truncate"> {{ publicacion.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </div>

@@ -22,6 +22,14 @@ import { SeleccionComponent } from './pages/shop/seleccion/seleccion.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { PublicacionesComponent } from './pages/publicaciones/publicaciones.component';
 import { AnunciosComponent } from './pages/anuncios/anuncios.component';
+import { EditarPrincipalesPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-principales-propiedad/editar-principales-propiedad.component';
+import { EditarCaracteristicasPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-caracteristicas-propiedad/editar-caracteristicas-propiedad.component';
+import { EditarMultimediaPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-multimedia-propiedad/editar-multimedia-propiedad.component';
+import { EditarExtrasPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-extras-propiedad/editar-extras-propiedad.component';
+import { EditarContactoPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-contacto-propiedad/editar-contacto-propiedad.component';
+import { EditarInformacionAutoComponent } from './pages/autos/editar-auto/editar-informacion-auto/editar-informacion-auto.component';
+import { EditarUbicacionAutoComponent } from './pages/autos/editar-auto/editar-ubicacion-auto/editar-ubicacion-auto.component';
+import { EditarContactoAutoComponent } from './pages/autos/editar-auto/editar-contacto-auto/editar-contacto-auto.component';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
@@ -34,6 +42,10 @@ const routes: Routes = [
   { path: 'autos/publicar/ubicacion', component: UbicacionAutoComponent },
   { path: 'autos/publicar/contacto', component: ContactoAutoComponent },
 
+  { path: 'autos/editar/informacion/:id', component: EditarInformacionAutoComponent },
+  { path: 'autos/editar/ubicacion/:id', component: EditarUbicacionAutoComponent },
+  { path: 'autos/editar/contacto/:id', component: EditarContactoAutoComponent },
+
   { path: 'propiedades', component: PropiedadesComponent },
   { path: 'propiedades/buscar', component: BusquedaPropiedadComponent },
   { path: 'propiedades/ver/:id', component: DetallePropiedadComponent },  
@@ -43,6 +55,12 @@ const routes: Routes = [
   { path: 'propiedades/publicar/multimedia', component: MultimediaComponent },
   { path: 'propiedades/publicar/extras', component: ExtrasComponent },
   { path: 'propiedades/publicar/contacto', component: ContactoComponent},
+
+  { path: 'propiedades/editar/principales/:id', component: EditarPrincipalesPropiedadComponent },
+  { path: 'propiedades/editar/caracteristicas/:id', component: EditarCaracteristicasPropiedadComponent },
+  { path: 'propiedades/editar/multimedia/:id', component: EditarMultimediaPropiedadComponent },
+  { path: 'propiedades/editar/extras/:id', component: EditarExtrasPropiedadComponent },
+  { path: 'propiedades/editar/contacto/:id', component: EditarContactoPropiedadComponent},
 
   { path: 'anuncio/seleccionar', component: SeleccionComponent },
   { path: 'anuncio/planes', component: PlanesComponent },

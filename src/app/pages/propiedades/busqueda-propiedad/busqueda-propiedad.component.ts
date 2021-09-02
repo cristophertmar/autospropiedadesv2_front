@@ -44,6 +44,7 @@ export class BusquedaPropiedadComponent implements OnInit {
   propiedades: PropiedadListar[] = [];
 
   filtros: string[] = ['Propiedad'];
+  tipo_anunciante: number = 0;
   
 
   constructor(
@@ -90,8 +91,8 @@ export class BusquedaPropiedadComponent implements OnInit {
       provincia: new FormControl(''),
       distrito: new FormControl(''),
 
-      minprecio: new FormControl(''),
-      maxprecio: new FormControl(''),
+      minprecio: new FormControl(null),
+      maxprecio: new FormControl(null),
 
       dormitorios: new FormControl(0),
       banios: new FormControl(0),
@@ -131,9 +132,24 @@ export class BusquedaPropiedadComponent implements OnInit {
     });
   }
 
-  seleccionar_rango_precio() {    
-    this.minprecio = this.formulario.get('minprecio').value || 0;
-    this.maxprecio = this.formulario.get('maxprecio').value || 9999999999.99;
+  seleccionar_rango_precio(txt_minprecio: any, txt_maxprecio: any) {    
+    this.minprecio = Number(txt_minprecio) || 0;
+    this.maxprecio = Number(txt_maxprecio) || 9999999999.99;
+    this.listar_propiedades();
+  }
+
+  seleccionar_tipo_anunciante(valor: number) {
+    this.tipo_anunciante = Number(valor);
+    this.listar_propiedades();
+  }
+
+  seleccionar_dormitorio(valor: number) {
+    this.dormitorios = Number(valor);
+    this.listar_propiedades();
+  }
+
+  seleccionar_banios(valor: number) {
+    this.banios = Number(valor);
     this.listar_propiedades();
   }
 
@@ -228,15 +244,19 @@ export class BusquedaPropiedadComponent implements OnInit {
     this.propiedad.ascensores = Number(0);
     this.propiedad.uso_profesional = Number(0);
     this.propiedad.uso_comercial = Number(0);
+    this.propiedad.departamento = this.departamento;
+    this.propiedad.provincia = this.provincia;
+    this.propiedad.ubigeo = this.ubigeo;
     this.propiedad.minprecio = Number(this.minprecio);
     this.propiedad.maxprecio = Number(this.maxprecio);
+    this.propiedad.tipo_anunciante = this.tipo_anunciante;
 
     this._spinner.show();
     this._propiedadService.listar_propiedad(this.propiedad, ordenar, this.formulario.get('filtrobus').value)
     .subscribe( (resp: any) => {
       this._spinner.hide();
         this.propiedades = resp.data;
-        console.log(this.propiedades);
+        /* console.log(this.propiedades); */
     });
 
   }

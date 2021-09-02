@@ -174,10 +174,14 @@
                     <span class="fw-bold">{{ propiedad.nombre_contacto }}</span> <br>
                 <div class="rating">
                     <img src="./assets/img/icons/star-fill.svg">
+                    <img src="./assets/img/icons/star-fill.svg">
+                    <img src="./assets/img/icons/star-fill.svg">
+                    <img src="./assets/img/icons/star-fill.svg">
+                    <img src="./assets/img/icons/star-fill.svg">
+                    <!-- <img src="./assets/img/icons/star-empty.svg">
                     <img src="./assets/img/icons/star-empty.svg">
                     <img src="./assets/img/icons/star-empty.svg">
-                    <img src="./assets/img/icons/star-empty.svg">
-                    <img src="./assets/img/icons/star-empty.svg">
+                    <img src="./assets/img/icons/star-empty.svg"> -->
                 </div>
                 </span>
             </div>
@@ -345,8 +349,8 @@
                     </div>
                 </div>
                 <div class="card-img">
-                    <img class="card-img-top" src="http://via.placeholder.com/120x100">
-                    <!-- <img class="img-whp" [src]="obtener_ruta(prop.imagen)" alt="auto.jpg"> -->
+                    <!--  <img class="card-img-top" src="http://via.placeholder.com/120x100"> -->
+                    <img class="card-img-top" [src]="obtener_ruta(prop.imagen)">
                     <div class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
                 </div>
                 <div class="card-body">

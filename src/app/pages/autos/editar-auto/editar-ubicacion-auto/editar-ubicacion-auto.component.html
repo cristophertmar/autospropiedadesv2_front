@@ -1,0 +1,85 @@
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-lg-9 col-md-8 ps-6">
+            <div class="mb-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item">Publicación</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <h3 class="text-primary fw-bold">UBICACIÓN</h3>
+            </div>
+            <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="departamento" name="departamento" id="departamento" class="form-select" [class.is-invalid]="departamentoNoValido">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let depa of departamentos" [value]="depa.departamento"> {{ depa.departamento }} </option>
+                            </select>
+                            <label for="departamento">Departamento</label>
+                            <div class="invalid-feedback">
+                                Seleccione departamento
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="provincia" name="provincia" id="provincia" class="form-select" [class.is-invalid]="provinciaNoValido">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let prov of provincias" [value]="prov.provincia"> {{ prov.provincia }} </option>
+                            </select>
+                            <label for="provincia">Provincia</label>
+                            <div class="invalid-feedback">
+                                Seleccione provincia
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <select formControlName="distrito" name="distrito" id="distrito" class="form-select" [class.is-invalid]="distritoNoValido">
+                                <option value="">(Seleccionar)</option>
+                                <option *ngFor="let dist of distritos" [value]="dist.ubigeo"> {{ dist.distrito }} </option>
+                            </select>
+                            <label for="distrito">Distrito</label>
+                            <div class="invalid-feedback">
+                                Seleccione distrito
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="text-dark fw-semibold mb-2">Fotos</h5>
+                <div class="mb-3">
+                    <small class="d-block text-secondary">
+                        Haz más atractivo tu anuncio añadiendo fotografías de tu vehículo.Te recomendamos que subas fotos de tu vehículo a la luz del día, deben ser del exterior y del interior de varios ángulos. Si aún no cuentas con más fotos, sube las que tengas y no dudes luego de regresar a colocar más.
+                    </small>
+                </div>
+                <div *ngIf="_archivoService.imagenes_temporal" class="text-center box-sm">
+                    <div class="row">
+                        <div *ngFor="let imagen of _archivoService.imagenes_temporal; index as i" class="text-center" class="col-md-2 text-center" style="padding: 10px;">
+                            <img style="margin-bottom: 7px;" [src]="imagen" alt="..."><br>
+                            <a href="javascript:void(0)" (click)="_archivoService.quitar_imagen(i)"> Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="_archivoService.imagenes_temporal.length === 0" class="mb-4">
+                    <input (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
+                    <label for="fotos" class="label-file">
+                        <span class="d-block text-primary fs-5 fw-semibold">Subir las fotos</span>
+                        <span class="d-block text-secondary">(Puedes subir hasta 10 fotos)</span>
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

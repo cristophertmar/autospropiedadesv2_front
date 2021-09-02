@@ -1,15 +1,14 @@
-<!-- fixed-top -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="javascript:void(0)">
             <img src="./assets/img/logo.svg" class="d-none d-lg-block">
             <img src="./assets/img/logo_mobile.svg" class="d-block d-lg-none">
         </a>
         <div>
-            <a href="#" class="btn btn-warning rounded-circle d-inline-block d-lg-none shadow-none">
+            <a href="javascript:void(0)" class="btn btn-warning rounded-circle d-inline-block d-lg-none shadow-none">
                 <i class="lnr lnr-users"></i>
             </a>
-            <a href="#" class="btn btn-primary rounded-circle d-inline-block d-lg-none shadow-none">
+            <a href="javascript:void(0)" class="btn btn-primary rounded-circle d-inline-block d-lg-none shadow-none">
                 <i class="lnr lnr-user"></i>
             </a>
 
@@ -43,7 +42,69 @@
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/mi-perfil']">Mi perfil</a></li>
                         <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/anuncio/seleccionar']">Publicar</a></li>
-                        <!-- <li><a class="dropdown-item" href="#">Mis publicaciones</a></li> -->
+                        <li><a class="dropdown-item" href="javascript:void(0)">Mis publicaciones</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" (click)="_usuarioService.logout_usuario()">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-scale-pulse" [fullScreen]="true">
+    <p style="color: white"> Cargando... </p>
+</ngx-spinner>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a [routerLink]="['/']" class="navbar-brand" href="javascript:void(0)">
+            <img src="./assets/img/logo.svg" class="d-none d-lg-block">
+            <img src="./assets/img/logo_mobile.svg" class="d-block d-lg-none">
+        </a>
+        <div>
+            <a href="javascript:void(0)" class="btn btn-primary button d-inline-block d-lg-none shadow-none">
+                Publicar
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="./assets/img/menu.svg">
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-4" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/']">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-4" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/autos']">Autos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-lg-4" href="javascript:void(0)" routerLinkActive="active" [routerLink]="['/propiedades']">Propiedades</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li *ngIf="!_usuarioService.usuario" class="nav-item d-none d-lg-inline-block">
+                    <a data-bs-toggle="modal" data-bs-target="#mdl_login" class="btn btn-warning btn-sm btn-small button me-4 px-4" href="javascript:void(0)"><i class="lnr lnr-users"></i> Login</a>
+                </li>
+                <li *ngIf="!_usuarioService.usuario" class="nav-item d-none d-lg-inline-block">
+                    <a data-bs-toggle="modal" data-bs-target="#mdl_registro" class="btn btn-primary btn-sm btn-small button px-4" href="javascript:void(0)"><i class="lnr lnr-user"></i> Registro</a>
+                </li>
+                <li *ngIf="!_usuarioService.usuario" class="nav-item d-inline-block d-lg-none">
+                    <a data-bs-toggle="modal" data-bs-target="#mdl_login" class="nav-link mx-lg-4" href="javascript:void(0)">Login</a>
+                </li>
+                <li *ngIf="!_usuarioService.usuario" class="nav-item d-inline-block d-lg-none">
+                    <a data-bs-toggle="modal" data-bs-target="#mdl_registro" class="nav-link mx-lg-4" href="javascript:void(0)">Registro</a>
+                </li>
+                <li *ngIf="_usuarioService.usuario" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown">
+                        <i class="lnr lnr-user d-none d-lg-inline-block"></i> {{ _usuarioService.usuario.nombre }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/mi-perfil']">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/anuncio/seleccionar']">Publicar</a></li>
+                        <!-- <li><a class="dropdown-item" href="javascript:void(0)">Mis publicaciones</a></li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -61,20 +122,44 @@
             <div class="modal-body text-center p-5">
                 <img src="./assets/img/icons/datos.png" alt="" class="mb-4">
                 <h5 class="text-primary fw-bold mb-4">Inicia sesión</h5>
-                <p class="text-muted mb-4">
-                    Seleccione el servicio con el que desea ingresar:
-                </p>
-                <div class="d-grid gap-4 mb-4">
-                    <a href="javascript:void(0)" (click)="login_facebook(true)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a>
-                    <a href="javascript:void(0)" (click)="login_google(true)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Continuar con Google</a>
-                    <!-- <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a> -->
+                <div *ngIf="!mod_loguin">
+                    <p class="text-muted mb-4">
+                        Seleccione el servicio con el que desea ingresar:
+                    </p>
+                    <div class="d-grid gap-4 mb-4">
+                        <a href="javascript:void(0)" (click)="login_facebook(true)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a>
+                        <a href="javascript:void(0)" (click)="login_google(true)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Continuar con Google</a>
+                        <a href="javascript:void(0)" (click)="cambiar_mod_loguin()" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a>
+                    </div>
                 </div>
-                <!-- <div class="mb-4">
+                <form style="text-align: left;" *ngIf="mod_loguin" autocomplete="off" [formGroup]="forma_login" (ngSubmit)="loguin_web()">
+                    <div class="form-floating mb-3">
+                        <input formControlName="correo_login" name="correo_login" type="text" id="correo_login" class="form-control" [class.is-invalid]="correoNoValido_login">
+                        <label for="correo_login">Correo</label>
+                        <div class="invalid-feedback">
+                            Ingrese correo
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input formControlName="password_login" name="password_login" type="password" id="password_login" class="form-control" [class.is-invalid]="passNoValido_login">
+                        <label for="password_login">Contraseña</label>
+                        <div class="invalid-feedback">
+                            Ingrese contraseña
+                        </div>
+                    </div>
+                    <div class="d-grid gap-4 text-center">
+                        <button type="submit" class="btn btn-primary button btn-lg d-block btn-radius">Ingresar</button>
+                        <a class="ocultar" id="cerrar_mdl_login" #cerrar_mdl_login href="javascript:void(0)" data-bs-dismiss="modal">cerrar</a>
+                        <a href="javascript:void(0)" (click)="cambiar_mod_loguin()">Regresar</a>
+                    </div>
+                </form>
+                <hr>
+                <div class="mb-4">
                     <small class="text-muted">No compartiremos tu información personal con nadie.</small>
                 </div>
                 <div class="mb-4">
-                    <small class="text-warning">Si continuas, estás aceptando nuestros <a href="#" class="text-warning">Términos y condiciones y Politica de privacidad.</a></small>
-                </div> -->
+                    <small class="text-warning">Si continuas, estás aceptando nuestros <a href="javascript:void(0)" class="text-warning">Términos y condiciones y Politica de privacidad.</a></small>
+                </div>
             </div>
         </div>
     </div>
@@ -86,19 +171,57 @@
             <div class="modal-body text-center p-5">
                 <img src="./assets/img/icons/datos.png" alt="" class="mb-4">
                 <h5 class="text-primary fw-bold mb-4">Crear una cuenta</h5>
-                <p class="text-muted mb-4">
-                    Seleccione el servicio con el que te deseas registrar:
-                </p>
-                <div class="d-grid gap-4 mb-4">
-                    <a href="javascript:void(0)" (click)="login_facebook(false)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Registrarme con Facebook</a>
-                    <a href="javascript:void(0)" (click)="login_google(false)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Registrarme con Google</a>
-                    <!-- <a href="#" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a> -->
+                <div *ngIf="!mod_registro">
+                    <p class="text-muted mb-4">
+                        Seleccione el servicio con el que te deseas registrar:
+                    </p>
+                    <div class="d-grid gap-4 mb-4">
+                        <a href="javascript:void(0)" (click)="login_facebook(false)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Registrarme con Facebook</a>
+                        <a href="javascript:void(0)" (click)="login_google(false)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Registrarme con Google</a>
+                        <a href="javascript:void(0)" (click)="cambiar_mod_registro()" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a>
+                    </div>
                 </div>
+                <form style="text-align: left;" *ngIf="mod_registro" autocomplete="off" [formGroup]="forma_registro" (ngSubmit)="registro_web()">
+                    <div class="form-floating mb-3">
+                        <input formControlName="nombre" name="nombre" type="text" id="nombre" class="form-control" [class.is-invalid]="nombreNoValido_registro">
+                        <label for="nombre">Nombre</label>
+                        <div class="invalid-feedback">
+                            Ingrese nombre
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input formControlName="correo" name="correo" type="email" id="correo" class="form-control" [class.is-invalid]="correoNoValido_registro">
+                        <label for="correo">Correo</label>
+                        <div class="invalid-feedback">
+                            Ingrese correo
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input formControlName="password" name="password" type="password" id="contrasena" class="form-control" [class.is-invalid]="pass1NoValido_registro">
+                        <label for="contrasena">Contraseña</label>
+                        <div class="invalid-feedback">
+                            Ingrese contraseña
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input formControlName="password2" name="password2" type="password" id="contrasena2" class="form-control" [class.is-invalid]="pass2NoValido_registro">
+                        <label for="contrasena2">Validar contraseña</label>
+                        <div class="invalid-feedback">
+                            Ingrese contraseña
+                        </div>
+                    </div>
+                    <div class="d-grid gap-4 text-center">
+                        <button type="submit" class="btn btn-primary button btn-lg d-block btn-radius">Registrar</button>
+                        <a class="ocultar" id="cerrar_mdl_registro" #cerrar_mdl_registro href="javascript:void(0)" data-bs-dismiss="modal">cerrar</a>
+                        <a href="javascript:void(0)" (click)="cambiar_mod_registro()">Regresar</a>
+                    </div>
+                </form>
+                <hr>
                 <div class="mb-4">
                     <small class="text-muted">No compartiremos tu información personal con nadie.</small>
                 </div>
                 <div class="mb-4">
-                    <small class="text-warning">Si continuas, estás aceptando nuestros <a href="#" class="text-warning">Términos y condiciones y Politica de privacidad.</a></small>
+                    <small class="text-warning">Si continuas, estás aceptando nuestros <a href="javascript:void(0)" class="text-warning">Términos y condiciones y Politica de privacidad.</a></small>
                 </div>
             </div>
         </div>
