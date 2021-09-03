@@ -64,9 +64,9 @@ export class ContactoComponent implements OnInit {
         this._anuncioService.guardar_ids_propiedades(id_propiedad);
         this._router.navigate(['/anuncio/carrito']);
       } else {
-        this._anuncioService.limpiar_storage();
         this._anuncioService.activar_anuncio(id_propiedad, 'propiedad')
         .subscribe(resp => {
+          this._anuncioService.limpiar_storage();
           this._shared.alert_success('Publicado exitosamente');
           this._router.navigate(['/propiedades/ver/', id_propiedad]);
         });        

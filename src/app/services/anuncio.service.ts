@@ -61,9 +61,10 @@ export class AnuncioService {
   }
 
   guardar_ids_autos(id: string) {
-    this.ids_propiedades.push(id);
-    sessionStorage.removeItem('ids_autos');
+    this.ids_autos.push(id);
+    //sessionStorage.removeItem('ids_autos');
     sessionStorage.setItem('ids_autos', JSON.stringify(this.ids_autos));
+    console.log('guardado: ' , sessionStorage.getItem('ids_autos'));
   }
 
   limpiar_storage() {

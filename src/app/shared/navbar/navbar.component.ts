@@ -171,7 +171,6 @@ export class NavbarComponent implements OnInit {
 
   login_usuario() {
 
-    debugger;
     this.usuario = new Usuario();
     this.usuario.correo = this.usuario_social.email;
     this.usuario.pass = '';

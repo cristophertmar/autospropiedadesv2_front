@@ -85,13 +85,13 @@ export class ContactoAutoComponent implements OnInit {
   guardarImagen(id_vehiculo: string) {
     this._archivoServive.guardar_archivo(id_vehiculo)
     .subscribe( resp => {     
-      if(sessionStorage.getItem('anuncio_plan') === 'premium') {
-        this._anuncioService.limpiar_storage();
+      if(sessionStorage.getItem('anuncio_plan') === 'premium') {        
         this._anuncioService.guardar_ids_autos(id_vehiculo);
         this._router.navigate(['/anuncio/carrito']);
       } else {
         this._anuncioService.activar_anuncio(id_vehiculo, 'auto')
         .subscribe( resp => {
+          this._anuncioService.limpiar_storage();
           this._shared.alert_success('Publicado exitosamente');
           this._router.navigate(['/autos/ver/', id_vehiculo]);
         });        

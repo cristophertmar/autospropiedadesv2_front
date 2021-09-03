@@ -7,8 +7,8 @@
             <div class="mb-4">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item">Cart</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                        <li class="breadcrumb-item">Carrito</li>
                     </ol>
                 </nav>
             </div>
@@ -69,7 +69,7 @@
                         <button [routerLink]="['/anuncio/seleccionar']" type="button" class="btn btn-outline-secondary btn-lg btn-large border-2 fw-semibold mb-4">Continuar comprando</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-primary btn-lg btn-large btn-radius mb-4 d-block ms-auto">Limpiar carro</button>
+                        <button (click)="limpiar_carrito()" type="button" class="btn btn-primary btn-lg btn-large btn-radius mb-4 d-block ms-auto">Limpiar carro</button>
                     </div>
                 </div>
             </div>

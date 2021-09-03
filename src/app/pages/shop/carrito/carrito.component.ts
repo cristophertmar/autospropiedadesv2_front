@@ -47,32 +47,32 @@ export class CarritoComponent implements OnInit {
 
   sumar_planes() {
 
-    this._anuncioService.propiedad_carrito
+    this._anuncioService.ids_propiedades
     .forEach(propiedad => {
-        if(propiedad.precio_plan > 0) {
-          /* const plan = new Plan('Premium', propiedad.precio_plan); */
-          /* this.plan_premium.push(plan); */
-          this.cantidad_premium += 1;
-          this.cantidad_prop += 1;
-        } else {
-          const plan = new Plan('Básico', 0);
-          /* this.plan_premium.push(plan); */
-          this.cantidad_basico += 1;
-        }
+
+      this.cantidad_premium += 1;
+      this.cantidad_prop += 1;
+
+      /* if(propiedad.precio_plan > 0) {
+        
+      } else {
+        const plan = new Plan('Básico', 0);
+        this.cantidad_basico += 1;
+      } */
     });
 
-    this._anuncioService.vehiculo_carrito
+    this._anuncioService.ids_autos
     .forEach(vehiculo => {
-        if(vehiculo.precio_plan > 0) {
-          /* const plan = new Plan('Premium', vehiculo.precio_plan); */
-          /* this.plan_premium.push(plan); */
-          this.cantidad_premium += 1;
-          this.cantidad_veh += 1;
-        } else {
-          const plan = new Plan('Básico', 0);
-          /* this.plan_premium.push(plan); */
-          this.cantidad_basico += 1;
-        }
+
+      this.cantidad_premium += 1;
+      this.cantidad_veh += 1;
+
+      /* if(vehiculo.precio_plan > 0) {
+        
+      } else {
+        const plan = new Plan('Básico', 0);
+        this.cantidad_basico += 1;
+      } */
     });
 
     this.calcular_subtotal();
@@ -91,7 +91,8 @@ export class CarritoComponent implements OnInit {
 
 
   limpiar_carrito() {
-    
+    this._anuncioService.limpiar_storage();
+    this._router.navigate(['/anuncio/seleccionar']);
   }
 
   /* procesar() {

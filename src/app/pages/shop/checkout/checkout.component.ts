@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ubigeo } from 'src/app/models/ubigeo.model';
@@ -33,6 +33,9 @@ export class CheckoutComponent implements OnInit {
   token: string;
   monto: number;
 
+  @ViewChild('cerrar_mdl_pago') cerrar_mdl_pago: ElementRef<HTMLElement>;
+  @ViewChild('abrir_mdl_pago') abrir_mdl_pago: ElementRef<HTMLElement>;
+
   constructor(
     private _router: Router,
     public _ubigeoService: UbigeoService,
@@ -52,13 +55,15 @@ export class CheckoutComponent implements OnInit {
 
   procesar() {
 
-    /* if ( this.formulario.invalid) {
+    if ( this.formulario.invalid) {
       return Object.values( this.formulario.controls).forEach( control => {
         control.markAsTouched();
       });
-    } */
+    }
 
     this.initConfig(this.monto);
+    this.abrir_mdl_pago.nativeElement.click();
+
   }
 
   sumar_planes() {
@@ -251,11 +256,10 @@ export class CheckoutComponent implements OnInit {
       this._anuncioService.ids_propiedades.forEach(id => {
         this._anuncioService.activar_anuncio(id, 'propiedad', true).subscribe();
       });
-
+      this.cerrar_mdl_pago.nativeElement.click();
       this._anuncioService.limpiar_storage();
       this._shared.alert_success('Transacción exitosa');
-      this._router.navigate(['/mis-publicaciones']);
-      
+      this._router.navigate(['/mis-publicaciones']);      
 
   }
 

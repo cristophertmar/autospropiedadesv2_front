@@ -140,7 +140,8 @@
                                 <span>{{ costo_total | currency: 'PEN': 'symbol': '': 'es-PE' }}</span>
                             </div>
                             <div class="d-grid">
-                                <button (click)="procesar()" class="btn btn-light btn-lg fw-semibold text-primary" data-bs-toggle="modal" data-bs-target="#myModal">Ir a pagar</button>
+                                <button (click)="procesar()" class="btn btn-light btn-lg fw-semibold text-primary">Ir a pagar</button>
+                                <button class="ocultar" #abrir_mdl_pago id="abrir_mdl_pago" data-bs-toggle="modal" data-bs-target="#myModal">abrir modal</button>
                             </div>
                         </div>
                     </div>
@@ -156,7 +157,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button #cerrar_mdl_pago id="cerrar_mdl_pago" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-5 pt-0">
 
