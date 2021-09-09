@@ -26,6 +26,10 @@ export class CaracteristicasComponent implements OnInit {
     private _anuncioService: AnuncioService,
   ) {
     this.crearFormulario();
+    this.dormitorios = this._anuncioService.propiedad_temp.dormitorios;
+    this.banios = this._anuncioService.propiedad_temp.banios;
+    this.pisostotales = this._anuncioService.propiedad_temp.pisos;
+    this.cocheras = this._anuncioService.propiedad_temp.cocheras;
   }
 
   ngOnInit(): void {
@@ -122,17 +126,17 @@ export class CaracteristicasComponent implements OnInit {
   crearFormulario() {
     this.formulario = new FormGroup({ 
 
-      area_total: new FormControl('', [Validators.required]),
-      area_const: new FormControl('', [Validators.required]),
+      area_total: new FormControl(this._anuncioService.propiedad_temp.area_total, [Validators.required]),
+      area_const: new FormControl(this._anuncioService.propiedad_temp.area_contruida, [Validators.required]),
 
-      antiguedad: new FormControl('1', [Validators.required]),
+      antiguedad: new FormControl(this._anuncioService.propiedad_temp.antiguedad.toString(), [Validators.required]),
 
-      tipo_moneda: new FormControl('PEN', [Validators.required]),
-      precio: new FormControl(null, [Validators.required]),
-      mantenimiento: new FormControl(''),
+      tipo_moneda: new FormControl(this._anuncioService.propiedad_temp.tipo_moneda, [Validators.required]),
+      precio: new FormControl(this._anuncioService.propiedad_temp.precio, [Validators.required]),
+      mantenimiento: new FormControl(this._anuncioService.propiedad_temp.mantenimiento),
 
-      titulo: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required])
+      titulo: new FormControl(this._anuncioService.propiedad_temp.titulo, [Validators.required]),
+      descripcion: new FormControl(this._anuncioService.propiedad_temp.descripcion, [Validators.required])
     });
   }
 

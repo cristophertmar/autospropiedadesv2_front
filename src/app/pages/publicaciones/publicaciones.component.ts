@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { URL_SERVICIOS } from 'src/app/config/config';
 import { Publicacion } from 'src/app/models/publicacion.model';
+import { AnuncioService } from 'src/app/services/anuncio.service';
+import { ArchivoService } from 'src/app/services/archivo.service';
 import { PublicacionService } from 'src/app/services/publicacion.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { SharedService } from '../../services/shared.service';
@@ -23,7 +25,9 @@ export class PublicacionesComponent implements OnInit {
     public _publicacionService: PublicacionService,
     public _router: Router,
     private _shared: SharedService,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    private _archivoServide: ArchivoService,
+    private _anuncioService: AnuncioService
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +65,9 @@ export class PublicacionesComponent implements OnInit {
 
   editarPublicacion(p: Publicacion) {
 
+    this._archivoServide.limpiar_imagenes();
+    this._anuncioService.limpiar_storage();
+
     if (p.tipo_anuncio === 'Auto') {
       this._router.navigate(['/autos/editar/informacion', p.id_publicacion]);
       return;
@@ -69,6 +76,14 @@ export class PublicacionesComponent implements OnInit {
     this._router.navigate(['/propiedades/editar/principales', p.id_publicacion]);
     return;
 
+  }
+
+  ver_publicacion(publicacion: Publicacion) {
+    if(publicacion.tipo_anuncio === 'Auto') {
+      this._router.navigate(['/autos/ver', publicacion.id_publicacion]);
+    } else {
+      this._router.navigate(['/propiedades/ver', publicacion.id_publicacion]);
+    }
   }
 
   no_premium() {

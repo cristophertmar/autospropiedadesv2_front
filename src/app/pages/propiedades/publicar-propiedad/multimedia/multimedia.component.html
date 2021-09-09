@@ -18,12 +18,15 @@
             </div>
             <div class="mb-4">
                 <h5 class="text-dark fw-semibold mb-4">Completa tu aviso con fotos y videos para que conozcan el inmueble</h5>
-                <h5 class="text-dark fw-semibold">Fotos</h5>
+                <h5 class="text-dark fw-semibold">
+                    Fotos
+                </h5>
+                <a (click)="agregar_imagen()" *ngIf="_archivoService.imagenes_temporal.length !== 0" href="javascript:void(0)"> Agregar +</a>
             </div>
             <div *ngIf="_archivoService.imagenes_temporal" class="text-center box-sm">
                 <div class="row">
                     <div *ngFor="let imagen of _archivoService.imagenes_temporal; index as i" class="text-center" class="col-md-2 text-center" style="padding: 10px;">
-                        <img style="margin-bottom: 7px;" [src]="imagen" alt="..."><br>
+                        <img style="margin: 7px;" [src]="imagen" alt="..."><br>
                         <a href="javascript:void(0)" (click)="_archivoService.quitar_imagen(i)"> Eliminar</a>
                     </div>
                 </div>
@@ -34,6 +37,8 @@
                 <img style="margin-bottom: 7px;" [src]="./assets/img/carousel/1.png" class="rounded-circle">
                 <a href="javascript:void(0)"> Eliminar</a>
             </div> -->
+            <!-- *ngIf="_archivoService.imagenes_temporal.length === 0" -->
+            <input id="btn_agregarImg" #btn_agregarImg class="ocultar" (change)="_archivoService.adicionarImagen($event)" type="file" multiple>
             <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
                 <div *ngIf="_archivoService.imagenes_temporal.length === 0" class="mb-4">
                     <input (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
@@ -53,14 +58,14 @@
                     </label>
                     <small class="text-sm">Tamaño máximo 10 MB</small>
                 </div> -->
-                <h5 class="text-dark fw-semibold mb-4">Recorrido 360 (opcional)</h5>
+                <h5 class="text-dark fw-semibold mb-4">Agrega un video (opcional)</h5>
                 <div class="mb-4 d-flex gap-2">
-                    <input formControlName="url_video" name="url_video" type="text" class="form-control" placeholder="Pega el URL del recorrido aquí">
+                    <input formControlName="url_video" name="url_video" type="text" class="form-control" placeholder="Pega URL del video">
                     <!-- <button class="btn btn-primary btn-lg btn-radius button btn-large">Agregar</button> -->
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius mb-4">Atrás</button>
+                        <button [routerLink]="['/propiedades/publicar/caracteristicas']" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button>
                     </div>
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Siguiente</button>

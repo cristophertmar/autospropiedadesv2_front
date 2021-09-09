@@ -42,6 +42,10 @@ export class EditarExtrasPropiedadComponent implements OnInit {
     });
   }
 
+  regresar() {
+    this._router.navigate(['/propiedades/editar/multimedia', this.id_propiedad]);
+  }
+
   seleccionar_tags_general(evento: any, caracteristica: string) {
 
     if (evento.target.checked) {

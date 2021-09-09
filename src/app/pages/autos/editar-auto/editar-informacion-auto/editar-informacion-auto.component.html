@@ -7,8 +7,8 @@
             <div class="mb-4">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item">Administrar propiedad</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                        <li class="breadcrumb-item">Editar Auto - </li>
                         <li class="breadcrumb-item">Publicación</li>
                     </ol>
                 </nav>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input formControlName="kilometraje" name="kilometraje" type="text" id="kilometraje" class="form-control" [class.is-invalid]="kilometrajeNoValido">
+                            <input formControlName="kilometraje" name="kilometraje" type="number" id="kilometraje" class="form-control" [class.is-invalid]="kilometrajeNoValido">
                             <label for="kilometraje">Kilometraje</label>
                             <div class="invalid-feedback">
                                 Ingrese kilometraje
@@ -142,7 +142,7 @@
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select formControlName="puertas" name="puertas" id="puertas" class="form-select" [class.is-invalid]="puertasNoValido">
-                                <option value="0">(Seleccionar)</option>
+                                <option value=0>(Seleccionar)</option>
                                 <option value=1>2</option>
                                 <option value=2>3</option>
                                 <option value=3>4</option>
@@ -298,7 +298,7 @@
                         <label class="btn btn-outline-primary btn-lg" for="tipo2">USD</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input formControlName="precio" name="precio" type="text" id="precio" class="form-control" [class.is-invalid]="precioNoValido">
+                        <input formControlName="precio" name="precio" type="number" id="precio" class="form-control" [class.is-invalid]="precioNoValido">
                         <label for="precio">Precio</label>
                         <div class="invalid-feedback">
                             Ingrese el precio
@@ -476,9 +476,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button [routerLink]="['/mis-publicaciones']" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Vover al listado</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                    </div>
                 </div>
+                <!-- <div class="mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                </div> -->
             </form>
         </div>
     </div>

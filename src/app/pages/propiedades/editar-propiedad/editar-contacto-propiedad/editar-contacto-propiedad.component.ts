@@ -49,8 +49,56 @@ export class EditarContactoPropiedadComponent implements OnInit {
   }
 
   publicar() {
-    this._shared.alert_success('Guardado exitosamente');
-    this._router.navigate(['/mis-publicaciones']);
+
+    this.propiedad = {};
+    this.propiedad.id_propiedad = this.id_propiedad;
+
+    this.propiedad.id_tipo_operacion = Number(this.propiedad_deta.id_tipo_operacion);
+    this.propiedad.id_tipo_inmueble = Number(this.propiedad_deta.id_tipo_inmueble);
+    this.propiedad.antiguedad = Number(this.propiedad_deta.antiguedad);
+
+    this.propiedad.ubigeo = this.propiedad_deta.ubigeo;
+    this.propiedad.direccion = this.propiedad_deta.direccion;
+    this.propiedad.piso =  this.propiedad_deta.piso;
+    this.propiedad.referencia = this.propiedad_deta.referencia;
+
+    this.propiedad.precio = this.propiedad_deta.precio;
+
+    this.propiedad.area_total = Number(this.propiedad_deta.area_total);
+    this.propiedad.area_contruida = Number(this.propiedad_deta.area_contruida);
+    this.propiedad.dormitorios = Number(this.propiedad_deta.dormitorios);
+    this.propiedad.banios = Number(this.propiedad_deta.banios);
+    this.propiedad.cocheras = Number(this.propiedad_deta.cocheras);
+    this.propiedad.pisos = Number(this.propiedad_deta.pisos);
+    this.propiedad.depa_pisos = Number(this.propiedad_deta.pisos);
+    this.propiedad.ascensores = Number(this.propiedad_deta.ascensores_id);
+    this.propiedad.mantenimiento = Number(this.propiedad_deta.mantenimiento);
+    this.propiedad.uso_profesional = Number(this.propiedad_deta.uso_profesional_id);
+    this.propiedad.uso_comercial = Number(this.propiedad_deta.uso_comercial_id);
+    this.propiedad.mascotas = Number(this.propiedad_deta.mascotas_id);
+
+    this.propiedad.titulo = this.propiedad_deta.titulo;
+    this.propiedad.descripcion = this.propiedad_deta.descripcion;
+
+    this.propiedad.nombre_contacto = this.formulario.value.nombre;
+    this.propiedad.nrotelefono1_contacto = this.formulario.value.fono1;
+    this.propiedad.nrotelefono2_contacto = this.formulario.value.fono2;
+    this.propiedad.correo_contacto = this.formulario.value.correo;
+
+    this.propiedad.usuario_id = this._usuarioService.usuario.id;
+
+    this._propiedadService.actualizar_propiedad(this.propiedad)
+      .subscribe( ((resp: any) => {
+
+      this._shared.alert_success('Guardado exitosamente');
+      this._router.navigate(['/mis-publicaciones']);
+
+    }));
+
+  }
+
+  regresar() {
+    this._router.navigate(['/propiedades/editar/extras', this.id_propiedad]);
   }
 
   crearFormulario() {
@@ -66,8 +114,8 @@ export class EditarContactoPropiedadComponent implements OnInit {
   setForm(propiedad: PropiedadDetalle) {
     this.formulario.setValue({
       nombre: propiedad.nombre_contacto,
-      fono1: this._usuarioService.usuario.nrotelefono1,
-      fono2: this._usuarioService.usuario.nrotelefono1,
+      fono1: propiedad.nrotelefono1_contacto,
+      fono2: propiedad.nrotelefono2_contacto,
       correo: propiedad.correo_contacto,
       tipo_anunciante : 1
     });

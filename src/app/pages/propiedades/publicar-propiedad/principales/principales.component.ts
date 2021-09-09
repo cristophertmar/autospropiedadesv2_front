@@ -14,8 +14,10 @@ import { UbigeoService } from 'src/app/services/ubigeo.service';
 })
 export class PrincipalesComponent implements OnInit {
 
-  lat =  -12.0453;
-  lng = -77.0311;
+  /* lat =  -12.0453;
+  lng = -77.0311; */
+  lat: number;
+  lng: number;
   siguiente_form: boolean = false;
 
   formulario: FormGroup;
@@ -31,25 +33,38 @@ export class PrincipalesComponent implements OnInit {
     private _anuncioService: AnuncioService,
   ) { 
     this.crearFormulario();
+    this.lat = Number(this._anuncioService.propiedad_temp.lat);
+    this.lng = Number(this._anuncioService.propiedad_temp.lng);
   }
 
   ngOnInit(): void {
     this.listarDepartamentos();
     this.DepartamentoListener();
     this.ProvinciaListener();
+    console.log('temporal: ', this._anuncioService.propiedad_temp.id_tipo_operacion);
+    this.setForm();
   }
 
   crearFormulario() {
     this.formulario = new FormGroup({
-      operacion: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
-      tipo_inmueble: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      operacion: new FormControl(this._anuncioService.propiedad_temp.id_tipo_operacion, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      tipo_inmueble: new FormControl(this._anuncioService.propiedad_temp.id_tipo_inmueble, [Validators.required, Validators.pattern('^(?!0).*$')]),
 
-      departamento: new FormControl('', [Validators.required,Validators.minLength(1)]),
-      provincia: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      distrito: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      direccion: new FormControl(null, [Validators.required]),
-      piso: new FormControl(null, [Validators.required]),
-      referencia: new FormControl(null, [Validators.required]),
+      departamento: new FormControl(this._anuncioService.propiedad_temp.departamento, [Validators.required,Validators.minLength(1)]),
+      provincia: new FormControl(this._anuncioService.propiedad_temp.provincia, [Validators.required, Validators.minLength(1)]),
+      distrito: new FormControl(this._anuncioService.propiedad_temp.distrito, [Validators.required, Validators.minLength(6)]),
+      direccion: new FormControl(this._anuncioService.propiedad_temp.direccion, [Validators.required]),
+      piso: new FormControl(this._anuncioService.propiedad_temp.piso, [Validators.required]),
+      referencia: new FormControl(this._anuncioService.propiedad_temp.referencia, [Validators.required]),
+    });
+  }
+
+
+  setForm() {
+    this.formulario.patchValue({
+      departamento: this._anuncioService.propiedad_temp.departamento,
+      provincia: this._anuncioService.propiedad_temp.provincia,
+      distrito: this._anuncioService.propiedad_temp.ubigeo
     });
   }
 

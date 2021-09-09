@@ -32,10 +32,10 @@
                 </div> -->
                 <div class="row mb-4">
                     <div class="col-md-6">
-                        <hr>
+                        <!-- <hr> -->
                     </div>
                 </div>
-                <h5 class="text-dark fw-semibold mb-4">Características generales</h5>
+                <!-- <h5 class="text-dark fw-semibold mb-4">Características generales</h5>
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <div class="form-check mb-3">
@@ -334,7 +334,7 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <h5 class="text-dark fw-semibold mb-4">Adicionales</h5>
                 <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()" class="row mb-4">
                     <div class="col-md-6">
@@ -350,6 +350,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6"></div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select formControlName="usocomercial" name="usocomercial" class="form-select" id="usocomercial" [class.is-invalid]="comercialNoValido">
@@ -363,6 +364,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6"></div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select formControlName="ascensores" name="ascensores" class="form-select" id="ascensores" [class.is-invalid]="ascensoresNoValido">
@@ -376,6 +378,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6"></div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <select formControlName="mascotas" name="mascotas" class="form-select" id="mascotas" [class.is-invalid]="mascotasNoValido">
@@ -389,6 +392,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="baño">
@@ -431,9 +435,10 @@
                             <label for="bodegas">Bodegas</label>
                         </div>
                     </div> -->
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
 
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-md-6 mb-4">
+                            <button (click)="regresar()" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button>
                         </div>
                         <div class="col-md-6 mb-4">
                             <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Siguiente</button>

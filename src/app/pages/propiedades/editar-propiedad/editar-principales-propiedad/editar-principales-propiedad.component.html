@@ -144,9 +144,17 @@
                         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
                     </agm-map>
                 </div>
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button [routerLink]="['/mis-publicaciones']" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Vover al listado</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                    </div>
                 </div>
+                <!-- <div class="mb-4">
+                    <button type="submit" class="btn btn-warning btn-lg btn-large button btn-radius d-block ms-auto">Guardar y continuar</button>
+                </div> -->
             </form>
         </div>
     </div>

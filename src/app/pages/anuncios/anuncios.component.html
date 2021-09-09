@@ -7,7 +7,7 @@
             <div class="mb-4">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
                         <li class="breadcrumb-item">Administrar anuncio publicitario</li>
                     </ol>
                 </nav>
@@ -15,57 +15,83 @@
             <div class="mb-4">
                 <h3 class="text-primary fw-bold">ANUNCIO PUBLICITARIO</h3>
             </div>
+            <h6>A fin de mantener los formatos de los anuncios, se requiere que las imágenes subidas, sean de los siguientes tamaños:</h6>
+            <hr>
             <form [formGroup]="formulario" autocomplete="off" (ngSubmit)="siguiente()">
                 <h5 class="text-dark fw-semibold mb-2">Imagen 1</h5>
                 <div class="mb-3">
                     <small class="d-block text-secondary">
-                        Las dimensiones deben ser de 208x375.
+                        Las dimensiones deben ser de 208x375 px.
                     </small>
                 </div>
-                <div class="mb-4">
-                    <input type="file" id="fotos" class="input-file">
+                <div *ngIf="!_archivoService.archivo_publi1" class="mb-4">
+                    <input (change)="_archivoService.seleccion_imagen1($event)" type="file" id="fotos" class="input-file">
                     <label for="fotos" class="label-file">
                         <span class="d-block text-primary fs-5 fw-semibold">Subir la imagen</span>
                         <span class="d-block text-secondary">(Peso máximo: 1 MB)</span>
                     </label>
                 </div>
+                <div *ngIf="_archivoService.archivo_publi1" class="text-center box-img1">
+                    (vista previa)
+                    <br><br>
+                    <img style="border: 1px solid #97999E;" [src]="_archivoService.imagenTemp1">
+                    <br><br>
+                    <a (click)="_archivoService.quitar_imagenTemp1()" style="text-decoration-line: underline;" href="javascript:void(0)">Quitar</a>
+                    <br><br>
+                </div>
                 <div class="form-floating mb-4">
                     <input formControlName="url_1" name="url_1" type="text" id="titulo" class="form-control" [class.is-invalid]="url_1NoValido">
-                    <label for="titulo">URL del sitio</label>
+                    <label for="titulo">URL de tu página web o red social</label>
                 </div>
                 <h5 class="text-dark fw-semibold mb-2">Imagen 2</h5>
                 <div class="mb-3">
                     <small class="d-block text-secondary">
-                        Las dimensiones deben ser de 449x143.
+                        Las dimensiones deben ser de 449x143 px.
                     </small>
                 </div>
-                <div class="mb-4">
-                    <input type="file" id="fotos" class="input-file">
+                <div *ngIf="!_archivoService.archivo_publi2" class="mb-4">
+                    <input (change)="_archivoService.seleccion_imagen2($event)" type="file" id="fotos" class="input-file">
                     <label for="fotos" class="label-file">
                         <span class="d-block text-primary fs-5 fw-semibold">Subir la imagen</span>
                         <span class="d-block text-secondary">(Peso máximo: 1 MB)</span>
                     </label>
                 </div>
+                <div *ngIf="_archivoService.archivo_publi2" class="text-center box-img2">
+                    (vista previa)
+                    <br><br>
+                    <img style="border: 1px solid #97999E;" [src]="_archivoService.imagenTemp2">
+                    <br><br>
+                    <a (click)="_archivoService.quitar_imagenTemp2()" style="text-decoration-line: underline;" href="javascript:void(0)">Quitar</a>
+                    <br><br>
+                </div>
                 <div class="form-floating mb-4">
                     <input formControlName="url_2" name="url_2" type="text" id="titulo" class="form-control" [class.is-invalid]="url_2NoValido">
-                    <label for="titulo">URL del sitio</label>
+                    <label for="titulo">URL de tu página web o red social</label>
                 </div>
                 <h5 class="text-dark fw-semibold mb-2">Imagen 3</h5>
                 <div class="mb-3">
                     <small class="d-block text-secondary">
-                        Las dimensiones deben ser de 900x143.
+                        Las dimensiones deben ser de 900x143 px.
                     </small>
                 </div>
-                <div class="mb-4">
-                    <input type="file" id="fotos" class="input-file">
+                <div *ngIf="!_archivoService.archivo_publi3" class="mb-4">
+                    <input (change)="_archivoService.seleccion_imagen3($event)" type="file" id="fotos" class="input-file">
                     <label for="fotos" class="label-file">
                         <span class="d-block text-primary fs-5 fw-semibold">Subir la imagen</span>
                         <span class="d-block text-secondary">(Peso máximo: 1 MB)</span>
                     </label>
                 </div>
+                <div *ngIf="_archivoService.archivo_publi3" class="text-center box-img3">
+                    (vista previa)
+                    <br><br>
+                    <img style="border: 1px solid #97999E;" [src]="_archivoService.imagenTemp3">
+                    <br><br>
+                    <a (click)="_archivoService.quitar_imagenTemp3()" style="text-decoration-line: underline;" href="javascript:void(0)">Quitar</a>
+                    <br><br>
+                </div>
                 <div class="form-floating mb-4">
                     <input formControlName="url_3" name="url_3" type="text" id="titulo" class="form-control" [class.is-invalid]="url_3NoValido">
-                    <label for="titulo">URL del sitio</label>
+                    <label for="titulo">URL de tu página web o red social</label>
                 </div>
                 <h5 class="text-dark fw-semibold mb-2">¿En qué módulo deseas mostrar el anuncio publicitario?</h5>
                 <div class="d-flex flex-nowrap justify-content-start align-items-center gap-2 mb-4">

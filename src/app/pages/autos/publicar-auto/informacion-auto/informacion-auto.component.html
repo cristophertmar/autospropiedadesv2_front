@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input formControlName="kilometraje" name="kilometraje" type="text" id="kilometraje" class="form-control" [class.is-invalid]="kilometrajeNoValido">
+                            <input formControlName="kilometraje" name="kilometraje" type="number" id="kilometraje" class="form-control" [class.is-invalid]="kilometrajeNoValido">
                             <label for="kilometraje">Kilometraje</label>
                             <div class="invalid-feedback">
                                 Ingrese kilometraje
@@ -298,7 +298,7 @@
                         <label class="btn btn-outline-primary btn-lg" for="tipo2">USD</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input formControlName="precio" name="precio" type="text" id="precio" class="form-control" [class.is-invalid]="precioNoValido">
+                        <input formControlName="precio" name="precio" type="number" id="precio" class="form-control" [class.is-invalid]="precioNoValido">
                         <label for="precio">Precio</label>
                         <div class="invalid-feedback">
                             Ingrese el precio

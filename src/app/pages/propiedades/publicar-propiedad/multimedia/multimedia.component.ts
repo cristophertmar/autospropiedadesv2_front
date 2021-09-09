@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArchivoService } from '../../../../services/archivo.service';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 export class MultimediaComponent implements OnInit {
 
   formulario: FormGroup;
+  @ViewChild('btn_agregarImg') btn_agregarImg: ElementRef<HTMLElement>;
 
   constructor(
     public _archivoService: ArchivoService,
@@ -24,20 +25,23 @@ export class MultimediaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this._archivoService.imagenes_temporal.length);
+    //console.log(this._archivoService.imagenes_temporal.length);
   }
-  
+
+  agregar_imagen() {
+    this.btn_agregarImg.nativeElement.click();
+  }  
 
   siguiente() {
     this._anuncioService.propiedad_temp.url_video = this.formulario.value.url_video;
-    /* console.log(this._anuncioService.propiedad_temp); */
     this._anuncioService.guardar_propiedad_temp(this._anuncioService.propiedad_temp);
     this._router.navigate(['/propiedades/publicar/extras']);
+    
   }
 
   crearFormulario() {
     this.formulario = new FormGroup({ 
-      url_video: new FormControl('', [Validators.required])
+      url_video: new FormControl(this._anuncioService.propiedad_temp.url_video, [Validators.required])
     });
   }
 

@@ -1,3 +1,5 @@
+import { ImagenGaleria } from "./imagen_galeria.model";
+
 export class VehiculoDetalle {
 
     constructor(
@@ -47,6 +49,7 @@ export class VehiculoDetalle {
         public usuario?: string,
         public correo?: string,
         public imagenes?: [],
+        public imagen_galeria?: ImagenGaleria[],
 
         public  id_marca?: number,
         public  id_modelo?: number,
@@ -62,8 +65,8 @@ export class VehiculoDetalle {
         public  nrotelefono2_contacto?: string,
 
         public  usuario_id?: number,
-        public  usuario_foto?: string
-
+        public  usuario_foto?: string,
+        public tipo_moneda?: string
 
     ) {}
 

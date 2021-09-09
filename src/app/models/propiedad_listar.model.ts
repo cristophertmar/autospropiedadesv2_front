@@ -16,7 +16,8 @@ export class PropiedadListar {
         public imagen?: string,
         public titulo?: string,
         public usuario?: string,
-        public foto?: string
+        public foto?: string,
+        public tipo_moneda?: string
     ) {}
 
 }

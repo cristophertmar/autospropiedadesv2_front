@@ -75,10 +75,10 @@ export class ExtrasComponent implements OnInit {
 
   crearFormulario() {
     this.formulario = new FormGroup({      
-      usoprofesional: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
-      usocomercial: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
-      ascensores: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')]),
-      mascotas: new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')])
+      usoprofesional: new FormControl(this._anuncioService.propiedad_temp.uso_profesional, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      usocomercial: new FormControl(this._anuncioService.propiedad_temp.uso_comercial, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      ascensores: new FormControl(this._anuncioService.propiedad_temp.ascensores, [Validators.required, Validators.pattern('^(?!0).*$')]),
+      mascotas: new FormControl(this._anuncioService.propiedad_temp.mascotas, [Validators.required, Validators.pattern('^(?!0).*$')])
     });
   }
 

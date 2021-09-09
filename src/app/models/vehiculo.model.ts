@@ -45,7 +45,7 @@ export class Vehiculo {
         public provincia?: string,
         public ubigeo?: string,
 
-        public tipo_moneda?: number,
+        public tipo_moneda?: string,
         public precio?: number,
 
         public nombre_contacto?: string,

@@ -63,12 +63,14 @@ export class UsuarioService {
 
     return this.http.post( url, usuario ).pipe(
       map( (resp: any) => {
-        /* console.log(resp); */
-        this.guardarStorage( resp.token, resp.usuario );
-        return true;
-      }),
+        if(resp.exito) {
+          this.guardarStorage( resp.token, resp.usuario );
+        }  
+        return resp.exito;
+      })
+      /* ,
       catchError(err => {
-        /* Swal.fire({
+        Swal.fire({
           text: 'Correo y contraseña incorrecta',
           width: 350,
           padding: 15,
@@ -76,11 +78,12 @@ export class UsuarioService {
           allowOutsideClick: false,
           showConfirmButton: false,
           icon: 'error'
-        }); */
+        });
 
         return throwError(err);
+        //return false;
 
-      })
+      }) */
 
       );
   }

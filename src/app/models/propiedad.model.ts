@@ -14,7 +14,7 @@ export class Propiedad {
         public piso?: string,
         public referencia?: string,
 
-        public tipo_moneda?: number,
+        public tipo_moneda?: string,
         public precio?: number,
 
         public area_total?: number,

@@ -56,11 +56,12 @@
                     </div>
                 </div>
                 <h5 class="text-dark fw-semibold mb-2">Fotos</h5>
-                <div class="mb-3">
+                <a (click)="agregar_imagen()" *ngIf="_archivoService.imagenes_temporal.length !== 0" href="javascript:void(0)"> Agregar +</a>
+                <!-- <div class="mb-3">
                     <small class="d-block text-secondary">
                         Haz más atractivo tu anuncio añadiendo fotografías de tu vehículo.Te recomendamos que subas fotos de tu vehículo a la luz del día, deben ser del exterior y del interior de varios ángulos. Si aún no cuentas con más fotos, sube las que tengas y no dudes luego de regresar a colocar más.
                     </small>
-                </div>
+                </div> -->
                 <div *ngIf="_archivoService.imagenes_temporal" class="text-center box-sm">
                     <div class="row">
                         <div *ngFor="let imagen of _archivoService.imagenes_temporal; index as i" class="text-center" class="col-md-2 text-center" style="padding: 10px;">
@@ -69,6 +70,7 @@
                         </div>
                     </div>
                 </div>
+                <input id="btn_agregarImg" #btn_agregarImg class="ocultar" (change)="_archivoService.adicionarImagen($event)" type="file" multiple>
                 <div *ngIf="_archivoService.imagenes_temporal.length === 0" class="mb-4">
                     <input (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
                     <label for="fotos" class="label-file">
@@ -76,9 +78,19 @@
                         <span class="d-block text-secondary">(Puedes subir hasta 10 fotos)</span>
                     </label>
                 </div>
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button [routerLink]="['/autos/publicar/informacion']" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Siguiente</button>
+                    </div>
                 </div>
+
+                <!-- <div class="mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius d-block ms-auto">Siguiente</button>
+                </div> -->
             </form>
         </div>
     </div>

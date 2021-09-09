@@ -1,3 +1,5 @@
+import { ImagenGaleria } from "./imagen_galeria.model";
+
 export class PropiedadDetalle {
 
     constructor(
@@ -25,6 +27,7 @@ export class PropiedadDetalle {
         public titulo?: string,
         public descripcion?: string,
         public imagenes?: [],
+        public imagen_galeria?: ImagenGaleria[],
 
         public id_tipo_operacion?: number,
         public id_tipo_inmueble?: number,
@@ -37,7 +40,10 @@ export class PropiedadDetalle {
         public uso_profesional_id?: number,
         public uso_comercial_id?: number,
         public mascotas_id?: number,
-        public usuario_foto?: string
+        public usuario_foto?: string,
+        public nrotelefono1_contacto?: string,
+        public nrotelefono2_contacto?: string,
+        public tipo_moneda?: string
     ) {}
 
 }

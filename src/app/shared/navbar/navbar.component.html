@@ -64,7 +64,7 @@
             <img src="./assets/img/logo_mobile.svg" class="d-block d-lg-none">
         </a>
         <div>
-            <a href="javascript:void(0)" [routerLink]="['/anuncio/seleccionar']" class="btn btn-primary button d-inline-block d-lg-none shadow-none">
+            <a (click)="publicar_nuevo()" href="javascript:void(0)" class="btn btn-primary button d-inline-block d-lg-none shadow-none">
                 Publicar
             </a>
 
@@ -92,7 +92,7 @@
                     <a data-bs-toggle="modal" data-bs-target="#mdl_registro" class="btn btn-primary btn-sm btn-small button px-4" href="javascript:void(0)"><i class="lnr lnr-user"></i> Registro</a>
                 </li>
                 <li *ngIf="!_usuarioService.usuario" class="nav-item d-inline-block d-lg-none">
-                    <a data-bs-toggle="modal" data-bs-target="#mdl_login" class="nav-link mx-lg-4" href="javascript:void(0)">Login</a>
+                    <a data-bs-target="#mdl_login" class="nav-link mx-lg-4" href="javascript:void(0)">Login</a>
                 </li>
                 <li *ngIf="!_usuarioService.usuario" class="nav-item d-inline-block d-lg-none">
                     <a data-bs-toggle="modal" data-bs-target="#mdl_registro" class="nav-link mx-lg-4" href="javascript:void(0)">Registro</a>
@@ -103,7 +103,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/mi-perfil']">Mi perfil</a></li>
-                        <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/anuncio/seleccionar']">Publicar</a></li>
+                        <li><a (click)="publicar_nuevo()" class="dropdown-item" href="javascript:void(0)">Publicar</a></li>
                         <!-- <li><a class="dropdown-item" href="javascript:void(0)">Mis publicaciones</a></li> -->
                         <li>
                             <hr class="dropdown-divider">
@@ -116,6 +116,8 @@
     </div>
 </nav>
 
+<a id="abrir_mdl_login" #abrir_mdl_login data-bs-toggle="modal" data-bs-target="#mdl_login" class="ocultar btn btn-warning btn-sm btn-small button me-4 px-4" href="javascript:void(0)"><i class="lnr lnr-users"></i> Login</a>
+
 <div class="modal" id="mdl_login" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -127,7 +129,7 @@
                         Seleccione el servicio con el que desea ingresar:
                     </p>
                     <div class="d-grid gap-4 mb-4">
-                        <a href="javascript:void(0)" (click)="login_facebook(true)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a>
+                        <!-- <a href="javascript:void(0)" (click)="login_facebook(true)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a> -->
                         <a href="javascript:void(0)" (click)="login_google(true)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Continuar con Google</a>
                         <a href="javascript:void(0)" (click)="cambiar_mod_loguin()" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a>
                     </div>
@@ -176,7 +178,7 @@
                         Seleccione el servicio con el que te deseas registrar:
                     </p>
                     <div class="d-grid gap-4 mb-4">
-                        <a href="javascript:void(0)" (click)="login_facebook(false)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Registrarme con Facebook</a>
+                        <!-- <a href="javascript:void(0)" (click)="login_facebook(false)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Registrarme con Facebook</a> -->
                         <a href="javascript:void(0)" (click)="login_google(false)" class="btn btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Registrarme con Google</a>
                         <a href="javascript:void(0)" (click)="cambiar_mod_registro()" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="lnr lnr-at mx-2"></i>Continuar con email</a>
                     </div>

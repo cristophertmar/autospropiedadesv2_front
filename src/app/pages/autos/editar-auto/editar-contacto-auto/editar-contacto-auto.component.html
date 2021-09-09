@@ -86,9 +86,17 @@
                         <input class="form-check-input" type="checkbox" id="switch">
                     </div>
                 </div> -->
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius">Guardar cambios</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" (click)="regresar()" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius mb-4">Atrás</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-warning btn-lg btn-large btn-radius d-block ms-auto">Guardar cambios</button>
+                    </div>
                 </div>
+                <!-- <div class="mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius">Guardar cambios</button>
+                </div> -->
             </form>
         </div>
     </div>

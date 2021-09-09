@@ -86,9 +86,15 @@
                         <input class="form-check-input" type="checkbox" id="switch">
                     </div>
                 </div> -->
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius">Publicar ahora</button>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <button [routerLink]="['/propiedades/publicar/extras']" type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius">Atrás</button>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <button type="submit" class="btn btn-primary btn-lg btn-large button btn-radius">Publicar ahora</button>
+                    </div>
                 </div>
+
             </form>
         </div>
     </div>

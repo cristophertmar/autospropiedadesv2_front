@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { URL_SERVICIOS } from 'src/app/config/config';
@@ -23,6 +23,9 @@ export class EditarMultimediaPropiedadComponent implements OnInit {
   formulario: FormGroup;
 
   id_propiedad: string;
+  @ViewChild('btn_nuevaImg') btn_nuevaImg: ElementRef<HTMLElement>;
+  @ViewChild('btn_agregarImg') btn_agregarImg: ElementRef<HTMLElement>;
+  
 
   constructor(
     public _usuarioService: UsuarioService,
@@ -50,6 +53,22 @@ export class EditarMultimediaPropiedadComponent implements OnInit {
       this.setForm(this.propiedad_deta);
     });
 
+  }
+
+  regresar() {
+    this._router.navigate(['/propiedades/editar/caracteristicas', this.id_propiedad]);
+  }
+
+  eliminar_imagen(i: number) {
+    this.propiedad_deta.imagen_galeria.splice(i, 1);
+  }
+
+  agregar_imagen() {
+    this.btn_agregarImg.nativeElement.click();
+  }
+
+  nueva_imagen() {
+    this.btn_nuevaImg.nativeElement.click();
   }
 
   siguiente() {

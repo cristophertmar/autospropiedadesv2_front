@@ -14,7 +14,8 @@ export class VehiculoListar {
         public condicion_vehiculo?: string,
         public usuario?: string,
         public imagen?: string,
-        public foto?: string
+        public foto?: string,
+        public tipo_moneda?: string
     ) {}
 
 }

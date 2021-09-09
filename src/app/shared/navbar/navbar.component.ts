@@ -6,6 +6,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,22 +28,36 @@ export class NavbarComponent implements OnInit {
   forma_login: FormGroup;
   forma_registro: FormGroup;
 
+  @ViewChild('abrir_mdl_login') abrir_mdl_login: ElementRef<HTMLElement>;
   @ViewChild('cerrar_mdl_login') cerrar_mdl_login: ElementRef<HTMLElement>;
   @ViewChild('cerrar_mdl_registro') cerrar_mdl_registro: ElementRef<HTMLElement>;
+  
 
   constructor(
     public _usuarioService: UsuarioService,
     private _authService: SocialAuthService,
     public _router: Router,
-    private _spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService,
+    private _shared: SharedService
   ) {
 
   this.crearForm();
   this.accedido = false;
-  this.intento_login = true;
-  
+  this.intento_login = true;  
 
   }
+
+
+  publicar_nuevo() {
+    if(this._usuarioService.usuario) {
+      this._router.navigate(['/anuncio/seleccionar']);
+      return;
+    }
+
+    this.abrir_mdl_login.nativeElement.click();
+    
+  }
+
 
   ngOnInit(): void {
 
@@ -108,11 +123,18 @@ export class NavbarComponent implements OnInit {
     this.usuario.pass = this.forma_login.value.password_login;
     this._spinner.show();
     this._usuarioService.login_usuario( this.usuario)
-    .subscribe(correcto => {
+    .subscribe((resp: any) => {
       this._spinner.hide();
-      this.cerrar_mdl_login.nativeElement.click();
-      this._router.navigate(['/anuncio/seleccionar']);
-      this.forma_login.reset();
+
+      if(resp) {        
+        this.cerrar_mdl_login.nativeElement.click();
+        this._router.navigate(['/anuncio/seleccionar']);
+        this.forma_login.reset();
+        return;
+      }
+
+      this._shared.alert_error('Correo y/o contraseña incorrecta');
+      
     });
 
   }

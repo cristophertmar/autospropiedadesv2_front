@@ -131,7 +131,9 @@
             <span class="text-primary fw-semibold d-block">{{ vehiculo.provincia | titlecase }}, {{ vehiculo.distrito | titlecase }}</span>
             <h3 class="text-secondary fw-bold"><span class="text-primary">{{ vehiculo.descrip_marca | titlecase }}</span> {{ vehiculo.descrip_modelo | titlecase }}</h3>
             <span class="text-dark fw-semibold d-block mb-4">14 May 2021</span>
-            <span class="d-block h1 fw-bold mb-4"> {{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </span>
+            <!-- <span class="d-block h1 fw-bold mb-4"> {{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </span> -->
+            <div *ngIf="vehiculo.tipo_moneda === 'PEN'" class="d-block h1 fw-bold mb-4">{{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
+            <div *ngIf="vehiculo.tipo_moneda !== 'PEN'" class="d-block h1 fw-bold mb-4">{{ vehiculo.precio | currency }}</div>
             <div class="p-3 border border-dark rounded-3 text-secondary fw-normal mb-4">
                 <span class="d-block mb-2 fw-semibold">Por tu seguridad</span>
                 <ul>
@@ -140,8 +142,8 @@
                     <li>Ten cuidado con vendedores que dicen estar en el extranjero, o que evaden información.</li>
                 </ul>
             </div>
-            <h5 class="d-block text-dark fw-bold">Vendedor</h5>
-            <div class="social mb-4">
+            <h5 class="d-block text-dark fw-bold">Contactar Vendedor</h5>
+            <div *ngIf="vehiculo.usuario_foto" class="social mb-4">
                 <!-- <img src="https://via.placeholder.com/32" class="rounded-circle"> -->
                 <img [src]="_usuarioService.ruta_foto(vehiculo.usuario_foto)" class="rounded-circle">
                 <span class="text-muted">
@@ -333,7 +335,9 @@
                 <div class="card-img">
                     <img class="card-img-top" [src]="obtener_ruta(veh.imagen)">
                     <!-- <div class="price text-truncate">S/ 99,999.00</div> -->
-                    <div class="price text-truncate"> {{ veh.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </div>
+                    <!-- <div class="price text-truncate"> {{ veh.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </div> -->
+                    <div *ngIf="veh.tipo_moneda === 'PEN'" class="price text-truncate">{{ veh.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
+                    <div *ngIf="veh.tipo_moneda !== 'PEN'" class="price text-truncate">{{ veh.precio | currency }}</div>
                 </div>
                 <div class="card-body text-truncate">
                     <span class="text-dark fw-bold"> {{ veh.descrip_marca }} </span>
@@ -427,4 +431,4 @@
     </div>
 </div>
 
-<a href="#" class="btn btn-lg btn-float text-white shadow fw-bold btn-radius"><i class="lnr lnr-plus"></i> VENDER</a>
+<!-- <a href="publicar.html" class="btn btn-lg btn-float text-white shadow fw-bold btn-radius"><i class="lnr lnr-plus"></i> PUBLICAR</a> -->

@@ -542,7 +542,10 @@ agm-map {
 
 .box img,
 .box-sm img,
-.box-xs img {
+.box-xs img,
+.box-img1 img,
+.box-img2 img,
+.box-img3 img {
     width: 100%;
     height: auto;
 }
@@ -563,6 +566,24 @@ agm-map {
     .box-xs img {
         width: 48px;
         height: 48px;
+        object-fit: cover;
+        object-position: center center;
+    }
+    .box-img1 img {
+        width: 208px;
+        height: 375px;
+        object-fit: cover;
+        object-position: center center;
+    }
+    .box-img2 img {
+        width: 449px;
+        height: 143px;
+        object-fit: cover;
+        object-position: center center;
+    }
+    .box-img3 img {
+        width: 900px;
+        height: 143px;
         object-fit: cover;
         object-position: center center;
     }

@@ -46,12 +46,12 @@ export class EditarInformacionAutoComponent implements OnInit {
     this.MarcaListener();
     this._activatedRoute.params.subscribe( ({id}) => {
       this.id_vehiculo = id;
-      this.detalle_propiedad(id);
+      this.detalle_vehiculo(id);
     } );
   }
 
 
-  detalle_propiedad( id: string) {
+  detalle_vehiculo( id: string) {
     this._vehiculoService.detalle_vehiculo(id)
     .subscribe( (resp: any) => {
       this.vehiculo_deta = resp.data;
@@ -232,10 +232,179 @@ export class EditarInformacionAutoComponent implements OnInit {
 
 
   siguiente() {
+
+    if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
+    this.vehiculo = {};
+
+    this.vehiculo.id = this.vehiculo_deta.id_vehiculo;
+    this.vehiculo.id_modelo = Number(this.formulario.value.modelo);
+    this.vehiculo.anio_vehiculo = Number(this.formulario.value.anio);
+    this.vehiculo.id_tipotran = Number(this.formulario.value.transmision);
+    this.vehiculo.id_combustible = Number(this.formulario.value.combustible);
+    this.vehiculo.motor_vehiculo = Number(this.vehiculo_deta.motor_vehiculo);
+    this.vehiculo.id_timon = Number((this.formulario.value.timon));
+    this.vehiculo.kilometraje_vehiculo = Number(this.formulario.value.kilometraje);
+    this.vehiculo.puertas_vehiculo = Number(this.formulario.value.puertas);
+    this.vehiculo.id_traccion = Number(this.formulario.value.traccion);
+    this.vehiculo.id_color = Number(this.formulario.value.color);
+    this.vehiculo.id_cilindro = Number(this.formulario.value.cilindros);
+    this.vehiculo.descrip_vehiculo = this.formulario.value.descripcion;
+
+    this.vehiculo.precio = Number(this.formulario.value.precio); //parseFloat(this.vehiculo_deta.precio);
+
+    this.vehiculo.ubigeo = this.vehiculo_deta.ubigeo;
+
+    this.vehiculo.retrovisor_acce_veh = this.formulario.value.retrovisor_acce_veh;
+    this.vehiculo.neblinero_acce_veh = this.formulario.value.neblinero_acce_veh;
+    this.vehiculo.aireacond_acce_veh = this.formulario.value.aireacond_acce_veh;
+    this.vehiculo.fullequipo_acce_veh = this.formulario.value.fullequipo_acce_veh;
+    this.vehiculo.computador_acce_veh = this.formulario.value.computador_acce_veh;
+    this.vehiculo.parlante_acce_veh = this.formulario.value.parlante_acce_veh;
+    this.vehiculo.cd_acce_veh = this.formulario.value.cd_acce_veh;
+    this.vehiculo.mp3_acce_veh = this.formulario.value.mp3_acce_veh;
+    this.vehiculo.aro_acce_veh = this.formulario.value.aro_acce_veh;
+    this.vehiculo.aroaleacion_acce_veh = this.formulario.value.aroaleacion_acce_veh;
+    this.vehiculo.parrilla_acce_veh = this.formulario.value.parrilla_acce_veh;
+    this.vehiculo.luceshalo_acce_veh = this.formulario.value.luceshalo_acce_veh;
+    this.vehiculo.gps_acce_veh = this.formulario.value.gps_acce_veh;
+    this.vehiculo.airbag_acce_veh = this.formulario.value.airbag_acce_veh;
+    this.vehiculo.lamina_acce_veh = this.formulario.value.lamina_acce_veh;
+    this.vehiculo.blindado_acce_veh = this.formulario.value.blindado_acce_veh;
+    this.vehiculo.farantiniebdel_acce_veh = this.formulario.value.farantiniebdel_acce_veh;
+    this.vehiculo.farantiniebtras_acce_veh = this.formulario.value.farantiniebtras_acce_veh;
+    this.vehiculo.inmovmotor_acce_veh = this.formulario.value.inmovmotor_acce_veh;
+    this.vehiculo.repartelecfrena_acce_veh = this.formulario.value.repartelecfrena_acce_veh;
+    this.vehiculo.frenoabs_acce_veh = this.formulario.value.frenoabs_acce_veh;
+    this.vehiculo.alarma_acce_veh = this.formulario.value.alarma_acce_veh;
+    this.vehiculo.sunroof_acce_veh = this.formulario.value.sunroof_acce_veh;
+    this.vehiculo.ascuero_acce_veh = this.formulario.value.ascuero_acce_veh;
+    this.vehiculo.climatizador_acce_veh = this.formulario.value.climatizador_acce_veh;
+
+    this.vehiculo.nombre_contacto = this.vehiculo_deta.usuario;
+    this.vehiculo.nrotelefono1_contacto =  this.vehiculo_deta.nrotelefono1_contacto;
+    this.vehiculo.nrotelefono2_contacto =  this.vehiculo_deta.nrotelefono2_contacto;
+    this.vehiculo.correo_contacto = this.vehiculo_deta.correo;
+
+    this.vehiculo.usuario_id = this._usuarioService.usuario.id;
+
+    if (this.vehiculo.kilometraje_vehiculo > 0) {
+      this.vehiculo.condicion_vehiculo = 1; // Usado
+    } else {
+      this.vehiculo.condicion_vehiculo = 2; // Nuevo
+    }
+
+    const kms = this.vehiculo.kilometraje_vehiculo;
+
+    switch (true) {
+      case (kms <= 15000) :
+        this.vehiculo.id_kilometros = 1;
+        break;
+      case (kms <= 30000) :
+        this.vehiculo.id_kilometros = 2;
+        break;
+      case (kms <= 50000) :
+        this.vehiculo.id_kilometros = 3;
+        break;
+      case (kms <= 10000) :
+        this.vehiculo.id_kilometros = 4;
+        break;
+      default:
+        this.vehiculo.id_kilometros = 5;
+    }
+
+    this._vehiculoService.actualizar_vehiculo(this.vehiculo)
+    .subscribe( (resp: any) => {
+      this._shared.alert_success('Guardado exitosamente');
+      this._router.navigate(['/autos/editar/ubicacion', this.id_vehiculo]);
+    });
     
-    this._shared.alert_success('Guardado exitosamente');
-    this._router.navigate(['/autos/editar/ubicacion', this.id_vehiculo]);
 
   }
 
 }
+
+
+/*  this.vehiculo = {};
+
+
+    this.vehiculo.id = this.vehiculo_deta.id_vehiculo;
+    this.vehiculo.id_modelo = Number(this.vehiculo_deta.id_modelo);
+    this.vehiculo.anio_vehiculo = Number(this.vehiculo_deta.anio_vehiculo);
+    this.vehiculo.id_tipotran = Number(this.vehiculo_deta.id_tipotran);
+    this.vehiculo.id_combustible = Number(this.vehiculo_deta.id_combustible);
+    this.vehiculo.motor_vehiculo = Number(this.vehiculo_deta.motor_vehiculo);
+    this.vehiculo.id_timon = Number(this.vehiculo_deta.id_timon);
+    this.vehiculo.kilometraje_vehiculo = Number(this.vehiculo_deta.kilometraje_vehiculo);
+    this.vehiculo.puertas_vehiculo = Number(this.vehiculo_deta.puertas_vehiculo);
+    this.vehiculo.id_traccion = Number(this.vehiculo_deta.id_traccion);
+    this.vehiculo.id_color = Number(this.vehiculo_deta.id_color);
+    this.vehiculo.id_cilindro = Number(this.vehiculo_deta.id_cilindro);
+    this.vehiculo.descrip_vehiculo = this.vehiculo_deta.descrip_vehiculo;
+
+    this.vehiculo.precio = this.vehiculo_deta.precio; //parseFloat(this.vehiculo_deta.precio);
+
+    this.vehiculo.ubigeo = this.vehiculo_deta.ubigeo;
+
+    this.vehiculo.retrovisor_acce_veh = this.vehiculo_deta.retrovisor_acce_veh;
+    this.vehiculo.neblinero_acce_veh = this.vehiculo_deta.neblinero_acce_veh;
+    this.vehiculo.aireacond_acce_veh = this.vehiculo_deta.aireacond_acce_veh;
+    this.vehiculo.fullequipo_acce_veh = this.vehiculo_deta.fullequipo_acce_veh;
+    this.vehiculo.computador_acce_veh = this.vehiculo_deta.computador_acce_veh;
+    this.vehiculo.parlante_acce_veh = this.vehiculo_deta.parlante_acce_veh;
+    this.vehiculo.cd_acce_veh = this.vehiculo_deta.cd_acce_veh;
+    this.vehiculo.mp3_acce_veh = this.vehiculo_deta.mp3_acce_veh;
+    this.vehiculo.aro_acce_veh = this.vehiculo_deta.aro_acce_veh;
+    this.vehiculo.aroaleacion_acce_veh = this.vehiculo_deta.aroaleacion_acce_veh;
+    this.vehiculo.parrilla_acce_veh = this.vehiculo_deta.parrilla_acce_veh;
+    this.vehiculo.luceshalo_acce_veh = this.vehiculo_deta.luceshalo_acce_veh;
+    this.vehiculo.gps_acce_veh = this.vehiculo_deta.gps_acce_veh;
+    this.vehiculo.airbag_acce_veh = this.vehiculo_deta.airbag_acce_veh;
+    this.vehiculo.lamina_acce_veh = this.vehiculo_deta.lamina_acce_veh;
+    this.vehiculo.blindado_acce_veh = this.vehiculo_deta.blindado_acce_veh;
+    this.vehiculo.farantiniebdel_acce_veh = this.vehiculo_deta.farantiniebdel_acce_veh;
+    this.vehiculo.farantiniebtras_acce_veh = this.vehiculo_deta.farantiniebtras_acce_veh;
+    this.vehiculo.inmovmotor_acce_veh = this.vehiculo_deta.inmovmotor_acce_veh;
+    this.vehiculo.repartelecfrena_acce_veh = this.vehiculo_deta.repartelecfrena_acce_veh;
+    this.vehiculo.frenoabs_acce_veh = this.vehiculo_deta.frenoabs_acce_veh;
+    this.vehiculo.alarma_acce_veh = this.vehiculo_deta.alarma_acce_veh;
+    this.vehiculo.sunroof_acce_veh = this.vehiculo_deta.sunroof_acce_veh;
+    this.vehiculo.ascuero_acce_veh = this.vehiculo_deta.ascuero_acce_veh;
+    this.vehiculo.climatizador_acce_veh = this.vehiculo_deta.climatizador_acce_veh;
+
+    this.vehiculo.nombre_contacto = this.vehiculo_deta.usuario;
+    this.vehiculo.nrotelefono1_contacto =  this.vehiculo_deta.nrotelefono1_contacto;
+    this.vehiculo.nrotelefono2_contacto =  this.vehiculo_deta.nrotelefono2_contacto;
+    this.vehiculo.correo_contacto = this.vehiculo_deta.correo;
+
+    this.vehiculo.usuario_id = this._usuarioService.usuario.id;
+
+    if (this.vehiculo.kilometraje_vehiculo > 0) {
+      this.vehiculo.condicion_vehiculo = 1; // Usado
+    } else {
+      this.vehiculo.condicion_vehiculo = 2; // Nuevo
+    }
+
+    const kms = this.vehiculo.kilometraje_vehiculo;
+
+    switch (true) {
+      case (kms <= 15000) :
+        this.vehiculo.id_kilometros = 1;
+        break;
+      case (kms <= 30000) :
+        this.vehiculo.id_kilometros = 2;
+        break;
+      case (kms <= 50000) :
+        this.vehiculo.id_kilometros = 3;
+        break;
+      case (kms <= 10000) :
+        this.vehiculo.id_kilometros = 4;
+        break;
+      default:
+        this.vehiculo.id_kilometros = 5;
+    }
+ */

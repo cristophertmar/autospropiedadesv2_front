@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ubigeo } from 'src/app/models/ubigeo.model';
@@ -19,6 +19,8 @@ export class UbicacionAutoComponent implements OnInit {
   provincias: Ubigeo[] = [];
   distritos: Ubigeo[] = [];
 
+  @ViewChild('btn_agregarImg') btn_agregarImg: ElementRef<HTMLElement>;
+
 
   constructor(
     private _router: Router,
@@ -30,9 +32,15 @@ export class UbicacionAutoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this._anuncioService.vehiculo_temp);
     this.listarDepartamentos();
     this.DepartamentoListener();
     this.ProvinciaListener();
+    this.setForm();
+  }
+
+  agregar_imagen() {
+    this.btn_agregarImg.nativeElement.click();
   }
 
   siguiente() {
@@ -43,6 +51,8 @@ export class UbicacionAutoComponent implements OnInit {
       });
     }
 
+    this._anuncioService.vehiculo_temp.departamento = this.formulario.value.departamento;
+    this._anuncioService.vehiculo_temp.provincia = this.formulario.value.provincia;
     this._anuncioService.vehiculo_temp.ubigeo = this.formulario.value.distrito;
     this._anuncioService.guardar_vehiculo_temp(this._anuncioService.vehiculo_temp);
     this._router.navigate(['/autos/publicar/contacto']);
@@ -85,9 +95,17 @@ export class UbicacionAutoComponent implements OnInit {
 
   crearFormulario() {
     this.formulario = new FormGroup({
-      departamento: new FormControl('', [Validators.required,Validators.minLength(1)]),
-      provincia: new FormControl('', [Validators.required, Validators.minLength(1)]),
-      distrito: new FormControl('', [Validators.required, Validators.minLength(6)])
+      departamento: new FormControl(this._anuncioService.vehiculo_temp.departamento, [Validators.required,Validators.minLength(1)]),
+      provincia: new FormControl(this._anuncioService.vehiculo_temp.provincia, [Validators.required, Validators.minLength(1)]),
+      distrito: new FormControl(this._anuncioService.vehiculo_temp.ubigeo, [Validators.required, Validators.minLength(6)])
+    });
+  }
+
+  setForm() {
+    this.formulario.setValue({
+      departamento: this._anuncioService.vehiculo_temp.departamento,
+      provincia: this._anuncioService.vehiculo_temp.provincia,
+      distrito: this._anuncioService.vehiculo_temp.ubigeo
     });
   }
 

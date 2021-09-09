@@ -158,7 +158,8 @@
             <h3 class="text-secondary fw-bold"><span class="text-primary">{{ propiedad.titulo }}</span> </h3>
             <!-- Neque porro quisquam est qui -->
             <span class="text-dark fw-semibold d-block mb-4"> {{ propiedad.tipo_inmueble_desc }}({{ propiedad.tipo_descripcion_desc }}) </span>
-            <span class="d-block h1 fw-bold mb-4">{{ propiedad.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</span>
+            <span *ngIf="propiedad.tipo_moneda === 'PEN'" class="d-block h1 fw-bold mb-4">{{ propiedad.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</span>
+            <span *ngIf="propiedad.tipo_moneda !== 'PEN'" class="d-block h1 fw-bold mb-4">{{ propiedad.precio | currency }}</span>
             <div class="p-3 border border-dark rounded-3 text-secondary fw-normal mb-4">
                 <span class="d-block mb-2 fw-semibold">Por tu seguridad</span>
                 <ul>
@@ -167,8 +168,8 @@
                     <li>Ten cuidado con vendedores que dicen estar en el extranjero, o que evaden información.</li>
                 </ul>
             </div>
-            <h5 class="d-block text-dark fw-bold">Vendedor</h5>
-            <div class="social mb-4">
+            <h5 class="d-block text-dark fw-bold">Contactar Vendedor</h5>
+            <div *ngIf="propiedad.usuario_foto" class="social mb-4">
                 <!-- <img src="https://via.placeholder.com/32" class="rounded-circle"> -->
                 <img [src]="_usuarioService.ruta_foto(propiedad.usuario_foto)" class="rounded-circle">
                 <span class="text-muted">
@@ -352,7 +353,9 @@
                 <div class="card-img">
                     <!--  <img class="card-img-top" src="http://via.placeholder.com/120x100"> -->
                     <img class="card-img-top" [src]="obtener_ruta(prop.imagen)">
-                    <div class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
+                    <!-- <div class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div> -->
+                    <div *ngIf="prop.tipo_moneda === 'PEN'" class="price text-truncate">{{ prop.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
+                    <div *ngIf="prop.tipo_moneda !== 'PEN'" class="price text-truncate">{{ prop.precio | currency }}</div>
                 </div>
                 <div class="card-body">
                     <h5 class="text-muted fw-bold mb-0"> {{ prop.titulo }} </h5>
@@ -501,4 +504,4 @@
         </div> -->
     </div>
 </div>
-<a href="publicar.html" class="btn btn-lg btn-float text-white shadow fw-bold btn-radius"><i class="lnr lnr-plus"></i> PUBLICAR</a>
+<!-- <a href="publicar.html" class="btn btn-lg btn-float text-white shadow fw-bold btn-radius"><i class="lnr lnr-plus"></i> PUBLICAR</a> -->
