@@ -54,7 +54,7 @@ export class PrincipalesComponent implements OnInit {
       provincia: new FormControl(this._anuncioService.propiedad_temp.provincia, [Validators.required, Validators.minLength(1)]),
       distrito: new FormControl(this._anuncioService.propiedad_temp.distrito, [Validators.required, Validators.minLength(6)]),
       direccion: new FormControl(this._anuncioService.propiedad_temp.direccion, [Validators.required]),
-      piso: new FormControl(this._anuncioService.propiedad_temp.piso, [Validators.required]),
+      piso: new FormControl(this._anuncioService.propiedad_temp.piso),
       referencia: new FormControl(this._anuncioService.propiedad_temp.referencia, [Validators.required]),
     });
   }

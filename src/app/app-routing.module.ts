@@ -30,6 +30,7 @@ import { EditarContactoPropiedadComponent } from './pages/propiedades/editar-pro
 import { EditarInformacionAutoComponent } from './pages/autos/editar-auto/editar-informacion-auto/editar-informacion-auto.component';
 import { EditarUbicacionAutoComponent } from './pages/autos/editar-auto/editar-ubicacion-auto/editar-ubicacion-auto.component';
 import { EditarContactoAutoComponent } from './pages/autos/editar-auto/editar-contacto-auto/editar-contacto-auto.component';
+import { PlanesAnuncioComponent } from './pages/shop/planes-anuncio/planes-anuncio.component';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
@@ -64,6 +65,7 @@ const routes: Routes = [
 
   { path: 'anuncio/seleccionar', component: SeleccionComponent },
   { path: 'anuncio/planes', component: PlanesComponent },
+  { path: 'anuncio/plan', component: PlanesAnuncioComponent },
   { path: 'anuncio/carrito', component: CarritoComponent },
   { path: 'anuncio/realizar-pago', component: CheckoutComponent },
 

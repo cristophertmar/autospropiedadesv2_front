@@ -130,7 +130,7 @@
         <div class="col-md-4">
             <span class="text-primary fw-semibold d-block">{{ vehiculo.provincia | titlecase }}, {{ vehiculo.distrito | titlecase }}</span>
             <h3 class="text-secondary fw-bold"><span class="text-primary">{{ vehiculo.descrip_marca | titlecase }}</span> {{ vehiculo.descrip_modelo | titlecase }}</h3>
-            <span class="text-dark fw-semibold d-block mb-4">14 May 2021</span>
+            <!-- <span class="text-dark fw-semibold d-block mb-4">14 May 2021</span> -->
             <!-- <span class="d-block h1 fw-bold mb-4"> {{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </span> -->
             <div *ngIf="vehiculo.tipo_moneda === 'PEN'" class="d-block h1 fw-bold mb-4">{{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
             <div *ngIf="vehiculo.tipo_moneda !== 'PEN'" class="d-block h1 fw-bold mb-4">{{ vehiculo.precio | currency }}</div>

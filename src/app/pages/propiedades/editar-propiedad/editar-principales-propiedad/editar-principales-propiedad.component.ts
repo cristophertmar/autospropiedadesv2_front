@@ -83,7 +83,7 @@ export class EditarPrincipalesPropiedadComponent implements OnInit {
       provincia: new FormControl('', [Validators.required, Validators.minLength(1)]),
       distrito: new FormControl('', [Validators.required, Validators.minLength(6)]),
       direccion: new FormControl(null, [Validators.required]),
-      piso: new FormControl(null, [Validators.required]),
+      piso: new FormControl(null),
       referencia: new FormControl(null, [Validators.required])
     });
   }

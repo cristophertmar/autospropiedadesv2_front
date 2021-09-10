@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { URL_SERVICIOS } from 'src/app/config/config';
+import { ImagenGaleria } from 'src/app/models/imagen_galeria.model';
 import { Propiedad } from 'src/app/models/propiedad.model';
 import { PropiedadDetalle } from 'src/app/models/propiedad_detalle.model';
 import { PropiedadService } from 'src/app/services/propiedad.service';
@@ -59,8 +60,13 @@ export class EditarMultimediaPropiedadComponent implements OnInit {
     this._router.navigate(['/propiedades/editar/caracteristicas', this.id_propiedad]);
   }
 
-  eliminar_imagen(i: number) {
+  eliminar_imagen(i: number, imagen: ImagenGaleria) {
     this.propiedad_deta.imagen_galeria.splice(i, 1);
+    this._archivoService.elimar_archivo(imagen.id)
+    .subscribe(resp => {
+      console.log(resp);
+    });
+
   }
 
   agregar_imagen() {
@@ -72,8 +78,17 @@ export class EditarMultimediaPropiedadComponent implements OnInit {
   }
 
   siguiente() {
+    this.guardarImagen(this.id_propiedad);
     this._shared.alert_success('Guardado exitosamente');
     this._router.navigate(['/propiedades/editar/extras', this.id_propiedad]);
+  }
+
+  guardarImagen(id_propiedad: string) {
+    this._archivoService.guardar_archivo(id_propiedad, true)
+    .subscribe( resp => {
+      console.log(resp);   
+      this._archivoService.limpiar_imagenes();   
+    });
   }
 
   crearFormulario() {

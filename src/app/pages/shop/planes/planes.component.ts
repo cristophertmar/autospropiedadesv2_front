@@ -11,6 +11,8 @@ import { AnuncioService } from '../../../services/anuncio.service';
 })
 export class PlanesComponent implements OnInit {
 
+  precio: number = 0;
+
   constructor(
     public _router: Router,
     private _archivoServide: ArchivoService,
@@ -18,6 +20,16 @@ export class PlanesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.obtener_precio();
+  }
+
+  obtener_precio() {
+    if(sessionStorage.getItem('anuncio_seleccion') === 'auto') {
+      this.precio = 49;
+    } else {
+      this.precio = 129;
+    }
+    //console.log(sessionStorage.getItem('anuncio_seleccion'));
   }
 
   elegir_plan(plan: string) {

@@ -159,12 +159,22 @@ export class ArchivoService {
   }
 
   limpiar_imagenes() { 
-    if(this.archivos) {
-      for(let i = 0; i < this.archivos.length; i++) {
-        this.removeFileFromFileList(i);
-        this.imagenes_temporal = [];
-      }
+  
+  if(this.archivos) {
+    for(let i = 0; i < this.archivos.length; i++) {
+      this.removeFileFromFileList(i);
+      this.imagenes_temporal = [];
     }
+  }
+
+  this.archivo_publi1 = null;
+  this.archivo_publi2 = null;
+  this.archivo_publi3 = null;
+
+  this.imagenTemp1 = null;
+  this.imagenTemp2 = null;
+  this.imagenTemp3 = null;
+
   }
 
   removeFileFromFileList(index: number) {
@@ -197,6 +207,11 @@ export class ArchivoService {
       }
     }
     return this._http.post(url, formData, { reportProgress: true });
+  }
+
+  elimar_archivo(id:string) {
+    const url = URL_SERVICIOS + '/api/archivo/' + id;
+    return this._http.delete(url);
   }
 
   cambiar_foto_perfil(archivo: File, id_usuario: string) {

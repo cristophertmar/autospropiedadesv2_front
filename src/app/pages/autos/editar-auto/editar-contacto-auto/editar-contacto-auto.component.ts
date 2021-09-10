@@ -52,7 +52,7 @@ export class EditarContactoAutoComponent implements OnInit {
     this.formulario = new FormGroup({
       nombre: new FormControl(this._usuarioService.usuario.nombre + ' ' + this._usuarioService.usuario.apellido, [Validators.required]),
       fono1: new FormControl(this._usuarioService.usuario.nrotelefono1, [Validators.required]),
-      fono2: new FormControl(this._usuarioService.usuario.nrotelefono2, [Validators.required]),
+      fono2: new FormControl(this._usuarioService.usuario.nrotelefono2),
       correo: new FormControl(this._usuarioService.usuario.correo, [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]),
       tipo_anunciante : new FormControl(0, [Validators.required, Validators.pattern('^(?!0).*$')])
     });

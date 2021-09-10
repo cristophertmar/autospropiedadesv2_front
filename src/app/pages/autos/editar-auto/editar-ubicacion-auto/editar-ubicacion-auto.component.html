@@ -67,7 +67,7 @@
                     <div class="row">
                         <div *ngFor="let imagen of vehiculo_deta.imagen_galeria; index as i" class="text-center" class="col-md-2 text-center" style="padding: 10px;">
                             <img style="margin-bottom: 7px;" [src]="imagen.small"><br>
-                            <a href="javascript:void(0)" (click)="eliminar_imagen(i)"> Eliminar</a>
+                            <a href="javascript:void(0)" (click)="eliminar_imagen(i, imagen)"> Eliminar</a>
                         </div>
                         <div *ngFor="let imagen of _archivoService.imagenes_temporal; index as i" class="text-center" class="col-md-2 text-center" style="padding: 10px;">
                             <img style="margin-bottom: 7px;" [src]="imagen"><br>

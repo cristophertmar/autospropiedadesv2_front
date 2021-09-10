@@ -58,6 +58,7 @@ import { EditarContactoPropiedadComponent } from './pages/propiedades/editar-pro
 import { EditarExtrasPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-extras-propiedad/editar-extras-propiedad.component';
 import { EditarMultimediaPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-multimedia-propiedad/editar-multimedia-propiedad.component';
 import { EditarPrincipalesPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-principales-propiedad/editar-principales-propiedad.component';
+import { PlanesAnuncioComponent } from './pages/shop/planes-anuncio/planes-anuncio.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { EditarPrincipalesPropiedadComponent } from './pages/propiedades/editar-
     EditarContactoPropiedadComponent,
     EditarExtrasPropiedadComponent,
     EditarMultimediaPropiedadComponent,
-    EditarPrincipalesPropiedadComponent
+    EditarPrincipalesPropiedadComponent,
+    PlanesAnuncioComponent
   ],
   imports: [
     BrowserModule,

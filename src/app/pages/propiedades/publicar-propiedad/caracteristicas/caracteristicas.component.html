@@ -145,7 +145,7 @@
                             </div>
                         </div> -->
                         <div class="form-floating mb-3">
-                            <input formControlName="precio" name="precio" type="text" class="form-control" id="precio" [class.is-invalid]="precioNoValido">
+                            <input formControlName="precio" name="precio" type="number" class="form-control" id="precio" [class.is-invalid]="precioNoValido">
                             <label for="precio">Precio</label>
                             <div class="invalid-feedback">
                                 Ingrese precio
@@ -174,7 +174,7 @@
                             <small class="text-muted">Mantenimiento (opcional)</small>
                             <div class="input-group mb-3 flex-nowrap">
                                 <div class="input-group-text text-muted">PEN</div>
-                                <input formControlName="mantenimiento" formControlName="mantenimiento" type="text" class="form-control">
+                                <input formControlName="mantenimiento" formControlName="mantenimiento" type="number" class="form-control">
                             </div>
                         </div>
                     </div>
