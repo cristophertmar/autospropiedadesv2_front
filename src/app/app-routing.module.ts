@@ -31,48 +31,50 @@ import { EditarInformacionAutoComponent } from './pages/autos/editar-auto/editar
 import { EditarUbicacionAutoComponent } from './pages/autos/editar-auto/editar-ubicacion-auto/editar-ubicacion-auto.component';
 import { EditarContactoAutoComponent } from './pages/autos/editar-auto/editar-contacto-auto/editar-contacto-auto.component';
 import { PlanesAnuncioComponent } from './pages/shop/planes-anuncio/planes-anuncio.component';
+import { AccountComponent } from './pages/account/account.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
+  { path: 'inicia-ahora', component: AccountComponent },
 
   { path: 'autos', component: AutosComponent },
   { path: 'autos/buscar', component: BusquedaAutoComponent },
   { path: 'autos/ver/:id', component: DetalleAutoComponent },
 
-  { path: 'autos/publicar/informacion', component: InformacionAutoComponent },
-  { path: 'autos/publicar/ubicacion', component: UbicacionAutoComponent },
-  { path: 'autos/publicar/contacto', component: ContactoAutoComponent },
+  { path: 'autos/publicar/informacion', component: InformacionAutoComponent, canActivate: [ LoginGuard ] },
+  { path: 'autos/publicar/ubicacion', component: UbicacionAutoComponent, canActivate: [ LoginGuard ] },
+  { path: 'autos/publicar/contacto', component: ContactoAutoComponent, canActivate: [ LoginGuard ] },
 
-  { path: 'autos/editar/informacion/:id', component: EditarInformacionAutoComponent },
-  { path: 'autos/editar/ubicacion/:id', component: EditarUbicacionAutoComponent },
-  { path: 'autos/editar/contacto/:id', component: EditarContactoAutoComponent },
+  { path: 'autos/editar/informacion/:id', component: EditarInformacionAutoComponent, canActivate: [ LoginGuard ] },
+  { path: 'autos/editar/ubicacion/:id', component: EditarUbicacionAutoComponent, canActivate: [ LoginGuard ] },
+  { path: 'autos/editar/contacto/:id', component: EditarContactoAutoComponent, canActivate: [ LoginGuard ] },
 
   { path: 'propiedades', component: PropiedadesComponent },
   { path: 'propiedades/buscar', component: BusquedaPropiedadComponent },
-  { path: 'propiedades/ver/:id', component: DetallePropiedadComponent },  
+  { path: 'propiedades/ver/:id', component: DetallePropiedadComponent },
 
-  { path: 'propiedades/publicar/principales', component: PrincipalesComponent },
-  { path: 'propiedades/publicar/caracteristicas', component: CaracteristicasComponent },
-  { path: 'propiedades/publicar/multimedia', component: MultimediaComponent },
-  { path: 'propiedades/publicar/extras', component: ExtrasComponent },
-  { path: 'propiedades/publicar/contacto', component: ContactoComponent},
+  { path: 'propiedades/publicar/principales', component: PrincipalesComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/publicar/caracteristicas', component: CaracteristicasComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/publicar/multimedia', component: MultimediaComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/publicar/extras', component: ExtrasComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/publicar/contacto', component: ContactoComponent, canActivate: [ LoginGuard ]},
 
-  { path: 'propiedades/editar/principales/:id', component: EditarPrincipalesPropiedadComponent },
-  { path: 'propiedades/editar/caracteristicas/:id', component: EditarCaracteristicasPropiedadComponent },
-  { path: 'propiedades/editar/multimedia/:id', component: EditarMultimediaPropiedadComponent },
-  { path: 'propiedades/editar/extras/:id', component: EditarExtrasPropiedadComponent },
-  { path: 'propiedades/editar/contacto/:id', component: EditarContactoPropiedadComponent},
+  { path: 'propiedades/editar/principales/:id', component: EditarPrincipalesPropiedadComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/editar/caracteristicas/:id', component: EditarCaracteristicasPropiedadComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/editar/multimedia/:id', component: EditarMultimediaPropiedadComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/editar/extras/:id', component: EditarExtrasPropiedadComponent, canActivate: [ LoginGuard ] },
+  { path: 'propiedades/editar/contacto/:id', component: EditarContactoPropiedadComponent, canActivate: [ LoginGuard ] },
 
-  { path: 'anuncio/seleccionar', component: SeleccionComponent },
-  { path: 'anuncio/planes', component: PlanesComponent },
-  { path: 'anuncio/plan', component: PlanesAnuncioComponent },
-  { path: 'anuncio/carrito', component: CarritoComponent },
-  { path: 'anuncio/realizar-pago', component: CheckoutComponent },
+  { path: 'anuncio/seleccionar', component: SeleccionComponent, canActivate: [ LoginGuard ] },
+  { path: 'anuncio/planes', component: PlanesComponent, canActivate: [ LoginGuard ] },
+  { path: 'anuncio/plan', component: PlanesAnuncioComponent, canActivate: [ LoginGuard ] },
+  { path: 'anuncio/carrito', component: CarritoComponent, canActivate: [ LoginGuard ] },
+  { path: 'anuncio/realizar-pago', component: CheckoutComponent, canActivate: [ LoginGuard ] },
 
-  { path: 'mi-perfil', component: PerfilComponent },
-  { path: 'mis-publicaciones', component: PublicacionesComponent },
-  { path: 'publicar-anuncio', component: AnunciosComponent },
-
+  { path: 'mi-perfil', component: PerfilComponent, canActivate: [ LoginGuard ] },
+  { path: 'mis-publicaciones', component: PublicacionesComponent, canActivate: [ LoginGuard ] },
+  { path: 'publicar-anuncio', component: AnunciosComponent, canActivate: [ LoginGuard ] },
 
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', redirectTo: '/inicio' }

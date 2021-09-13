@@ -5,6 +5,7 @@ import { Ubigeo } from 'src/app/models/ubigeo.model';
 import { UbigeoService } from '../../../../services/ubigeo.service';
 import { AnuncioService } from '../../../../services/anuncio.service';
 import { ArchivoService } from '../../../../services/archivo.service';
+import { SharedService } from '../../../../services/shared.service';
 @Component({
   selector: 'app-ubicacion-auto',
   templateUrl: './ubicacion-auto.component.html',
@@ -26,7 +27,8 @@ export class UbicacionAutoComponent implements OnInit {
     private _router: Router,
     private _ubigeoService: UbigeoService,
     private _anuncioService: AnuncioService,
-    public _archivoService: ArchivoService
+    public _archivoService: ArchivoService,
+    private _shared: SharedService
   ) {
     this.crearFormulario();
   }
@@ -46,10 +48,25 @@ export class UbicacionAutoComponent implements OnInit {
   siguiente() {
 
     if ( this.formulario.invalid) {
+      this._shared.alert_error('Llene correctamente el formulario');
       return Object.values( this.formulario.controls).forEach( control => {
         control.markAsTouched();
       });
     }
+
+
+    if(!this._archivoService.archivos) {
+      this._shared.alert_error('Ingrese una imagen');
+      return;
+    }
+
+    if(this._archivoService.archivos) {
+      if(this._archivoService.archivos.length === 0) {
+        this._shared.alert_error('Ingrese una imagen');
+        return;
+      }
+    }
+
 
     this._anuncioService.vehiculo_temp.departamento = this.formulario.value.departamento;
     this._anuncioService.vehiculo_temp.provincia = this.formulario.value.provincia;

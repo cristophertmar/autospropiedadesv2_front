@@ -40,8 +40,8 @@ export class ContactoAutoComponent implements OnInit {
     }
 
     this._anuncioService.vehiculo_temp.nombre_contacto = this.formulario.value.nombre;
-    this._anuncioService.vehiculo_temp.nrotelefono1_contacto = this.formulario.value.fono1;
-    this._anuncioService.vehiculo_temp.nrotelefono2_contacto = this.formulario.value.fono2;
+    this._anuncioService.vehiculo_temp.nrotelefono1_contacto = this.formulario.value.fono1 + '';
+    this._anuncioService.vehiculo_temp.nrotelefono2_contacto = this.formulario.value.fono2 + '';
     this._anuncioService.vehiculo_temp.correo_contacto = this.formulario.value.correo;
     this._anuncioService.vehiculo_temp.tipo_anunciante = Number(this.formulario.value.tipo_anunciante);
 
@@ -74,6 +74,8 @@ export class ContactoAutoComponent implements OnInit {
 
     this._anuncioService.guardar_vehiculo_temp(this._anuncioService.vehiculo_temp);
     this._anuncioService.guardar_carrito_vehiculo(this._anuncioService.vehiculo_temp);
+
+    console.log(this._anuncioService.vehiculo_temp);
 
     this._vehiculoService.publicar_vehiculo(this._anuncioService.vehiculo_temp)
     .subscribe( (resp: any) => {

@@ -33,6 +33,18 @@ export class SharedService {
     });
   }
 
+  alert_info_sbutton(mensaje: string){
+    Swal.fire({
+      text: mensaje,
+      width: 350,
+      padding: 5,
+      timer: 1500,
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      icon: 'info'
+    });
+  }
+
   alert_info(mensaje: string){
     Swal.fire({
       text: mensaje,

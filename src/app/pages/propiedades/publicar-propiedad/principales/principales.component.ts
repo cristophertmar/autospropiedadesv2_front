@@ -5,6 +5,7 @@ import { Propiedad } from 'src/app/models/propiedad.model';
 import { Ubigeo } from 'src/app/models/ubigeo.model';
 import { AnuncioService } from 'src/app/services/anuncio.service';
 import { UbigeoService } from 'src/app/services/ubigeo.service';
+import { SharedService } from '../../../../services/shared.service';
 
 @Component({
   selector: 'app-principales',
@@ -31,6 +32,7 @@ export class PrincipalesComponent implements OnInit {
     private _router: Router,
     public _ubigeoService: UbigeoService,
     private _anuncioService: AnuncioService,
+    private _shared: SharedService
   ) { 
     this.crearFormulario();
     this.lat = Number(this._anuncioService.propiedad_temp.lat);
@@ -137,6 +139,7 @@ export class PrincipalesComponent implements OnInit {
     this.siguiente_form = true;
 
     if ( this.formulario.invalid) {
+      this._shared.alert_error('Llene correctamente el formulario');
       return Object.values( this.formulario.controls).forEach( control => {
         control.markAsTouched();
       });

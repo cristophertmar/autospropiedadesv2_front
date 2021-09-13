@@ -40,8 +40,8 @@ export class ContactoComponent implements OnInit {
     }
 
     this._anuncioService.propiedad_temp.nombre_contacto = this.formulario.value.nombre;
-    this._anuncioService.propiedad_temp.nrotelefono1_contacto = this.formulario.value.fono1;
-    this._anuncioService.propiedad_temp.nrotelefono2_contacto = this.formulario.value.fono2;
+    this._anuncioService.propiedad_temp.nrotelefono1_contacto = this.formulario.value.fono1 + '';
+    this._anuncioService.propiedad_temp.nrotelefono2_contacto = this.formulario.value.fono2 + '';
     this._anuncioService.propiedad_temp.correo_contacto = this.formulario.value.correo;
     this._anuncioService.propiedad_temp.tipo_anunciante = Number(this.formulario.value.tipo_anunciante);
 
@@ -49,6 +49,9 @@ export class ContactoComponent implements OnInit {
 
     this._anuncioService.guardar_propiedad_temp(this._anuncioService.propiedad_temp);
     this._anuncioService.guardar_carrito_propiedad(this._anuncioService.propiedad_temp);
+
+
+    console.log(this._anuncioService.propiedad_temp);
 
     this._propiedadService.publicar_propiedad(this._anuncioService.propiedad_temp)
     .subscribe( ((resp: any) => {

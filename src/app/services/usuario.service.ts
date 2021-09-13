@@ -6,6 +6,7 @@ import { Usuario } from '../models/usuario.model';
 import { map, catchError } from 'rxjs/operators';
 import { throwError} from 'rxjs';
 import { SharedService } from './shared.service';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class UsuarioService {
   constructor(
     public http: HttpClient,
     private router: Router,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _authService: SocialAuthService,
   ) {
     this.cargarStorage();
   }
@@ -47,12 +49,21 @@ export class UsuarioService {
   }
 
   logout_usuario() {
-    /* this.authService.signOut(); */
+    this._authService.signOut();
     this.limpiarAcceso();
     this.router.navigate(['/']);
   }
 
-  login_usuario( usuario: Usuario ) {
+  login_usuario( usuario: Usuario, recordar: boolean ) {     
+
+    if ( recordar ) {
+      localStorage.setItem( 'correo_remember', usuario.correo );
+      localStorage.setItem( 'contrasena_remember', usuario.pass );
+    } else {
+      localStorage.removeItem( 'correo_remember' );
+      localStorage.removeItem( 'contrasena_remember' );
+    }
+
     let url;
     if (usuario.proveedor) {
       url = URL_SERVICIOS + '/login_proveedor';
@@ -63,32 +74,36 @@ export class UsuarioService {
 
     return this.http.post( url, usuario ).pipe(
       map( (resp: any) => {
+        
         if(resp.exito) {
+
           this.guardarStorage( resp.token, resp.usuario );
-        }  
+          this.router.navigate(['/anuncio/seleccionar']);
+          
+        }else {
+          this._shared.alert_error('Correo y/o contraseña incorrecta')
+        }
         return resp.exito;
       })
-      /* ,
+      ,
       catchError(err => {
-        Swal.fire({
-          text: 'Correo y contraseña incorrecta',
-          width: 350,
-          padding: 15,
-          timer: 2000,
-          allowOutsideClick: false,
-          showConfirmButton: false,
-          icon: 'error'
-        });
-
+        
+        if (usuario.proveedor) {
+          this._shared.alert_error('Cuenta no registrada')
+        } 
+        
         return throwError(err);
         //return false;
 
-      }) */
+      }));
+  }
 
-      );
+  esta_logueado() {
+    return this.token.length > 0? true : false;
   }
 
   registro_usuario(usuario: Usuario) {
+    
     let url;
     if (usuario.proveedor) {
       url = URL_SERVICIOS + '/registro_proveedor';
@@ -98,8 +113,22 @@ export class UsuarioService {
     return this.http.post( url, usuario)
     .pipe(
       map((resp: any) => {
-        this.guardarStorage( resp.token, resp.usuario );
-        return true;
+        console.log(resp);
+
+        sessionStorage.removeItem('operacion_account');
+
+        if(resp.exito) {
+          this.guardarStorage( resp.token, resp.usuario );
+          this.router.navigate(['/anuncio/seleccionar']);
+          return true;
+        } else {
+          this.router.navigate(['/inicia-ahora']);
+          console.log(resp.mensaje);
+          this._shared.alert_info_sbutton(resp.mensaje);
+          this.router.navigate(['/inicia-ahora']);
+          return false;
+        }
+      
       })
     );
   }
@@ -144,6 +173,10 @@ export class UsuarioService {
   }
 
 
+  verificar_correo(correo: string) {
+    const url = URL_SERVICIOS + '/correo_existe/' + correo;
+    return this.http.get(url);
+  }
 
 
 }

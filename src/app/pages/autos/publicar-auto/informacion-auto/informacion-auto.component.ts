@@ -8,6 +8,7 @@ import { MarcaService } from '../../../../services/marca.service';
 import { ModeloService } from '../../../../services/modelo.service';
 import { Vehiculo } from '../../../../models/vehiculo.model';
 import { AnuncioService } from '../../../../services/anuncio.service';
+import { SharedService } from '../../../../services/shared.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class InformacionAutoComponent implements OnInit {
     private _router: Router,
     private _marcaService: MarcaService,
     private _modeloService: ModeloService,
-    private _anuncioService: AnuncioService
+    private _anuncioService: AnuncioService,
+    private _shared: SharedService
   ) {
     this.crearFormulario();
    }
@@ -64,6 +66,7 @@ export class InformacionAutoComponent implements OnInit {
     /* console.log(this.formulario.value); */
 
     if ( this.formulario.invalid) {
+      this._shared.alert_error('Llene correctamente el formulario');
       return Object.values( this.formulario.controls).forEach( control => {
         control.markAsTouched();
       });

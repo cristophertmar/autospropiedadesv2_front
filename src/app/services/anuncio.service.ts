@@ -242,7 +242,7 @@ export class AnuncioService {
       propiedad.precio_plan = (sessionStorage.getItem('anuncio_plan') === 'premium' ? 129 : 0);
       this.propiedad_carrito.push(propiedad);
       sessionStorage.setItem('propiedad_carrito', JSON.stringify(this.propiedad_carrito));
-      this._router.navigate(['/anuncio/carrito']);
+     /*  this._router.navigate(['/anuncio/carrito']); */
   }
 
   cargar_carrito_propiedad() {

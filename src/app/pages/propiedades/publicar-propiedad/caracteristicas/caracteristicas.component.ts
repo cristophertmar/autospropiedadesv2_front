@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Propiedad } from 'src/app/models/propiedad.model';
 import { AnuncioService } from 'src/app/services/anuncio.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-caracteristicas',
@@ -24,6 +25,7 @@ export class CaracteristicasComponent implements OnInit {
   constructor(
     private _router: Router,
     private _anuncioService: AnuncioService,
+    private _shared: SharedService
   ) {
     this.crearFormulario();
     this.dormitorios = this._anuncioService.propiedad_temp.dormitorios;
@@ -55,6 +57,7 @@ export class CaracteristicasComponent implements OnInit {
     /* console.log(this.formulario.value); */
 
     if ( this.formulario.invalid) {
+      this._shared.alert_error('Llene correctamente el formulario');
       return Object.values( this.formulario.controls).forEach( control => {
         control.markAsTouched();
       });

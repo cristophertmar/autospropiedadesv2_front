@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnuncioService } from '../../../../services/anuncio.service';
+import { SharedService } from '../../../../services/shared.service';
 
 @Component({
   selector: 'app-extras',
@@ -18,7 +19,8 @@ export class ExtrasComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _anuncioService: AnuncioService
+    private _anuncioService: AnuncioService,
+    private _shared: SharedService
   ) {
     this.crearFormulario();
    }
@@ -55,6 +57,7 @@ export class ExtrasComponent implements OnInit {
   siguiente() {
 
     if ( this.formulario.invalid) {
+      this._shared.alert_error('Llene correctamente el formulario');
       return Object.values( this.formulario.controls).forEach( control => {
         control.markAsTouched();
       });
