@@ -78,7 +78,11 @@ export class EditarMultimediaPropiedadComponent implements OnInit {
   }
 
   siguiente() {
-    this.guardarImagen(this.id_propiedad);
+
+    if(this._archivoService.archivos) {
+      this.guardarImagen(this.id_propiedad);
+    }
+        
     this._shared.alert_success('Guardado exitosamente');
     this._router.navigate(['/propiedades/editar/extras', this.id_propiedad]);
   }

@@ -149,8 +149,8 @@ export class EditarContactoAutoComponent implements OnInit {
     this.vehiculo.climatizador_acce_veh = this.vehiculo_deta.climatizador_acce_veh;
 
     this.vehiculo.nombre_contacto = this.formulario.value.nombre;
-    this.vehiculo.nrotelefono1_contacto =  this.formulario.value.fono1;
-    this.vehiculo.nrotelefono2_contacto =  this.formulario.value.fono2;
+    this.vehiculo.nrotelefono1_contacto =  this.formulario.value.fono1 + '';
+    this.vehiculo.nrotelefono2_contacto =  this.formulario.value.fono2 + '';
     this.vehiculo.correo_contacto = this.formulario.value.correo;
 
     this.vehiculo.usuario_id = this._usuarioService.usuario.id;

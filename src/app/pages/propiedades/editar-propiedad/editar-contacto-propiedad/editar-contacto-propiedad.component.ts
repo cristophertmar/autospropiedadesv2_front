@@ -81,8 +81,8 @@ export class EditarContactoPropiedadComponent implements OnInit {
     this.propiedad.descripcion = this.propiedad_deta.descripcion;
 
     this.propiedad.nombre_contacto = this.formulario.value.nombre;
-    this.propiedad.nrotelefono1_contacto = this.formulario.value.fono1;
-    this.propiedad.nrotelefono2_contacto = this.formulario.value.fono2;
+    this.propiedad.nrotelefono1_contacto = this.formulario.value.fono1 + '';
+    this.propiedad.nrotelefono2_contacto = this.formulario.value.fono2 + '';
     this.propiedad.correo_contacto = this.formulario.value.correo;
 
     this.propiedad.usuario_id = this._usuarioService.usuario.id;

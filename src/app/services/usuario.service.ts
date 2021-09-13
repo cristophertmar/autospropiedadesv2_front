@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { URL_IMG, URL_SERVICIOS } from '../config/config';
+import { URL_IMG, URL_PAGINA, URL_SERVICIOS } from '../config/config';
 import { Usuario } from '../models/usuario.model';
 import { map, catchError } from 'rxjs/operators';
 import { throwError} from 'rxjs';
@@ -28,8 +28,9 @@ export class UsuarioService {
   limpiarAcceso() {
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    sessionStorage.clear();
     this.token = '';
-    this.usuario = null;
+    this.usuario = null;    
   }
 
   cargarStorage() {
@@ -49,9 +50,10 @@ export class UsuarioService {
   }
 
   logout_usuario() {
-    this._authService.signOut();
+    this._authService.signOut(true);
     this.limpiarAcceso();
-    this.router.navigate(['/']);
+    document.location.href = URL_PAGINA;
+    //this.router.navigate(['/']);
   }
 
   login_usuario( usuario: Usuario, recordar: boolean ) {     

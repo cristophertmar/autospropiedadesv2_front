@@ -223,7 +223,10 @@ export class EditarUbicacionAutoComponent implements OnInit {
         this.vehiculo.id_kilometros = 5;
     }
 
-    this.guardarImagen(this.id_vehiculo);
+
+    if(this._archivoService.archivos) {
+      this.guardarImagen(this.id_vehiculo);
+    }    
 
     this._vehiculoService.actualizar_vehiculo(this.vehiculo)
     .subscribe( (resp: any) => {
@@ -234,7 +237,8 @@ export class EditarUbicacionAutoComponent implements OnInit {
     
   }
 
-  guardarImagen(id_propiedad: string) {
+  guardarImagen(id_propiedad: string) {    
+
     this._archivoService.guardar_archivo(id_propiedad, true)
     .subscribe( resp => {
       console.log(resp);   
