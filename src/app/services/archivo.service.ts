@@ -18,9 +18,17 @@ export class ArchivoService {
   imagenTemp1: string;
   imagenTemp2: string;
   imagenTemp3: string;
+  
+  cant_fotos: number = 3;
 
-  constructor(public _http: HttpClient, private _shared: SharedService) {
+  constructor(
+    public _http: HttpClient, private _shared: SharedService
+  ) {
+    this.cargar_cant_fotos();
+  }
 
+  cargar_cant_fotos(){
+    this.cant_fotos = sessionStorage.getItem('anuncio_plan') === 'premium' ? 10 : 3;
   }
 
 
@@ -111,6 +119,13 @@ export class ArchivoService {
       return;
     }
 
+    if(archivos.length > this.cant_fotos) {
+      this._shared.alert_error('Solo puedes subir un máximo de ' + this.cant_fotos + ' imagen(es)');
+      return;
+    }
+
+    this.cant_fotos = Number(this.cant_fotos) - Number(archivos.length);
+
     for (let i = 0; i < this.archivos.length; i++) {
       const file = this.archivos[i]
       dt.items.add(file);
@@ -141,6 +156,13 @@ export class ArchivoService {
     if (archivos.length === 0) {
       return;
     }    
+
+    if(archivos.length > this.cant_fotos) {
+      this._shared.alert_error('Solo puedes subir un máximo de ' + this.cant_fotos + ' imagen(es)');
+      return;
+    }
+
+    this.cant_fotos = Number(this.cant_fotos) - Number(archivos.length);
 
     Array.from(archivos).forEach(archivo => {
     if (archivo.type.indexOf('image') < 0 ) {
@@ -194,6 +216,7 @@ export class ArchivoService {
   quitar_imagen(i: number) {
     this.imagenes_temporal.splice(i, 1);
     this.removeFileFromFileList(i);
+    this.cant_fotos += 1;
   }
 
   guardar_archivo(id: string, propiedad: boolean = false) {

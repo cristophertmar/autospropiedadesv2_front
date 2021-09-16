@@ -68,20 +68,16 @@ export class CheckoutComponent implements OnInit {
 
   sumar_planes() {
 
-    this._anuncioService.propiedad_carrito
+    this._anuncioService.ids_propiedades
     .forEach(propiedad => {
-        if(propiedad.precio_plan > 0) {
-          this.cantidad_prop += 1;
-          this.costo_total += 129;
-        }
+      this.cantidad_prop += 1;
+      this.costo_total += 129;
     });
 
-    this._anuncioService.vehiculo_carrito
+    this._anuncioService.ids_autos
     .forEach(vehiculo => {
-        if(vehiculo.precio_plan > 0) {
-          this.cantidad_veh += 1;
-          this.costo_total += 49;
-        }
+      this.cantidad_veh += 1;
+      this.costo_total += 49;
     });
 
 
@@ -258,6 +254,7 @@ export class CheckoutComponent implements OnInit {
       });
       this.cerrar_mdl_pago.nativeElement.click();
       this._anuncioService.limpiar_storage();
+      this._anuncioService.limpiar_carrito();
       this._shared.alert_success('Transacción exitosa');
       this._router.navigate(['/mis-publicaciones']);      
 

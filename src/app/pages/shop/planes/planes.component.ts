@@ -36,8 +36,11 @@ export class PlanesComponent implements OnInit {
 
     this._archivoServide.limpiar_imagenes();
     this._anuncioService.limpiar_storage();
+    this._anuncioService.reseteo_autosprop();
 
     sessionStorage.setItem('anuncio_plan', plan);
+
+    this._archivoServide.cargar_cant_fotos();
     
     switch (sessionStorage.getItem('anuncio_seleccion')) {
       case 'auto':

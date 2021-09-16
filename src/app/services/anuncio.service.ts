@@ -146,7 +146,6 @@ export class AnuncioService {
     this.cargar_carrito_propiedad();
     this.cargar_ids_autos();
     this.cargar_ids_propiedades();
-
   }
 
   cargar_ids_propiedades() {
@@ -179,29 +178,27 @@ export class AnuncioService {
   }
 
   limpiar_storage() {
-    sessionStorage.removeItem('vehiculo_temp');
-    sessionStorage.removeItem('propiedad_temp');
-
-    sessionStorage.removeItem('ids_propiedades');
-    sessionStorage.removeItem('ids_autos');
     
-
+    sessionStorage.removeItem('vehiculo_temp');
+    sessionStorage.removeItem('propiedad_temp');   
+    
     sessionStorage.removeItem('propiedad_carrito');
     sessionStorage.removeItem('vehiculo_carrito');
 
     this.cargar_carrito_propiedad();
 
     this.cargar_vehiculo_temp();
-    this.cargar_propiedad_temp();
-
-    this.cargar_ids_autos();
-    this.cargar_ids_propiedades();
+    this.cargar_propiedad_temp();    
 
     this.cargar_carrito_vehiculo();
     this.cargar_carrito_propiedad();
   }
 
   limpiar_carrito() {
+    sessionStorage.removeItem('ids_propiedades');
+    sessionStorage.removeItem('ids_autos');
+    this.cargar_ids_autos();
+    this.cargar_ids_propiedades();
     sessionStorage.removeItem('propiedad_carrito');
     sessionStorage.removeItem('vehiculo_carrito');
     this.cargar_carrito_propiedad();
@@ -273,6 +270,126 @@ export class AnuncioService {
     return this._http.get(url);
   }
   
+
+
+  reseteo_autosprop()  {
+
+
+    this.vehiculo_temp = {
+      id_tarifa: 0,
+      id_marca: 0,
+      id_modelo: 0,
+      anio_vehiculo: 0,
+      id_tipotran: 0,
+      id_combustible: 0,
+      motor_vehiculo: 0,
+      id_timon: 0,
+      kilometraje_vehiculo: null,
+      puertas_vehiculo: 0,
+      id_traccion: 0,
+      id_color: 0,
+      id_cilindro: 0,
+      descrip_vehiculo: null,
+      retrovisor_acce_veh: false,
+      neblinero_acce_veh: false,
+      aireacond_acce_veh: false,
+      fullequipo_acce_veh: false,
+      computador_acce_veh: false,
+      parlante_acce_veh: false,
+      cd_acce_veh: false,
+      mp3_acce_veh: false,
+      aro_acce_veh: false,
+      aroaleacion_acce_veh: false,
+      parrilla_acce_veh: false,
+      luceshalo_acce_veh: false,
+      gps_acce_veh: false,
+      airbag_acce_veh: false,
+      lamina_acce_veh: false,
+      blindado_acce_veh: false,
+      farantiniebdel_acce_veh: false,
+      farantiniebtras_acce_veh: false,
+      inmovmotor_acce_veh: false,
+      repartelecfrena_acce_veh: false,
+      frenoabs_acce_veh: false,
+      alarma_acce_veh: false,
+      sunroof_acce_veh: false,
+      ascuero_acce_veh: false,
+      climatizador_acce_veh: false,
+      
+      departamento: '',
+      provincia: '',
+      ubigeo: '',
+      
+      tipo_moneda: 'PEN',
+      precio: null,
+      
+      nombre_contacto: null,
+      nrotelefono1_contacto: null,
+      nrotelefono2_contacto: null,
+      correo_contacto: null,
+      usuario_id: null,
+      condicion_vehiculo: 0,
+      id_kilometros: 0,
+      
+      tipo_anunciante: null,
+      categoria: null,
+      id_vehiculo: null,
+      id: null,
+      
+      minprecio: null,
+      maxprecio: null,
+      
+      precio_plan: null
+    };
+  
+    this.propiedad_temp = {
+    id_tarifa: 0,
+    id_tipo_operacion: 0,
+    id_tipo_inmueble: 0,
+    antiguedad: 1,
+    departamento: '',
+    provincia: '',
+    distrito: '',
+    ubigeo: '',
+    direccion: null,
+    piso: null,
+    referencia: null,
+    tipo_moneda: 'PEN',
+    precio: null,
+    area_total: null,
+    area_contruida: null,
+    dormitorios: 1,
+    banios: 1,
+    cocheras: 0,
+    pisos: 1,
+    depa_pisos: 1,
+    ascensores: 0,
+    mantenimiento: null,
+    uso_profesional: 0,
+    uso_comercial: 0,
+    mascotas: 0,
+    titulo: null,
+    descripcion: null,
+    nombre_contacto: null,
+    nrotelefono1_contacto: null,
+    nrotelefono2_contacto: null,
+    correo_contacto: null,
+    usuario_id: 0,
+    minprecio: null,
+    maxprecio: null,
+    id: null,
+    id_propiedad: null,
+    lat: '-12.0453',
+    lng: '-77.0311',
+    tags_general: null,
+    tags_ambientes: null,
+    tags_servicios: null,
+    url_video: null,
+    tipo_anunciante: null,
+    precio_plan: null
+    }
+
+  }
   
 
 

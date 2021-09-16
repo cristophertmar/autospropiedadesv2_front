@@ -92,6 +92,7 @@ export class CarritoComponent implements OnInit {
 
   limpiar_carrito() {
     this._anuncioService.limpiar_storage();
+    this._anuncioService.limpiar_carrito();
     this._router.navigate(['/anuncio/seleccionar']);
   }
 
