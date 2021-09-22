@@ -56,9 +56,15 @@ export class EditarUbicacionAutoComponent implements OnInit {
   detalle_vehiculo( id: string) {
     this._vehiculoService.detalle_vehiculo(id)
     .subscribe( (resp: any) => {
+      this._archivoService.cargar_cant_fotos();
       this.vehiculo_deta = resp.data;
       console.log(this.vehiculo_deta);
       this.setFormulario(this.vehiculo_deta);
+
+      
+      this._archivoService.cant_fotos = this._archivoService.cant_fotos - this.vehiculo_deta.imagen_galeria.length;
+      
+
     });
 
   }
@@ -237,8 +243,7 @@ export class EditarUbicacionAutoComponent implements OnInit {
     
   }
 
-  guardarImagen(id_propiedad: string) {    
-
+  guardarImagen(id_propiedad: string) {
     this._archivoService.guardar_archivo(id_propiedad, true)
     .subscribe( resp => {
       console.log(resp);   

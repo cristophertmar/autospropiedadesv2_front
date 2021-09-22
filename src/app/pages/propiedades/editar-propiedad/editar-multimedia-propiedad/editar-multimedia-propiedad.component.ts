@@ -49,9 +49,13 @@ export class EditarMultimediaPropiedadComponent implements OnInit {
   detalle_propiedad( id: string) {
     this._propiedadService.detalle_propiedad(id)
     .subscribe( (resp: any) => {
+      this._archivoService.cargar_cant_fotos();
       this.propiedad_deta = resp.data;
       console.log(this.propiedad_deta);
       this.setForm(this.propiedad_deta);
+
+      this._archivoService.cant_fotos = this._archivoService.cant_fotos - this.propiedad_deta.imagen_galeria.length;
+
     });
 
   }

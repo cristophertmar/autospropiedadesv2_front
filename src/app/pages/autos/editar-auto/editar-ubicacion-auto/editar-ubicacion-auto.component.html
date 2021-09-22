@@ -55,9 +55,15 @@
                         </div>
                     </div>
                 </div>
-                <h5 class="text-dark fw-semibold mb-2">Fotos</h5>
-                <a (click)="nueva_imagen()" *ngIf="_archivoService.imagenes_temporal.length === 0" href="javascript:void(0)"> Agregar +</a>
-                <a (click)="agregar_imagen()" *ngIf="_archivoService.imagenes_temporal.length !== 0" href="javascript:void(0)"> Agregar +</a>
+                <h5 class="text-dark fw-semibold mb-2">
+                    Fotos
+                    <small *ngIf="((_archivoService.imagenes_temporal.length) === 0 && (_archivoService.cant_fotos !== 1) && (_archivoService.cant_fotos !== 0))">(Puedes subir {{ _archivoService.cant_fotos }} imágenes)</small>
+                    <small *ngIf="_archivoService.imagenes_temporal.length > 0 && (_archivoService.cant_fotos > 1)">(Puedes subir {{ _archivoService.cant_fotos }} imágenes)</small>
+                    <small *ngIf="_archivoService.cant_fotos === 1">(Puedes subir {{ _archivoService.cant_fotos }} imagen)</small>
+                    <small *ngIf="_archivoService.cant_fotos === 0">(Llegaste a tu tope máximo de imágenes por publicación)</small>
+                </h5>
+                <a (click)="nueva_imagen()" *ngIf="(_archivoService.imagenes_temporal.length === 0) && (_archivoService.cant_fotos !== 0)" href="javascript:void(0)"> Agregar +</a>
+                <a (click)="agregar_imagen()" *ngIf="(_archivoService.imagenes_temporal.length !== 0) && (_archivoService.cant_fotos !== 0)" href="javascript:void(0)"> Agregar +</a>
                 <!-- <div class="mb-3">
                     <small class="d-block text-secondary">
                         Haz más atractivo tu anuncio añadiendo fotografías de tu vehículo.Te recomendamos que subas fotos de tu vehículo a la luz del día, deben ser del exterior y del interior de varios ángulos. Si aún no cuentas con más fotos, sube las que tengas y no dudes luego de regresar a colocar más.
@@ -89,7 +95,7 @@
                     <input id="btn_nuevaImg" #btn_nuevaImg (change)="_archivoService.seleccionImagen($event)" type="file" id="fotos" class="input-file" multiple>
                     <label for="fotos" class="label-file">
                         <span class="d-block text-primary fs-5 fw-semibold">Subir las fotos</span>
-                        <span class="d-block text-secondary">(Puedes subir hasta 10 fotos)</span>
+                        <span class="d-block text-secondary">(Puedes subir hasta {{ _archivoService.cant_fotos }} imágenes)</span>
                     </label>
                 </div>
                 <div class="row">

@@ -68,6 +68,18 @@ export class PublicacionesComponent implements OnInit {
     this._archivoServide.limpiar_imagenes();
     this._anuncioService.limpiar_storage();
 
+    if(p.editable) {
+      sessionStorage.getItem('anuncio_plan') === 'premium'
+      this._archivoServide.cant_fotos = 10;
+    } else {
+      sessionStorage.getItem('anuncio_plan') === 'basico'
+      this._archivoServide.cant_fotos = 3;
+    }
+
+    this._archivoServide.cargar_cant_fotos();
+
+    console.log(this._archivoServide.cant_fotos);
+
     if (p.tipo_anuncio === 'Auto') {
       this._router.navigate(['/autos/editar/informacion', p.id_publicacion]);
       return;

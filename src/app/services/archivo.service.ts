@@ -233,6 +233,7 @@ export class ArchivoService {
   }
 
   elimar_archivo(id:string) {
+    this.cant_fotos += 1;
     const url = URL_SERVICIOS + '/api/archivo/' + id;
     return this._http.delete(url);
   }
