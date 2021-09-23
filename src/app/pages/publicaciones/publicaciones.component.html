@@ -23,6 +23,9 @@
                 <button type="button" class="btn btn-outline-primary btn-lg btn-large border-2 btn-radius fw-semibold mb-4">Autos</button>
                 <button type="button" class="btn btn-warning btn-lg btn-large btn-radius mb-4">Siguiente</button>
             </div> -->
+            <div *ngIf="publicaciones.length === 0" style="text-align: center; margin-top: 200px;">
+                <p>Usted no cuenta con publicaciones</p>
+            </div>
             <div *ngIf="publicaciones && publicaciones.length > 0" class="row">
                 <div *ngFor="let publicacion of publicaciones" class="col-lg-4 col-md-6 col-12">
                     <div class="card border border-0 bg-light mb-4 rounded-3">
