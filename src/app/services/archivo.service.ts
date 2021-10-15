@@ -232,9 +232,9 @@ export class ArchivoService {
     return this._http.post(url, formData, { reportProgress: true });
   }
 
-  elimar_archivo(id:string) {
+  elimar_archivo(id: string, tipo: string) {
     this.cant_fotos += 1;
-    const url = URL_SERVICIOS + '/api/archivo/' + id;
+    const url = URL_SERVICIOS + '/api/archivo/' + id + '/' + tipo;
     return this._http.delete(url);
   }
 

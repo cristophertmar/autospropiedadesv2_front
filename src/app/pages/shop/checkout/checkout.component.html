@@ -140,7 +140,8 @@
                                 <span>{{ costo_total | currency: 'PEN': 'symbol': '': 'es-PE' }}</span>
                             </div>
                             <div class="d-grid">
-                                <button (click)="procesar()" class="btn btn-light btn-lg fw-semibold text-primary">Ir a pagar</button>
+                                <!-- <button (click)="procesar()" class="btn btn-light btn-lg fw-semibold text-primary">Ir a pagar</button> -->
+                                <button (click)="notificar_pago()" class="btn btn-light btn-lg fw-semibold text-primary">Realizar pago</button>
                                 <button class="ocultar" #abrir_mdl_pago id="abrir_mdl_pago" data-bs-toggle="modal" data-bs-target="#myModal">abrir modal</button>
                             </div>
                         </div>

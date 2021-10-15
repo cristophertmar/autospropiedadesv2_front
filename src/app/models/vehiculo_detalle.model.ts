@@ -66,7 +66,8 @@ export class VehiculoDetalle {
 
         public  usuario_id?: number,
         public  usuario_foto?: string,
-        public tipo_moneda?: string
+        public tipo_moneda?: string,
+        public  tipo_anunciante?: number
 
     ) {}
 

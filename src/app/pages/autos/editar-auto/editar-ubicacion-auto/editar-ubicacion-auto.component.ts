@@ -136,7 +136,7 @@ export class EditarUbicacionAutoComponent implements OnInit {
 
   eliminar_imagen(i: number, imagen: ImagenGaleria) {
     this.vehiculo_deta.imagen_galeria.splice(i, 1);
-    this._archivoService.elimar_archivo(imagen.id)
+    this._archivoService.elimar_archivo(imagen.id, 'VEHICULO')
     .subscribe(resp => {
       console.log(resp);
     });
@@ -201,6 +201,7 @@ export class EditarUbicacionAutoComponent implements OnInit {
     this.vehiculo.nrotelefono1_contacto =  this.vehiculo_deta.nrotelefono1_contacto;
     this.vehiculo.nrotelefono2_contacto =  this.vehiculo_deta.nrotelefono2_contacto;
     this.vehiculo.correo_contacto = this.vehiculo_deta.correo;
+    this.vehiculo.tipo_anunciante = Number(this.vehiculo_deta.tipo_anunciante);
 
     this.vehiculo.usuario_id = this._usuarioService.usuario.id;
 
@@ -244,7 +245,7 @@ export class EditarUbicacionAutoComponent implements OnInit {
   }
 
   guardarImagen(id_propiedad: string) {
-    this._archivoService.guardar_archivo(id_propiedad, true)
+    this._archivoService.guardar_archivo(id_propiedad, false)
     .subscribe( resp => {
       console.log(resp);   
       this._archivoService.limpiar_imagenes();   

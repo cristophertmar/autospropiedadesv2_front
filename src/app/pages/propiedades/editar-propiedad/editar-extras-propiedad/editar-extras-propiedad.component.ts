@@ -83,8 +83,56 @@ export class EditarExtrasPropiedadComponent implements OnInit {
   }
 
   siguiente() {
-    this._shared.alert_success('Guardado exitosamente');
-    this._router.navigate(['/propiedades/editar/contacto', this.id_propiedad]);
+
+
+    this.propiedad = {};
+    this.propiedad.id_propiedad = this.id_propiedad;
+
+    this.propiedad.id_tipo_operacion = Number(this.propiedad_deta.id_tipo_operacion);
+    this.propiedad.id_tipo_inmueble = Number(this.propiedad_deta.id_tipo_inmueble);
+    this.propiedad.antiguedad = Number(this.propiedad_deta.antiguedad);
+
+    this.propiedad.ubigeo = this.propiedad_deta.ubigeo;
+    this.propiedad.direccion = this.propiedad_deta.direccion;
+    this.propiedad.piso =  this.propiedad_deta.piso;
+    this.propiedad.referencia = this.propiedad_deta.referencia;
+
+    this.propiedad.precio = this.propiedad_deta.precio;
+
+    this.propiedad.area_total = Number(this.propiedad_deta.area_total);
+    this.propiedad.area_contruida = Number(this.propiedad_deta.area_contruida);
+    this.propiedad.dormitorios = Number(this.propiedad_deta.dormitorios);
+    this.propiedad.banios = Number(this.propiedad_deta.banios);
+    this.propiedad.cocheras = Number(this.propiedad_deta.cocheras);
+    this.propiedad.pisos = Number(this.propiedad_deta.pisos);
+    this.propiedad.depa_pisos = Number(this.propiedad_deta.pisos);
+    this.propiedad.ascensores = Number(this.formulario.value.ascensores);
+    this.propiedad.mantenimiento = Number(this.propiedad_deta.mantenimiento);
+    this.propiedad.uso_profesional = Number(this.formulario.value.usoprofesional);
+    this.propiedad.uso_comercial = Number(this.formulario.value.usocomercial);
+    this.propiedad.mascotas = Number(this.formulario.value.mascotas);
+
+    this.propiedad.titulo = this.propiedad_deta.titulo;
+    this.propiedad.descripcion = this.propiedad_deta.descripcion;
+
+    this.propiedad.nombre_contacto = this.propiedad_deta.nombre_contacto;
+    this.propiedad.nrotelefono1_contacto = this.propiedad_deta.nrotelefono1_contacto;
+    this.propiedad.nrotelefono2_contacto = this.propiedad_deta.nrotelefono2_contacto;
+    this.propiedad.correo_contacto = this.propiedad_deta.correo_contacto;
+    this.propiedad.tipo_anunciante = Number(this.propiedad_deta.tipo_anunciante);
+
+    this.propiedad.url_video = this.propiedad_deta.url_video;
+
+    this.propiedad.usuario_id = this._usuarioService.usuario.id;
+
+    this._propiedadService.actualizar_propiedad(this.propiedad)
+      .subscribe( ((resp: any) => {
+
+      this._shared.alert_success('Guardado exitosamente');
+      this._router.navigate(['/propiedades/editar/contacto', this.id_propiedad]);
+
+    }));
+    
   }
   
   crearFormulario() {

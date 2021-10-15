@@ -152,6 +152,7 @@ export class EditarContactoAutoComponent implements OnInit {
     this.vehiculo.nrotelefono1_contacto =  this.formulario.value.fono1 + '';
     this.vehiculo.nrotelefono2_contacto =  this.formulario.value.fono2 + '';
     this.vehiculo.correo_contacto = this.formulario.value.correo;
+    this.vehiculo.tipo_anunciante = Number(this.formulario.value.tipo_anunciante);
 
     this.vehiculo.usuario_id = this._usuarioService.usuario.id;
 

@@ -43,7 +43,9 @@ export class PropiedadDetalle {
         public usuario_foto?: string,
         public nrotelefono1_contacto?: string,
         public nrotelefono2_contacto?: string,
-        public tipo_moneda?: string
+        public tipo_moneda?: string,
+        public url_video?: string,
+        public tipo_anunciante?: number
     ) {}
 
 }

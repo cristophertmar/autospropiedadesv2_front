@@ -289,8 +289,10 @@ export class EditarInformacionAutoComponent implements OnInit {
     this.vehiculo.nrotelefono1_contacto =  this.vehiculo_deta.nrotelefono1_contacto;
     this.vehiculo.nrotelefono2_contacto =  this.vehiculo_deta.nrotelefono2_contacto;
     this.vehiculo.correo_contacto = this.vehiculo_deta.correo;
+    this.vehiculo.tipo_anunciante = Number(this.vehiculo_deta.tipo_anunciante);
 
     this.vehiculo.usuario_id = this._usuarioService.usuario.id;
+    
 
     if (this.vehiculo.kilometraje_vehiculo > 0) {
       this.vehiculo.condicion_vehiculo = 1; // Usado
@@ -316,6 +318,8 @@ export class EditarInformacionAutoComponent implements OnInit {
       default:
         this.vehiculo.id_kilometros = 5;
     }
+
+    //console.log(this.vehiculo);
 
     this._vehiculoService.actualizar_vehiculo(this.vehiculo)
     .subscribe( (resp: any) => {

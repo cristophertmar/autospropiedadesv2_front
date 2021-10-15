@@ -84,6 +84,9 @@ export class EditarContactoPropiedadComponent implements OnInit {
     this.propiedad.nrotelefono1_contacto = this.formulario.value.fono1 + '';
     this.propiedad.nrotelefono2_contacto = this.formulario.value.fono2 + '';
     this.propiedad.correo_contacto = this.formulario.value.correo;
+    this.propiedad.tipo_anunciante = Number(this.formulario.value.tipo_anunciante);
+
+    this.propiedad.url_video = this.propiedad_deta.url_video;
 
     this.propiedad.usuario_id = this._usuarioService.usuario.id;
 
@@ -117,7 +120,7 @@ export class EditarContactoPropiedadComponent implements OnInit {
       fono1: propiedad.nrotelefono1_contacto,
       fono2: propiedad.nrotelefono2_contacto,
       correo: propiedad.correo_contacto,
-      tipo_anunciante : 1
+      tipo_anunciante : propiedad.tipo_anunciante
     });
   }
 

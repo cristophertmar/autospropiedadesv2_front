@@ -124,6 +124,9 @@ export class EditarCaracteristicasPropiedadComponent implements OnInit {
     this.propiedad.nrotelefono1_contacto = this.propiedad_deta.nrotelefono1_contacto;
     this.propiedad.nrotelefono2_contacto = this.propiedad_deta.nrotelefono2_contacto;
     this.propiedad.correo_contacto = this.propiedad_deta.correo_contacto;
+    this.propiedad.tipo_anunciante = Number(this.propiedad_deta.tipo_anunciante);
+
+    this.propiedad.url_video = this.propiedad_deta.url_video;
 
     this.propiedad.usuario_id = this._usuarioService.usuario.id;
 

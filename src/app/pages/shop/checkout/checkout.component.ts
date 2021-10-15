@@ -8,6 +8,8 @@ import { UbigeoService } from 'src/app/services/ubigeo.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedService } from '../../../services/shared.service';
+import { Facturacion } from '../../../models/facturacion.model';
+import { FacturacionService } from '../../../services/facturacion.service';
 
 @Component({
   selector: 'app-checkout',
@@ -41,7 +43,8 @@ export class CheckoutComponent implements OnInit {
     public _ubigeoService: UbigeoService,
     private _anuncioService: AnuncioService,
     private _spinner: NgxSpinnerService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _facturacionService: FacturacionService
   ) {
     this.crearFormulario();
   }
@@ -61,7 +64,8 @@ export class CheckoutComponent implements OnInit {
       });
     }
 
-    this.initConfig(this.monto);
+    //this.initConfig(this.monto);
+    this.initConfig(1);
     this.abrir_mdl_pago.nativeElement.click();
 
   }
@@ -180,7 +184,8 @@ export class CheckoutComponent implements OnInit {
     this.payPalConfig = {
         currency: 'USD',
         /* clientId: environment.clientId, */
-        clientId: 'AfNOLEiSlYupQk67q9ZGORLfTf_IJljc7uzjIDJIbpDuzP8zY9MO1FZHoofBfS_7mbR7XJU3YCJAFC8f',
+        //clientId: 'AfNOLEiSlYupQk67q9ZGORLfTf_IJljc7uzjIDJIbpDuzP8zY9MO1FZHoofBfS_7mbR7XJU3YCJAFC8f',
+        clientId: 'ATRAzp9PsZ1BksKyh30Go8AOk6wHyXoHuRu_E_oq6sWnP8dtx8wRgOkvg5yOXAdHuF9fJB_eCcM8Y_ZR',
         // tslint:disable-next-line: no-angle-bracket-type-assertion
         createOrderOnClient: (data) => < ICreateOrderRequest > <unknown>{
             intent: 'CAPTURE',
@@ -244,7 +249,32 @@ export class CheckoutComponent implements OnInit {
 }
 
   notificar_pago() {
-      
+
+    /* if ( this.formulario.invalid) {
+      return Object.values( this.formulario.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    } */
+
+    const facturacion = new Facturacion(
+      this.formulario.value.nombre,
+      this.formulario.value.apellido,
+      this.formulario.value.razon_social,
+      this.formulario.value.distrito,
+      this.formulario.value.direccion,
+      this.formulario.value.celular + '',
+      this.formulario.value.correo,
+      '',
+      sessionStorage.getItem('ids_autos') || '[]',
+      sessionStorage.getItem('ids_propiedades') || '[]',
+      this.costo_total
+    )
+
+    console.log(facturacion);
+
+    this._facturacionService.nueva_facturacion(facturacion)
+    .subscribe(resp => {
+
       this._anuncioService.ids_autos.forEach(id => {
         this._anuncioService.activar_anuncio(id, 'auto', true).subscribe();
       });
@@ -252,11 +282,18 @@ export class CheckoutComponent implements OnInit {
       this._anuncioService.ids_propiedades.forEach(id => {
         this._anuncioService.activar_anuncio(id, 'propiedad', true).subscribe();
       });
+
       this.cerrar_mdl_pago.nativeElement.click();
       this._anuncioService.limpiar_storage();
       this._anuncioService.limpiar_carrito();
       this._shared.alert_success('Transacción exitosa');
-      this._router.navigate(['/mis-publicaciones']);      
+      this._router.navigate(['/mis-publicaciones']);   
+
+    });
+
+
+      
+        
 
   }
 
