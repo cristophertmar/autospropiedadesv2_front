@@ -33,6 +33,7 @@ import { EditarContactoAutoComponent } from './pages/autos/editar-auto/editar-co
 import { PlanesAnuncioComponent } from './pages/shop/planes-anuncio/planes-anuncio.component';
 import { AccountComponent } from './pages/account/account.component';
 import { LoginGuard } from './guards/login.guard';
+import { CargaComponent } from './pages/propiedades/carga/carga.component';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
@@ -53,6 +54,8 @@ const routes: Routes = [
   { path: 'propiedades', component: PropiedadesComponent },
   { path: 'propiedades/buscar', component: BusquedaPropiedadComponent },
   { path: 'propiedades/ver/:id', component: DetallePropiedadComponent },
+
+  { path: 'propiedades/carga', component: CargaComponent },
 
   { path: 'propiedades/publicar/principales', component: PrincipalesComponent, canActivate: [ LoginGuard ] },
   { path: 'propiedades/publicar/caracteristicas', component: CaracteristicasComponent, canActivate: [ LoginGuard ] },

@@ -60,6 +60,7 @@ import { EditarMultimediaPropiedadComponent } from './pages/propiedades/editar-p
 import { EditarPrincipalesPropiedadComponent } from './pages/propiedades/editar-propiedad/editar-principales-propiedad/editar-principales-propiedad.component';
 import { PlanesAnuncioComponent } from './pages/shop/planes-anuncio/planes-anuncio.component';
 import { AccountComponent } from './pages/account/account.component';
+import { CargaComponent } from './pages/propiedades/carga/carga.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { AccountComponent } from './pages/account/account.component';
     EditarMultimediaPropiedadComponent,
     EditarPrincipalesPropiedadComponent,
     PlanesAnuncioComponent,
-    AccountComponent
+    AccountComponent,
+    CargaComponent
   ],
   imports: [
     BrowserModule,
