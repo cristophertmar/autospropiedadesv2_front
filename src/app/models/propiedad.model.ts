@@ -58,6 +58,8 @@ export class Propiedad {
 
         public precio_plan?: number,
 
+        public carpeta_img?: string
+
     ) {}
 
 }

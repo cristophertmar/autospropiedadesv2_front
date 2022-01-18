@@ -34,6 +34,8 @@ import { PlanesAnuncioComponent } from './pages/shop/planes-anuncio/planes-anunc
 import { AccountComponent } from './pages/account/account.component';
 import { LoginGuard } from './guards/login.guard';
 import { CargaComponent } from './pages/propiedades/carga/carga.component';
+import { PlanesEmpresaComponent } from './pages/shop/planes-empresa/planes-empresa.component';
+import { SeleccionPropiedadesComponent } from './pages/shop/seleccion-propiedades/seleccion-propiedades.component';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
@@ -70,7 +72,9 @@ const routes: Routes = [
   { path: 'propiedades/editar/contacto/:id', component: EditarContactoPropiedadComponent, canActivate: [ LoginGuard ] },
 
   { path: 'anuncio/seleccionar', component: SeleccionComponent, canActivate: [ LoginGuard ] },
+  { path: 'anuncio/seleccionar-propiedades', component: SeleccionPropiedadesComponent, canActivate: [ LoginGuard ] },
   { path: 'anuncio/planes', component: PlanesComponent, canActivate: [ LoginGuard ] },
+  { path: 'anuncio/planes-empresa', component: PlanesEmpresaComponent, canActivate: [ LoginGuard ] },
   { path: 'anuncio/plan', component: PlanesAnuncioComponent, canActivate: [ LoginGuard ] },
   { path: 'anuncio/carrito', component: CarritoComponent, canActivate: [ LoginGuard ] },
   { path: 'anuncio/realizar-pago', component: CheckoutComponent, canActivate: [ LoginGuard ] },

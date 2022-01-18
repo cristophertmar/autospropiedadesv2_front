@@ -34,6 +34,12 @@ export class PropiedadService {
     return this._http.post(url, propiedad);
   }
 
+  importar_propiedad(propiedades: Propiedad[]) {
+    let url;
+    url = URL_SERVICIOS + '/api/propiedad/importar';
+    return this._http.post(url, propiedades);
+  }
+
 
 
 }

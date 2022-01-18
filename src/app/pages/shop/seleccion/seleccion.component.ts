@@ -18,7 +18,12 @@ export class SeleccionComponent implements OnInit {
 
   seleccionar(seleccion: string) {
     sessionStorage.setItem('anuncio_seleccion', seleccion);
-    this._router.navigate(['/anuncio/planes']);
+    if(seleccion === 'auto') {
+      this._router.navigate(['/anuncio/planes']);
+    } else {
+      this._router.navigate(['/anuncio/seleccionar-propiedades']);
+    }
+    
   }
 
 }

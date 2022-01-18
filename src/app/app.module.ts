@@ -61,6 +61,8 @@ import { EditarPrincipalesPropiedadComponent } from './pages/propiedades/editar-
 import { PlanesAnuncioComponent } from './pages/shop/planes-anuncio/planes-anuncio.component';
 import { AccountComponent } from './pages/account/account.component';
 import { CargaComponent } from './pages/propiedades/carga/carga.component';
+import { PlanesEmpresaComponent } from './pages/shop/planes-empresa/planes-empresa.component';
+import { SeleccionPropiedadesComponent } from './pages/shop/seleccion-propiedades/seleccion-propiedades.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,9 @@ import { CargaComponent } from './pages/propiedades/carga/carga.component';
     EditarPrincipalesPropiedadComponent,
     PlanesAnuncioComponent,
     AccountComponent,
-    CargaComponent
+    CargaComponent,
+    PlanesEmpresaComponent,
+    SeleccionPropiedadesComponent
   ],
   imports: [
     BrowserModule,
