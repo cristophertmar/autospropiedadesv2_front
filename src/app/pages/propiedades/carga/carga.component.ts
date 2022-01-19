@@ -10,6 +10,7 @@ import * as JSZip from 'jszip';
 import { ZipFile } from 'src/app/models/zip.model';
 import { ZipFilePost } from '../../../models/zip_post.model';
 import { Router } from '@angular/router';
+import { ArchivoService } from '../../../services/archivo.service';
 
 /* export interface ZipFile {
   readonly name: string;
@@ -48,7 +49,8 @@ export class CargaComponent implements OnInit {
   constructor(
     private _shared: SharedService,
     private _propiedadService: PropiedadService,
-    private _router: Router
+    private _router: Router,
+    public _archivoService: ArchivoService
   ) { }
 
   ngOnInit(): void {
@@ -103,6 +105,7 @@ export class CargaComponent implements OnInit {
     this.listar_archivos();
   }, 1000);
 
+    this._archivoService.seleccionarZip(event);
 
     const fileList = event.target.files;
     const zipLoaded = new JSZip();
@@ -185,7 +188,7 @@ export class CargaComponent implements OnInit {
                                                           'tipo_moneda', 'precio',
                                                           'area_total', 'area_contruida', 'dormitorios', 'banios', 'cocheras', 'pisos',
                                                           'ascensores', 'mantenimiento', 'uso_profesional', 'uso_comercial', 'mascotas',
-                                                          'nombre_contacto', 'nrotelefono1_contacto', 'nrotelefono2_contacto', 'correo_contacto', 'tipo_anunciante',], raw: false });
+                                                          'nombre_contacto', 'nrotelefono1_contacto', 'nrotelefono2_contacto', 'correo_contacto', 'tipo_anunciante', 'carpeta_img'], raw: false });
         console.log(this.data);
       };
 
@@ -416,6 +419,11 @@ export class CargaComponent implements OnInit {
           return;
         }
 
+        if(this.data[i].carpeta_img.length === 0) {
+          this._shared.alert_info('El registro nro. ' + nro_registro + ' debe tener asignado un nombre de carpeta donde se hallen sus imágenes');
+          this.removeData();
+          return;
+        } 
 
         propiedad.titulo = this.data[i].titulo; //validado
         propiedad.descripcion = this.data[i].descripcion; //validado
@@ -457,6 +465,8 @@ export class CargaComponent implements OnInit {
         propiedad.nrotelefono2_contacto = this.data[i].nrotelefono2_contacto || ''; //No requiere
         propiedad.correo_contacto = this.data[i].correo_contacto; //validado
         propiedad.tipo_anunciante = (this.data[i].tipo_anunciante).toLowerCase() === 'dueño directo' ? 1 : 2; //validado
+
+        propiedad.carpeta_img = this.data[i].carpeta_img;
                 
         propiedad.tags_general = '[]';
         propiedad.tags_ambientes = '[]';
@@ -472,6 +482,14 @@ export class CargaComponent implements OnInit {
       // console.log(this.propiedades);
       console.log(this.files_post);
 
+      this._archivoService.guardar_archivo(this.serial, true, true)
+      .subscribe( resp => {
+        console.log(resp);
+          this._shared.alert_success('Guardado exitosamente');
+          
+      });
+
+
      /*  this._propiedadService.importar_propiedad(this.propiedades)
         .subscribe((resp: any) => {
             console.log(resp);
@@ -480,7 +498,6 @@ export class CargaComponent implements OnInit {
             this.files_post = [];
             this.data = [];            
         }); */
-
 
       return;
     }    

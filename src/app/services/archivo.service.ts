@@ -149,6 +149,35 @@ export class ArchivoService {
 
   }
 
+  seleccionarZip(event: any) {
+    this.imagenes_temporal = [];
+    const archivos: FileList = event.target.files;
+
+    if (archivos.length === 0) {
+      return;
+    }   
+
+    if(archivos.length > 1) {
+      this._shared.alert_error('Solo puedes subir un archivo de tipo zip');
+      return;
+    }
+
+    Array.from(archivos).forEach(archivo => {
+      if (archivo.type.indexOf('zip') < 0 ) {
+        this._shared.alert_error('No es un zip');
+        return;
+      }
+  
+      const reader = new FileReader();
+      const urlImagenTemp = reader.readAsDataURL(archivo);
+      reader.onloadend = () => this.imagenes_temporal.push(reader.result.toString());
+  
+      });
+  
+      this.archivos = archivos; 
+
+  }
+
   seleccionImagen(event: any) {
     this.imagenes_temporal = [];
     const archivos: FileList = event.target.files;
@@ -219,8 +248,8 @@ export class ArchivoService {
     this.cant_fotos += 1;
   }
 
-  guardar_archivo(id: string, propiedad: boolean = false) {
-    const url = URL_SERVICIOS + '/api/archivo/' + id + '/' + propiedad;
+  guardar_archivo(id: string, propiedad: boolean = false, zip: boolean = false) {
+    const url = URL_SERVICIOS + '/api/archivo/' + id + '/' + propiedad + '/' + zip;
     const formData: FormData = new FormData();
 
     if (this.archivos.length > 0) {

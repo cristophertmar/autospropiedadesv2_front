@@ -21,6 +21,7 @@
 
                 <input class="ocultar" type="file" (change)="onChange($event)" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" #inputFile>
                 <input class="ocultar" type="file" (change)="ngOnFile($event)" placeholder="Cargar" #inputFile2 accept=".zip">
+                <!-- <input (change)="" type="file" id="fotos" class="input-file" > -->
 
                 <!-- *ngIf="data.length > 0 && files_post.length > 0" -->
                 <div *ngIf="data.length > 0">
