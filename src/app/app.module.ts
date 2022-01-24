@@ -63,6 +63,7 @@ import { AccountComponent } from './pages/account/account.component';
 import { CargaComponent } from './pages/propiedades/carga/carga.component';
 import { PlanesEmpresaComponent } from './pages/shop/planes-empresa/planes-empresa.component';
 import { SeleccionPropiedadesComponent } from './pages/shop/seleccion-propiedades/seleccion-propiedades.component';
+import { CheckoutTestComponent } from './pages/shop/checkout-test/checkout-test.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { SeleccionPropiedadesComponent } from './pages/shop/seleccion-propiedade
     AccountComponent,
     CargaComponent,
     PlanesEmpresaComponent,
-    SeleccionPropiedadesComponent
+    SeleccionPropiedadesComponent,
+    CheckoutTestComponent
   ],
   imports: [
     BrowserModule,

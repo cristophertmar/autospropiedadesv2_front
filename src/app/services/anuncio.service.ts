@@ -4,7 +4,8 @@ import { BusquedaRapida } from '../models/busqueda_rapida.model';
 import { Propiedad } from '../models/propiedad.model';
 import { Router } from '@angular/router';
 import { URL_SERVICIOS } from '../config/config';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PaymentDatos } from '../models/payment_datos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -269,8 +270,11 @@ export class AnuncioService {
     url = URL_SERVICIOS + '/api/publicacion/activar?id=' + id + '&tipo=' + tipo + '&editable=' + editable;
     return this._http.get(url);
   }
-  
 
+  generarFormPago(datos_pago: PaymentDatos) {
+    const url = 'https://localhost:44380/api/carrito/realizar-pago'
+    return this._http.post(url, datos_pago);    
+  }
 
   reseteo_autosprop()  {
 

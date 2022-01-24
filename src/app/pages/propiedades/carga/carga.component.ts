@@ -480,27 +480,35 @@ export class CargaComponent implements OnInit {
       }
 
       // console.log(this.propiedades);
-      console.log(this.files_post);
+      //console.log(this.files_post);   
 
-      this._archivoService.guardar_archivo(this.serial, true, true)
-      .subscribe( resp => {
-        console.log(resp);
-          this._shared.alert_success('Guardado exitosamente');
-          
-      });
-
-
-     /*  this._propiedadService.importar_propiedad(this.propiedades)
+      this._propiedadService.importar_propiedad(this.propiedades)
         .subscribe((resp: any) => {
             console.log(resp);
             this._shared.alert_success('Propiedades registradas correctamente');
             console.log(this.files_post);
             this.files_post = [];
             this.data = [];            
-        }); */
+        });
 
       return;
     }    
+
+  }
+
+
+  guardar_zip() {
+
+    this._archivoService.guardar_archivo(this.serial, true, true)
+    .subscribe( resp => {
+      console.log(resp);
+        this._shared.alert_success('Guardado exitosamente');
+        
+    });
+
+  }
+
+  actualizar_img() {
 
   }
 
