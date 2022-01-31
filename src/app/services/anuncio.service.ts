@@ -276,6 +276,12 @@ export class AnuncioService {
     return this._http.post(url, datos_pago);    
   }
 
+  verificar_uuid(uuid: string) {
+    const ouuid = { uuid }
+    const url = 'https://localhost:44380/api/carrito/verificar-pago'
+    return this._http.post(url, ouuid);    
+  }
+
   reseteo_autosprop()  {
 
 

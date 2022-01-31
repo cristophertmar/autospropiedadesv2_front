@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from '../../../services/anuncio.service';
 import { PaymentDatos } from '../../../models/payment_datos.model';
 import { CustomerPayment } from '../../../models/customer_payment.model';
-
+import KRGlue from "@lyracom/embedded-form-glue";
 @Component({
   selector: 'app-checkout-test',
   templateUrl: './checkout-test.component.html',
@@ -20,55 +20,35 @@ export class CheckoutTestComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.generarFormPago();
-    // Codificar base64
-    //console.log(btoa("45144874:testpassword_uB6CLf1ivL39uJ5Poo0sB2c4hzSTTqyWZhFUvrNm7unns"));
-    // Decodificar base64
-    //console.log(atob("NDUxNDQ4NzQ6dGVzdHBhc3N3b3JkX3VCNkNMZjFpdkwzOXVKNVBvbzBzQjJjNGh6U1RUcXlXWmhGVXZyTm03dW5ucw==")); 
-  }
-
-  generarFormPago() {
-
-  this.datos_pago.amount = 180;
-  this.datos_pago.currency = 'PEN';
-  this.datos_pago.orderId = 'myOrderId-999999';
-
-  this.cliente.email = 'sample@example.com';
-
-  this.datos_pago.customer = this.cliente;
-
-   /* this._anuncioService.generarFormPago(this.datos_pago)
-   .subscribe((resp: any) => {
-     this.token_formulario = resp.data.answer.formToken;
-     this.displayPaymentForm(resp.data.answer.formToken)
-   }) */
-
+    
+    const endpoint = "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js";
+    const publicKey = "45144874:testpublickey_b5dynPqWER0JLbkwmveBCNCRirZBYW8jfWLsNDcdQaICp";
+    const formToken = "26Tmtgy7Q8QFu7UaiqPX8U_A221eyJhbW91bnQiOjM2MDAsImN1cnJlbmN5IjoiUEVOIiwibW9kZSI6IlRFU1QiLCJ2ZXJzaW9uIjozLCJvcmRlcklkIjoibXlPcmRlcklkLTk5OTk5OSIsInNob3BOYW1lIjoiSVpJKkFEVUFOREVTIFNFUlZJQ0lPUyBMT0dJU1RJQ09TICg4OTY0ODc1KSIsInJpc2tBbmFseXNlciI6e30sImNhdGVnb3JpZXMiOnsiZGViaXRDcmVkaXRDYXJkcyI6eyJhcHBJZCI6ImNhcmRzIiwicGFyYW0iOlsiQU1FWCIsIk1BU1RFUkNBUkRfREVCSVQiLCJNQVNURVJDQVJEIiwiTUNfQ09SRE9CRVNBIiwiVklTQSIsIlZJU0FfRUxFQ1RST04iLCJWSVNBX0RFQklUIiwiRElORVJTIl19fSwiY2FyZHMiOnsiQU1FWCI6eyJmaWVsZHMiOnsic2VjdXJpdHlDb2RlIjp7Im1heExlbmd0aCI6NH0sImluc3RhbGxtZW50TnVtYmVyIjp7InZhbHVlIjoiLTEiLCJ2YWx1ZXMiOnsiLTEiOiIxOjo6OjozNjAwIiwiRFlOQU1JQyI6Ijo6Ojo6In0sInJlcXVpcmVkIjp0cnVlLCJzZW5zaXRpdmUiOmZhbHNlLCJoaWRkZW4iOmZhbHNlLCJjbGVhck9uRXJyb3IiOmZhbHNlfSwiZmlyc3RJbnN0YWxsbWVudERlbGF5Ijp7InZhbHVlIjoiMCIsInZhbHVlcyI6eyIwIjoiMCIsIkRZTkFNSUMiOiJEWU5BTUlDIn0sInJlcXVpcmVkIjp0cnVlLCJzZW5zaXRpdmUiOmZhbHNlLCJoaWRkZW4iOmZhbHNlLCJjbGVhck9uRXJyb3IiOmZhbHNlfX0sImNvcHlGcm9tIjoiY2FyZHMuREVGQVVMVCJ9LCJNQVNURVJDQVJEX0RFQklUIjp7ImZpZWxkcyI6eyJpbnN0YWxsbWVudE51bWJlciI6eyJ2YWx1ZSI6Ii0xIiwidmFsdWVzIjp7Ii0xIjoiMTo6Ojo6MzYwMCIsIkRZTkFNSUMiOiI6Ojo6OiJ9LCJyZXF1aXJlZCI6dHJ1ZSwic2Vuc2l0aXZlIjpmYWxzZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX0sImZpcnN0SW5zdGFsbG1lbnREZWxheSI6eyJ2YWx1ZSI6IjAiLCJ2YWx1ZXMiOnsiMCI6IjAiLCJEWU5BTUlDIjoiRFlOQU1JQyJ9LCJyZXF1aXJlZCI6dHJ1ZSwic2Vuc2l0aXZlIjpmYWxzZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX19LCJjb3B5RnJvbSI6ImNhcmRzLkRFRkFVTFQifSwiTUFTVEVSQ0FSRCI6eyJmaWVsZHMiOnsiaW5zdGFsbG1lbnROdW1iZXIiOnsidmFsdWUiOiItMSIsInZhbHVlcyI6eyItMSI6IjE6Ojo6OjM2MDAiLCJEWU5BTUlDIjoiOjo6OjoifSwicmVxdWlyZWQiOnRydWUsInNlbnNpdGl2ZSI6ZmFsc2UsImhpZGRlbiI6ZmFsc2UsImNsZWFyT25FcnJvciI6ZmFsc2V9LCJmaXJzdEluc3RhbGxtZW50RGVsYXkiOnsidmFsdWUiOiIwIiwidmFsdWVzIjp7IjAiOiIwIiwiRFlOQU1JQyI6IkRZTkFNSUMifSwicmVxdWlyZWQiOnRydWUsInNlbnNpdGl2ZSI6ZmFsc2UsImhpZGRlbiI6ZmFsc2UsImNsZWFyT25FcnJvciI6ZmFsc2V9fSwiY29weUZyb20iOiJjYXJkcy5ERUZBVUxUIn0sIk1DX0NPUkRPQkVTQSI6eyJmaWVsZHMiOnsiaW5zdGFsbG1lbnROdW1iZXIiOnsidmFsdWUiOiItMSIsInZhbHVlcyI6eyItMSI6IjE6Ojo6OjM2MDAiLCJEWU5BTUlDIjoiOjo6OjoifSwicmVxdWlyZWQiOnRydWUsInNlbnNpdGl2ZSI6ZmFsc2UsImhpZGRlbiI6ZmFsc2UsImNsZWFyT25FcnJvciI6ZmFsc2V9LCJmaXJzdEluc3RhbGxtZW50RGVsYXkiOnsidmFsdWUiOiIwIiwidmFsdWVzIjp7IjAiOiIwIiwiRFlOQU1JQyI6IkRZTkFNSUMifSwicmVxdWlyZWQiOnRydWUsInNlbnNpdGl2ZSI6ZmFsc2UsImhpZGRlbiI6ZmFsc2UsImNsZWFyT25FcnJvciI6ZmFsc2V9fSwiY29weUZyb20iOiJjYXJkcy5ERUZBVUxUIn0sIlZJU0EiOnsiZmllbGRzIjp7Imluc3RhbGxtZW50TnVtYmVyIjp7InZhbHVlIjoiLTEiLCJ2YWx1ZXMiOnsiLTEiOiIxOjo6OjozNjAwIiwiRFlOQU1JQyI6Ijo6Ojo6In0sInJlcXVpcmVkIjp0cnVlLCJzZW5zaXRpdmUiOmZhbHNlLCJoaWRkZW4iOmZhbHNlLCJjbGVhck9uRXJyb3IiOmZhbHNlfSwiZmlyc3RJbnN0YWxsbWVudERlbGF5Ijp7InZhbHVlIjoiMCIsInZhbHVlcyI6eyIwIjoiMCIsIkRZTkFNSUMiOiJEWU5BTUlDIn0sInJlcXVpcmVkIjp0cnVlLCJzZW5zaXRpdmUiOmZhbHNlLCJoaWRkZW4iOmZhbHNlLCJjbGVhck9uRXJyb3IiOmZhbHNlfX0sImNvcHlGcm9tIjoiY2FyZHMuREVGQVVMVCJ9LCJWSVNBX0VMRUNUUk9OIjp7ImZpZWxkcyI6eyJpbnN0YWxsbWVudE51bWJlciI6eyJ2YWx1ZSI6Ii0xIiwidmFsdWVzIjp7Ii0xIjoiMTo6Ojo6MzYwMCIsIkRZTkFNSUMiOiI6Ojo6OiJ9LCJyZXF1aXJlZCI6dHJ1ZSwic2Vuc2l0aXZlIjpmYWxzZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX0sImZpcnN0SW5zdGFsbG1lbnREZWxheSI6eyJ2YWx1ZSI6IjAiLCJ2YWx1ZXMiOnsiMCI6IjAiLCJEWU5BTUlDIjoiRFlOQU1JQyJ9LCJyZXF1aXJlZCI6dHJ1ZSwic2Vuc2l0aXZlIjpmYWxzZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX19LCJjb3B5RnJvbSI6ImNhcmRzLkRFRkFVTFQifSwiREVGQVVMVCI6eyJmaWVsZHMiOnsicGFuIjp7Im1pbkxlbmd0aCI6MTAsIm1heExlbmd0aCI6MTksInZhbGlkYXRvcnMiOlsiTlVNRVJJQyIsIkxVSE4iXSwicmVxdWlyZWQiOnRydWUsInNlbnNpdGl2ZSI6dHJ1ZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX0sImV4cGlyeURhdGUiOnsicmVxdWlyZWQiOnRydWUsInNlbnNpdGl2ZSI6dHJ1ZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX0sInNlY3VyaXR5Q29kZSI6eyJtaW5MZW5ndGgiOjMsIm1heExlbmd0aCI6NCwidmFsaWRhdG9ycyI6WyJOVU1FUklDIl0sInJlcXVpcmVkIjp0cnVlLCJzZW5zaXRpdmUiOnRydWUsImhpZGRlbiI6ZmFsc2UsImNsZWFyT25FcnJvciI6dHJ1ZX0sImluc3RhbGxtZW50TnVtYmVyIjp7InZhbHVlIjoiLTEiLCJ2YWx1ZXMiOnsiLTEiOiIxOjo6OjozNjAwIn0sInJlcXVpcmVkIjpmYWxzZSwic2Vuc2l0aXZlIjpmYWxzZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX0sImZpcnN0SW5zdGFsbG1lbnREZWxheSI6eyJ2YWx1ZSI6IjAiLCJ2YWx1ZXMiOnsiMCI6IjAifSwicmVxdWlyZWQiOmZhbHNlLCJzZW5zaXRpdmUiOmZhbHNlLCJoaWRkZW4iOmZhbHNlLCJjbGVhck9uRXJyb3IiOmZhbHNlfX19LCJESU5FUlMiOnsiZmllbGRzIjp7Imluc3RhbGxtZW50TnVtYmVyIjp7InZhbHVlIjoiLTEiLCJ2YWx1ZXMiOnsiLTEiOiIxOjo6OjozNjAwIiwiRFlOQU1JQyI6Ijo6Ojo6In0sInJlcXVpcmVkIjp0cnVlLCJzZW5zaXRpdmUiOmZhbHNlLCJoaWRkZW4iOmZhbHNlLCJjbGVhck9uRXJyb3IiOmZhbHNlfSwiZmlyc3RJbnN0YWxsbWVudERlbGF5Ijp7InZhbHVlIjoiMCIsInZhbHVlcyI6eyIwIjoiMCIsIkRZTkFNSUMiOiJEWU5BTUlDIn0sInJlcXVpcmVkIjp0cnVlLCJzZW5zaXRpdmUiOmZhbHNlLCJoaWRkZW4iOmZhbHNlLCJjbGVhck9uRXJyb3IiOmZhbHNlfX0sImNvcHlGcm9tIjoiY2FyZHMuREVGQVVMVCJ9LCJWSVNBX0RFQklUIjp7ImZpZWxkcyI6eyJpbnN0YWxsbWVudE51bWJlciI6eyJ2YWx1ZSI6Ii0xIiwidmFsdWVzIjp7Ii0xIjoiMTo6Ojo6MzYwMCIsIkRZTkFNSUMiOiI6Ojo6OiJ9LCJyZXF1aXJlZCI6dHJ1ZSwic2Vuc2l0aXZlIjpmYWxzZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX0sImZpcnN0SW5zdGFsbG1lbnREZWxheSI6eyJ2YWx1ZSI6IjAiLCJ2YWx1ZXMiOnsiMCI6IjAiLCJEWU5BTUlDIjoiRFlOQU1JQyJ9LCJyZXF1aXJlZCI6dHJ1ZSwic2Vuc2l0aXZlIjpmYWxzZSwiaGlkZGVuIjpmYWxzZSwiY2xlYXJPbkVycm9yIjpmYWxzZX19LCJjb3B5RnJvbSI6ImNhcmRzLkRFRkFVTFQifX0sInBhc3NBY3RpdmF0ZWQiOnRydWUsImFwaVJlc3RWZXJzaW9uIjoiNC4wIiwiY291bnRyeSI6IlBFIn07b02";
+    
+    KRGlue.loadLibrary(endpoint, publicKey) /* Load the remote library */
+        .then(({KR}) => KR.setFormConfig({  /* set the minimal configuration */
+          formToken: formToken,
+          'kr-language': 'es-PE',
+        })) /* to update initialization parameter */
+        .then(({KR}) => KR.onSubmit((resp: any) => {
+          console.log(resp.clientAnswer.transactions[0].uuid);
+          this.verificar_uuid(resp.clientAnswer.transactions[0].uuid);
+          return false
+        }))
+        .then(({KR}) => KR.addForm('#myPaymentForm')) /* create a payment form */
+        .then(({KR, result}) => KR.showForm(result.formId));  /* show the payment form */
   }
 
 
-  /* displayPaymentForm(formToken: any) {
-    // Mostrar el formulario de pago
-    document.getElementById('paymentForm').style.display = 'block';
+  verificar_uuid(uuid: string) {
 
-    // Establecer token de formulario
-    KR.setFormToken(formToken);
-
-    // Agregar oyente para el evento de envío
-    KR.onSubmit(this.onPaid);
+    this._anuncioService.verificar_uuid(uuid)
+    .subscribe( resp => {
+      console.log(resp);  
+    });
+    
   }
 
-
-  onPaid(event: any) {
-    if (event.clientAnswer.orderStatus === "PAID") {
-      // Remove the payment form
-      KR.removeForms();
   
-      // Show success message
-      document.getElementById("paymentSuccessful").style.display = "block";
-    } else {
-      // Show error message to the user
-      alert("Payment failed !");
-    }
-  } */
 
 }
