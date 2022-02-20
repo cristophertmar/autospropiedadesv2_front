@@ -10,6 +10,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedService } from '../../../services/shared.service';
 import { Facturacion } from '../../../models/facturacion.model';
 import { FacturacionService } from '../../../services/facturacion.service';
+import { PaymentDatos } from 'src/app/models/payment_datos.model';
+import { CustomerPayment } from 'src/app/models/customer_payment.model';
+
+import KRGlue from "@lyracom/embedded-form-glue";
 
 @Component({
   selector: 'app-checkout',
@@ -37,6 +41,8 @@ export class CheckoutComponent implements OnInit {
 
   @ViewChild('cerrar_mdl_pago') cerrar_mdl_pago: ElementRef<HTMLElement>;
   @ViewChild('abrir_mdl_pago') abrir_mdl_pago: ElementRef<HTMLElement>;
+
+  datos_pago: PaymentDatos;
 
   constructor(
     private _router: Router,
@@ -89,7 +95,52 @@ export class CheckoutComponent implements OnInit {
 
     this.calcular_subtotal_igv();
 
+    this.datos_pago = new PaymentDatos();
+    const customer = new CustomerPayment('test@test.com');
+
+    this.datos_pago.amount = Number(((this.costo_total).toFixed(2)).replace('.', ''));
+    this.datos_pago.currency = 'PEN';
+    this.datos_pago.orderId = 'orderCode';
+    this.datos_pago.customer = customer;
+
+    this.obtener_formularioPago(this.datos_pago);
+
+    console.log(this.datos_pago);
+
   } 
+
+  obtener_formularioPago(datos_pago: PaymentDatos) {
+    this._anuncioService.generarFormPago(datos_pago)
+    .subscribe( (resp: any) => {
+        console.log(resp.data.answer.formToken);
+        this.crear_formularioPago(resp.data.answer.formToken);
+    });
+  }
+
+  crear_formularioPago(formToken: any) {
+    const endpoint = "https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js";
+    const publicKey = "45144874:testpublickey_b5dynPqWER0JLbkwmveBCNCRirZBYW8jfWLsNDcdQaICp";
+    
+    KRGlue.loadLibrary(endpoint, publicKey)
+        .then(({KR}) => KR.setFormConfig({
+          formToken: formToken,
+          'kr-language': 'es-PE',
+        }))
+        .then(({KR}) => KR.onSubmit((resp: any) => {
+          //console.log(resp.clientAnswer.transactions[0].uuid);
+          this.verificar_uuid(resp.clientAnswer.transactions[0].uuid);
+          return false
+        }))
+        .then(({KR}) => KR.addForm('#myPaymentForm'))
+        .then(({KR, result}) => KR.showForm(result.formId));
+  }
+
+  verificar_uuid(uuid: string) {
+    this._anuncioService.verificar_uuid(uuid)
+    .subscribe( resp => {
+      this.notificar_pago();
+    });    
+  }
 
   calcular_subtotal_igv() {
     this.igv = this.costo_total * 0.18;

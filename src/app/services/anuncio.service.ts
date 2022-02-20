@@ -272,7 +272,7 @@ export class AnuncioService {
   }
 
   generarFormPago(datos_pago: PaymentDatos) {
-    const url = 'https://localhost:44380/api/carrito/realizar-pago'
+    const url = 'https://localhost:44380/api/carrito/formulario-pago_traer'
     return this._http.post(url, datos_pago);    
   }
 

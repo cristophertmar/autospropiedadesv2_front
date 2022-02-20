@@ -111,6 +111,7 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card bg-primary text-white">
@@ -140,8 +141,8 @@
                                 <span>{{ costo_total | currency: 'PEN': 'symbol': '': 'es-PE' }}</span>
                             </div>
                             <div class="d-grid">
-                                <!-- <button (click)="procesar()" class="btn btn-light btn-lg fw-semibold text-primary">Ir a pagar</button> -->
-                                <button (click)="notificar_pago()" class="btn btn-light btn-lg fw-semibold text-primary">Realizar pago</button>
+                                <button (click)="procesar()" class="btn btn-light btn-lg fw-semibold text-primary">Ir a pagar</button>
+                                <!-- <button (click)="notificar_pago()" class="btn btn-light btn-lg fw-semibold text-primary">Realizar pago</button> -->
                                 <button class="ocultar" #abrir_mdl_pago id="abrir_mdl_pago" data-bs-toggle="modal" data-bs-target="#myModal">abrir modal</button>
                             </div>
                         </div>
@@ -162,7 +163,14 @@
             </div>
             <div class="modal-body p-5 pt-0">
 
-                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+                <div class="form text-center">
+                    <h4>Realizar Pago</h4>
+                    <br>
+                    <div style="display: flex; justify-content: center;">
+                        <div #myPaymentForm id="myPaymentForm"></div>
+                    </div>
+                </div>
 
                 <!-- <form>
                     <div class="row">
