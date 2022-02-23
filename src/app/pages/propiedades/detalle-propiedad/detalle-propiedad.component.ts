@@ -188,20 +188,32 @@ export class DetallePropiedadComponent implements OnInit {
     this.cliente_contacto.alertas = this.formulario_mensaje.value.alertas; */
 
     let contacto: Contacto = new Contacto();
-    contacto.nombre =  this.formulario_mensaje.value.nombre;
-    contacto.correo =  this.formulario_mensaje.value.correo;
-    contacto.telefono =  this.formulario_mensaje.value.telefono;
+
+    contacto.correo_destino =  'cristopher.tmar@gmail.com';//this.propiedad.correo_contacto;
+    contacto.nombre_destino =  this.propiedad.nombre_contacto;
+    contacto.asunto_contacto = 'Estoy interesado en tu anuncio de Autos&Propiedades';
+
+    contacto.nombre_contacto =  this.formulario_mensaje.value.nombre;
+    contacto.correo_contacto = this.formulario_mensaje.value.correo;
+    contacto.telefono_contacto =  this.formulario_mensaje.value.telefono;
+    contacto.titulo_anuncio = this.propiedad.titulo;
+    contacto.mensaje_contacto = this.formulario_mensaje.value.mensaje;
+    
+    
     contacto.tipo_anuncio =  'PROPIEDAD';
     contacto.id_publicado =  this.id_publicado;
     contacto.usuario_id = this.propiedad.usuario_id;
-    contacto.correo_destino = this.propiedad.correo_contacto;
-    contacto.mensaje = this.formulario_mensaje.value.mensaje;
+    
+    
+    
 
-    this._spinner.show();
+    console.log(contacto);
+
+    //this._spinner.show();
 
     this._contactoService.insertar_contacto(contacto)
     .subscribe(resp => {
-      this._spinner.hide();
+      //this._spinner.hide();
       this._shared.alert_success('Enviado satisfactoriamente');
       this.mostrar_formulario = false;
     });

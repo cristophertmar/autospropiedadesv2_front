@@ -12,7 +12,8 @@ export class ContactoService {
 
   insertar_contacto(contacto: Contacto) {
     let url;
-    url = URL_SERVICIOS + '/api/contacto/insertar';
+    //url = URL_SERVICIOS + '/api/contacto/insertar';
+    url = URL_SERVICIOS + '/api/correo/correo_contacto';
     return this._http.post(url, contacto);
   }
 
