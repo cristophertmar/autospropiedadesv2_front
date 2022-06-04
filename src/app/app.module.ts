@@ -28,6 +28,8 @@ import { PrincipalesComponent } from './pages/propiedades/publicar-propiedad/pri
 import { MultimediaComponent } from './pages/propiedades/publicar-propiedad/multimedia/multimedia.component';
 import { ExtrasComponent } from './pages/propiedades/publicar-propiedad/extras/extras.component';
 import { ContactoComponent } from './pages/propiedades/publicar-propiedad/contacto/contacto.component';
+import { CaracteristicasComponent } from './pages/propiedades/publicar-propiedad/caracteristicas/caracteristicas.component';
+import { SeleccionComponent } from './pages/shop/seleccion/seleccion.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
@@ -35,8 +37,6 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { registerLocaleData } from '@angular/common';
 import localesPE from '@angular/common/locales/es-PE';
-import { CaracteristicasComponent } from './pages/propiedades/publicar-propiedad/caracteristicas/caracteristicas.component';
-import { SeleccionComponent } from './pages/shop/seleccion/seleccion.component';
 registerLocaleData(localesPE, 'es-Pe');
 
 // Angular Maps
@@ -64,6 +64,7 @@ import { CargaComponent } from './pages/propiedades/carga/carga.component';
 import { PlanesEmpresaComponent } from './pages/shop/planes-empresa/planes-empresa.component';
 import { SeleccionPropiedadesComponent } from './pages/shop/seleccion-propiedades/seleccion-propiedades.component';
 import { CheckoutTestComponent } from './pages/shop/checkout-test/checkout-test.component';
+import { VerificacionComponent } from './pages/verificacion/verificacion.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { CheckoutTestComponent } from './pages/shop/checkout-test/checkout-test.
     CargaComponent,
     PlanesEmpresaComponent,
     SeleccionPropiedadesComponent,
-    CheckoutTestComponent
+    CheckoutTestComponent,
+    VerificacionComponent
   ],
   imports: [
     BrowserModule,

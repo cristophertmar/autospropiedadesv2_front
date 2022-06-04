@@ -214,6 +214,8 @@ export class AccountComponent implements OnInit {
 
   registro_web() {
 
+    const host = window.location.host;
+
     if ( this.forma_registro.invalid ) {
       return Object.values( this.forma_registro.controls).forEach( control => {
         control.markAsTouched();
@@ -240,15 +242,21 @@ export class AccountComponent implements OnInit {
       this.forma_registro.value.nombre
     );
     
-    this._usuarioService.registro_usuario(usuario)
-    .subscribe( resp => {
-      this._spinner.hide();
-      if(resp) {
-        this._router.navigate(['/anuncio/seleccionar']);
-        this.forma_registro.reset();
+    this._usuarioService.registro_usuario(usuario, host)
+    .subscribe( 
+      (resp: any) => {
+        this._spinner.hide();
+        if(resp) {
+          console.log(resp);
+          //this._router.navigate(['/anuncio/seleccionar']);
+          //this.forma_registro.reset();
+        } 
+      },
+      (error: any) => {
+        this._spinner.hide();
       }
-      
-    });
+    );
+
   }  
 
   cambiar_mod_loguin(){

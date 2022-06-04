@@ -104,16 +104,16 @@ export class UsuarioService {
     return this.token.length > 0? true : false;
   }
 
-  registro_usuario(usuario: Usuario) {
+  registro_usuario(usuario: Usuario, host: string = "") {
     
     let url;
     if (usuario.proveedor) {
       url = URL_SERVICIOS + '/registro_proveedor';
     } else {
-      url = URL_SERVICIOS + '/registro_web';
+      url = URL_SERVICIOS + '/registro_web/' + host;
     }
-    return this.http.post( url, usuario)
-    .pipe(
+    return this.http.post( url, usuario);
+   /*  .pipe(
       map((resp: any) => {
         console.log(resp);
 
@@ -132,7 +132,7 @@ export class UsuarioService {
         }
       
       })
-    );
+    ); */
   }
 
   actualizar_usuario(usuario: Usuario) {
@@ -174,10 +174,13 @@ export class UsuarioService {
     
   }
 
-
   verificar_correo(correo: string) {
     const url = URL_SERVICIOS + '/correo_existe/' + correo;
     return this.http.get(url);
+  }
+
+  validarCuenta(codigo: string) {
+
   }
 
 

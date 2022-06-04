@@ -202,10 +202,7 @@ export class DetallePropiedadComponent implements OnInit {
     
     contacto.tipo_anuncio =  'PROPIEDAD';
     contacto.id_publicado =  this.id_publicado;
-    contacto.usuario_id = this.propiedad.usuario_id;
-    
-    
-    
+    contacto.usuario_id = this.propiedad.usuario_id; 
 
     console.log(contacto);
 
@@ -217,7 +214,6 @@ export class DetallePropiedadComponent implements OnInit {
       this._shared.alert_success('Enviado satisfactoriamente');
       this.mostrar_formulario = false;
     });
-
 
     /* setTimeout(() => {
       

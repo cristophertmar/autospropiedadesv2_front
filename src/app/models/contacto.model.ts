@@ -7,13 +7,13 @@ export class Contacto {
         public nombre_contacto?: string,
         public correo_contacto?: string,
         public telefono_contacto?: string,
-        public titulo_anuncio?: string,
-        public tipo_anuncio?: string,
+        public titulo_anuncio?: string,        
         public mensaje_contacto?: string,
 
+        public tipo_anuncio?: string,
         public id_publicado?: string,
         public usuario_id?: number,
-        public id?: number   
+        public id?: number
     ) {}
 
 }

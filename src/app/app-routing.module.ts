@@ -37,9 +37,11 @@ import { CargaComponent } from './pages/propiedades/carga/carga.component';
 import { PlanesEmpresaComponent } from './pages/shop/planes-empresa/planes-empresa.component';
 import { SeleccionPropiedadesComponent } from './pages/shop/seleccion-propiedades/seleccion-propiedades.component';
 import { CheckoutTestComponent } from './pages/shop/checkout-test/checkout-test.component';
+import { VerificacionComponent } from './pages/verificacion/verificacion.component';
 
 const routes: Routes = [
   { path: 'inicio', component: HomeComponent },
+  { path: 'verificacion/:id', component: VerificacionComponent },
   { path: 'inicia-ahora', component: AccountComponent },
 
   { path: 'autos', component: AutosComponent },

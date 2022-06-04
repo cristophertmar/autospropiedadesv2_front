@@ -158,14 +158,31 @@ export class DetalleAutoComponent implements OnInit {
     this.cliente_contacto.alertas = this.formulario_mensaje.value.alertas; */
 
     let contacto: Contacto = new Contacto();
-    contacto.nombre_contacto =  this.formulario_mensaje.value.nombre;
+    /* contacto.nombre_contacto =  this.formulario_mensaje.value.nombre;
     contacto.correo_contacto =  this.formulario_mensaje.value.correo;
     contacto.telefono_contacto =  this.formulario_mensaje.value.telefono;
     contacto.tipo_anuncio =  'PROPIEDAD';
     contacto.id_publicado =  this.id_publicado;
     contacto.usuario_id = this.vehiculo.usuario_id;
     contacto.correo_destino = this.vehiculo.correo; 
+    contacto.mensaje_contacto = this.formulario_mensaje.value.mensaje; */
+
+    contacto.correo_destino =  'cristopher.tmar@gmail.com';//this.propiedad.correo_contacto;
+    contacto.nombre_destino =  this.vehiculo.usuario;
+    contacto.asunto_contacto = 'Estoy interesado en tu anuncio de Autos&Propiedades';
+
+    contacto.nombre_contacto =  this.formulario_mensaje.value.nombre;
+    contacto.correo_contacto = this.formulario_mensaje.value.correo;
+    contacto.telefono_contacto =  this.formulario_mensaje.value.telefono;
+    contacto.titulo_anuncio = this.vehiculo.descrip_marca + ' ' + this.vehiculo.descrip_modelo;
     contacto.mensaje_contacto = this.formulario_mensaje.value.mensaje;
+    
+    
+    contacto.tipo_anuncio =  'AUTO';
+    contacto.id_publicado =  this.id_publicado;
+    contacto.usuario_id = this.vehiculo.usuario_id; 
+
+    console.log(contacto);
 
     this._spinner.show();
 
