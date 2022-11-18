@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { URL_IMG, URL_PAGINA, URL_SERVICIOS } from '../config/config';
+import { URL_EMAIL, URL_IMG, URL_PAGINA, URL_SERVICIOS } from '../config/config';
 import { Usuario } from '../models/usuario.model';
 import { map, catchError } from 'rxjs/operators';
 import { throwError} from 'rxjs';
 import { SharedService } from './shared.service';
 import { SocialAuthService } from 'angularx-social-login';
+import { VerificarCuenta } from '../models/verificacion_correo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -112,8 +113,8 @@ export class UsuarioService {
     } else {
       url = URL_SERVICIOS + '/registro_web/' + host;
     }
-    return this.http.post( url, usuario);
-   /*  .pipe(
+    return this.http.post( url, usuario)
+    .pipe(
       map((resp: any) => {
         console.log(resp);
 
@@ -132,7 +133,7 @@ export class UsuarioService {
         }
       
       })
-    ); */
+    );
   }
 
   actualizar_usuario(usuario: Usuario) {
@@ -179,8 +180,9 @@ export class UsuarioService {
     return this.http.get(url);
   }
 
-  validarCuenta(codigo: string) {
-
+  validarCuenta(body: VerificarCuenta) {
+    const url = URL_EMAIL + 'verificacion';
+    return this.http.post(url, body);
   }
 
 

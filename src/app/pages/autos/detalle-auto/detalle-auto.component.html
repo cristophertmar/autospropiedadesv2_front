@@ -134,6 +134,20 @@
             <!-- <span class="d-block h1 fw-bold mb-4"> {{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }} </span> -->
             <div *ngIf="vehiculo.tipo_moneda === 'PEN'" class="d-block h1 fw-bold mb-4">{{ vehiculo.precio | currency: 'PEN': 'symbol': '': 'es-PE' }}</div>
             <div *ngIf="vehiculo.tipo_moneda !== 'PEN'" class="d-block h1 fw-bold mb-4">{{ vehiculo.precio | currency }}</div>
+
+            <div *ngIf="nuevaSubasta" class="d-grid text-center mb-4">
+                <button class="btn btn-outline-warning fw-semibold btn-lg btn-radius mt-3 mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Hazme una oferta</button>
+            </div>
+
+            <div *ngIf="!nuevaSubasta" style="text-align: center;" class="p-5 border border-warning rounded-3 mb-4">
+                <h3 style="margin-bottom: 0;">Vehículo en Subasta</h3>
+                <small class="text-danger">Finaliza el {{ this.vehiculo.fecha_subasta | date:"mediumDate" }}</small> <br>
+                <span><strong>Precio ofrecido: </strong> {{ monto_subasta }}</span>
+                <div class="d-grid text-center">
+                    <button class="btn btn-outline-primary fw-semibold btn-lg btn-radius mt-3 mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Realizar contra oferta</button>
+                </div>
+            </div>
+
             <div class="p-3 border border-dark rounded-3 text-secondary fw-normal mb-4">
                 <span class="d-block mb-2 fw-semibold">Por tu seguridad</span>
                 <ul>
@@ -142,6 +156,42 @@
                     <li>Ten cuidado con vendedores que dicen estar en el extranjero, o que evaden información.</li>
                 </ul>
             </div>
+
+
+
+
+
+
+            <!-- Modal Oferta -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Propón un precio oferta</h1>
+                            <br>
+                            <form class="row" [formGroup]="formOferta">
+                                <div class="col-3">
+                                    <select class="form-select" formControlName="moneda" name="moneda">
+                                        <option value="dolares">$</option>
+                                        <option value="soles">S/</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-9">
+                                    <input formControlName="monto" name="monto" class="form-control" type="number" placeholder="Ingrese un monto..." aria-label=".form-control-lg example" min="1" [class.is-invalid]="montoOfertaNoValido">
+                                </div>
+                            </form>
+                            <br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" (click)="enviarOferta()" class="btn btn-primary">Enviar oferta</button>
+                            <button #btnCerrarModal type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br>
             <h5 class="d-block text-dark fw-bold">Contactar Vendedor</h5>
             <div *ngIf="vehiculo.usuario_foto" class="social mb-4">
                 <!-- <img src="https://via.placeholder.com/32" class="rounded-circle"> -->
@@ -205,14 +255,14 @@
                                     Ingrese un mensaje
                                 </div>
                             </div>
-                            <div class="form-check mb-3">
+                            <!-- <div class="form-check mb-3">
                                 <input formControlName="alertas" name="alertas" class="form-check-input" type="checkbox" id="checkbox">
                                 <label class="form-check-label text-secondary" for="checkbox">
 										<small>
 											Quiero recibir alertas de email con anuncios similares
 										</small>
 									</label>
-                            </div>
+                            </div> -->
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary btn-lg  button btn-radius">Enviar</button>
                             </div>

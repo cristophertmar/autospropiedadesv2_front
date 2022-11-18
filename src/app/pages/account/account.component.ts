@@ -10,6 +10,7 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 import { Usuario } from 'src/app/models/usuario.model';
 import { SharedService } from 'src/app/services/shared.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { VerificarCuenta } from '../../models/verificacion_correo.model';
 
 @Component({
   selector: 'app-account',
@@ -30,9 +31,11 @@ export class AccountComponent implements OnInit {
 
   forma_login: FormGroup;
   forma_registro: FormGroup;
+  formVerify: FormGroup;
 
   @ViewChild('btn_inicio_sesion') btn_inicio_sesion: ElementRef<HTMLElement>;
   @ViewChild('btn_registro_nuevo') btn_registro_nuevo: ElementRef<HTMLElement>;
+  @ViewChild('btnVerificar') btn_verificar_correo: ElementRef<HTMLElement>;; 
 
   correo: string;
   contrasena: string;
@@ -119,9 +122,16 @@ export class AccountComponent implements OnInit {
       password: new FormControl( '', [Validators.required, Validators.minLength(6)] ),
       password2: new FormControl( '', Validators.required)
     });
-  }
 
-  
+    this.formVerify = new FormGroup({
+      codigo: new FormControl( null, [Validators.required, Validators.minLength(6)])
+    });
+
+  }
+   
+  get codigoNoValido() {
+    return this.formVerify.get('codigo').invalid && this.formVerify.get('codigo').touched;
+  }
 
   get correoNoValido_login() {
     return this.forma_login.get('correo_login').invalid && this.forma_login.get('correo_login').touched;
@@ -212,11 +222,11 @@ export class AccountComponent implements OnInit {
     return this.contrasena_iguales;
   }
 
-  registro_web() {
+  registro_web(paso: number) {
 
     const host = window.location.host;
 
-    if ( this.forma_registro.invalid ) {
+    if ( this.forma_registro.invalid || this.correo_existe ) {
       return Object.values( this.forma_registro.controls).forEach( control => {
         control.markAsTouched();
       });
@@ -225,31 +235,63 @@ export class AccountComponent implements OnInit {
     if(!(this.verificar_contrasenas_iguales())) {
       return;
     }
+
+    const { correo,  password, nombre} = this.forma_registro.value;
     
     this._spinner.show();
-    const correo: string = this.forma_registro.value.correo;
+
+    // Verificar si existe correo en DB
     this._usuarioService.verificar_correo(correo)
     .subscribe((resp: any) => {
+      this._spinner.hide();
       this.correo_existe = resp.existe;
       if(this.correo_existe) {        
         return;
       }
     });    
 
-    const usuario = new Usuario(
-      this.forma_registro.value.correo,
-      this.forma_registro.value.password,
-      this.forma_registro.value.nombre
-    );
-    
+    const usuario = new Usuario(correo, password, nombre);  
+
+    // Verificar primer paso
+    if(paso === 1) {
+
+      const codigo = this.generarCodigo();
+      sessionStorage.setItem('codigo', codigo);
+      const verificarBody: VerificarCuenta = { nombre, correo, codigo };
+  
+      this._spinner.show();
+      this._usuarioService.validarCuenta(verificarBody)
+      .subscribe(resp => {
+        this._spinner.hide();
+        this.btn_verificar_correo.nativeElement.click();
+        return;
+      });
+      
+      return;
+    }    
+
+
+    if (this.formVerify.invalid) {
+      return Object.values( this.forma_login.controls).forEach( control => {
+        control.markAsTouched();
+      });
+    }
+
+    const codigoComparar = this.formVerify.value.codigo;
+    if(sessionStorage.getItem('codigo') !== codigoComparar) {
+        this._shared.alert_error('Código incorrecto');
+        return;
+    }
+
+    this._spinner.show();
     this._usuarioService.registro_usuario(usuario, host)
     .subscribe( 
       (resp: any) => {
         this._spinner.hide();
         if(resp) {
-          console.log(resp);
-          //this._router.navigate(['/anuncio/seleccionar']);
-          //this.forma_registro.reset();
+          //console.log(resp);
+          this._router.navigate(['/anuncio/seleccionar']);
+          this.forma_registro.reset();
         } 
       },
       (error: any) => {
@@ -258,6 +300,16 @@ export class AccountComponent implements OnInit {
     );
 
   }  
+
+  generarCodigo() {
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result= '';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < 6; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
 
   cambiar_mod_loguin(){
     this.mod_loguin = !this.mod_loguin;

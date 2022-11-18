@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VehiculoDetalle } from 'src/app/models/vehiculo_detalle.model';
 import { VehiculoService } from '../../../services/vehiculo.service';
@@ -25,6 +25,7 @@ import { Contacto } from 'src/app/models/contacto.model';
 export class DetalleAutoComponent implements OnInit {
 
   formulario_mensaje: FormGroup;
+  formOferta: FormGroup;
   mostrar_formulario: boolean = true;
 
   vehiculo: VehiculoDetalle = {};
@@ -51,6 +52,11 @@ export class DetalleAutoComponent implements OnInit {
   maxprecio: number = 9999999999.99;
 
   id_publicado: string = '';
+
+  nuevaSubasta: boolean = true;
+  monto_subasta: string = '';
+
+  @ViewChild("btnCerrarModal") btnCerrarModal: ElementRef;
 
   constructor(
     private _vehiculoService: VehiculoService,
@@ -98,6 +104,25 @@ export class DetalleAutoComponent implements OnInit {
 
   }
 
+  definirFaseSubasta(vehiculo: VehiculoDetalle) {
+    const { fecha_subasta, monto_subasta, nombre_ganador_subasta, id_ganador_subasta } = vehiculo
+    console.log({ fecha_subasta, monto_subasta, nombre_ganador_subasta, id_ganador_subasta });
+    const fechaFinSubasta = new Date(fecha_subasta).getTime();
+    //const fechaFinSubasta = new Date('2022-11-15').getTime();
+    //const diff = fechaActual - fechaSubasta;
+    //const dias = diff/(1000*60*60*24);
+    const fechaActual  = new Date().getTime();
+    if(fecha_subasta) {
+      this.monto_subasta = monto_subasta;
+      this.nuevaSubasta = (fechaActual >  fechaFinSubasta);
+      return;
+    }
+    
+    this.nuevaSubasta = true;
+    console.log(this.nuevaSubasta);
+
+  }
+
   obtener_ruta(fichero: string) {
     return URL_IMG + fichero;
   }
@@ -139,6 +164,69 @@ export class DetalleAutoComponent implements OnInit {
       telefono: new FormControl(null, [Validators.required]),
       mensaje: new FormControl(null, [Validators.required]),
       alertas: new FormControl(false)
+    });
+    this.formOferta = new FormGroup({
+      moneda: new FormControl('dolares'),
+      monto: new FormControl(null, [Validators.required])
+    });
+  }
+
+  enviarOferta() {
+    const { moneda, monto } = this.formOferta.value;
+
+    if(this.formOferta.invalid){
+      Object.values( this.formOferta.controls).forEach( control => {
+        control.markAsTouched();
+      });
+      return;
+    }    
+
+
+    const { descrip_marca, descrip_modelo, usuario_id} = this.vehiculo;
+    const { correo, nombre, nrotelefono1, nrotelefono2 } = this._usuarioService.usuario;
+    const titulo = `${descrip_marca} - ${ descrip_modelo }`;
+    const monedaSymbol = moneda === 'dolares' ? '$' : 'S/';
+
+    const body = {
+      correo_destino: this.vehiculo.correo,
+      nombre_destino: this.vehiculo.usuario,
+      asunto_contacto: `Propuesta de Oferta para ${ titulo }`,
+      nombre_contacto: nombre,
+      correo_contacto: correo,
+      telefono_contacto: `${ nrotelefono1 } / ${ nrotelefono2 }`,
+      titulo_anuncio: titulo,
+      mensaje_contacto: 'Espero aceptes mi oferta',
+      tipo_anuncio: 'AUTO',
+      id_publicado: this.id_publicado,
+      usuario_id: usuario_id,
+      monto: `${ monedaSymbol } ${ monto }`,
+      monto_correo: `${ monedaSymbol } ${ monto }`,
+      id_oferta: ''
+    }
+
+    console.log({body});
+    
+    this._spinner.show();
+    this._contactoService.enviarOferta(body)
+    .subscribe(
+      (resp: any) => {
+        body.id_oferta = resp.id;
+        this.enviarCorreoOferta(body);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+  }
+
+  enviarCorreoOferta(body: any, ) {
+    this._contactoService.enviarCorreoOferta(body)
+    .subscribe(
+      resp => {
+      this._spinner.hide();
+      this.btnCerrarModal.nativeElement.click();
+      this._shared.alert_success('Propuesta enviada');
     });
   }
 
@@ -207,7 +295,13 @@ export class DetalleAutoComponent implements OnInit {
       this.vehiculo = resp.data;
       this.galleryImages = resp.data.imagen_galeria;
       console.log(this.vehiculo);
+      console.log(this._usuarioService.usuario);
+      this.definirFaseSubasta(this.vehiculo);
     });
+  }
+
+  get montoOfertaNoValido() {
+    return this.formOferta.get('monto').invalid && this.formOferta.get('monto').touched;
   }
 
   get nombreNoValido_mensaje() {
@@ -227,6 +321,9 @@ export class DetalleAutoComponent implements OnInit {
   }
 
 
+  informarSubasta() {
+    this._shared.alert_info('Una subaste es...', 'Entendido')
+  }
   
 
 

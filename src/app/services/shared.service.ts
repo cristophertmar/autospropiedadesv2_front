@@ -45,14 +45,14 @@ export class SharedService {
     });
   }
 
-  alert_info(mensaje: string){
+  alert_info(mensaje: string, confirm = 'De acuerdo'){
     Swal.fire({
       text: mensaje,
       width: 350,
       padding: 5,
       allowOutsideClick: false,
       showConfirmButton: true,
-      confirmButtonText: "De acuerdo", 
+      confirmButtonText: confirm, 
       icon: 'info',
       confirmButtonColor: "#266CFB",
     });

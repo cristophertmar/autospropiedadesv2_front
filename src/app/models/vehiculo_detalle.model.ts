@@ -67,7 +67,12 @@ export class VehiculoDetalle {
         public  usuario_id?: number,
         public  usuario_foto?: string,
         public tipo_moneda?: string,
-        public  tipo_anunciante?: number
+        public  tipo_anunciante?: number,
+
+        public  fecha_subasta?: string,
+        public  monto_subasta?: string,
+        public  nombre_ganador_subasta?: string,
+        public  id_ganador_subasta?: string,
 
     ) {}
 

@@ -1,5 +1,6 @@
 // export const URL_SERVICIOS = 'https://localhost:5001';
 export const URL_SERVICIOS = 'https://localhost:44380';
+export const URL_EMAIL = 'http://localhost:3002/api/v1/email/';
 export const URL_IMG = 'https://localhost:44380/'; 
 export const URL_PAGINA = 'http://localhost:4200'
 

@@ -16,12 +16,13 @@
             <div class="tab-content" id="myTabContent">
 
                 <div class="tab-pane fade show active text-center p-5" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <br>
                     <h5>Inicia sesión con:</h5>
                     <br>
                     <!-- <a href="javascript:void(0)" (click)="login_facebook(true)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Continuar con Facebook</a> -->
-                    <a href="javascript:void(0)" (click)="login_google(true)" class="btn d-block btn-outline-warning btn-lg btn-radius fw-semibold border-2">Una cuenta Google</a>
+                    <!-- <a href="javascript:void(0)" (click)="login_google(true)" class="btn d-block btn-outline-warning btn-lg btn-radius fw-semibold border-2">Una cuenta Google</a>
                     <br>
-                    <p>ó</p>
+                    <p>ó</p> -->
                     <form style="text-align: left;" autocomplete="off" [formGroup]="forma_login" (ngSubmit)="loguin_web()">
                         <div class="form-floating mb-3">
                             <input (blur)="verificar_correo_login()" formControlName="correo_login" name="correo_login" type="text" id="correo_login" class="form-control" [class.is-invalid]="correoNoValido_login || !(correo_login_existe)">
@@ -55,13 +56,14 @@
                 </div>
 
                 <div class="tab-pane fade text-center p-5" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <br>
                     <h5>Regístrate con:</h5>
                     <br>
                     <!-- <a href="javascript:void(0)" (click)="login_facebook(false)" class="btn btn-outline-primary btn-lg btn-radius fw-semibold border-2"><i class="fab fa-facebook-f mx-2"></i> Registrarme con Facebook</a> -->
-                    <a href="javascript:void(0)" (click)="login_google(false)" class="btn d-block btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Registrarme con Google</a>
+                    <!-- <a href="javascript:void(0)" (click)="login_google(false)" class="btn d-block btn-outline-warning btn-lg btn-radius fw-semibold border-2"><i class="fab fa-google mx-2"></i> Registrarme con Google</a>
                     <br>
-                    <p>ó</p>
-                    <form style="text-align: left;" autocomplete="off" [formGroup]="forma_registro" (ngSubmit)="registro_web()">
+                    <p>ó</p> -->
+                    <form style="text-align: left;" autocomplete="off" [formGroup]="forma_registro" (ngSubmit)="registro_web(1)">
                         <div class="form-floating mb-3">
                             <input formControlName="nombre" name="nombre" type="text" id="nombre" class="form-control" [class.is-invalid]="nombreNoValido_registro">
                             <label for="nombre">Nombre</label>
@@ -110,6 +112,50 @@
             </div>
 
 
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button #btnVerificar type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="display: none;">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Verificar correo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <br><br><br>
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 align-self-center" style="text-align: center;">
+
+                            <h5>Ingrese el código que hemos enviado a su correo:</h5>
+                            <br>
+                            <form style="text-align: left;" autocomplete="off" [formGroup]="formVerify" (ngSubmit)="registro_web(2)">
+                                <div class="form-floating mb-3">
+                                    <input type="password" id="password_login" class="form-control" [class.is-invalid]="codigoNoValido" formControlName="codigo" name="codigo">
+                                    <label for="password_login">Ingrese código</label>
+                                    <div class="invalid-feedback" *ngIf="codigoNoValido">
+                                        El código debe tener 6 dígitos
+                                    </div>
+                                </div>
+                                <div class="d-grid gap-4 text-center" style="margin-top: 30px;">
+                                    <button type="submit" class="btn btn-primary button btn-lg d-block btn-radius">Validar código</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
