@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AnuncioService } from '../../services/anuncio.service';
 import { ArchivoService } from '../../services/archivo.service';
 import { SharedService } from '../../services/shared.service';
+import { PublicacionService } from '../../services/publicacion.service';
 
 @Component({
   selector: 'app-anuncios',
@@ -14,13 +15,14 @@ import { SharedService } from '../../services/shared.service';
 export class AnunciosComponent implements OnInit {
 
   formulario: FormGroup;
-
+  id_anuncio_activar: string = '';
 
   constructor(
     private _router: Router,
     private _anuncioService: AnuncioService,
     public _archivoService: ArchivoService,
-    private _shared: SharedService
+    private _shared: SharedService,
+    private _publicacion: PublicacionService
     ) {
     this.crearFormulario();
   }
@@ -112,12 +114,31 @@ export class AnunciosComponent implements OnInit {
     }
 
     //this._shared.alert_success('Guardado exitosamente');
+    const url1: string = this.formulario.value.url_1;
+    const url2: string = this.formulario.value.url_2;
+    const url3: string = this.formulario.value.url_3;
+    const mostrar: string = this.formulario.value.mostrar;
+    const body = {url1, url2, url3, mostrar}
+    
 
+    this._publicacion.insertarAnuncio(body)
+    .subscribe((resp: any) => {
+      this.id_anuncio_activar = resp.data;
+      this._archivoService.guardar_archivo(resp.data, false, false, true)
+      .subscribe( resp => {
+        console.log(resp);
+        this._anuncioService.esanuncio = true;
+        sessionStorage.setItem('id_anuncio_activar', this.id_anuncio_activar);
+        this._router.navigate(['/anuncio/realizar-pago']);
+      });
+    });
 
-    this._anuncioService.esanuncio = true;
-    this._router.navigate(['/anuncio/realizar-pago']);
+    /* this._anuncioService.esanuncio = true;
+    this._router.navigate(['/anuncio/realizar-pago']); */
     //console.log(this.formulario.value);
   }
+
+  
 
 
 

@@ -9,6 +9,7 @@ import { SharedService } from './shared.service';
 export class ArchivoService {
 
   archivos: FileList;
+  archivosAnuncio: any;
   imagenes_temporal: string[] = [];
 
   archivo_publi1: File;
@@ -31,6 +32,37 @@ export class ArchivoService {
     this.cant_fotos = sessionStorage.getItem('anuncio_plan') === 'premium' ? 10 : 3;
   }
 
+  agregarArchivo(archivo: File) {
+    const dt = new DataTransfer()
+    let files: FileList;
+    dt.items.add(archivo); 
+
+    if(this.archivosAnuncio) {
+      files = dt.files;
+      const filesArray = [...Array.from(this.archivosAnuncio), ...Array.from(files)];
+      this.archivosAnuncio = filesArray;
+      console.log(this.archivosAnuncio);      
+      return;
+    }    
+    
+    this.archivosAnuncio = dt.files;
+    console.log(this.archivosAnuncio);
+  }
+
+  quitarArchivoAnuncio(file: File) {
+    
+    const dt = new DataTransfer()
+    for (let i = 0; i < this.archivosAnuncio.length; i++) {
+      const fileAdd = this.archivosAnuncio[i]
+      if (fileAdd !== file){
+        dt.items.add(fileAdd);
+      } 
+    }
+
+    this.archivosAnuncio = dt.files
+    console.log(this.archivosAnuncio);
+
+  }
 
   seleccion_imagen1(event: any) {
     const archivo: File = event.target.files[0];
@@ -47,10 +79,13 @@ export class ArchivoService {
 
     this.archivo_publi1 = archivo;
 
+
     const reader = new FileReader();
     const urlImagenTemp = reader.readAsDataURL( archivo );
 
     reader.onloadend = () => this.imagenTemp1 = reader.result.toString();    
+
+    this.agregarArchivo(archivo);
 
   }
 
@@ -72,7 +107,9 @@ export class ArchivoService {
     const reader = new FileReader();
     const urlImagenTemp = reader.readAsDataURL( archivo );
 
-    reader.onloadend = () => this.imagenTemp2 = reader.result.toString();    
+    reader.onloadend = () => this.imagenTemp2 = reader.result.toString(); 
+    
+    this.agregarArchivo(archivo);
 
   }
 
@@ -96,17 +133,22 @@ export class ArchivoService {
 
     reader.onloadend = () => this.imagenTemp3 = reader.result.toString();    
 
+    this.agregarArchivo(archivo);
+
   }
 
   quitar_imagenTemp1() {
-    this.archivo_publi1 = null;
+    this.quitarArchivoAnuncio(this.archivo_publi1);
+    this.archivo_publi1 = null;    
   }
 
   quitar_imagenTemp2() {
+    this.quitarArchivoAnuncio(this.archivo_publi2);
     this.archivo_publi2 = null;
   }
 
   quitar_imagenTemp3() {
+    this.quitarArchivoAnuncio(this.archivo_publi3);
     this.archivo_publi3 = null;
   }
 
@@ -248,16 +290,25 @@ export class ArchivoService {
     this.cant_fotos += 1;
   }
 
-  guardar_archivo(id: string, propiedad: boolean = false, zip: boolean = false) {
-    const url = URL_SERVICIOS + '/api/archivo/' + id + '/' + propiedad + '/' + zip;
+  guardar_archivo(id: string, propiedad: boolean = false, zip: boolean = false, anuncio: boolean = false) {
+    const url = URL_SERVICIOS + '/api/archivo/' + id + '/' + propiedad + '/' + zip + '/' + anuncio;
     const formData: FormData = new FormData();
 
-    if (this.archivos.length > 0) {
-      // tslint:disable-next-line: forin
-      for ( const i in this.archivos ) {
-        formData.append('files', this.archivos[i]);
+    if(anuncio) {
+      if (this.archivosAnuncio.length > 0) {
+        for ( const i in this.archivosAnuncio ) {
+          formData.append('files', this.archivosAnuncio[i]);
+        }      
+      }
+    } else {
+      if (this.archivos.length > 0) {
+        for ( const i in this.archivos ) {
+          formData.append('files', this.archivos[i]);
+        }      
       }
     }
+
+    
     return this._http.post(url, formData, { reportProgress: true });
   }
 

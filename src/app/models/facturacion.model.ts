@@ -11,7 +11,8 @@ export class Facturacion {
         public info_adicional?: string,
         public ids_vehiculos?: string,
         public ids_propiedades?: string,
-        public monto?: number
+        public monto?: number,
+        public id_anuncio?: string,
     ) {}
 
 }

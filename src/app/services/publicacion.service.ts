@@ -15,5 +15,10 @@ export class PublicacionService {
     return this._http.get(url);
   }
 
+  insertarAnuncio(body: any) {
+    const url = `${URL_SERVICIOS}/api/anuncio`;
+    return this._http.post(url, body);
+  }
+
   
 }

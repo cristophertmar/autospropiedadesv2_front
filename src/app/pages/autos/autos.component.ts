@@ -10,6 +10,7 @@ import { ModeloService } from '../../services/modelo.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AnuncioService } from '../../services/anuncio.service';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-autos',
@@ -46,7 +47,8 @@ export class AutosComponent implements OnInit {
     private _marcaService: MarcaService,
     private _modeloService: ModeloService,
     private _anuncioService: AnuncioService,
-    private _router: Router
+    private _router: Router,
+    public _usuarioService: UsuarioService 
   ) {
     this.crearFormulario();
   }

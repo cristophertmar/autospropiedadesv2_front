@@ -318,7 +318,8 @@ export class CheckoutComponent implements OnInit {
       '',
       sessionStorage.getItem('ids_autos') || '[]',
       sessionStorage.getItem('ids_propiedades') || '[]',
-      this.costo_total
+      this.costo_total,
+      sessionStorage.getItem('id_anuncio_activar') || '[]'
     )
 
     console.log(facturacion);
@@ -334,10 +335,17 @@ export class CheckoutComponent implements OnInit {
         this._anuncioService.activar_anuncio(id, 'propiedad', true).subscribe();
       });
 
+      if(this._anuncioService.esanuncio && sessionStorage.getItem('id_anuncio_activar')) {
+        this._anuncioService.activar_anuncio(sessionStorage.getItem('id_anuncio_activar'), 'anuncio', true).subscribe();
+      }
+
       this.cerrar_mdl_pago.nativeElement.click();
       this._anuncioService.limpiar_storage();
       this._anuncioService.limpiar_carrito();
       this._shared.alert_success('Transacción exitosa');
+      if(this._anuncioService.esanuncio) {
+        this._shared.alert_info('Su anuncio, será revisado y aprobado por administración');
+      }
       this._router.navigate(['/mis-publicaciones']);   
 
     });

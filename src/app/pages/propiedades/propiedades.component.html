@@ -291,7 +291,7 @@
                             </small>
                             <!-- <small class="text-primary fw-semibold d-block mb-2">12 de may at 12:10 PM</small> -->
                             <div class="social">
-                                <img [src]="prop.foto" class="rounded-circle wh-32">
+                                <img [src]="_usuarioService.ruta_foto(prop.foto)" class="rounded-circle wh-32">
                                 <span class="text-muted"> {{ prop.usuario }}  <br>
                                     <div class="rating">
                                         <img src="./assets/img/icons/star-fill.svg">

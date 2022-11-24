@@ -6,6 +6,7 @@ import { Propiedad } from '../../models/propiedad.model';
 import { PropiedadService } from '../../services/propiedad.service';
 import { AnuncioService } from '../../services/anuncio.service';
 import { URL_IMG } from 'src/app/config/config';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-propiedades',
@@ -38,7 +39,8 @@ export class PropiedadesComponent implements OnInit {
   constructor(
     private _propiedadService: PropiedadService,
     private _anuncioService: AnuncioService,
-    private _router: Router
+    private _router: Router,
+    public _usuarioService: UsuarioService
   ) {
     this.crearFormulario();
   }
